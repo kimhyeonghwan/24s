@@ -1,0 +1,1079 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "KAIST MFE, 2024 Spring",
+    "section": "",
+    "text": "Welcome!\n안녕하세요, KAIST MFE 24년 봄학기에 이수한 과목의 과제 등을 정리해두었습니다.",
+    "crumbs": [
+      "Welcome!"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html",
+    "href": "1. Python Basics.html",
+    "title": "1  Python Basics",
+    "section": "",
+    "text": "1.1 Values and Variables",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#values-and-variables",
+    "href": "1. Python Basics.html#values-and-variables",
+    "title": "1  Python Basics",
+    "section": "",
+    "text": "1.1.1 - Values\n\ntype(\"Hello, World\")\n\nstr\n\n\n\ntype(())\n\ntuple\n\n\n\ntype([])\n\nlist\n\n\n\ntype(set())\n\nset\n\n\n\ntype({})\n\ndict\n\n\n\n# 파이썬에서는 복소수 i를 j로 표현함\ntype(2+3j)\n\ncomplex\n\n\n\n\n1.1.2 - Variables\n\nmessage=\"Hello, world!\"\nn=42\ne=2.71\nprint(n)\nprint(message)\n\n42\nHello, world!\n\n\n\nlength=4.2\nheight=3.5\narea=length*height\nprint(area)\n\n14.700000000000001\n\n\n\n# 변수는 방문앞에 이름만 바꾼것... 새로운 변수에 기존 변수를 할당하고, 기존 변수를 변경하면 새로운 변수도 영향받음\na=[1,2,3]\nb=a\na[0]=10\nprint(b)\n\n[10, 2, 3]\n\n\n\n\n1.1.3 - Variable names\n\n숫자로 시작하면 안됌\n\n\nx=1.0\nX=1.0\nX1=1.0\nx1=1.0\ndell=1.0\n# not allowed\n# x:, 1X, X1-1, for\n\n\nx,y,z=1,3.14,'a'\nprint(x,y,z)\n\n1 3.14 a",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#core-data-types",
+    "href": "1. Python Basics.html#core-data-types",
+    "title": "1  Python Basics",
+    "section": "1.2 Core Data Types",
+    "text": "1.2 Core Data Types\n\n1.2.1 - Floating Point(float)\n\nx=1\ny=1.0\nz=float(1)\nxx=1.234e-5\nprint(x,y,z,xx)\nprint(type(z),type(float(True)))\n\n1 1.0 1.0 1.234e-05\n&lt;class 'float'&gt; &lt;class 'float'&gt;\n\n\n\n# float 타입은 근사치를 사용하기때문에 사용에 유의\n1-0.9==0.1\n\nFalse\n\n\n\nfloat('inf')\n\ninf\n\n\n\n\n1.2.2 - Complex\n\nx=1j\ny=2+3j\nz=complex(1)\nprint(x,y,z,y.real,y.imag)\nprint(type(y.imag))\n\n1j (2+3j) (1+0j) 2.0 3.0\n&lt;class 'float'&gt;\n\n\n\n\n1.2.3 - Integer\n\n# Integer는 float와 달리 정확하다\nx=2**127+2**65 \nx\n\n170141183460469231768580791863303208960\n\n\n\n\n1.2.4 - Boolean(bool)\n\nprint(bool(1),bool(1.2),bool(-1),bool(0.1))\n\nTrue True True True\n\n\n\nprint(bool(0),bool(0.0),bool(0.0000),bool(None),bool(\"\"),bool(()))\n\nFalse False False False False False\n\n\n\n3&gt;4\n\nFalse",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#operators",
+    "href": "1. Python Basics.html#operators",
+    "title": "1  Python Basics",
+    "section": "1.3 Operators",
+    "text": "1.3 Operators\n\n1.3.1 - Arithmetic Operators\n\na=10\nb=20\n\n\n# 나누기 연산은 항상 float로 반환됨을 유의\nprint(a+b,a-b,a*b,b/a)\n\n30 -10 200 2.0\n\n\n\n# 나머지 연산자\nb%a\n\n0\n\n\n\n# 몫 연산자\nb//a\n\n2\n\n\n\n# 거듭제곱 연산자, 우선순위가 가장 높음\na**b\n\n100000000000000000000\n\n\n\n\n1.3.2 - Relational Operators\n\nprint(a==b,a!=b,a&gt;b,a&lt;b,a&gt;=b,a&lt;=b)\n\nFalse True False True False True\n\n\n\n\n1.3.3 - Assignment Operators\n\nt=0\nt+=1\nt\n\n1\n\n\n\nt/=2\nt\n\n0.5\n\n\n\nt*=2\nt\n\n1.0\n\n\n\n\n1.3.4 - Logical Operators\n\nprint(True and False, True or False, not True)\n\nFalse True False\n\n\n\n# 논리연산자는 container가 bool이 아닌 경우 용법이 다름\n# or은 가장 먼저나오는 True값을 반환, and는 가장 먼저나오는 false값을 반환\nprint('' or 'abc',0 or 1, 'abc' or '','abc' or 'ab')\nprint(1 and 0, 'abc' and 0, None and '' and 0)\n\nabc 1 abc abc\n0 0 None",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#python-operators-precedence",
+    "href": "1. Python Basics.html#python-operators-precedence",
+    "title": "1  Python Basics",
+    "section": "1.4 Python Operators Precedence",
+    "text": "1.4 Python Operators Precedence\n\n1.4.1 - Python Operators Precedence\n\n# 거듭제곱 &gt; 덧샘뺄샘 &gt; 나눗셈, 몫, 나머지 &gt; 부등호 &gt; 논리\n1+3/2\n\n2.5\n\n\n\n2400//500*500+2000%500\n\n2000\n\n\n\n(2400//500)*500+(2000%500)\n\n2000",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#mathmatical-function",
+    "href": "1. Python Basics.html#mathmatical-function",
+    "title": "1  Python Basics",
+    "section": "1.5 Mathmatical Function",
+    "text": "1.5 Mathmatical Function\n\n# built-in\nprint(abs(-1),round(1.111,1))\n\n1 1.1\n\n\n\n# functional in math module\nimport math\n\n# factorial, floor, isfinite, isinf, isnan, trunc\n# exp, log, log10, sqrt, cos, sin, tan, degrees, radians, pi, e\n\nprint(\nmath.ceil(1.11),\nmath.log(10),\nmath.log(10,10),\nmath.exp(1),\nmath.e,\nmath.pi,\nmath.trunc(math.pi),\nmath.degrees(1),\nmath.cos(math.pi)\n)\n\n2 2.302585092994046 1.0 2.718281828459045 2.718281828459045 3.141592653589793 3 57.29577951308232 -1.0",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#python-io",
+    "href": "1. Python Basics.html#python-io",
+    "title": "1  Python Basics",
+    "section": "1.6 Python I/O",
+    "text": "1.6 Python I/O\n\n1.6.1 - Python Output\n\n# print(object1, object2, ... , sep=' ', end='\\n',...)\nprint(1,2,3,4)\nprint(1,2,3,4,sep='*')\nprint(1,2,3,4,end='END')\nprint(1,2,3,4,sep='')\n\n1 2 3 4\n1*2*3*4\n1 2 3 4END1234\n\n\n\n# formatting\nx=5; y=10\nprint('The value of x is {} and y is {}'.format(x,y))\nprint('I love {2} and {1}, but hate {0}'.format('cucumber','butter','bread'))\n\nThe value of x is 5 and y is 10\nI love bread and butter, but hate cucumber\n\n\n\n\n1.6.2 - Python Input\n\n# Input value is a string\nnum=input('Enter a number:')\nprint(num)\nprint(int(num))\n\n10\n10",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html",
+    "href": "2. Containers.html",
+    "title": "2  Containers",
+    "section": "",
+    "text": "2.0.1 - Accessing Values in Strings\n# 잘 알아둘것, 많이 사용\nword='KAIST MFE Program'\n# indexing\nprint(word[0],word[5],word[6],sep=\"/\")\n# slicing\n# str[a:b:c] = start a, end b, jump c\n# a is inclusive, b is exclusive, c can be minus\n# default : a =0, b=n+1, c=1 but when c is minus then default : a=n, b=0(inclusive)\nprint(word[0:5],word[6:9],word[10:])\nprint(word[:2],word[-2:])\nprint(word[0:10:2])\nprint(word[::-1])\n\nK/ /M\nKAIST MFE Program\nKA am\nKITME\nmargorP EFM TSIAK\ntext='Python strings are sliceable.'\ntext[10]\n\n'i'\nlength=len(text)\ntext[length]\n\nIndexError: string index out of range\ntext[length-1]\n\n'.'",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html#lists",
+    "href": "2. Containers.html#lists",
+    "title": "2  Containers",
+    "section": "2.1 Lists",
+    "text": "2.1 Lists\n\n# a mutable sequence of objects, important!!\n# To create List object, use [] or list()\nx1=[1,2,3,4]\nx2=[1,1.0,1+0j,'one',None,True]\nx3=[[1,2,3,4],[5,6,7],[8,9]] # nested list\n# 리스트 안에는 무엇이든 올 수 있음\nprint(x1,x2,x3,sep='\\n')\n\n[1, 2, 3, 4]\n[1, 1.0, (1+0j), 'one', None, True]\n[[1, 2, 3, 4], [5, 6, 7], [8, 9]]\n\n\n\ne1=list()\ntype(e1)\n\nlist\n\n\n\nlen(e1)\n\nNameError: name 'e1' is not defined\n\n\n\nlist('cat')\n\n['c', 'a', 't']\n\n\n\na_tuple=('abc')\nlist(a_tuple)\n\n['a', 'b', 'c']\n\n\n\n2.1.1 - Accessing Items in lists\n\n# indexing -&gt; original object, slicing -&gt; make sub-list\nmyList=[5,2.3,'hello']\nprint(\n    myList[0],\n    myList[-1],\n    myList[-3]\n)\n\n5 hello 5\n\n\n\nmany_types=[1,55.5,\"Am I in a list?\",True,\"the end\"]\nprint(\n    many_types[2:4],\n    many_types[2:],\n    many_types[:3],\n    many_types[-4:-2],\n    many_types[-2:-5:-1],\n    many_types[:-3],\n    many_types[:3:2],\n    many_types[:-2:2],\n    sep='\\n'\n)\n\n['Am I in a list?', True]\n['Am I in a list?', True, 'the end']\n[1, 55.5, 'Am I in a list?']\n[55.5, 'Am I in a list?']\n[True, 'Am I in a list?', 55.5]\n[1, 55.5]\n[1, 'Am I in a list?']\n[1, 'Am I in a list?']\n\n\n\n# Multidimensional lists can alse be indexed and sliced.\nx=[[1,2,3],[4,5,6],[7,8,9,0]]\nx[0]\n\n[1, 2, 3]\n\n\n\nx[0][1]\n\n2\n\n\n\nx[0][0:2]\n\n[1, 2]\n\n\n\n\n2.1.2 - Updating Lists\n\n# List object is an immutable!!\ncolorList=['red','blue','green','black','white']\nprint(id(colorList),colorList)\n\n2665431628288 ['red', 'blue', 'green', 'black', 'white']\n\n\n\ncolorList[2]='yellow'\nprint(id(colorList),colorList)\n\n2665431628288 ['red', 'blue', 'yellow', 'black', 'white']\n\n\n\ncolorList[2:4]=['gray','purple']\ncolorList\n\n['red', 'blue', 'gray', 'purple', 'white']\n\n\n\ncolorList[1:4]='r e d'\ncolorList\n\n['red', 'r', ' ', 'e', ' ', 'd', 'white']\n\n\n\ncolorList[1:]=['orange']\ncolorList\n\n['red', 'orange']\n\n\n\n\n2.1.3 - Basic List Operations\n\nL1=[1,2,3]; L2=[4,5,6]; L3=[7,8,9,0]\nprint(\n    L1+L2+L3,\n    [L1],\n    [L1]+[L2]+[L3],\n    sep='\\n')\n\n[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]\n[[1, 2, 3]]\n[[1, 2, 3], [4, 5, 6], [7, 8, 9, 0]]\n\n\n\nprint(\n    L1*3,\n    3*L1,\n    [L1]*3,\n    [L1+L2]*3,\n    [1,2,3] in [L1]+[L2],\n    sep='\\n'\n)\n\n[1, 2, 3, 1, 2, 3, 1, 2, 3]\n[1, 2, 3, 1, 2, 3, 1, 2, 3]\n[[1, 2, 3], [1, 2, 3], [1, 2, 3]]\n[[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]]\nTrue\n\n\n\n\n2.1.4 - Built-in List Functions and Mothods\n\n# len, min, max, del x[slice]\n# x.append(value), x.extend(list), x.remove(value), x.count(value),\n# x.insert(index, value), x.index(value), x.sort(), x.reverse()\nx=[0,1,2,3,4,5,6,7,8,9]\ndel x[0] # 많이 사용\nx\n\n[1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n\n\ndel x[:3]\nx\n\n[4, 5, 6, 7, 8, 9]\n\n\n\ndel x[:]\nx\n\n[]\n\n\n\nx=[0,1,2,3,4,5,6,7,8,9]\nlen(x)\n\n10\n\n\n\n# in place\nx.reverse()\nx\n\n[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]\n\n\n\n# not in place\nsorted(x)\n\n[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n\n\nx\n\n[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]\n\n\n\n# in place\nx.sort()\nx\n\n[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n\n\n\n2.1.5 - Coping List\n\npockets=[5,3,6,7]\npockets_copy=pockets\npockets_copy.append(1)\npockets_copy\n\n[5, 3, 6, 7, 1]\n\n\n\n# pockets_copy is just labeling of pockets\npockets\n\n[5, 3, 6, 7, 1]\n\n\n\n# [:] makes copy of original list object\n# At list [:] is copy, but at Array(numpy) [:] is view\npockets_realcopy=pockets[:]\npockets_realcopy.append(1)\npockets_realcopy\n\n[5, 3, 6, 7, 1, 1]\n\n\n\npockets\n\n[5, 3, 6, 7, 1]\n\n\n\npockets_method=pockets.copy()\npockets_method.append(1)\npockets_method\n\n[5, 3, 6, 7, 1, 1]\n\n\n\npockets\n\n[5, 3, 6, 7, 1]",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html#tuples",
+    "href": "2. Containers.html#tuples",
+    "title": "2  Containers",
+    "section": "2.2 Tuples",
+    "text": "2.2 Tuples\n\n2.2.0.1 : tuples are basically immutable lists. To create a tuple, () or tuple()\n\nt=(12345,54321,'hello')\nt\n\n(12345, 54321, 'hello')\n\n\n\n# if it contains a single variables, should include comma!\nx=(2)\ntype(x)\n\nint\n\n\n\nx=(2,)\ntype(x)\n\ntuple\n\n\n\na=1,2,3,'hello'\na\n\n(1, 2, 3, 'hello')\n\n\n\nw,x,y,z=a\nprint(w,x,y,z)\n\n1 2 3 hello\n\n\n\nx,_,y,_=a\nprint(x,y)\n\n1 3\n\n\n\nx,*y=a\nprint(x,y)\n\n1 [2, 3, 'hello']\n\n\n\n\n2.2.1 - Accesing values in tuples\n\n# can be indexed or sliced.\nx=(1,2,3,4,5,6,7,8,9)\nprint(\n    x[5],\n    x[-3],\n    x[3:7],\n    x[3:7:2],\n    sep='\\n'\n)\n\n6\n7\n(4, 5, 6, 7)\n(4, 6)\n\n\n\n\n2.2.2 - Updating Tuples\n\n# Tuples are immutable : impossible to add/remove/replace elements in a tuple\ntup1=(12,34.56)\ntup1[0]=100\n\nTypeError: 'tuple' object does not support item assignment\n\n\n\ntup2=([1,2],[3,4])\ntup2[0][0]=100\ntup2\n\n([100, 2], [3, 4])\n\n\n\n\n2.2.3 - Basic tuples operations\n\ntup1=(1,2,3,4)\ntup2='a','b','c'\ntup1+tup2\n\n(1, 2, 3, 4, 'a', 'b', 'c')\n\n\n\ntup1*3\n\n(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4)\n\n\n\n'a' in tup2\n\nTrue\n\n\n\ntup1[0:1]+tup2[1:]\n\n(1, 'b', 'c')\n\n\n\ntup1[0:1]+tup2[1]\n\nTypeError: can only concatenate tuple (not \"str\") to tuple\n\n\n\n# concatenation\ntup_even=tup1[1::2]+(6,)\ntup_even\n\n(2, 4, 6)\n\n\n\n\n2.2.4 - Built-in tuple functions and methods\n\n# len, max, min, x.index, x.count\nanimals=('lama','sheep','lama',48)\nlen(animals)\n\n4\n\n\n\nprint(\n    animals.index('lama'),\n    animals.count('sheep'),\n    sep='\\n')\n\n0\n1\n\n\n\n# to fix tuple, tuple -&gt; list -&gt; tuple\nx_list=list(x)\nx_list.reverse()\nx=tuple(x_list)\nx\n\n(9, 8, 7, 6, 5, 4, 3, 2, 1)\n\n\n\n# tuple is faster than list!\n%timeit x=[1,2,3,4,5]\n%timeit x=(1,2,3,4,5)\n\n47.3 ns ± 0.743 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)\n10.2 ns ± 0.0818 ns per loop (mean ± std. dev. of 7 runs, 100,000,000 loops each)",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html#dictionaries",
+    "href": "2. Containers.html#dictionaries",
+    "title": "2  Containers",
+    "section": "2.3 Dictionaries",
+    "text": "2.3 Dictionaries\n\n2.3.0.1 : a mutable, unordered collection of key-value pairs\n\n2.3.0.1.1 : unordered collection 최근 업데이트로 입력순으로 order가 생김. 그러나 sequence는 여전히 아님\n\n\n\n2.3.0.2 : To create a dict, {key1:value1, key2:value2} initiate with {}, dict()\n\n\n2.3.0.3 : Keys must be unique and immutable data! (If tuples, it can only contain immutable data.)\n\ntype({})\n\ndict\n\n\n\n# two-value sequenced can convert to dict easy!\nlot=[(1,2),(3,4),(5,6)]\ndict(lot)\n\n{1: 2, 3: 4, 5: 6}\n\n\n\nlos=['a1','b2','c3']\ndict(los)\n\n{'a': '1', 'b': '2', 'c': '3'}\n\n\n\ndict(a=1,b=2,c=3)\n\n{'a': 1, 'b': 2, 'c': 3}\n\n\n\na=\"abc\"\ndict(a=1,b=2,c=3)\n\n{'a': 1, 'b': 2, 'c': 3}\n\n\n\n\n2.3.1 - Accesing values in dictionary\n\ndict1=dict(Name='Zara', Age=7, Class='First')\ndict1\n\n{'Name': 'Zara', 'Age': 7, 'Class': 'First'}\n\n\n\ndict1['Name']\n\n'Zara'\n\n\n\n\n2.3.2 - Updating dict\n\ndict1['Age']=8\ndict1['School']='ABC School'\ndict1\n\n{'Name': 'Zara', 'Age': 8, 'Class': 'First', 'School': 'ABC School'}\n\n\n\na='Town'\ndict1[a]='Downtown'\ndict1\n\n{'Name': 'Zara',\n 'Age': 8,\n 'Class': 'First',\n 'School': 'ABC School',\n 'Town': 'Downtown'}\n\n\n\n\n2.3.3 - Basic dict operations\n\n# Check only key value!!\nprint(\n    'Name' in dict1,\n    'Age' in dict1,\n    'Country' in dict1,\n    'Country' not in dict1,\n    'Zara' in dict1,\n    sep='\\n'\n)\n\nTrue\nTrue\nFalse\nTrue\nFalse\n\n\n\n\n2.3.4 - Bulit-in dict functions and methods\n\n# len, del x[key]\n# x.clear(), x.items(), x.keys(), x.values(), x.update(dict2)\nprint(dict1, len(dict1), sep='\\n')\n\n{'Name': 'Zara', 'Age': 8, 'Class': 'First', 'School': 'ABC School', 'Town': 'Downtown'}\n5\n\n\n\ndel dict1['Town']\ndict1\n\n{'Name': 'Zara', 'Age': 8, 'Class': 'First', 'School': 'ABC School'}\n\n\n\ndict1.clear()\ndict1\n\n{}\n\n\n\ndel dict1\ndict1\n\nNameError: name 'dict1' is not defined\n\n\n\ndict1=dict(a=1,b=2,c=3)\ndict1.keys()\n\ndict_keys(['a', 'b', 'c'])\n\n\n\nlist(dict1.keys())\n\n['a', 'b', 'c']\n\n\n\ndict1.values()\n\ndict_values([1, 2, 3])\n\n\n\nlist(dict1.values())\n\n[1, 2, 3]\n\n\n\ndict1.items()\n\ndict_items([('a', 1), ('b', 2), ('c', 3)])\n\n\n\nd2=dict(apples=1,oranges=2,pears=2)\nud=dict(pears=4,grapes=5,lemons=6)\nd2.update(ud)\nd2\n\n{'apples': 1, 'oranges': 2, 'pears': 4, 'grapes': 5, 'lemons': 6}\n\n\n\n\n2.3.5 - Coping Dictionary\n\ndict1\n\n{'a': 1, 'b': 2, 'c': 3}\n\n\n\ndict2=dict1.copy()\ndict2.clear()\ndict1\n\n{'a': 1, 'b': 2, 'c': 3}\n\n\n\ndict2=dict1\ndict2.clear()\ndict1\n\n{}",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html#sets",
+    "href": "2. Containers.html#sets",
+    "title": "2  Containers",
+    "section": "2.4 Sets",
+    "text": "2.4 Sets\n\n2.4.0.1 : unordered collection with immutable and unique elements -&gt; Just dict.key !\n\n\n2.4.0.2 : initiate should be set(), {} is dict!!\n\n# elements of set should be immutable!\nlist1=[[1,2],[3,4]]\nset(list1)\n\nTypeError: unhashable type: 'list'\n\n\n\nlist2=[(1,2),(3,4)]\nset(list2)\n\n{(1, 2), (3, 4)}\n\n\n\n# if elements are not unique, automatically remove duplicates\nlist3=[1,2,2,3,4]\nset(list3)\n\n{1, 2, 3, 4}\n\n\n\ndict1=dict(a=1,b=2,c=3)\nset(dict1)\n\n{'a', 'b', 'c'}\n\n\n\nset(dict1.keys())\n\n{'a', 'b', 'c'}\n\n\n\nset(dict1.values())\n\n{1, 2, 3}\n\n\n\nset(dict1.items())\n\n{('a', 1), ('b', 2), ('c', 3)}\n\n\n\n\n2.4.1 - Accesing or Updating items in a Set\n\n2.4.1.1 indexing and slicing not supported!!\n\n\n2.4.1.2 set is mutable but set elements are immutable\n\n\n\n2.4.2 - Basic sets operation\n\n\n2.4.3 Warning!\n\n2.4.3.1 Shallow copy vs. Deep copy\n\nimport copy as cp\n\n\nA=dict(a=1,b=2,c=[1,2,3])\nB=A.copy()\nC=cp.deepcopy(A)\n\nB['a']=9\nB['c'][0]=9\nprint(A,B,C,sep='\\n')\n\n{'a': 1, 'b': 2, 'c': [9, 2, 3]}\n{'a': 9, 'b': 2, 'c': [9, 2, 3]}\n{'a': 1, 'b': 2, 'c': [1, 2, 3]}",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "3. Control Flows.html",
+    "href": "3. Control Flows.html",
+    "title": "3  Control Flows",
+    "section": "",
+    "text": "3.0.0.1 - Control statements in Python",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Control Flows</span>"
+    ]
+  },
+  {
+    "objectID": "3. Control Flows.html#statements-comments",
+    "href": "3. Control Flows.html#statements-comments",
+    "title": "3  Control Flows",
+    "section": "3.1 Statements & Comments",
+    "text": "3.1 Statements & Comments",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Control Flows</span>"
+    ]
+  },
+  {
+    "objectID": "3. Control Flows.html#if-conditionals",
+    "href": "3. Control Flows.html#if-conditionals",
+    "title": "3  Control Flows",
+    "section": "3.2 if Conditionals",
+    "text": "3.2 if Conditionals\n\n# if condition:\n#    statement\n# ---optional!---\n# elif condition:\n#     statement\n# elif condition:\n#     statement\n# else:\n#     statement\nexam1=90; exam2=85\nif(exam1&gt;=90) and (exam2&gt;=90):\n    print('Excellent!')\n\n\nif(exam1&gt;=90) | (exam2&gt;=90):\n    print('Good')\n\nGood\n\n\n\na=10\nif a&gt;10:\n    print(\"a&gt;10\")\nelse:\n    print(\"a=10\")\n\na=10\n\n\n\n# Exercise 1\na=[1,2,3,4,6,7,9]\nb=a.copy()\nb.sort()\n\nif a==b:\n    print(\"a is sorted\")\nelse:\n    print(\"a is not sorted\")\n\na is sorted\n\n\n\n# Exercise2\nx=[1,2,3,4,5,6,7,8]\n\nx_sort=x.copy()\nx.sort()\n\nlen_x=len(x_sort)\nmid_even=(x_sort[int(len(x_sort)/2-1)]+x_sort[int(len(x_sort)/2)])/2\nmid_odd=x_sort[int(len(x_sort)//2)]\n\nif len(x_sort)%2==0:\n    print(\"n={}이고, 중간값은 {}입니다.\".format(len_x,mid_even))\nelif len(x_sort)%2==1:\n    print(\"n={}이고, 중간값은 {}입니다.\".format(len_x,mid_odd))\nelse :\n    print(\"중간값을 산출할 수 없습니다.\")\n\nn=8이고, 중간값은 4.5입니다.",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Control Flows</span>"
+    ]
+  },
+  {
+    "objectID": "3. Control Flows.html#loops---for-loop",
+    "href": "3. Control Flows.html#loops---for-loop",
+    "title": "3  Control Flows",
+    "section": "3.3 Loops - for loop",
+    "text": "3.3 Loops - for loop\n\n# for interating_var in iterable:\n#    statements\n\n\n# exercise 3\n\na=input(\"When you enter...\")\na_int=int(a)\nprint(\"Input a number: \"+a,\n          \"The output will be...\",\n          sep=\"\\n\")\nfor i in range(1,10):\n    print(a+\" x \"+str(i)+\" = \"+str(a_int*i))\n\nInput a number: 99\nThe output will be...\n99 x 1 = 99\n99 x 2 = 198\n99 x 3 = 297\n99 x 4 = 396\n99 x 5 = 495\n99 x 6 = 594\n99 x 7 = 693\n99 x 8 = 792\n99 x 9 = 891\n\n\n\n# exercise 4\nsum_even=0\nsum_odd=0\nfor i in range(10001):\n    if i%2==0:\n        sum_even+=i\n    else:sum_odd+=i\n\nprint(sum_even,\n      sum_odd,\n      sum_even+sum_odd,\n      sep='\\n')\n\n25005000\n25000000\n50005000\n\n\n\n# exercise 5\nfibonacci=[1,1]\nfor i in range(10):\n    fibonacci.append(fibonacci[i]+fibonacci[i+1])\nprint(\n    fibonacci,\n    sum(fibonacci),\n    sep='\\n'\n)\n\n[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]\n376\n\n\n\n# exercise 6\na=input(\"When you enter alpha-num string...\")\nletter_index=list()\ndigits_index=list()\nnon_index=list()\nprint(\n    \"Sample Data : \"+a,\n    \"The output will be...\",\n    sep='\\n'\n)\nfor i in range(0,len(a)):\n    if a[i].isalpha():\n        letter_index.append(i)\n    elif a[i].isnumeric():\n        digits_index.append(i)\n    else: non_index.append(i)\n\nprint(\n    \"Letters {} at {}\".format(len(letter_index),letter_index),\n    \"Digits {} at {}\".format(len(digits_index),digits_index),\n    \"And there are {} at {} which are NOT alphanumeric\".format(len(non_index),non_index),\n    sep='\\n'\n)\n\nSample Data : sample asdfl11231,2,1,3.2  21\nThe output will be...\nLetters 11 at [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11]\nDigits 11 at [12, 13, 14, 15, 16, 18, 20, 22, 24, 27, 28]\nAnd there are 7 at [6, 17, 19, 21, 23, 25, 26] which are NOT alphanumeric",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Control Flows</span>"
+    ]
+  },
+  {
+    "objectID": "4. Functions.html",
+    "href": "4. Functions.html",
+    "title": "4  Functions",
+    "section": "",
+    "text": "4.0.0.1 Sqrt 사용자 정의 함수 실습\n\ndef mySqrt (n):\n    old=0\n    new=n/2\n    while abs(old-new)&gt;1e-10 :\n        old=new\n        new=1/2*(old+n/old)\n    return new\n\n\nmySqrt(3)\n\n1.7320508075688772\n\n\n\nlist_int=[1,2,3,4,5,6,7,8]\nlist_str=[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\"]\n\n\nlist(filter(lambda x:x,list_str))\n\n['1', '2', '3', '4', '5', '6', '7', '8']\n\n\n\nlist(filter(lambda x:x+\"1\",list_str))\n\n['1', '2', '3', '4', '5', '6', '7', '8']\n\n\n\nbool(\"2\")\n\nTrue\n\n\n\nlist(filter(lambda x:x,list_int))\n\n[]\n\n\n\nlist(filter(lambda x:bool(x-1),list_x))\n\n[2, 3, 4]\n\n\n\nfilter(lambda x:x-1,list_int)\n\n&lt;filter at 0x1f5d235af10&gt;",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functions</span>"
+    ]
+  },
+  {
+    "objectID": "5. Numpy.html",
+    "href": "5. Numpy.html",
+    "title": "5  Numpy",
+    "section": "",
+    "text": "import numpy as np\n\n\na=np.array([np.arange(6)]*6)+np.arange(0,51,10).reshape(6,1)\na\n\narray([[ 0,  1,  2,  3,  4,  5],\n       [10, 11, 12, 13, 14, 15],\n       [20, 21, 22, 23, 24, 25],\n       [30, 31, 32, 33, 34, 35],\n       [40, 41, 42, 43, 44, 45],\n       [50, 51, 52, 53, 54, 55]])\n\n\n\na[0,3:5]\n\narray([3, 4])\n\n\n\na[4:,4:]\n\narray([[44, 45],\n       [54, 55]])\n\n\n\na[0:,2]\n\narray([ 2, 12, 22, 32, 42, 52])\n\n\n\na[0:,2:3]\n\narray([[ 2],\n       [12],\n       [22],\n       [32],\n       [42],\n       [52]])\n\n\n\na[0:,2]=[1,2,3,4,5,6]\na\n\narray([[ 0,  1,  1,  3,  4,  5],\n       [10, 11,  2, 13, 14, 15],\n       [20, 21,  3, 23, 24, 25],\n       [30, 31,  4, 33, 34, 35],\n       [40, 41,  5, 43, 44, 45],\n       [50, 51,  6, 53, 54, 55]])\n\n\n\na[2::2,0:6:2]\n\narray([[20,  3, 24],\n       [40,  5, 44]])\n\n\n\n# Operations on Arrays\n# Numpy aggregates\n\n# Exercise 4\n# F=9/5C+32\n\nc=np.arange(20,31)\nc*9/5+32\n\narray([68. , 69.8, 71.6, 73.4, 75.2, 77. , 78.8, 80.6, 82.4, 84.2, 86. ])\n\n\n\n# Exercise 5\nnp.random.seed(1)\nZ=np.random.rand(5)\nprint(Z,(Z-Z.min())/(Z.max()-Z.min()),sep=\"\\n\")\n\n[4.17022005e-01 7.20324493e-01 1.14374817e-04 3.02332573e-01\n 1.46755891e-01]\n[0.57886944 1.         0.         0.41962504 0.20360935]\n\n\n\n# Exercise 6\nZ=np.random.uniform(0,10,10)\nnp.floor(Z)\n\narray([6., 4., 5., 1., 1., 8., 9., 3., 6., 8.])\n\n\n\nnp.ceil(Z)-1\n\narray([6., 4., 5., 1., 1., 8., 9., 3., 6., 8.])\n\n\n\nZ-Z%1\n\narray([6., 4., 5., 1., 1., 8., 9., 3., 6., 8.])\n\n\n\n# Exercise 7\nx=np.zeros((6,6))\ny=np.arange(0,6)\n\n\nx+y\n\narray([[0., 1., 2., 3., 4., 5.],\n       [0., 1., 2., 3., 4., 5.],\n       [0., 1., 2., 3., 4., 5.],\n       [0., 1., 2., 3., 4., 5.],\n       [0., 1., 2., 3., 4., 5.],\n       [0., 1., 2., 3., 4., 5.]])\n\n\n\nx+y[:,np.newaxis]\n\narray([[0., 0., 0., 0., 0., 0.],\n       [1., 1., 1., 1., 1., 1.],\n       [2., 2., 2., 2., 2., 2.],\n       [3., 3., 3., 3., 3., 3.],\n       [4., 4., 4., 4., 4., 4.],\n       [5., 5., 5., 5., 5., 5.]])\n\n\n\nx+y.reshape(6,1)\n\narray([[0., 0., 0., 0., 0., 0.],\n       [1., 1., 1., 1., 1., 1.],\n       [2., 2., 2., 2., 2., 2.],\n       [3., 3., 3., 3., 3., 3.],\n       [4., 4., 4., 4., 4., 4.],\n       [5., 5., 5., 5., 5., 5.]])\n\n\n\n# Exercise 9\nnp.random.seed(123)\nmat = np.random.randn(6, 4); mat\n\narray([[-1.0856306 ,  0.99734545,  0.2829785 , -1.50629471],\n       [-0.57860025,  1.65143654, -2.42667924, -0.42891263],\n       [ 1.26593626, -0.8667404 , -0.67888615, -0.09470897],\n       [ 1.49138963, -0.638902  , -0.44398196, -0.43435128],\n       [ 2.20593008,  2.18678609,  1.0040539 ,  0.3861864 ],\n       [ 0.73736858,  1.49073203, -0.93583387,  1.17582904]])\n\n\n\nmat=np.concatenate([mat,np.exp(mat[:,0])[:,np.newaxis]],axis=1)\nmat\n\narray([[-1.0856306 ,  0.99734545,  0.2829785 , -1.50629471,  0.33768877],\n       [-0.57860025,  1.65143654, -2.42667924, -0.42891263,  0.56068263],\n       [ 1.26593626, -0.8667404 , -0.67888615, -0.09470897,  3.54641154],\n       [ 1.49138963, -0.638902  , -0.44398196, -0.43435128,  4.44326571],\n       [ 2.20593008,  2.18678609,  1.0040539 ,  0.3861864 ,  9.07869158],\n       [ 0.73736858,  1.49073203, -0.93583387,  1.17582904,  2.09042747]])\n\n\n\nmat=mat+[1,-1,1,-1,1]; mat\n\narray([[-8.56306033e-02, -2.65455342e-03,  1.28297850e+00,\n        -2.50629471e+00,  1.33768877e+00],\n       [ 4.21399748e-01,  6.51436537e-01, -1.42667924e+00,\n        -1.42891263e+00,  1.56068263e+00],\n       [ 2.26593626e+00, -1.86674040e+00,  3.21113848e-01,\n        -1.09470897e+00,  4.54641154e+00],\n       [ 2.49138963e+00, -1.63890200e+00,  5.56018040e-01,\n        -1.43435128e+00,  5.44326571e+00],\n       [ 3.20593008e+00,  1.18678609e+00,  2.00405390e+00,\n        -6.13813601e-01,  1.00786916e+01],\n       [ 1.73736858e+00,  4.90732028e-01,  6.41661316e-02,\n         1.75829045e-01,  3.09042747e+00]])\n\n\n\nmat=mat*np.array([1/10,1/10,1/10,10,10,10]).reshape(6,1)\nmat\n\narray([[-8.56306033e-03, -2.65455342e-04,  1.28297850e-01,\n        -2.50629471e-01,  1.33768877e-01],\n       [ 4.21399748e-02,  6.51436537e-02, -1.42667924e-01,\n        -1.42891263e-01,  1.56068263e-01],\n       [ 2.26593626e-01, -1.86674040e-01,  3.21113848e-02,\n        -1.09470897e-01,  4.54641154e-01],\n       [ 2.49138963e+01, -1.63890200e+01,  5.56018040e+00,\n        -1.43435128e+01,  5.44326571e+01],\n       [ 3.20593008e+01,  1.18678609e+01,  2.00405390e+01,\n        -6.13813601e+00,  1.00786916e+02],\n       [ 1.73736858e+01,  4.90732028e+00,  6.41661316e-01,\n         1.75829045e+00,  3.09042747e+01]])\n\n\n\nnp.median(mat,axis=0)\n\narray([ 8.80013969,  0.0324391 ,  0.38497958, -0.19676037, 15.67945792])\n\n\n\nnp.percentile(mat,70,axis=0)\n\narray([21.14379101,  2.48623197,  3.10092086, -0.12618108, 42.66846589])\n\n\n\nnp.sort(mat[2,:])[::-1]\n\narray([ 0.45464115,  0.22659363,  0.03211138, -0.1094709 , -0.18667404])\n\n\n\nnp.argsort(mat[2,:])[::-1]\n\narray([4, 0, 2, 3, 1])\n\n\n\nnp.sum(np.where(np.exp(mat)&gt;3,1,0),axis=1)\n\narray([0, 0, 0, 3, 4, 4])\n\n\n\n# or\nnp.sum(np.exp(mat)&gt;3,axis=1)\n\narray([0, 0, 0, 3, 4, 4])\n\n\n\nnp.nonzero(mat&gt;np.mean(mat,axis=0))\n\n(array([0, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5]),\n array([3, 1, 3, 3, 0, 2, 4, 0, 1, 2, 4, 0, 1, 3]))",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Numpy</span>"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html",
+    "href": "Python Quiz1.html",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "",
+    "text": "1. Calculate the following\nimport math",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#calculate-the-following",
+    "href": "Python Quiz1.html#calculate-the-following",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "",
+    "text": "(1) 근의 공식 코드 작성\n\na=2.0;b=-1.0;c=-15.0;\nprint(\n    (-b+math.sqrt(b**2-4*a*c))/(2*a),\n    (-b-math.sqrt(b**2-4*a*c))/(2*a)\n)\n\n3.0 -2.5\n\n\n\n\n(2) 정규분포 확률밀도함수 코드 작성\n\nmean=2; std=math.sqrt(3); x=1;\nprint(\n    (1/(math.sqrt(2*math.pi)*std))*(math.e**(-((x-mean)**2)/(2*(std)**2)))\n)\n\n0.19496965572274114",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#why-the-error-occurs",
+    "href": "Python Quiz1.html#why-the-error-occurs",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "2. Why the error occurs?",
+    "text": "2. Why the error occurs?\n\n(1) Input error\n\na=input(\"enter a number:\")\n\na+3\n\ninput 값은 string타입으로 받게되므로, integer타입인 3과 더하기 연산을 하면 오류 발생, input 값을 받아 integer로 변환하여 integer간 연산을 하거나, 3을 string으로 변환하여 문자열간 연산을 하거나 해야함.\n\n\n(2) Range error\n\ntmp='My String'\ntmp[10]\n\ntmp는 공백포함 9자리 문자열이므로 index는 0~8까지만 할 수 있고 9부터는 범위 밖이므로 오류 발생.\n\n\n(3) method error\n\nex1='sample string'\nex2=ex1.upper\nex2[:4]\n\nmethod를 사용할 때, 뒤에 ()를 붙여야 작동함. 붙이지 않을경우 단순히 함수를 호출하는 것.",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#string",
+    "href": "Python Quiz1.html#string",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "3. String",
+    "text": "3. String\n\ngrade='ABCDF'\n\n\n(1) ‘+’를 이용해서 ’ABCDFFFDCBA’ 만들기\n\ngrade_str=grade+grade[-1]+grade[::-1]\ngrade_str\n\n'ABCDFFFDCBA'\n\n\n\n\n(2) A의 개수\n\ngrade_str.count('A')\n\n2\n\n\n\n\n(3) ’FFF’를 반환하는 4가지 다른 표현식\n\nprint(\n    grade_str[4:7],\n    grade_str[6:3:-1],\n    grade_str[-7:-4],\n    grade_str[-5:-8:-1]\n)\n\nFFF FFF FFF FFF\n\n\n\n\n(4) ’ABCDAAADCBA’로 수정하기\n\ngrade_str=grade_str.replace('F','A')\ngrade_str\n\n'ABCDAAADCBA'\n\n\n\n\n(5) 소문자로 모두 바꾸기\n\ngrade_str=grade_str.lower()\ngrade_str\n\n'abcdaaadcba'",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#why-the-error-occurs-1",
+    "href": "Python Quiz1.html#why-the-error-occurs-1",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "4. Why the error occurs?",
+    "text": "4. Why the error occurs?\n\n(1) slicing 반환 형식\n\nL=[[1,3,5,7,9],[2,4,6,8,10]]\nL[0][1:2]=30\n\nlist를 원소로 가지는 list에서 slicing하는 경우, output은 list로 나타나게 되는데, list에 integer 30을 할당하려고 하므로 오류가 발생함.\n30을 list로 만들어 할당하거나, slicing 대신 indexing을 통해 output을 integer로 만드는 방법을 사용해야 함.\n\n\n(2) 단일 원소 tuple 표현\n\nT=(10,20,30)\nT[:2]+(40)\n\ntuple에 더하기를 사용하는 경우인데, (40)은 tuple이 아니라 integer이므로 오류가 발생함. 단일 원소를 가지는 tuple을 표현하려면 (40,)으로 써야함.\n\n\n(3) 변수 할당 labeling vs. copy\n\nD=dict(A=10,B=20,C=30)\n# Copy method를 써야 복사본이 할당됨\n# D2=D.copy()\nD2=D\ndel D2['A']\nD['A']\n\nD2=D는 D2에 D.copy가 할당되는게 아니라 단순히 D에 D2라는 label만 새로 달아준것임. 따라서, D2에 ‘A’ key를 제거하면 D의 ‘A’ key도 사라지게 되므로 호출시 오류 발생.\n\n\n(4) Key값은 Immutable 해야함\n\nD3={['Park','Male']:30,}\n\nDictionary 타입의 key값은 immutable한 값만 허용되므로 mutable한 list를 사용하면 오류 발생. tuple을 쓰던지 해야함.\n\n\n(5) slicing&indexing for Dict\n\ndict_y={(1,):10,(2,):20,(3,):30,(4,):40}\ndict_y[(1,)]\n\nDictionary은 순서가 없음. slicing이 불가하며 indexing도 key값으로만 접근 가능.",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#list",
+    "href": "Python Quiz1.html#list",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "5. List",
+    "text": "5. List\n\ndays=['Mon','Tues','Wed','Thur','Fri',['Sat','Sun']]\n\n\n(1) indexing, slicing\n\nprint(\n    [days[5]],\n    days[-1::-2],\n    days[5][0],\n    sep='\\n'\n)\n\n[['Sat', 'Sun']]\n[['Sat', 'Sun'], 'Thur', 'Tues']\nSat\n\n\n\n\n(2) ‘+’ 활용\n\ndays2=[days[0:5]]+days[5][0:1]+days[5][1:]\ndays2\n\n[['Mon', 'Tues', 'Wed', 'Thur', 'Fri'], 'Sat', 'Sun']\n\n\n\n\n(3) remove method\n\ndays2[0].remove('Wed')\ndays2[0].remove('Fri')\ndays2\n\n[['Mon', 'Tues', 'Thur'], 'Sat', 'Sun']\n\n\n\n\n(4) insert method\n\ndays2[0].insert(2,'W')\ndays2\n\n[['Mon', 'Tues', 'W', 'Thur'], 'Sat', 'Sun']",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#list2",
+    "href": "Python Quiz1.html#list2",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "6. list2",
+    "text": "6. list2\n\nNums=[1,5,2,7,3,6,4]\n\n\n(1) append method\n\nNums.append(7)\nNums\n\n[1, 5, 2, 7, 3, 6, 4, 7]\n\n\n\n\n(2) sorting list\n\nNums.sort()\nNums.reverse()\nNums\n\n[7, 7, 6, 5, 4, 3, 2, 1]\n\n\n\n\n(3) slicing and replacing\n\nNums[::2]=['a','a','a','a']\nNums\n\n['a', 7, 'a', 5, 'a', 3, 'a', 1]",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#tuple",
+    "href": "Python Quiz1.html#tuple",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "7. tuple",
+    "text": "7. tuple\n\nprice=(180,130,110,160,140,170)\n\n\n(1) sorting tuple via translate to list\n\nprice_list=list(price)\nprice_list.sort()\nprice=tuple(price_list)\nprice\n\n(110, 130, 140, 160, 170, 180)\n\n\n\n\n(2) basic operation\n\n170 in price\n\nTrue\n\n\n\n\n(3) concatenating tuple\n\nprice=price[0:4]+(0,)*3+price[len(price)-1:]\nprice\n\n(110, 130, 140, 160, 0, 0, 0, 180)",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz2.html",
+    "href": "Python Quiz2.html",
+    "title": "금융공학프로그래밍3, Quiz2",
+    "section": "",
+    "text": "1. Dictionary\nicecream=dict(cheery=[12,100],cookies=[18,200],greentea=[15,140],mango=[10,200])",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz2"
+    ]
+  },
+  {
+    "objectID": "Python Quiz2.html#dictionary",
+    "href": "Python Quiz2.html#dictionary",
+    "title": "금융공학프로그래밍3, Quiz2",
+    "section": "",
+    "text": "(1)\nChange the price of ‘cookies’ as 13\n\nicecream['cookies'][0]=13\nicecream['cookies']\n\n[13, 200]\n\n\n\n\n(2)\nAdd the following information to the dictionary ‘icecream’. - ‘Strawberry’ is priced at 12 and inventory is 170. - ‘pistachio’ is priced at 15 and inventory is 100.\n\nupdate_dict=dict(Strawberry=[12,170],pistachio=[15,100])\nicecream.update(update_dict)\nicecream\n\n{'cheery': [12, 100],\n 'cookies': [13, 200],\n 'greentea': [15, 140],\n 'mango': [10, 200],\n 'Strawberry': [12, 170],\n 'pistachio': [15, 100]}",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz2"
+    ]
+  },
+  {
+    "objectID": "Python Quiz2.html#dictionary2",
+    "href": "Python Quiz2.html#dictionary2",
+    "title": "금융공학프로그래밍3, Quiz2",
+    "section": "2. Dictionary2",
+    "text": "2. Dictionary2\n\nd1=dict(key1=1,key2=3,key3=2,key10=7)\nd2=dict(key3=1,key2=2,key7=2,key5=4,key1=7,key9=8,key0=7)\n\n\n(1)\nSelect the largest two values of the dictionary ‘d2’.\n\nd2_list=list(d2.values())\nd2_list.sort()\nd2_list.reverse()\nd2_list[0:2]\n\n[8, 7]\n\n\n\n\n(2)\nCreate a set of values which are the unique values of ‘d2’.\n\nset(d2.values())\n\n{1, 2, 4, 7, 8}\n\n\n\n\n(3)\nWrite code that returns True if keys of ‘d1’ are all contained in the key of ‘d2’ and False otherwise.\n\nset(d1.keys()) &lt;= set(d2.keys())\n\nFalse\n\n\n\n\n(4)\nCreate a set of values which are common in both ‘d1’ and ‘d2’\n\nset(d1.values())&set(d2.values())\n\n{1, 2, 7}\n\n\n\n\n3. if statement\nFor any arbitrary string object A, if the first character of A is ‘#’, we want it to be replaced with ‘*’. Otherwise, we want to add ‘*’ as the first character of A. Write appropriate code using an if statement for this\n\nA=\"#abcde\"\n\nif A[0]==\"#\":\n    A=\"*\"+A[1:]\nelse:\n    A=\"*\"+A\n\nA\n\n'*abcde'\n\n\n\n\n4. for loop\nCalculate the following by using ‘for’ loop : \\(\\sum_{i=1}^{10} i^4\\)\n\nresult=int()\n\nfor i in range(1,11):\n    result+=i**4\n\nresult\n\n25333",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz2"
+    ]
+  },
+  {
+    "objectID": "Python Quiz3.html",
+    "href": "Python Quiz3.html",
+    "title": "금융공학프로그래밍3, Quiz3",
+    "section": "",
+    "text": "1. Calculate the following by using ‘while’ loop.\n\\[\\sum_{i\\geq 1, i^4&lt;1000}^{10}i^4\\]\ni=1\nsum_i4=0\nwhile i&gt;=1 and i**4&lt;1000 and i&lt;=10:\n    sum_i4+=i**4\n    i+=1\nsum_i4\n\n979",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz3"
+    ]
+  },
+  {
+    "objectID": "Python Quiz3.html#list-comprehension",
+    "href": "Python Quiz3.html#list-comprehension",
+    "title": "금융공학프로그래밍3, Quiz3",
+    "section": "2. List comprehension",
+    "text": "2. List comprehension\n\nx=[1,2,3,4]\ny=[5,6,7,8]\n\n\n(1) Cartesian product\n\nz=list([i,j] for i in x for j in y)\nz\n\n[[1, 5],\n [1, 6],\n [1, 7],\n [1, 8],\n [2, 5],\n [2, 6],\n [2, 7],\n [2, 8],\n [3, 5],\n [3, 6],\n [3, 7],\n [3, 8],\n [4, 5],\n [4, 6],\n [4, 7],\n [4, 8]]\n\n\n\n\n(2) Cartesian product with condition\n\nz=list([i,j] for i in x for j in y if i+j&gt;=8)\nz\n\n[[1, 7],\n [1, 8],\n [2, 6],\n [2, 7],\n [2, 8],\n [3, 5],\n [3, 6],\n [3, 7],\n [3, 8],\n [4, 5],\n [4, 6],\n [4, 7],\n [4, 8]]",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz3"
+    ]
+  },
+  {
+    "objectID": "Python Quiz3.html#function",
+    "href": "Python Quiz3.html#function",
+    "title": "금융공학프로그래밍3, Quiz3",
+    "section": "3. Function",
+    "text": "3. Function\n\ndef grading (score):\n    if type(score)!=int and type(score)!=float:\n        print(\"Score must be integer or float type.\")\n    elif score&gt;100 or score&lt;0:\n        print(\"Score must be a number between 0 and 100!!\")\n    elif score&gt;90:\n        print(\"Grade is A !\")\n    elif score&gt;80:\n        print(\"Grade is B !\")\n    elif score&gt;70:\n        print(\"Grade is C !\")\n    elif score&gt;60:\n        print(\"Grade is D !\")\n    else:\n        print(\"Grade is F !\")\n\n\ngrading(score=75)\n\nGrade is C !\n\n\n\ngrading(score=-5)\n\nScore must be a number between 0 and 100!!",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz3"
+    ]
+  },
+  {
+    "objectID": "Python Quiz3.html#explain-why-the-error-occurs",
+    "href": "Python Quiz3.html#explain-why-the-error-occurs",
+    "title": "금융공학프로그래밍3, Quiz3",
+    "section": "4. Explain why the error occurs",
+    "text": "4. Explain why the error occurs\n\npositional argument와 keyword argument를 혼용하는 경우, positional argument가 먼저 와야합니다. keyword argument를 먼저 사용하는 경우 오류가 발생합니다.\n\n\ndef infoprint( name, age, gender):\n    print(name, 'is', age, 'years old', gender, '.')\n\ninfoprint (name='Kim', 30, 'male')\n\n\n’Kim’은 positional argument로 name에 할당, ’male’은 keyword로 gender에 할당되고 age는 할당값이 없어서 오류가 발생하였습니다. 함수 정의시 age는 default값을 정의하지 않았으므로 반드시 값을 할당해야 합니다.\n\n\ndef infoprint( name, age, gender):\n    print(name, 'is', age, 'years old', gender, '.')\n\ninfoprint ( 'Kim', gender='male' )\n\n\n함수 myfactorial 정의시 변수 fac을 사용하는데, 해당 변수는 함수 안에서 정의된바 없으므로 함수 밖에서 정의된 global variable인 fac을 가져와서 사용하게 됩니다. 그러나, 이런 경우 global variable의 읽기만 가능하고 쓰기는 불가능하므로 for문 내에 fac을 수정하는 것은 허용되지 않습니다.\n\n\nfac = 1\ndef myfactorial(n):\n    for i in range(n):\n         fac *= i+1\n    return fac\n\nmyfactorial(n=5)",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz3"
+    ]
+  },
+  {
+    "objectID": "Python Quiz4.html",
+    "href": "Python Quiz4.html",
+    "title": "금융공학프로그래밍3, Quiz4",
+    "section": "",
+    "text": "1. Find out which one of following is wrong?\n① &gt;&gt;&gt; from game.sound import echo\nRight\n② &gt;&gt;&gt; from game.sound.echo import echo_test\nRight\n③ &gt;&gt;&gt; import game\nFALSE!! : __init__.py가 empty이므로 game package import시 하단의 하부구조가 자동으로 import 되지 않습니다. 따라서, eco.py 내의 함수 eco_test()를 호출하기 위해서는 eco.py 또는 eco_test()를 직접 호출하여야 합니다.\n④ &gt;&gt;&gt; import game.sound.echo\nRight",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz4"
+    ]
+  },
+  {
+    "objectID": "Python Quiz4.html#find-out-which-one-of-following-is-wrong",
+    "href": "Python Quiz4.html#find-out-which-one-of-following-is-wrong",
+    "title": "금융공학프로그래밍3, Quiz4",
+    "section": "",
+    "text": "game/\n__init__.py\nsound/\n    __init__.py\n    echo.py\n    wav.py\ngraphic/\n    __init__.py\n    screen.py\n    render.py\nplay/\n    __init__.py\n    run.py\n    test.py\n\n&gt;&gt;&gt; echo.echo_test()\n\n\n&gt;&gt;&gt; echo_test()\n\n\n&gt;&gt;&gt; game.sound.echo.echo_test()\n\n\n&gt;&gt;&gt; game.sound.echo.echo_test()",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz4"
+    ]
+  },
+  {
+    "objectID": "Python Quiz4.html#section",
+    "href": "Python Quiz4.html#section",
+    "title": "금융공학프로그래밍3, Quiz4",
+    "section": "2.",
+    "text": "2.\nnp.arrange[5]를 이용하여 array구조를 만들면, dtype이 integer인 array가 생성됩니다.\n이중 하나의 object를 float타입으로 수정하더라도, dtype은 integer로 고정되므로 입력한 float타입의 데이터가 integer로 수정되어 할당됩니다.",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz4"
+    ]
+  },
+  {
+    "objectID": "Python Quiz4.html#section-1",
+    "href": "Python Quiz4.html#section-1",
+    "title": "금융공학프로그래밍3, Quiz4",
+    "section": "3.",
+    "text": "3.\nindexing방식으로 호출하였으므로 1-dimensional이 됩니다. 2-dimensional을 유지하기 위해서는 slicing방식으로 호출하여야 합니다.\n(ex: rmat[0:1])",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz4"
+    ]
+  },
+  {
+    "objectID": "Python Quiz4.html#section-2",
+    "href": "Python Quiz4.html#section-2",
+    "title": "금융공학프로그래밍3, Quiz4",
+    "section": "4.",
+    "text": "4.\nnp.hstack 함수는 array를 병합하는 함수로, np.concatenate에 axis=1 옵션과 동일한 함수입니다.\n병합하는 두 array간 dimension이 동일해야하는데, a=2, b=1이므로 오류가 발생합니다.\n다른 dimension간 병합을 수행하려면 np.colmun_stack함수를 사용하여야 합니다.",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz4"
+    ]
+  },
+  {
+    "objectID": "Python Quiz4.html#section-3",
+    "href": "Python Quiz4.html#section-3",
+    "title": "금융공학프로그래밍3, Quiz4",
+    "section": "5.",
+    "text": "5.\na는 2-dim. 3X5 array, b는 0-dim. 3 array입니다.\nb[np.newaxis,:]는 0-dim인 b에 x축을 추가하여 1X3 array로 만들어주게 됩니다.\n3X5와 1X3간에 덧셈이 성립하지 않으므로 오류가 발생합니다.\n한편, b[:,np.newaxis]를 사용하면 3X1 array가 되므로, 덧셈이 가능합니다.",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz4"
+    ]
+  },
+  {
+    "objectID": "Python midterm_quarto.html",
+    "href": "Python midterm_quarto.html",
+    "title": "Python Midterm",
+    "section": "",
+    "text": "Problem 1.",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Midterm"
+    ]
+  },
+  {
+    "objectID": "Python midterm_quarto.html#problem-1.",
+    "href": "Python midterm_quarto.html#problem-1.",
+    "title": "Python Midterm",
+    "section": "",
+    "text": "(1)\n5개의 인자 facevalue=𝑃𝑉, couprate=𝑟, yield=𝑦, maturity=𝑀으로 입력하고, frequency=𝑓에 맞게 “annual”, “semi-annual”, “quarterly” 중 하나의 문자 값으로 입력하면, 위 식에 따라 계산된 채권가격과 듀레이션을 아래와 같은 형태의 튜플로 반환하는 함수 bondftn을 작성하여라.\ndef bondftn(pv,r,y,m,f=\"annual\",rnd=3):\n    if type(pv)!=float and type(pv)!=int : return print(\"error: pv should be number!!!\")\n    if type(r)!=float and type(r)!=int: return print(\"error: r should be number!!!\")\n    if type(y)!=float and type(y)!=int: return print(\"error: y should be number!!!\")\n    if type(m)!=int: return print(\"error: M should be integer!!!\")\n    if f==\"annual\": fre=1\n    elif f==\"semi-annual\": fre=2\n    elif f==\"quarterly\": fre=4\n    else: return print(\"error: f can be 'annual', 'semi-annual', 'quarterly'\")\n    n=fre*m\n    coupon=pv*r/100/fre\n    price=0.0\n    value_duration=0.0\n    for i in range(n):\n        if i==n-1: cf_i=pv+coupon\n        else: cf_i=coupon\n        pv_cf_i=cf_i/((1+(y/100/fre))**(i+1))\n        tw_pv_cf_i=((i+1)/fre)*cf_i/(1+(y/100/fre))**(i+1)\n        price+=pv_cf_i\n        value_duration+=tw_pv_cf_i\n    duration=value_duration/price\n    result=(round(price,rnd),round(duration,rnd))\n    return result\nbondftn(pv=100,r=5,y=4.5,m=2,f=\"quarterly\")\n(100.951, 1.916)\n\n\n(2)\n만기 M이 5, 4, 3, 2, 1인 각 경우에 대해, 쿠폰이자율이 5%, 4%, 3%, 2%, 1% 인 각각에 대하여 만기수익률이 10%에 11%로 상승함에 따라 채권 가격의 변화율이 몇 %인지를 모두 계산한 뒤, 아래와 같은 중첩된 딕셔너리 result_dict으로 저장하여라.\n단, 액면가는 100, 쿠폰 지급 횟수는 연간 1회라고 하자.\nresult_dict=dict()\nfor i in range(5):\n    m_i=5-i\n    result_dict['M='+str(m_i)]=dict()\n    for j in range(5):\n        r_j=5-j\n        price_before=bondftn(pv=100,r=r_j,y=10,m=m_i,f=\"annual\")[0]\n        price_after=bondftn(pv=100,r=r_j,y=11,m=m_i,f=\"annual\")[0]\n        price_return=(price_after-price_before)/price_before\n        result_dict['M='+str(m_i)][str(r_j)+'%']=round(price_return,5)\nresult_dict\n{'M=5': {'5%': -0.03974,\n  '4%': -0.04046,\n  '3%': -0.04126,\n  '2%': -0.04215,\n  '1%': -0.04314},\n 'M=4': {'5%': -0.03287,\n  '4%': -0.03332,\n  '3%': -0.03381,\n  '2%': -0.03434,\n  '1%': -0.03491},\n 'M=3': {'5%': -0.02544,\n  '4%': -0.02568,\n  '3%': -0.02593,\n  '2%': -0.02619,\n  '1%': -0.02648},\n 'M=2': {'5%': -0.01749,\n  '4%': -0.01758,\n  '3%': -0.01765,\n  '2%': -0.01776,\n  '1%': -0.01784},\n 'M=1': {'5%': -0.00901,\n  '4%': -0.009,\n  '3%': -0.009,\n  '2%': -0.009,\n  '1%': -0.00901}}\nresult_dict['M=5']['5%']\n-0.03974\n\n\n(3)\n만기 M이 5, 4, 3, 2, 1인 각 경우에 대해, 쿠폰이자율이 5%, 4%, 3%, 2%, 1% 인 각각에 대하여 만기수익률이 10%로 주어졌을 때의 듀레이션을 (1)에서의 bondftn을 활용하여 모두 계산하여라.\n또한 이를 (2)에서와 동일한 구조를 가지는 (중첩된) 딕셔너리 result_dict_dur에 저장하여라.\n즉 아래와 같은 방식으로 값을 추출할 수 있어야 한다. 단, 여기서도 액면가는 100, 쿠폰 지급 횟수는 연간 1회라고 하자.\nresult_dict_dur=dict()\nfor i in range(5):\n    m_i=5-i\n    result_dict_dur['M='+str(m_i)]=dict()\n    for j in range(5):\n        r_j=5-j\n        result_dict_dur['M='+str(m_i)][str(r_j)+'%']=bondftn(pv=100,r=r_j,\n                                                             y=10,m=m_i,\n                                                             f=\"annual\",rnd=5)[1]\nresult_dict_dur\n{'M=5': {'5%': 4.48786,\n  '4%': 4.57019,\n  '3%': 4.66101,\n  '2%': 4.76171,\n  '1%': 4.874},\n 'M=4': {'5%': 3.6951,\n  '4%': 3.74653,\n  '3%': 3.80216,\n  '2%': 3.8625,\n  '1%': 3.9282},\n 'M=3': {'5%': 2.84899,\n  '4%': 2.87566,\n  '3%': 2.90394,\n  '2%': 2.93397,\n  '1%': 2.96593},\n 'M=2': {'5%': 1.95023,\n  '4%': 1.95941,\n  '3%': 1.96896,\n  '2%': 1.97889,\n  '1%': 1.98923},\n 'M=1': {'5%': 1.0, '4%': 1.0, '3%': 1.0, '2%': 1.0, '1%': 1.0}}\nresult_dict_dur['M=5']['4%']\n4.57019",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Midterm"
+    ]
+  },
+  {
+    "objectID": "Python midterm_quarto.html#problem-2.",
+    "href": "Python midterm_quarto.html#problem-2.",
+    "title": "Python Midterm",
+    "section": "Problem 2.",
+    "text": "Problem 2.\n\n\n(1)\n어떤 1년 동안 발생하는 모든 청구들의 시간과 금액을 모의실험해 보자.\n0에서 시작하여1년 동안 보험회사의 잔고를 계산한 뒤 balance라는 리스트로 저장하여라.\n단, balance의 첫번째 값은 0이며, 보험 청구가 발생하는 시점(𝑡)에만, 해당 시점의 balance (그 시점까지 받은 보험료 수익(150𝑡)을 더하고, 그 시점에서 청구로 지급되는 보험금을 빼 주는 방식)를 계산하여 순서대로 저장할 것.\nAnswer\n먼저, 보험금의 연간 청구건수가 평균이 100인 포아송분포를 따르므로 \\(pmf,\\;P(X=x)=\\frac{\\lambda^xe^{-\\lambda}}{x!},\\;\\lambda=100\\)입니다.\n다음으로, 보험금의 청구금액은 평균은 1, 분산은 1/2인 감마분포를 따르므로 \\(pdf,\\;f(x)=x^{k-1}\\frac{e^{-x/\\theta}}{\\theta^k\\Gamma(k)},\\;k\\theta=1,\\;k\\theta^2=1/2\\)입니다. 즉, \\(k=2,\\;\\theta=1/2\\)입니다.\n각 청구금액은 즉시 지급되며, 발생시점은 0~1 사이의 uniform distribution을 따르므로 \\(pdx.\\;f(x)=\\frac{1}{1-0}=1\\)입니다.\n이제, 1년간 발생하는 보험손익의 모의실험에 대한 청구건수(포아송분포)를 \\(N\\)번이라고 하고, 청구금액(감마분포) 및 청구시점(균등분포)를 각각 \\(g_i\\)와 \\(t_i\\; for\\; 1,...,N\\)라고 하면, \\(t=t_i\\) 시점의 balance는 아래와 같이 계산됩니다.\n\\[{balance}_{t_i}=150t_i-\\sum_{k=1}^{i}g_k\\]\n또한, 기말시점(t=1)의 최종 balance는 \\(150-\\sum_{all\\;k}g_k\\)가 됩니다.\n# 포아송, 감마, 균등분포에 다한 모의실험은 numpy의 random module 활용\nimport numpy as np\nfrom numpy import random as rd\n\n\nrd.seed(0) # seed를 설정하여 통제\nN=rd.poisson(lam=100,size=1)\nN=N[0]\nt=rd.uniform(low=0.0,high=1.0,size=N)\nt=np.sort(t)\ng=rd.gamma(shape=2.,scale=0.5,size=N)\nbalance=[0] # balance의 초기값은 0\nfor i in range(N):\n    balance.append(round(t[i]*150-sum(g[:i+1]),4))\nbalance.append(round(150-sum(g),4)) # balance의 기말값\nprint(balance[:5],balance[N-5:],sep=\"\\n\")\n[0, -1.9755, -2.1182, -2.7092, -3.9799]\n[44.5214, 47.2399, 48.4395, 48.2655, 47.6871, 48.74, 50.4839]\n\n\n(2)\n위 모의실험을 10000회 반복하여 다음에 대한 확률을 추정해 보자.\n\n보험회사가 최종적으로 가지게 되는 balance의 기대값(모의실험을 10000회 반복하였을 때 각 모의실험마다 계산된 balance의 최종값들의 평균으로 추정)은 얼마인가?\n보험회사의 balance가 1년 중 한번 이상 -5 이하로 떨어질 확률(10000회의 모의실험 중에서 balance가 -5이하로 떨어진 적이 있었던 경우의 비율로 추정)은 얼마인가?\n\nAnswer\n평균은 약 49.86, -5이하로 떨어질 확률은 약 7.05%입니다.\nlast_balance=list()\nminus5_balance=0\nfor k in range(10000):\n    rd.seed(k)\n    N=rd.poisson(lam=100,size=1)\n    N=N[0]\n    t=rd.uniform(low=0.0,high=1.0,size=N)\n    t=np.sort(t)\n    g=rd.gamma(shape=2.,scale=0.5,size=N)\n    balance=[0]\n    for i in range(N):\n        balance.append(round(t[i]*150-sum(g[:i+1]),4))\n    last_balance.append(round(150-sum(g),4))\n    balance.sort()\n    if balance[0]&lt;=-5:minus5_balance+=1\nprint(sum(last_balance)/10000,\n      minus5_balance/10000,sep=\"\\n\")\n49.864134890000095\n0.0705",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Midterm"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html",
+    "href": "채권분석_hw1.html",
+    "title": "채권분석 과제1",
+    "section": "",
+    "text": "1. CB\n(Question)\n전환사채를 액면 F 만큼 매입할 때 전환가가 P라면, 전환주식수는 F/P 로 주어진다. 특정 전환사채를 액면 1억원 만큼 시장에서 매입하였다. 매입가는 1억 1천만원이다. 전환가격은 5만원으로 주어져 있다.\n해당 주식의 시장가 가 6만원일 때 전환하여 매도하였다면 투자자의 수익률은무엇인가? % 로 쓰되, 소수점 둘째 자리까지만 쓰시오.\n(Answer) 9.09%\n\\[전환주식수 = \\frac{1억원}{5만원} = 2,000주\\] \\[전환주식의 가치 = 2000\\times 60,000원=1억\\,2천만원\\] \\[투자원금=1억1천만원, 수익률=\\frac{1.2억}{1.1억}-1\\approx 9.09\\%\\]",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html#frn",
+    "href": "채권분석_hw1.html#frn",
+    "title": "채권분석 과제1",
+    "section": "2. FRN",
+    "text": "2. FRN\n(Question)\n정부가 2년 만기 변동금리채권을 발행한다고 가정하자. 기준금리는 만기 1년 현물 이자율 (spot rate 또는 1년 만기 무이표채 국채의 이자율) 이고, 해당 변동금리채권의 이자는 1년마다 계산하여 지급한다, 즉 1년 말에 지급하고 2년 만기시 원금과 함께 지급한다.\n현재 1년 spot rate 을 \\(r_{1,0}\\), 1년 후 spot rate 을 \\(r_{1,1}\\) 이라 하면 받게 되는 총 금액은 액면 100 당 \\(100r_{1,0}\\) (1년 시점) 과 \\(100(1 + r_{1,1})\\) (2년 시점)이다. 물론 \\(r_{1,1}\\) 은 현재 시점에서는 알 수 없는 확률변수이다.\n액면이 100 인 위의 2년 만기 변동금리채권의 현재 시점의 공정한 가격을 구하시오. 투자자는 시장에서 1년 만기 무이표채 국채를 현재 시점이던 1년 후 시점이던 자유롭게 거래할 수 있다.\n(Answer) 100\n상기 FRN은 1년 만기 무이표 국채의 이자율만큼의 쿠폰을 지급하고 있다. 이러한 액면 100인 FRN의 현금흐름은 현재 1년 만기 무이표국채에 \\(100r_{1,0}\\)만큼 투자하고, 1년 뒤 만기시점에 다시 1년 만기 무이표국채에 \\(100+r_{1,1}\\)투자함으로써 복제할 수 있다.\n즉, 해당 FRN은 무위험이자율 만큼의 연수익률을 보장하는 채권으로서 쿠폰=할인율이므로 공정가격은 100(par-value)에 형성되어야 한다.\n\n\n\n\n\n\nFoward rate를 이용한 풀이\n\n\n\n\\(r_{1,1}\\)은 확률변수이므로, FRN의 2년뒤 현금흐름 \\(100(1+r_{1,1})\\)을 현재가치로 환산한다면 그 공정가치는 \\(\\frac{100(1+E[r_{1,1}])}{(1+r_{2,0})^2}\\)으로 표현할 수 있다.\n한편, 1년뒤 1년 spot-rate의 기댓값은 foward rate으로 볼 수 있고, 현재시점의 2년 spot-rate는 \\((1+r_{1,0})(1+f_{1,1})\\)로 표현할 수 있다. 따라서, FRN의 공정가격은 다음과 같다.\n\\[FRN\\; price=\\frac{100r_{1.0}}{1+r_{1,0}}+\\frac{100(1+E[r_{1,1}])}{1+r_{2,0}}=\\frac{100r_{1.0}}{1+r_{1,0}}+\\frac{100(1+f_{1,1})}{(1+r_{1,0})(1+f_{1,1})}=\\frac{100(1+r_{1,0})}{1+r_{1,0}}=100\\]",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html#ytm",
+    "href": "채권분석_hw1.html#ytm",
+    "title": "채권분석 과제1",
+    "section": "3. YTM",
+    "text": "3. YTM\n(Question)\n잔존만기가 3년이고 연 8% 이자를 6개월마다 제공하는 채권을 가정하자. A 투자자는 이 채권에 관심이 있고 거래하는 딜러는 100달러 액면당 92.5067 달러를 요구한다.\n이때 이 채권의 수익률은 얼마인가? % 로 표시하되 소수점은 반올림하여 정수로 나타내시오.\n(Answer) 11%\n채권의 수익률 \\(y\\)와 가격에 관한 산식은 다음과 같다.\n\\[92.5067=\\sum_{k=1}^6\\frac{8/2}{(1+y/2)^{k}}+\\frac{100}{(1+y/2)^{6}}\\]\n이를 엑셀 해찾기 기능으로 근사한 \\(y\\)값은 약 11%이다.",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html#continuous-compounding",
+    "href": "채권분석_hw1.html#continuous-compounding",
+    "title": "채권분석 과제1",
+    "section": "4. Continuous compounding",
+    "text": "4. Continuous compounding\n(Question) 10.71%\n위의 문제는 compounding frequency 를 연 1회로 가정하고 있다. 이것은 이산복리법이다. 이 frequency가 무한이 되는 연속복리법에 따르면 1달러 투자가 1년 후에 \\(e^y\\) 가 된다. 여기서 \\(y\\) 는 연속복리이자율이다.\n위 현금흐름 수익률을 연속복리이자율로 표현하시오. %로 나타내되 소수점 둘째 자리까지 쓰시오.\n(Answer)\n(3)의 현금흐름을 연속복리로 표현하면 다음과 같다.\n\\[92.5067=\\sum_{k=1}^6\\frac{8}{2}e^{-0.5ky}+100e^{-3y}\\]\n이를 엑셀 해찾기 기능으로 근사한 \\(y\\)값은 10.71%이다.\n\n\n\n\n\n\n수익률 관계를 이용한 풀이\n\n\n\n(3)의 수식과 비교하여 단순히 \\(e^{0.5y_{continuous}}=(1+y_{annual}/2)=1.055\\)로 표현할 수 있고 값은 10.71%로 오차범위 내에서 동일하다.",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html#arbitrage",
+    "href": "채권분석_hw1.html#arbitrage",
+    "title": "채권분석 과제1",
+    "section": "5. Arbitrage",
+    "text": "5. Arbitrage\n(Question)\n아래와 같은 세 개의 채권이 시장에서 거래되고 있다. 트레이더 B 는 이를 보고 곧 차익거래의 기회가 있음을 파악하고 전략적으로 거래하여 이익을 얻었다. 어떤 전략이 가능할지 본인의 생각을 기술하시오.\n\n채권 a: 만기 1년 무이표채, 액면 100 당 가격 90\n채권 b: 만기 2년 무이표채, 액면 100 당 가격 80\n채권 c: 만기 2년 이표채, coupon rate 10%, 매년 말 이자지급, 액면 100 당 가격 100\n\n(Answer) 채권a:채권b=1:11로 투자하여 채권c를 만들고 시장에 매도\n채권a와 채권b의 수익률은 zero-rates이며, 이를 \\(y_a,y_b\\)라고 할 때, 다음과 같이 쓸 수 있다. \\[\\frac{100}{1+y_a}=90,\\; \\frac{100}{(1+y_b)^2}=80 \\Rightarrow \\frac{1}{1+y_a}=0.9,\\;\\frac{1}{(1+y_b)^2}=0.8\\]\n이를 이용하여 채권c의 현금흐름을 평가하면, \\(\\frac{10}{1+y_a}+\\frac{110}{(1+y_b)^2}=9+88=97\\)\n즉, 액면 100인 채권c의 공정가격은 97이나, 현재 100에 거래되고 있으므로 3만큼 고평가되어있는 상태이다. 따라서 트레이더B가 채권a:채권b=1:11 비중으로 매수한다면 액면이 10인 채권c의 현금흐름을 정확하게 복제할 수 있는데, 이를 이용하면 무위험 차익거래를 할 수 있다.\n예를 들어,\n\n액면 100억원 채권c를 시장에 매도(공매도 or 발행)하여 100억원의 자금을 조달\n액면 10억원 채권a를 9억원에, 액면 110억원 채권b를 88억원에 매수\n1년뒤 채권a의 원금 10억을 받아 채권c의 이표 10억원을 값고, 2년뒤 채권b의 원금 110억을 받아 채권c의 원금+이표 110억원을 값을 수 있으므로 현재 시점에서 미래현금흐름은 0임(리스크=0)\n한편, 현재 100억원을 빌려 97억원을 사용하였으므로 3억원의 무위험차익 실현 (또는, 남은 3억원을 채권b에 투자하여 현재시점의 투입자본없이 2년뒤 3.75억의 수익 실현 가능)",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw2.html",
+    "href": "채권분석_hw2.html",
+    "title": "채권분석 과제2",
+    "section": "",
+    "text": "1. Callable bond\n(Question)\n만기 2년, 액면이자율 10% (연 1회 지급), 액면가 100 인 수의상환채권 callable bond 를 생각하자. 이 채권의 상환액 call price 는 100, 상환기간은 1년부터 (이자지급 이후) 만기까지 이다. 즉, 채권발행자 (기채자, 채무자) 는 상환기간 동안 원하는 때 100으로 채권을 상환할 수 있다. 1년이 지난 시점에서 만기수익률을 10.05% 라 가정하자.\n채권의 가격 \\(P_0\\) 를 구하시오.\n시중금리변화에 따라 이 만기수익률이 즉각적으로 10bp 상승할 때의 가격 \\(P_+\\) 를 구하시오.\n그리고 만기수익률이 즉각적으로 10bp 하락할 때의 가격 \\(P_−\\) 를 구하시오.\n채권발행자는 채권의 가치가 100을 넘어서면 상환할 인센티브가 있음을 고려하라. 이들 세 값을 바탕으로 우리는 수의상환채권에 대하여 유효한 듀레이션을 \\(-\\frac{1}{P_0}\\times\\frac{P_+-P_-}{20bp}\\)로 구할 수 있다. 소수점 네째자리까지 리포트하시오.\n(Answer)\n1년이 지난 시점에서 수의상환채권의 잔여현금흐름은 만기 일시납 110이며, YTM은 10.05%이므로 가격 \\(P_0\\)는 약 99.9546입니다.\nP0=110/(1+0.1005)\nP0\n\n[1] 99.95457\n만기수익률이 10bp씩 즉각적으로 움직일 때, 수의상환부를 고려하지 않은 채권가격은 아래와 같습니다.\nP0_up=110/(1+0.1005+0.001)\nP0_down=110/(1+0.1005-0.001)\nc(P0_up,P0_down)\n\n[1]  99.86382 100.04548\n그러나, 수의상환채권의 가격은 call price를 초과할 수 없으므로 \\(P_+=99.8638,\\;P_-=100\\)입니다.\n위 가격으로부터 산출한 잔존만기 1년의 수의상환채권의 듀레이션은 약 0.6812입니다.\n\\[D_{callable}-\\frac{1}{P_0}\\times\\frac{P_+-P_-}{20bp}=0.6812\\]\nduration=(-1/P0)*(P0_up-100)/0.002\nround(duration,4)\n\n[1] 0.6812",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제2"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw2.html#spot-rate",
+    "href": "채권분석_hw2.html#spot-rate",
+    "title": "채권분석 과제2",
+    "section": "2. Spot rate",
+    "text": "2. Spot rate\n(Question)\nhw2.xlsx 에는 Treasury par yield (% 값) 가 일부 주어져 있다. 이것은 2024년 3월 21일 기준 US Treasury Par Yield Curve 이다.\n선형보간법을 이용하여 빈 곳을 채우고, 1년에 2회 이자를 지급하는 기준으로 하여 spot rate 을 구하시오. 단, 0.5년 과 1년 채권은 무이표 채권이다. 제출할 때에는 % 로 소수점 둘째 자리까지 보이시오.\n(Answer)\n먼저, 선형보간법을 통해 기간별 Par-yield를 구하도록 하겠습니다.\n\nlibrary(tidyverse)\npar_yield &lt;- tibble(\"year\"=seq(0.5,10,0.5),\n                    \"period\"=c(1:20),\n                    \"paryield\"=c(5.36,5.01,NA,4.62,NA,\n                                 4.42,NA,NA,NA,4.26,\n                                NA,NA,NA,4.28,NA,\n                                NA,NA,NA,NA,4.27))\n\n\npar_yield &lt;- par_yield %&gt;% \n  mutate(interpolation=if_else(paryield %&gt;% is.na(),\n                               (lag(paryield)+lead(paryield))/2,\n                               paryield)) %&gt;% \n  mutate(interpolation=if_else(interpolation %&gt;% is.na(),\n                               (lag(lag(interpolation))+lead(lead(interpolation)))/2,\n                               interpolation)) %&gt;% \n  mutate(interpolation=if_else(interpolation %&gt;% is.na(),\n                               (lag(interpolation)+lead(interpolation))/2,\n                               interpolation))\npar_yield &lt;- par_yield %&gt;% \n  mutate(interpolation=if_else(interpolation %&gt;% is.na(),\n                               ((20-period)*par_yield$interpolation[14]\n                               +(period-14)*par_yield$interpolation[20])/6,\n                               interpolation))\n\npar_yield %&gt;% as.data.frame()\n\n   year period paryield interpolation\n1   0.5      1     5.36      5.360000\n2   1.0      2     5.01      5.010000\n3   1.5      3       NA      4.815000\n4   2.0      4     4.62      4.620000\n5   2.5      5       NA      4.520000\n6   3.0      6     4.42      4.420000\n7   3.5      7       NA      4.380000\n8   4.0      8       NA      4.340000\n9   4.5      9       NA      4.300000\n10  5.0     10     4.26      4.260000\n11  5.5     11       NA      4.265000\n12  6.0     12       NA      4.270000\n13  6.5     13       NA      4.275000\n14  7.0     14     4.28      4.280000\n15  7.5     15       NA      4.278333\n16  8.0     16       NA      4.276667\n17  8.5     17       NA      4.275000\n18  9.0     18       NA      4.273333\n19  9.5     19       NA      4.271667\n20 10.0     20     4.27      4.270000\n\n\n다음으로, Par-yield와 6개월/1년 spot rate를 통해 기간별 spot rate를 boot-strapping 방식으로 산출하도록 하겠습니다.\nPar-yield는 채권의 현재가격을 액면가격으로 만들어주는 coupon-rate입니다. 즉, 액면가 100의 채권이 연간 par-yield만큼 쿠폰을 semi-annually 지급한다면 다음과 같이 쓸 수 있습니다.\n\\[100=\\sum_{k=1}^{n-1}\\frac{Par/2}{(1+Spot_k/2)^k}+\\frac{100+Par/2}{(1+Spot_n/2)^n}\\]\n\\[\\Rightarrow \\frac{1}{(1+Spot_n/2)^n}=\\frac{1}{100+Par/2}(100-\\sum_{k=1}^{n-1}\\frac{Par/2}{(1+Spot_k/2)^k})\\]\n\\[\\Rightarrow Spot_n=((\\frac{100+Par/2}{100-Sum\\;of\\;Coupon\\;PV})^{\\frac{1}{n}}-1)\\times 2\\]\n위 수식을 R을 이용해서 산출하고, 소수점 둘째자리까지 반올림한 결과는 아래와 같습니다.\n\nspot &lt;- par_yield %&gt;% \n  select(year,period,interpolation) %&gt;% \n  mutate(coupon=interpolation/2,\n         spot=if_else(period&lt;=2,interpolation,NA)) %&gt;% \n  mutate(dc=1/(1+spot/100/2)^period) %&gt;% \n  mutate(cum_dc=cumsum(dc)) %&gt;%\n  mutate(sum_pvc=coupon*(cum_dc-dc))\n\nfor (i in 3:20){\nspot$sum_pvc[i] &lt;- spot$coupon[i]*spot$cum_dc[i-1]\nspot$dc[i] &lt;- (100-spot$sum_pvc[i])/(100+spot$coupon[i])\nspot$spot[i] &lt;- {{(1/spot$dc[i])^(1/spot$period[i])-1}*200}\nspot$cum_dc[i] &lt;- spot$cum_dc[i-1]+spot$dc[i]\n}\nspot &lt;- spot %&gt;% mutate(spot2=spot %&gt;% round(2))\nspot %&gt;% select(year,period,interpolation,spot2)\n\n# A tibble: 20 × 4\n    year period interpolation spot2\n   &lt;dbl&gt;  &lt;int&gt;         &lt;dbl&gt; &lt;dbl&gt;\n 1   0.5      1          5.36  5.36\n 2   1        2          5.01  5.01\n 3   1.5      3          4.81  4.81\n 4   2        4          4.62  4.61\n 5   2.5      5          4.52  4.51\n 6   3        6          4.42  4.4 \n 7   3.5      7          4.38  4.36\n 8   4        8          4.34  4.32\n 9   4.5      9          4.3   4.28\n10   5       10          4.26  4.24\n11   5.5     11          4.26  4.25\n12   6       12          4.27  4.25\n13   6.5     13          4.28  4.26\n14   7       14          4.28  4.27\n15   7.5     15          4.28  4.27\n16   8       16          4.28  4.26\n17   8.5     17          4.27  4.26\n18   9       18          4.27  4.26\n19   9.5     19          4.27  4.26\n20  10       20          4.27  4.26",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제2"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw2.html#forward-rate",
+    "href": "채권분석_hw2.html#forward-rate",
+    "title": "채권분석 과제2",
+    "section": "3. Forward rate",
+    "text": "3. Forward rate\n(Question)\n위의 문제에서 구한 현물이자율을 이용하여 선도이자율을 구하여라. 이 때 선도이자율은 6개월 구간마다 주어진다. 물론 0 부터 6개월까지의 선도이자율은 6개월 현물이자율과 같다. 선도이자율도 % 로 소수점 둘째 자리까지 구하시오.\n(Answer)\nsemi-annually 현물이자율에서 6개월 선도이자율에 대한 수식은 다음과 같습니다.\n\\[(1+Spot_{n-1})^{n-1}(1+Forward_{n-1,n})=(1+Spot_n)^n\\]\n\\[\\Rightarrow Forward_{n-1,n}=\\frac{(1+Spot_n)^n}{(1+Spot_{n-1})^{n-1}}-1\\]\n위 수식과 (2)의 소수점 둘째자리까지 반올림한 Spot rate를 이용하여 산출한 선도이자율은 아래와 같습니다.\n\nforward &lt;- spot %&gt;% \n  select(year,period,spot,spot2) %&gt;%  \n  mutate(spot_yield=(1+spot/100/2)^period,\n         spot_yield2=(1+spot2/100/2)^period) %&gt;% \n  mutate(forward={{spot_yield/lag(spot_yield)-1}*200} %&gt;% round(2),\n         forward2={{spot_yield2/lag(spot_yield2)-1}*200} %&gt;% round(2))\nforward %&gt;% select(year,period,spot,forward2)\n\n# A tibble: 20 × 4\n    year period  spot forward2\n   &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;\n 1   0.5      1  5.36    NA   \n 2   1        2  5.01     4.66\n 3   1.5      3  4.81     4.41\n 4   2        4  4.61     4.01\n 5   2.5      5  4.51     4.11\n 6   3        6  4.40     3.85\n 7   3.5      7  4.36     4.12\n 8   4        8  4.32     4.04\n 9   4.5      9  4.28     3.96\n10   5       10  4.24     3.88\n11   5.5     11  4.25     4.35\n12   6       12  4.25     4.25\n13   6.5     13  4.26     4.38\n14   7       14  4.27     4.4 \n15   7.5     15  4.27     4.27\n16   8       16  4.26     4.11\n17   8.5     17  4.26     4.26\n18   9       18  4.26     4.26\n19   9.5     19  4.26     4.26\n20  10       20  4.26     4.26\n\n\n\n\n\n\n\n\nSpot rate 소수점 자리 문제\n\n\n\nForward rate를 산출할 때, Spot rate를 소수점 두번째 자리까지 반올림하지 않는다면, Spot rate의 오차는 미미하더라도 Forward rate 산출에 영향을 주게 되며, 오차는 기간이 길어질수록 커집니다.\n\nforward %&gt;% select(year,period,forward2, forward) %&gt;% filter(year&gt;=8)\n\n# A tibble: 5 × 4\n   year period forward2 forward\n  &lt;dbl&gt;  &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;\n1   8       16     4.11    4.25\n2   8.5     17     4.26    4.24\n3   9       18     4.26    4.24\n4   9.5     19     4.26    4.23\n5  10       20     4.26    4.23",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제2"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw2.html#continuous-compounding---forward-rate",
+    "href": "채권분석_hw2.html#continuous-compounding---forward-rate",
+    "title": "채권분석 과제2",
+    "section": "4. Continuous compounding - Forward rate",
+    "text": "4. Continuous compounding - Forward rate\n(Question)\n챕터2 에서 우리는 선도이자율이 구간별로 주어질 수 있음을 배웠다.\nSemi-annual 베이스로 현물이자율을 정의했을 때, \\(r_1\\) 은 1년 현물이자율, \\(r_{1.5}\\) 는 1년 6개월 현물이자율을 나타낸다. 그리고 6개월부터 1년까지 기간에 대한 선도이자율은 \\((1+r_1/2)^2 = (1+r_{0.5}/2)(1+f_{[0.5,1]}/2)\\) 를 만족한다.\n현물이자율을 연속복리법으로 정의했을 떄, 1년 현물이자율을 \\(r_1\\) 이라 놓으면 시작점에서 1 의 투자는 \\(e^r_1\\) 으로 성장한다. 마찬가지로 시간 \\(t\\) 에 대한 현물이자율을 \\(r_t\\) 라 놓으면 시작점에서의 1의 투자는 \\(e^{tr_t}\\) 로 성장한다. 두 시점 a &lt; b 에 대하여 연속복리법에 의한 현물이자율 \\(r_a, r_b\\) 가 주어져 있다. 투자자는 \\((a, b)\\) 구간에 적용되는 선도거래를 체결하려고 한다.\n이 때 중요한 것은 선도이자율인데, 무차익원리에 의한 선도이자율 \\(f(a, b)\\) 를 \\(a, b, r_a, r_b\\) 를 이용하여 나타내시오. 물론 연속복리법을 적용한다.\n(Answer)\n연속복리법 하에서, \\(f(a, b), a, b, r_a, r_b\\) 간에는 아래와 같은 식이 성립해야 합니다.\n\\[e^{a\\times r_a}\\times e^{(b-a)\\times f(a,b)}=e^{b\\times r_b}\\]\n이를 통해 \\(f(a,b)\\)를 표현하면,\n\\[\\Rightarrow e^{ar_a+(b-a)f(a,b)}=e^{br_b}\\]\n\\[ar_a+(b-a)f(a,b)=br_b\\;\\Rightarrow\\;f(a,b)=\\frac{br_b-ar_a}{b-a}\\]",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제2"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw2.html#pricing-convention---full-price",
+    "href": "채권분석_hw2.html#pricing-convention---full-price",
+    "title": "채권분석 과제2",
+    "section": "5. Pricing convention - full price",
+    "text": "5. Pricing convention - full price\n(Question)\n2024년 3월 15일 호가가 액면 100 당 103-22+ 로 주어진 미 국채가 있다. 이 채권의 만기는 2029년 10월 15일이고 표면금리는 6.125% 이다. 이자는 매 4월 15일, 10월 15일 지급될 때, full price를 구하시오. 소수점 여섯째자리까지 반올림하여 나타내시오.\n(Answer)\n미국 국채의 가격표시방법에 따라, 103-22+의 가격표시는 아래와 같습니다.\n\\[103-22+=103+\\frac{22}{32}+\\frac{1}{64}=103.703125\\]\n\noptions(digits=10)\nclean_price &lt;- 103+22/32+1/64\nclean_price\n\n[1] 103.703125\n\n\n해당 가격은 호가가격이므로, clean price=103.703125입니다.\n경과이자(accrued interest)를 가산해야 Full price를 산출할 수 있습니다.\n경과이자는 \\(\\frac{표면이율 \\times 액면가}{2}\\times \\frac{경과일}{이자지급기간}\\)을 통해 구할 수 있습니다.\n경과일은 152일, 이자지급기간은 183일이고, 산출된 경과이자는 약 2.543716입니다.\n따라서, full price = clean(quoted) price + accrued interest = 106.246841입니다.\n\nlibrary(lubridate)\n\naccrued_date &lt;- ymd(20240315)-ymd(20231015)\ninterest_period &lt;- ymd(20240415)-ymd(20231015)\naccrued_interest={(100*0.06125)/2}*(as.integer(accrued_date)/as.integer(interest_period))\nfull_price=round(clean_price+accrued_interest,6)\n\npaste(accrued_date,interest_period,accrued_interest,full_price,sep=\" / \")\n\n[1] \"152 / 183 / 2.54371584699454 / 106.246841\"",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제2"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw3.html",
+    "href": "채권분석_hw3.html",
+    "title": "채권분석 과제3",
+    "section": "",
+    "text": "Question 1\n투자자 A 는 표면금리 7% 미 국채를 액면 1,000 usd 구입하였다. 이 국채의 호가는 101-25+ 이다. 결제일은 2024년 2월 5일이고, 쿠폰 지급일은 매년 4월 15일, 10월 15일이다. 지불한 invoice price(full price)를 센트까지만 구하시오.",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제3"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw3.html#question-1",
+    "href": "채권분석_hw3.html#question-1",
+    "title": "채권분석 과제3",
+    "section": "",
+    "text": "Answer\n먼저, 액면 100당 Quote price(clean price)=101-25+=101+25/32+1/64=101.7969입니다.\n다음으로 경과이자(accrued interest)는 “(지난이자지급일로부터 경과일)/이자지급주기*이자”로 계산할 수 있습니다. (real/real 기반)\n경과일은 113일(2023.10.15~2024.02.05), 이자지급주기는 183일(2023-10-15~2024.04.15)이므로, 경과이자는 약 21.6120입니다.\n따라서, Full price는 약 1039.58입니다.\n\nlibrary(tidyverse)\n\n\nclean &lt;- (101+25/32+1/64)*10\nday_interest &lt;- as.integer(ymd(20240415)-ymd(20231015))\nday_accrued &lt;- as.integer(ymd(20240205)-ymd(20231015))\naccrued &lt;- 35*day_accrued/day_interest\nfull &lt;- clean+accrued\npaste(clean,accrued %&gt;% round(6),full %&gt;% round(6),sep=\" / \")\n\n[1] \"1017.96875 / 21.612022 / 1039.580772\"",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제3"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw3.html#question-2",
+    "href": "채권분석_hw3.html#question-2",
+    "title": "채권분석 과제3",
+    "section": "Question 2",
+    "text": "Question 2\n시장에서 현물이자율이 1년 4%, 2년 5% 라 가정하자. 그리고 1년 현물이자율의 연 변동(log rate)의 표준편차는 0.005 라 하자. 1년 후 1년 현물이자율의 시나리오를 \\(r_u, r_d\\) 라 놓으면 시장 정보를반영하는 이 두 값을 구하시오.\n\nAnswer\n1년 후 현물이자율이 상승하였을 때를 \\(r_u\\), 하락하였을 때를 \\(r_d\\)로 나눌 수 있으며 현물이자율의 로그수익률의 연표준편차가 0.005이므로, 아래와 같이 표현할 수 있습니다.\n\\[r_u=r_de^{2\\sigma}=r_de^{0.01}\\]\n한편, 2년 현물이자율에 투자한 zero-coupon bond와 1년 zero-coupon 및 1년 후에 다시 zero-coupon(forward)에 투자한 포트폴리오의 가치는 같아야 하므로,\n\\[\\frac{100}{1.05^2}=\\frac{100}{(1.04)(1+E(r_1))}=0.5\\times \\frac{100}{1.04(1+r_u)}+0.5\\times \\frac{100}{1.04(1+r_d)}\\]\n이분법을 통해 값을 추정하면, \\(r_u\\approx 6.04\\%.\\;r_d\\approx 5.98\\%\\)\n\ninitial_d &lt;- 0.01; initial_u &lt;- 0.10\nr_d &lt;- (initial_u+initial_d)/2; r_u &lt;- r_d*exp(0.01)\n\nwhile(abs(0.5*100/(1.04*(1+r_u))+0.5*100/(1.04*(1+r_d))-100/1.05^2)&gt;0.001){\n  if(0.5*100/(1.04*(1+r_u))+0.5*100/(1.04*(1+r_d))-100/1.05^2&gt;0){initial_d &lt;- r_d}\n  if(0.5*100/(1.04*(1+r_u))+0.5*100/(1.04*(1+r_d))-100/1.05^2&lt;=0){initial_u &lt;- r_d}\n  r_d &lt;- (initial_u+initial_d)/2\n  r_u &lt;- r_d*exp(0.01)}\npaste(r_u %&gt;% round(4),r_d %&gt;% round(4))\n\n[1] \"0.0604 0.0598\"",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제3"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw3.html#question-3",
+    "href": "채권분석_hw3.html#question-3",
+    "title": "채권분석 과제3",
+    "section": "Question 3",
+    "text": "Question 3\n2년 만기이고 표면금리가 8% 인 회사채를 가정하자. 표면금리의 지급은 연 1회이다. 그리고 이 회사채는 1년 시점에서 액면가 100 으로 call 할 수 있는 수의상환채이다. 신용위험 때문에 시장 에서는 이 회사채를 위에서 구한 금리모형에 스프레드를 더하여 그 가치를 계산한다.\n시장가가 101.9 라 할 때, static spread 와 option-adjusted spread 를 구하여라\n\nAnswer\n먼저, 수의상환부회사채의 시장가격 101.9와 문제 2의 zero-rate를 통해 Static spread를 산출하면 아래와 같습니다.\n\\[101.9=\\frac{8}{(1.04+ss)}+\\frac{108}{(1.05+ss)^2}\\Rightarrow ss\\approx 1.988\\%\\]\n\nmarket_price &lt;- 101.9; initial_d &lt;- 0.001; initial_u &lt;- 0.1\nss &lt;- (initial_u+initial_d)/2\n\nwhile(abs(8/(1.04+ss)+108/(1.05+ss)^2-market_price)&gt;0.00001){\n  if(8/(1.04+ss)+108/(1.05+ss)^2-market_price&gt;0){initial_d &lt;- ss}\n  if(8/(1.04+ss)+108/(1.05+ss)^2-market_price&lt;=0){initial_u &lt;- ss}\n  ss &lt;- (initial_u+initial_d)/2}\nss\n\n[1] 0.01988313\n\n\n다음으로, 문제 2의 금리모형을 이용하여 OAS를 구해보겠습니다.\n먼저, OAS를 적용한 할인율은 zero rate + OAS로 표현할 수 있습니다.\n문제 2에 따라 1년 zero-rate는 4%, 상승시 \\(r_u=0.0604\\), 하락시 \\(r_d=0.0598\\)이므로,\n\\[r^*_1=0.04+OAS,\\;r^*_u=0.0604+OAS,\\;r_d^*=0.0598+OAS\\]\n수의상환회사채는 1년 후 가격이 액면가보다 높으면 100에 상환되므로, \\(r_u^*,\\;r_d^*\\)가 8%보다 높은 경우 100에 상환됩니다.\n따라서, 수의상환회사채의 금리 상승/하락에 따른 가치평가는 아래와 같습니다.\n\\[101.9=\\frac{1}{1+r_1^*}[8+\\frac{1}{2}(min\\{\\frac{108}{1+r_u^*},100\\}+min\\{\\frac{108}{1+r_d^*},100\\})]\\]\n\\[=\\frac{1}{1.04+OAS}[8+\\frac{1}{2}(min\\{\\frac{108}{1.0604+OAS},100\\}+min\\{\\frac{108}{1.0598+OAS},100\\})]\\]\n\\[\\Rightarrow OAS\\approx 1.978\\%\\]\n\ninitial_d &lt;- 0.001; initial_u &lt;- 0.1\nOAS &lt;- (initial_u+initial_d)/2\nwhile(abs((1/(1.04+OAS))*(8+0.5*(min(108/(1+r_u+OAS),100)+min(108/(1+r_d+OAS),100)))-market_price)&gt;0.00001){\n  if((1/(1.04+OAS))*(8+0.5*(min(108/(1+r_u+OAS),100)+min(108/(1+r_d+OAS),100)))-market_price&gt;0){initial_d &lt;- OAS}\n  if((1/(1.04+OAS))*(8+0.5*(min(108/(1+r_u+OAS),100)+min(108/(1+r_d+OAS),100)))-market_price&lt;=0){initial_u &lt;- OAS}\n  OAS &lt;- (initial_u+initial_d)/2\n}\nOAS\n\n[1] 0.01978343\n\n\n\n\n\n\n\n\nDifference in each spreads\n\n\n\nNominal spread, Static spread, Options adjusted spread\n\nNominal spread : 단순히 국채 vs. 회사채의 YTM을 비교\nStatic spread : zero rate + \\(\\alpha\\)를 계산, 기간구조를 반영하고있으나 향후 금리변동은 반영하지 않고 단순 현금흐름만 비교하므로, Zero-volatility spread라고도 함\nOptions adjusted spread : 수의상환채의 옵션에 따른 향후 현금흐름 변동가능성을 고려하여 산출. 미래 금리변동으로 인해 옵션이 권리행사되는 경우를 감안하여 산출",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제3"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw3.html#question-4",
+    "href": "채권분석_hw3.html#question-4",
+    "title": "채권분석 과제3",
+    "section": "Question 4",
+    "text": "Question 4\nPSA 방법에 따르면 PSA 스피드에 따라 월별 CPR 이 결정되고, 이는 다시 SMM 을 결정한다. 강의노트의 PSA 방법론을 참조하여 다음의 SMM 표를 완성하시오.\n\n\n\n월\n100 PSA\n60 PSA\n230 PSA\n\n\n\n\n1\n\n\n\n\n\n20\n\n\n\n\n\n200\n\n\n\n\n\n\n\nAnswer\nPSA란 연조기상환율(CPR:Conditional Prepayment Rate)이 매달 0.2% 증가하며, 6%까지 증가한 후 만기까지 지속되는 형태의 조기상환모형입니다.\n100 PSA가 기준이며, 50 PSA인 경우 매달 0.1%씩 증가 등 비율이 달라지게됩니다.\n다음으로, 월별조기상환율(SMM:Single Monthly Mortality rate)는 CPR을 월환산한 것으로, \\(1-SMM=(1-CPR)^\\frac{1}{12}\\)입니다.\n이에 따라 산출한 (1-SMM) 표는 아래와 같습니다.\n\n\n\n\n\n\n\n\n\n월\n100 PSA\n60 PSA\n230 PSA\n\n\n\n\n1\n\\((1-0.2\\%)^\\frac{1}{12}\\)\n\\((1-0.2\\%\\times 0.6)^\\frac{1}{12}\\)\n\\((1-0.2\\%\\times 2.3)^\\frac{1}{12}\\)\n\n\n20\n\\((1-4\\%)^\\frac{1}{12}\\)\n\\((1-4\\%\\times 0.6)^\\frac{1}{12}\\)\n\\((1-4\\%\\times 2.3)^\\frac{1}{12}\\)\n\n\n200\n\\((1-6\\%)^\\frac{1}{12}\\)\n\\((1-6\\%\\times 0.6)^\\frac{1}{12}\\)\n\\((1-6\\%\\times 2.3)^\\frac{1}{12}\\)\n\n\n\n이를 정리한 SMM 표는 아래와 같습니다.\n\n\n\n월\n100 PSA\n60 PSA\n230 PSA\n\n\n\n\n1\n0.000167\n0.0001\n0.000384\n\n\n20\n0.003396\n0.002022\n0.008010\n\n\n200\n0.005143\n0.003051\n0.012299",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제3"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw3.html#question-5",
+    "href": "채권분석_hw3.html#question-5",
+    "title": "채권분석 과제3",
+    "section": "Question 5",
+    "text": "Question 5\n다음의 CMO 는 9% 금리를 갖는 모기지 풀을 담보로 가지고 있다.\n\n\n\ntranche\npar(m USD)\ncoupon rate(%)\n\n\n\n\nA\n300\n7\n\n\nB\n200\n6.75\n\n\nC\n200\n7.25\n\n\nD\n250\n7.75\n\n\n\n투자자가 금리 9% 의 notional IO 투자를 원한다고 하자. 해당 상품의 액면가를 계산하시오.\n\nAnswer\n먼저, CMO의 담보에서는 9%의 현금흐름이 발생하는 반면 각 tranche의 쿠폰은 9% 미만이므로 초과이자가 $17.125m만큼 발생합니다.\n이 초과이자분으로 금리 9%의 원금 없이 이자만 지급하는 구조화채권(Nominal IO)을 설계한다면, 액면가(명목금액)은 9%의 이자로 CMO의 초과수익인 $17.125m를 지급해야합니다.\n따라서, 액면가(명목금액)는 $17.125m/9%=$190.2778m입니다.\n\ntotal_inflow=(300+200+200+250)*0.09\ntotal_outflow=300*0.07+200*0.0675+200*0.0725+250*0.0775\nexcess_interest=total_inflow-total_outflow\nnotional=excess_interest/0.09\npaste(excess_interest, notional, sep=\" / \")\n\n[1] \"17.125 / 190.277777777778\"",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제3"
+    ]
+  },
+  {
+    "objectID": "investment_hw1.html",
+    "href": "investment_hw1.html",
+    "title": "투자분석 과제1",
+    "section": "",
+    "text": "Question\nYou are a stock analyst and want to evaluate stocks. You may select any 3 stocks and get information from data source you prefer. You need a risk-free rate and market risk premium for this assignment. Choose appropriate risk-free rate such as 3-month T-bill rate or 1-month LIBOR and risk premium for the market portfolio. Use the constant growth dividend discount model. You may use any computer tool but do not hand in the data or the program code.",
+    "crumbs": [
+      "투자분석('24봄)",
+      "투자분석 과제1"
+    ]
+  },
+  {
+    "objectID": "investment_hw1.html#question",
+    "href": "investment_hw1.html#question",
+    "title": "투자분석 과제1",
+    "section": "",
+    "text": "What are the names of stocks you choose?\nSpecify risk-free rate, risk premium and the data source.\nWhat are the required rates of return? Use the CAPM. You need to specify firm’s beta and the expected rate of return of the market index portfolio.\nCalculate present value of growth opportunity (PVGO) for each stock.\nFind the intrinsic value (𝑉0) and 1-year value (𝑉1) for each stock.\nFind the expected rate of return for each stock, i.e., (𝑉1 − 𝑃0)/𝑃0 where 𝑃0 is the current market price.\nBased on the calculation above, which stock do you buy or sell? Explain briefly",
+    "crumbs": [
+      "투자분석('24봄)",
+      "투자분석 과제1"
+    ]
+  },
+  {
+    "objectID": "investment_hw1.html#문제풀이",
+    "href": "investment_hw1.html#문제풀이",
+    "title": "투자분석 과제1",
+    "section": "문제풀이",
+    "text": "문제풀이\n\n(a) 주식 선정\n저는 CME group(CME), ICE(ICE), Nasdaq(NDAQ) 세가지 종목을 선정하였습니다.\n선정 배경으로는,\n\n제가 거래소 산업에 관심이 많고,\n세 주식 모두 미국에 상장되어있는 대표적인 글로벌 거래소이며,\n동일한 거래소 산업이고 S&P500지수의 구성종목이라 동일 선상에서 비교하기 적합할 것으로 보이기 때문입니다.\n\n관련 자료는 Yahoo Finance를 참조하였습니다.\n\n\n(b) 무위험이자율 및 리스크프리미엄\nrisk-free rate는 최근 미국에서 대체지표금리로 선정한 SOFR기반의 금리를 누적하여 3개월 금리로 환산한 3-month SOFR Average를 risk-free rate로 선정하였습니다.\nNewYork Fed : SOFR Average\n각 주식과 시장(S&P500)의 리스크프리미엄은 과거 3년간(’21~’23)의 연평균수익률 및 무위험이자율을 이용하여 산출할 예정입니다.\n각 데이터를 취합하여 정리한 결과 및 무위험이자율, 리스크프리미엄의 산출은 아래와 같습니다.\n\n# import data&library\nrm(list = ls())\nlibrary(tidyverse)\nnasdaq &lt;- read_csv(\"investment_hw/투자분석_NDAQ.csv\")\ncme &lt;- read_csv(\"investment_hw/투자분석_CME.csv\")\nice &lt;- read_csv(\"investment_hw/투자분석_ICE.csv\")\nrf &lt;- read_csv(\"investment_hw/투자분석_sofrai.csv\")\nmarket &lt;- read_csv(\"investment_hw/투자분석_snp500.csv\")\n\n# tidy data\nrf2 &lt;- rf %&gt;% \n  filter(`90-Day Average SOFR` %&gt;% is.na()==FALSE) %&gt;% \n  mutate(date=paste0(substr(`Effective Date`,7,10),\n                     substr(`Effective Date`,1,2),\n                     substr(`Effective Date`,4,5)) %&gt;% as.integer(),\n         year=substr(`Effective Date`,7,10),\n         month=substr(`Effective Date`,1,2),\n         group=\"rfr\",\n         price=`90-Day Average SOFR`) %&gt;% \n  select(year,month,date,group,price)\n\n# Data Pre-processing\ntidydata &lt;- tibble()\ntidydata &lt;- nasdaq %&gt;% \n  mutate(group=\"nasdaq\") %&gt;% \n  union_all(cme %&gt;% mutate(group=\"cme\")) %&gt;% \n  union_all(ice %&gt;% mutate(group=\"ice\")) %&gt;% \n  union_all(market %&gt;% mutate(group=\"market\")) %&gt;% \n  mutate(date=paste0(substr(Date,1,4),\n                     substr(Date,6,7),\n                     substr(Date,9,10)) %&gt;% as.integer(),\n         year=substr(Date,1,4),\n         month=substr(Date,6,7),\n         price=`Adj Close`) %&gt;% \n  select(year,month,date,group,price) %&gt;% \n  union_all(rf2) %&gt;% \n  arrange(date,group)\n\n# Use daily adj. closing price, if rfr is NA then use yesterday rfr.\ntidydata_wide &lt;- tidydata %&gt;% \n  pivot_wider(names_from = \"group\", values_from = \"price\") %&gt;% \n  filter(nasdaq %&gt;% is.na()==FALSE,\n         cme %&gt;% is.na()==FALSE,\n         ice %&gt;% is.na()==FALSE,\n         market %&gt;% is.na()==FALSE) %&gt;% \n  mutate(rfr=if_else(rfr %&gt;% is.na(),lag(rfr)/100,rfr/100)) %&gt;% \n  mutate(cme_yield=log(cme)-log(lag(cme)),\n         ice_yield=log(ice)-log(lag(ice)),\n         nasdaq_yield=log(nasdaq)-log(lag(nasdaq)),\n         market_yield=log(market)-log(lag(market))) %&gt;% \n  filter(cme_yield %&gt;% is.na()==FALSE)\n\n\nrf3 &lt;- tidydata_wide %&gt;% \n  filter(year!=2020&year!=2024,as.integer(month)%%3==0) %&gt;% \n  arrange(date %&gt;% desc()) %&gt;% \n  group_by(year,month) %&gt;% \n  slice(1) %&gt;% \n  ungroup() %&gt;% \n  summarise(rfr_3year=mean(rfr))\n\ntidydata_wide %&gt;% filter(date==20231229) %&gt;% select(rfr) %&gt;% bind_cols(rf3)\n\n# A tibble: 1 × 2\n     rfr rfr_3year\n   &lt;dbl&gt;     &lt;dbl&gt;\n1 0.0536    0.0223\n\ntidydata_wide %&gt;% \n  filter(year!=2020&year!=2024) %&gt;% \n  summarise(cme_premium=sum(cme_yield)/3-rf3$rfr_3year,\n            ice_premium=sum(ice_yield)/3-rf3$rfr_3year,\n            nasdaq_premium=sum(nasdaq_yield)/3-rf3$rfr_3year,\n            market_premium=sum(market_yield)/3-rf3$rfr_3year)\n\n# A tibble: 1 × 4\n  cme_premium ice_premium nasdaq_premium market_premium\n        &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;\n1      0.0679      0.0272         0.0826         0.0573\n\n\n무위험이자율은 기간말 기준 5.36%, 과거 3개년 동안 무위험이자율에 투자한 연평균수익률은 약 2.23%, 과거 3개년 동안 실현된 각 주식과 시장의 연환산 리스크프리미엄은 아래 표와 같습니다.\n\n\n\n구 분\nS&P500\nCME\nICE\nNASDAQ\n\n\n\n\n연수익률\n7.96%\n9.03%%\n4.95%\n10.49%\n\n\n프리미엄\n5.74%\n6.81%%\n2.73%\n8.27%\n\n\n\n\n\n\n\n\n\nExcess return vs. Risk premium\n\n\n\n초과수익률은 과거의 값을 바탕으로 산출되며, 리스크프리미엄은 기대수익률을 기반으로 산출.\n위의 풀이는 초과수익률을 산출하였으므로 오답이며, 리스크프리미엄은 CAPM 등의 기대수익률을 가지고와서 산출해야 함. \\[Excess\\;return = r-r_f\\] \\[Risk\\;premium = E[r]-r_f\\]\n\n\n\n\n(c) CAPM\n각 종목의 베타를 산출하기 위해 필요한 파라미터는 아래와 같습니다.\n\n무위험이자율, \\(R_f\\) : 기간말(’23.12월말)의 3-month SOFR average\n시장수익률, \\(R_m\\) : S&P500지수의 수익률\n개별수익률, \\(R_{stock}\\) : 개별 주식의 수익률\n\n수익률은 일간/월간 두가지를 사용하여 비교할 예정이며, 회귀분석에 사용한 값은 아래와 같습니다.\n\n기간 : (일별) 2023년 250거래일, (월간) 2021년~2023년 36개월\n산출방법 : (일별) 전일 종가 대비 당일 종가의 로그수익률, (월별) 이전달 말 종가 대비 이번달 말 종가의 로그수익률\n\n마지막으로, 베타를 이용하여 기대수익률을 산출할 때 이용한 \\(R_m\\)은 다음과 같습니다.\n\n(일별) 250일간 S&P500지수 일평균수익률의 연환산(=연수익률)\n(월별) 36개월간 S&P500지수 월평균수익률의 연환산(=3개년수익률/3)\n\n\n\n\n\n\n\nWarning\n\n\n\n로그수익률(연속복리수익률)을 사용하였으므로 보유기간수익률로 표현할 때 단순 덧셈만으로 환산할 수 있습니다.\n또한, 기간 중 배당 및 CA로 인한 차이는 수정주가(Adj. close price)를 사용해서 보정하였습니다.\n\n\n이에 따라, R코드로 산출한 개별종목별 베타 / 기대수익률 / 산출기간동안 실현수익률은 아래와 같습니다.\n\n# calcuate beta, required return\n\n# daily beta in '23\ndailybeta &lt;- tidydata_wide %&gt;% \n  filter(year==\"2023\") %&gt;% \n  summarise(beta_cme=cov(market_yield,cme_yield)/var(market_yield),\n            beta_ice=cov(market_yield,ice_yield)/var(market_yield),\n            beta_nasdaq=cov(market_yield,nasdaq_yield)/var(market_yield),\n            market_avg_yield=sum(market_yield),\n            cme_avg_yield=sum(cme_yield),\n            ice_avg_yield=sum(ice_yield),\n            nasdaq_avg_yield=sum(nasdaq_yield)) %&gt;% \n  mutate(group=\"daily\")\n\n# monthly beta\nmonthlybeta &lt;- tidydata_wide %&gt;% \n  arrange(year,month,date %&gt;% desc) %&gt;% \n  group_by(year,month) %&gt;% \n  slice(1) %&gt;% \n  ungroup() %&gt;% \n  mutate(cme_yield=log(cme)-log(lag(cme)),\n         ice_yield=log(ice)-log(lag(ice)),\n         nasdaq_yield=log(nasdaq)-log(lag(nasdaq)),\n         market_yield=log(market)-log(lag(market))) %&gt;% \n  filter(cme_yield %&gt;% is.na()==FALSE) %&gt;% \n  filter(year!=\"2024\",year!=\"2020\") %&gt;% \n  summarise(beta_cme=cov(market_yield,cme_yield)/var(market_yield),\n            beta_ice=cov(market_yield,ice_yield)/var(market_yield),\n            beta_nasdaq=cov(market_yield,nasdaq_yield)/var(market_yield),\n            market_avg_yield=sum(market_yield)/3,\n            cme_avg_yield=sum(cme_yield)/3,\n            ice_avg_yield=sum(ice_yield)/3,\n            nasdaq_avg_yield=sum(nasdaq_yield)/3) %&gt;% \n  mutate(group=\"monthly\")\n\nbeta &lt;- tibble()\nbeta &lt;- dailybeta %&gt;% \n  union_all(monthlybeta) %&gt;% \n  mutate(tidydata_wide %&gt;% filter(date==20231229) %&gt;% select(rfr)) %&gt;% \n  select(group,market_avg_yield,cme_avg_yield,ice_avg_yield,nasdaq_avg_yield,\n         rfr,beta_cme,beta_ice,beta_nasdaq)\n\ncapm &lt;- tibble()\ncapm &lt;- beta %&gt;% \n  pivot_longer(cols = c(\"beta_cme\",\"beta_ice\",\"beta_nasdaq\"),\n               names_to = \"stock\", values_to = \"beta\") %&gt;% \n  mutate(expected_return=beta*(market_avg_yield-rfr)+rfr) %&gt;% \n  mutate(stock=substr(stock,6,nchar(stock))) %&gt;% \n  mutate(realized_return=if_else(stock==\"cme\",cme_avg_yield,\n                                if_else(stock==\"ice\",ice_avg_yield,nasdaq_avg_yield))) %&gt;% \n  select(group,stock,beta,expected_return,realized_return,market_avg_yield,rfr)\n\ncapm\n\n# A tibble: 6 × 7\n  group   stock   beta expected_return realized_return market_avg_yield    rfr\n  &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;  &lt;dbl&gt;\n1 daily   cme    0.315          0.105           0.272            0.217  0.0536\n2 daily   ice    0.828          0.189           0.240            0.217  0.0536\n3 daily   nasdaq 0.866          0.195          -0.0373           0.217  0.0536\n4 monthly cme    0.353          0.0628          0.0903           0.0796 0.0536\n5 monthly ice    1.12           0.0829          0.0495           0.0796 0.0536\n6 monthly nasdaq 0.993          0.0795          0.105            0.0796 0.0536\n\n\n일별/월별로 구분한 각 주식의 베타와 기대수익률입니다.\n보다 일반적이고 평탄화된 결과를 위해 월별 데이터를 중심으로 설명하겠습니다.\n먼저 각 주식의 베타는 CME:0.35, ICE:1.12, Nasdaq 0.99입니다. 이는 거래소산업이 특성상 변동성이 크지 않고 경제상황에 민감하지 않아 베타가 시장포트폴리오와 유사한 1 수준에서 형성되는 것으로 보입니다. 특히, CME는 세계 최대의 파생상품거래소로서 규모가 매우 큰 고배당 우량주인 특징이 있어 변동성이 낮아 베타가 0.35로 낮게 형성된 것으로 추정됩니다.\n\n\n\n\n\n\n베타 산출방법\n\n\n\n베타는 \\(R_{stock,t}=\\alpha+\\beta R_{m,t}+\\epsilon\\)의 선형회귀분석 결과로 산출되는 계수입니다.\n즉, \\(\\beta=\\rho_{stock,m}\\frac{\\sigma_{stock}}{\\sigma_m}=\\frac{Cov_{stock,m}}{\\sigma_m^2}\\)로 산출할 수 있습니다.\n\n\n월별수익률을 산출한 과거 3년(2021~2023)간 평균월별수익률을 연율화하면 로그수익률 특성상 지난 3년간 연평균수익률과 같습니다. 즉, 시장포트폴리오의 기대수익률은 약 7.96%라고 할 수 있으며, 무위험이자율은 2023.12월말 값인 5.36%를 사용합니다.\n이제, \\(R_{stock}=\\beta(R_m-R_f)+R_f\\)를 통해 각 주식의 요구수익률을 산출할 수 있습니다.\n\n\n\n구 분\nCME\nICE\nNASDAQ\n\n\n\n\nBeta\n0.35\n1.12\n0.99\n\n\nRequired Return\n6.28%\n8.29%\n7.95%\n\n\n\n\n\n(d) PVGO\n먼저, 거래소산업은 성장주보다는 우량주 성향이 강하고, 배당성향이 다소 높고 정기적인 배당을 하는 경향이 있습니다.. 따라서 배당할인모형(Constant-growth DDM)을 사용할 예정입니다.\n먼저, 기업의 내재가치에 배당할인모형을 적용한 PVGO의 산식은 아래와 같습니다. \\[PVGO=V_0-\\frac{E_1}{k}=\\frac{D_1}{k-g}-\\frac{E_1}{k}\\]\n여기서, 요구수익률 \\(k\\)는 (c)에서 CAPM으로 구한 요구수익률을 사용할 예정이며, \\(D_1, E_1, g\\)를 구하기 위해 직전주당배당(\\(D_0\\)), 직전 주당수익(\\(E_0\\)), 직전재투자성향(\\(b_0=\\frac{E_0-D_0}{E_0}\\)), 직전 자기자본수익률 \\(ROE_0\\)를 이용하여 다음과 같이 산출하도록 하겠습니다.\n\\[g=b_0\\times ROE_0=\\frac{E_0-D_0}{E_0}\\times ROE_0,\\;\\;D_1=D_0(1+g),\\;\\;E_1=E_0(1+g)\\]\n\\[\\Rrightarrow PVGO=\\frac{D_0(1+g)}{k-g}-\\frac{E_0(1+g)}{k}\\]\n\n\n\n\n\n\n주당순이익 산출 : DDM\n\n\n\n다음 년도의 주당순이익 \\(E_1\\)은 올해의 순이익 \\(E_0\\)에 배당할인모형의 배당성장률 \\(g\\)를 반영하여 산출하였습니다.\n\n\n이제, 각 주식의 재무상태표를 참조하여 \\(D_0\\), \\(E_0\\), \\(b_0\\), \\(ROE_0\\)를 산출하겠습니다. 다만, 직전사업연도(2023)는 시장벤치마크(S&P500)의 수익률이 약 21%로, 과거 평균치의 약 3배를 상회하고 있어 각 기업의 EPS, DPS 등이 평소 수치보다 고평가되었을 가능성이 있습니다. 이를 감안하여 \\(D_0\\), \\(E_0\\) 산출시에는 과거 3개년 당기순이익, 현금배당금의 산술평균을 사용할 것이며 \\(ROE_0\\)는 과거 3개년의 기하평균을 사용하겠습니다.\n각 값들은 Yahoo Finance 및 Stockrow를 참조하였습니다.\n\nfinancial &lt;- read_csv(\"investment_hw/투자분석_financialstatement.csv\")\n\n\n# DDM 이용\nfinancial &lt;- financial %&gt;% \n  group_by(stock) %&gt;% \n  summarise(eps=sum(earning)/sum(shares),\n            dps=sum(dividend)/sum(shares),\n            bps=sum(capital)/sum(shares),\n            roe=prod(1+roe)^(1/3)-1) %&gt;% \n  mutate(reinvestment=(eps-dps)/eps) %&gt;% \n  mutate(growth=roe*reinvestment) %&gt;% \n  mutate(d1=dps*(1+growth),\n         e1=eps*(1+growth)) %&gt;% \n  left_join(.,capm %&gt;% filter(group==\"monthly\") %&gt;% select(stock,expected_return,rfr),\n            by=\"stock\") %&gt;% \n  mutate(v0_ddm=d1/(expected_return-growth)) %&gt;% \n  mutate(pvgo_ddm=v0_ddm-e1/expected_return)\nfinancial\n\n# A tibble: 3 × 13\n  stock   eps   dps   bps   roe reinvestment  growth    d1    e1 expected_return\n  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;\n1 cme    7.86 7.49   75.3 0.105       0.0475 0.00497 7.53   7.90          0.0628\n2 ice    4.67 1.52   42.3 0.116       0.675  0.0786  1.64   5.04          0.0829\n3 nasd…  2.25 0.785  15.6 0.163       0.652  0.106   0.868  2.49          0.0795\n# ℹ 3 more variables: rfr &lt;dbl&gt;, v0_ddm &lt;dbl&gt;, pvgo_ddm &lt;dbl&gt;\n\n\n산출 결과는 아래와 같습니다.\n\n\n\n구 분\nCME\nICE\nNASDAQ\n\n\n\n\n\\(E_0\\)\n7.86\n4.67\n2.25\n\n\n\\(D_0\\)\n7.49\n1.52\n0.79\n\n\n\\(ROE_0\\)\n10.5%\n11.6%\n16.3%\n\n\n\\(b_0\\)\n4.7%\n67.5%\n65.2%\n\n\n\\(g\\)\n0.5%\n7.9%\n10.6%\n\n\n\\(D_1\\)\n7.53\n1.64\n0.87\n\n\n\\(E_1\\)\n7.90\n5.04\n2.49\n\n\n\\(k\\)\n6.28%\n8.29%\n7.95%\n\n\n\\(V_0\\)\n130.15\n380.07\n-32.82(NaN)\n\n\n\\(PVGO\\)\n4.32\n319.28\n-64.19(NaN)\n\n\n\n배당할인모형을 사용하여 평가해본 결과, PVGO는 CME가 4.32$, ICE가 319.28$, NASDAQ은 -64.19$로 산출되었습니다. 여기서 NASDAQ 거래소의 경우 기업의 요구수익률보다 성장률이 높아(\\(k&lt;g\\)) 기업의 내채가치(\\(V_0\\)) 평가에 배당할인모형을 사용할 수 없는 케이스입니다. 즉, PVGO가 정상적으로 산출되지 않았습니다.\nNASDAQ 거래소의 요구수익률은 7.95% 및 성장률은 10.6%로 산출되었는데, 현재시점에서 배당할인모형을 통해 이 주식을 평가한다는 것은 기업에 요구되는 수익률보다 성장하는 속도가 높아서 기업의 미래 배당가치가 발산(\\(\\rightarrow\\infty\\))한다는 것을 의미합니다. 이러한 이유가 발생하는 이유를 추정해보면, 아마도 NASDAQ의 현재주가가 저평가되어있거나, 최근 성과가 좋아서 단기적으로 \\(ROE_0\\)가 높게 산출되었거나, CAPM의 요구수익률이 실제 주식의 요구수익률보다 낮기 때문일 것 입니다.\nNASDAQ 거래소의 과거 추이를 볼 때, 최근 3년간 실현수익이 연평균 약 10.5%로 요구수익률보다 높고 성장률과 유사하므로 CAPM의 요구수익률이 실제 주식의 요구수익률을 정확하게 평가하지 못한 것이 주된 이유일 것으로 보입니다.\n이러한 문제점은,\n\nCAPM 대신 APT 등의 다른 모형으로 요구수익률(\\(k\\))을 평가해보거나,\n배당할인모형(DDM) 대신 다른 모형을 이용함으로써 해결할 수 있습니다.\n\n\n\n\n\n\n\nCAPM의 한계\n\n\n\nCAPM으로 산출한 요구수익률 \\(k\\)는 개별주식의 여러 특성을 정확히 반영하지 못하였을 가능성이 있습니다. CAPM은 시장에 대한 민감도 \\(\\beta\\)와 시장포트폴리오의 리스크 대비 수익률(\\(R_m-R_f\\))을 이용해 주가의 기대수익률(요구수익률)을 평가하는데, 이 한가지 요인(factor)으로 기대수익률이 결정된다고 가정하기 때문입니다.\n\n\nMulti-factor 모형은 배우기 이전이므로 수업시간에 배운 초과이익모형(Residual Income Model)을 이용하여 세 주식의 \\(V_0\\), \\(PVGO\\)를 다시 평가해보도록 하겠습니다.\n먼저, RIM의 산식은 다음과 같습니다.\n\\[V_0=BE_0+\\sum_{i=1}^\\infty \\frac{E[RE_i]}{(1+k)^i}\\]\n여기서 \\(BE_0\\)은 주당순자산으로 \\(D_0,\\;E_0\\)과 같이 과거 3개년 평균치를 사용하고, 초과이익의 기대값 \\(E[RE_i]\\)는 \\(i\\)년도의 주당순이익(\\(E_i\\))-주당배당금(\\(D_i\\))으로 결정되며, 주당순이익은 \\(E_i=ROE_0\\times BE_{i-1}\\), 주당배당금은 \\(k\\times BE_{i-1}\\)로 산출, \\(BE_{i}=BE_{i-1}\\times (1+R_f)\\)(즉, 초과이익이 무위험이자율만큼 성장)하도록 하겠습니다.\n\\[V_0=BE_0+\\sum_{i=1}^\\infty \\frac{(ROE_0-k)BE_0(1+r_f)^i}{(1+k)^i}=BE_0+\\frac{(ROE_0-k)BE_0}{k-r_f}\\]\n위와 같이 RIM으로 기업의 내재가치를 산출할 수 있으며, 산출결과는 아래와 같습니다.\n\nfinancial_rim &lt;- financial %&gt;% \n  mutate(v0_rim=bps+(roe-expected_return)*bps/(expected_return-rfr)) %&gt;%\n  mutate(pvgo_rim=v0_rim-(eps*(1+rfr))/expected_return) %&gt;% \n  select(stock,bps,roe,rfr,expected_return,v0_rim,pvgo_rim)\n\nfinancial_rim\n\n# A tibble: 3 × 7\n  stock    bps   roe    rfr expected_return v0_rim pvgo_rim\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;           &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n1 cme     75.3 0.105 0.0536          0.0628  417.     285. \n2 ice     42.3 0.116 0.0536          0.0829   90.5     31.2\n3 nasdaq  15.6 0.163 0.0536          0.0795   65.8     35.9\n\n\n\n\n\n\n\n\n주당순이익 산출 : RIM\n\n\n\n다음 년도의 주당순이익 \\(E_1\\)은 올해의 순이익 \\(E_0\\)에 초과이익성장률인 무위험이자율만큼 가산하여 산출하였습니다.\n\n\n\n\n\n구 분\nCME\nICE\nNASDAQ\n\n\n\n\n\\(V_0,\\; DDM\\)\n130.15\n380.07\n-\n\n\n\\(PVGO,\\; DDM\\)\n4.32\n319.28\n-\n\n\n\\(V_0,\\; RIM\\)\n417.10\n90.55\n65.81\n\n\n\\(PVGO,\\; RIM\\)\n291.86\n34.20\n37.43\n\n\n\nRIM 방식으로 내재가치를 평가한 결과, PVGO의 값은 CME가 291.86$, ICE가 34.20$, NASDAQ에서 37.43$로 산출되었습니다.\n\n\n(e) Find \\(V_0,\\;V_1\\)\n제가 사용한 RIM 산출식에서 \\(V_1=V_0(1+r_f)\\)입니다. (DDM은 \\(V_1=V_0(1+g)\\))\nNASDAQ에서 DDM은 사용할 수 없으므로 RIM을 기준으로 산출하겠습니다.\n\nfinancial_rim %&gt;% \n  mutate(v1_rim=v0_rim*(1+rfr)) %&gt;% \n  select(stock,v0_rim,v1_rim)\n\n# A tibble: 3 × 3\n  stock  v0_rim v1_rim\n  &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 cme     417.   439. \n2 ice      90.5   95.4\n3 nasdaq   65.8   69.3\n\n\n기존에 산출하였던 \\(V_0\\)와 산출한 \\(V_1\\)은 아래와 같습니다.\n\n\n\n구 분\nCME\nICE\nNASDAQ\n\n\n\n\n\\(V_0,\\; RIM\\)\n417.10\n90.55\n65.81\n\n\n\\(V_1,\\; RIM\\)\n439.44\n95.40\n69.33\n\n\n\n\n\n(f) Find the expected rate of return for each stock\n\nstock_return &lt;- financial_rim %&gt;% \n  mutate(v1_rim=v0_rim*(1+rfr)) %&gt;% \n  select(stock,v1_rim) %&gt;% \n  left_join(.,tidydata %&gt;% filter(date==20240228) %&gt;% select(group,price),\n            by=c('stock'='group')) %&gt;% \n  mutate(return=(v1_rim-price)/price)\nstock_return\n\n# A tibble: 3 × 4\n  stock  v1_rim price return\n  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 cme     439.  220.   1.00 \n2 ice      95.4 138.  -0.311\n3 nasdaq   69.3  56.1  0.236\n\n\n2월말 기준 각 주식의 종가를 기준으로 계산한 연환산 기대수익률은 다음과 같습니다.\n\n\n\n구 분\nCME\nICE\nNASDAQ\n\n\n\n\n\\(V_1,\\; RIM\\)\n439.44\n95.40\n69.33\n\n\n\\(Close Price\\)\n219.68\n138.39\n56.11\n\n\n\\(Expected Return,\\; annum\\)\n100.03%\n-31.06%\n23.55%\n\n\n\n\n\n(g) Which stock is the best?\n\nNASDAQ exchange 주식\n단순히 (f)의 기대수익률로 볼 때는 CME가 가장 높지만, 이는 BPS가 높고 배당성향이 1에 가까운 CME 거래소의 특성상 RIM 방식에서 높은 내재가치를 평가받은 것으로 보입니다. 이는 DDM 방식으로 평가하였을 때, 성장률 \\(g\\)가 매우 낮아 내재가치가 다소 낮게 산출된 점에서 잘 드러납니다.\n또한, CME는 시장 베타도 0.35수준으로 낮아 절대적인 요구수익률이 높지 않고 변동성도 낮아 흔히 말하는 재미없는 주식입니다. 장기적인 투자를 선호하고 자본금이 많은 기관투자자 등이 주로 투자하는 주식일 것으로 예상됩니다.\n반면에 NASDAQ은 RIM방식으로 평가한 기대수익률이 연 23.55% 수준으로 양호하고, 시장 베타도 거의 1에 가까워 적당한 변동성을 가지고 있습니다. DDM방식에서는 평가가 불가능하였으나, 이 의미는 ROE와 배당성향이 높아 기대되는 배당성장률 \\(g\\)가 CAPM의 요구수익률 \\(k\\)보다 높다는 뜻입니다. 즉, 초과이익을 발생시켜 시장을 outperform할 확률이 높다고 생각하였습니다.\n즉, 배당성향이 매우 높고 변동성이 낮아 안정적인 우량주인 CME보다는 최근 성과가 훌륭하여 성장성이 있으며, 안정적으로 요구수익률 대비 초과이익을 달성할 것으로 예상되고, 적정 수준의 변동성을 지닌 NASDAQ 거래소이 투자대상으로 가장 적합하다고 판단됩니다.\n한편, ICE는 DDM에서는 내재가치가 좋게 평가되었으나 RIM에서는 낮게 평가되어 결국 기대수익률이 (-)되는 분석결과를 고려하여 선택하지 않았습니다.",
+    "crumbs": [
+      "투자분석('24봄)",
+      "투자분석 과제1"
+    ]
+  },
+  {
+    "objectID": "investment_hw2.html",
+    "href": "investment_hw2.html",
+    "title": "투자분석 과제2",
+    "section": "",
+    "text": "Problems",
+    "crumbs": [
+      "투자분석('24봄)",
+      "투자분석 과제2"
+    ]
+  },
+  {
+    "objectID": "investment_hw2.html#answer",
+    "href": "investment_hw2.html#answer",
+    "title": "투자분석 과제2",
+    "section": "Answer",
+    "text": "Answer\n(a)\n저는 CME group(CME), ICE(ICE), Nasdaq(NDAQ)K 세가지 종목을 선정하였습니다.\n선정 배경으로는,\n\n제가 거래소 산업에 관심이 많고,\n세 주식 모두 미국에 상장되어있는 대표적인 글로벌 거래소이며,\n동일한 거래소 산업이고 S&P500지수의 구성종목이라 동일 선상에서 비교하기 적합할 것으로 보이기 때문입니다.\n\n세 주식의 일별수정주가(Adj. close), 벤치마크지수인 S&P500지수의 일별수정가격, 무위험이자율로 채택한 미연준의 일별 Effective-FFR(Federel Funds Rate)를 활용하였습니다.\n기간 : 직전 10년(2014.4 ~ 2024.3)\n출처 : [Yahoo Finance](https://finance.yahoo.com/)\n산출방법 :\n    (월수익률) 지난달 말 대비 월말 수익률\n    (월초과수익률) 월수익률 - 월말FFR/12\n    (월분산) 월/월초과수익률의 표본표준편차\n    (평균수익률) 월/월초과수익률을 산술평균하여 연환산 (x12)\n    (평균분산) 월분산을 산술평균하여 연환산 (x12)\n\nlibrary(tidyverse)\n# stocks and market index S&P500 from yahoo finance\ncme &lt;- read_csv(\"investment_hw/cme.csv\") %&gt;% tibble()\nndaq &lt;- read_csv(\"investment_hw/ndaq.csv\") %&gt;% tibble()\nice &lt;- read_csv(\"investment_hw/ice.csv\") %&gt;% tibble()\nspx &lt;- read_csv(\"investment_hw/spx.csv\") %&gt;% tibble()\n# risk-free rate is effective-FFR(federal funds rate)\nffr &lt;- read_csv(\"investment_hw/fedfunds.csv\") %&gt;% tibble()\n# set period 10years\nstrt_dd='20140101'; end_dd='20240331'\n\n(b)\n\n# tidy data\nraw_data &lt;- tibble()\nraw_data &lt;- cme %&gt;% mutate(cme=`Adj Close`) %&gt;% select(Date,cme) %&gt;% \n  left_join(ndaq %&gt;% mutate(ndaq=`Adj Close`) %&gt;% select(Date,ndaq)) %&gt;% \n  left_join(ice %&gt;% mutate(ice=`Adj Close`) %&gt;% select(Date,ice)) %&gt;% \n  left_join(spx %&gt;% mutate(spx=`Adj Close`) %&gt;% select(Date,spx)) %&gt;% \n  mutate(day=gsub(\"-\",\"\",Date)) %&gt;% \n  mutate(year=substr(day,1,4)) %&gt;% \n  mutate(month=substr(day,1,6)) %&gt;% \n  filter(day&gt;=strt_dd,day&lt;=end_dd) %&gt;% \n  left_join(ffr %&gt;% \n              mutate(ffr=FEDFUNDS/100,\n                     month=substr(gsub(\"-\",\"\",as.character(DATE)),1,6)) %&gt;% \n              select(month,ffr)) %&gt;% \n  select(year,month,day,cme,ndaq,ice,spx,ffr,Date)\n# using monthly return\nmonthly_raw &lt;- tibble()\nmonthly_raw &lt;- raw_data %&gt;% \n  group_by(year,month) %&gt;% \n  arrange(day %&gt;% desc()) %&gt;% \n  slice(1) %&gt;% \n  pivot_longer(.,c(\"cme\",\"ndaq\",\"ice\",\"spx\"),\n               names_to = \"name\",values_to = \"price\") %&gt;% \n  ungroup() %&gt;% \n  arrange(name,year,month) %&gt;% \n  mutate(return=price/lag(price)-1) %&gt;%  # monthly return\n  mutate(excess_return=return-ffr*(1/12)) %&gt;% \n  filter(as.integer(month)&gt;=201404)\n\n# calculate arithmatic mean&var and var-cov matrix of excess return of stocks\nmonthly_stat &lt;- tibble()\nmonthly_stat &lt;- monthly_raw %&gt;% \n  ungroup() %&gt;% \n  group_by(name) %&gt;% \n  summarise(avg_excess=mean(excess_return)*12,\n            var_excess=sd(excess_return)^2*12,\n            avg_return=mean(return)*12,\n            var_return=sd(return)^2*12,\n            avg_rf=mean(ffr)) # Annualized\n# Cov matrix\nvariance_matrix &lt;- monthly_raw %&gt;% \n  ungroup() %&gt;%\n  select(month,name,excess_return) %&gt;% \n  pivot_wider(names_from = \"name\", values_from = \"excess_return\") %&gt;% \n  select(cme,ice,ndaq,spx) %&gt;% \n  var()\n# Corr matrix\ncor_matrix &lt;- monthly_raw %&gt;% \n  ungroup() %&gt;%\n  select(month,name,excess_return) %&gt;% \n  pivot_wider(names_from = \"name\", values_from = \"excess_return\") %&gt;% \n  select(cme,ice,ndaq,spx) %&gt;% \n  cor()\n\n위 방법을 기준으로 산출한 각 주식의 평균초과수익률(연환산) 및 공분산행렬은 아래와 같습니다.\nExcess return : CME 15.0%, ICE 14.4%, Nasdaq 18.8%\n\nmonthly_stat\n\n# A tibble: 4 × 6\n  name  avg_excess var_excess avg_return var_return avg_rf\n  &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;\n1 cme        0.150     0.0340      0.165     0.0340 0.0141\n2 ice        0.144     0.0414      0.158     0.0415 0.0141\n3 ndaq       0.188     0.0415      0.202     0.0413 0.0141\n4 spx        0.101     0.0229      0.115     0.0229 0.0141\n\n\nVariance-Covariance Matrix of three stocks&Benchmark index\n\nvariance_matrix\n\n              cme         ice        ndaq          spx\ncme  0.0028310476 0.001767299 0.001138796 0.0008194417\nice  0.0017672988 0.003452184 0.002149990 0.0016652315\nndaq 0.0011387956 0.002149990 0.003456322 0.0016308630\nspx  0.0008194417 0.001665231 0.001630863 0.0019071007\n\n\nCorrelation Matrix of three stocks&Benchmark index\n\ncor_matrix\n\n           cme       ice      ndaq       spx\ncme  1.0000000 0.5653136 0.3640534 0.3526612\nice  0.5653136 1.0000000 0.6224185 0.6489942\nndaq 0.3640534 0.6224185 1.0000000 0.6352191\nspx  0.3526612 0.6489942 0.6352191 1.0000000\n\n\n(c)\n각 주식의 기대수익률과 미래변동성이 과거실현값과 동일하다고 가정하겠습니다.\n공매도는 없다고 가정하였으므로 각 주식의 비중이 양수가 되도록 설정하고, 먼저 두개의 주식으로 구성된 포트폴리오의 efficient frontier를 각각 구하도록 하겠습니다.\n그 다음, 하나의 주식과 다른 두 주식의 포트폴리오를 재결합하면 새로운 포트폴리오를 구성할 수 있으며, 이를 반복하여 efficient frontier를 도식화할 수 있습니다.\n아래 코드에서는 ICE의 구성비중을 5%, 10%, … , 95%로 고정하고 CME-Nasdaq 포트폴리오와 재결합을 반복하여 efficient frontier를 구현하였습니다.\n\n# Portfolio return/vol of variance combinations three stocks\nportfolio &lt;- tibble()\nportfolio &lt;- tibble(cme=seq(0,1,0.002),ice=seq(1,0,-0.002)) %&gt;% \n  union_all(.,tibble(cme=seq(0,1,0.002),ice=0)) %&gt;% \n  union_all(.,tibble(cme=0,ice=seq(1,0,-0.002)))\n\nfor(i in seq(0.05,0.95,0.05)){portfolio &lt;- portfolio %&gt;%\n  union_all(.,tibble(cme=seq(0,1-i,0.005),ice=i))}\nfor(i in seq(0.25,0.30,0.01)){portfolio &lt;- portfolio %&gt;%\n  union_all(.,tibble(cme=seq(0,1-i,0.005),ice=i))}\n\nportfolio &lt;- portfolio %&gt;% \n  mutate(ndaq=1-cme-ice) %&gt;% \n  mutate(return=cme*monthly_stat$avg_return[1]\n         +ice*monthly_stat$avg_return[2]\n         +ndaq*monthly_stat$avg_return[3],\n         vol=sqrt(cme^2*monthly_stat$var_return[1]\n                  +ice^2*monthly_stat$var_return[2]\n                  +ndaq^2*monthly_stat$var_return[3]\n                  +2*cme*ice*variance_matrix[2]\n                  +2*cme*ndaq*variance_matrix[3]\n                  +2*ndaq*ice*variance_matrix[7])) %&gt;% \n  mutate(sharpe=(return-monthly_stat$avg_rf[1])/vol)\n\nplot_portfolio &lt;- ggplot(data=portfolio,mapping=aes(x=vol,y=return))+\n  geom_point(data=portfolio %&gt;% filter(ndaq==0),size=0.5,color=\"red\")+\n  geom_point(data=portfolio %&gt;% filter(ice==0),size=0.5,color=\"blue\")+\n  geom_point(data=portfolio %&gt;% filter(cme==0),size=0.5,color=\"green\")+\n  scale_x_continuous(limits=c(0.08,0.22))+\n  scale_y_continuous(limits=c(0.15,0.21))+\n  labs(title = \"Invest Opportunity of three stocks\",\n       x=\"standard deviation\",y=\"expected return\") +\n  annotate(geom=\"text\",x=0.182,y=0.17,label=\"CME\")+\n  annotate(geom=\"text\",x=0.202,y=0.205,label=\"Nasdaq\")+\n  annotate(geom=\"text\",x=0.202,y=0.162,label=\"ICE\")+\n  theme_bw()\n\nplot_combination &lt;- plot_portfolio +\n  geom_point(data=portfolio %&gt;% filter(cme!=0&ice!=0&ndaq!=0),size=1,\n  color=\"black\",alpha=0.1)\n\nplot_combination\n\n\n\n\n\n\n\n\n(d)\nTangent p/f는 Sharpe r/o를 최대화시키는 세 주식의 조합으로, 위에서 도식화한 투자기회에 대하여 무위험이자율을 y절편으로 가지는 접선을 그려서 시각화할 수 있습니다.\n접선의 기울기는 포트폴리오의 초과수익률을 변동성으로 나눈 값으로 Sharpe r/o가 되므로, 이 접선이 CAL에 해당합니다.\n\nsharpe=max(portfolio$sharpe)\ntangent &lt;- tibble(vol=seq(0.08,0.17,0.01)) %&gt;% \n  mutate(return=monthly_stat$avg_rf[1]+sharpe*vol)\n\nplot_tangent &lt;- plot_combination+\n  geom_line(data=tangent)+\n  scale_x_continuous(limits=c(0.04,0.26))+\n  scale_y_continuous(limits=c(0.11,0.25))+\n  annotate(geom=\"text\",x=0.125,y=0.23,label=\"CAL, y=1.3667x+0.0141\")+\n  annotate(geom=\"text\",x=0.125,y=0.22,label=\"sharpe r/o=1.3667\")+\n  annotate(geom=\"text\",x=0.1,y=0.18,label=\"Tangent p/f\")\n\nScale for x is already present.\nAdding another scale for x, which will replace the existing scale.\nScale for y is already present.\nAdding another scale for y, which will replace the existing scale.\n\nplot_tangent\n\n\n\n\n\n\n\n\n이 때, Tangent p/f의 기대수익률/변동성/구성비율은 아래와 같습니다.\n\nportfolio %&gt;% arrange(sharpe %&gt;% desc()) %&gt;% slice(1)\n\n# A tibble: 1 × 6\n    cme   ice  ndaq return   vol sharpe\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1  0.36  0.27  0.37  0.177 0.119   1.37\n\n\n(e)\nTangent p/f에서 CME, Nasdaq의 비중은 각각 36%, 37%로 이미 30%를 초과하였습니다. 따라서 30%를 초과보유할 주식을 선정할 때 두 주식을 선정한다면 최적포트폴리오는 (d)의 Tangent p/f와 동일할 것 입니다.\n한편, ICE를 선정한다면 (d)의 Tangent p/f 구성이 불가능합니다. 이 경우 새로운 efficient frontier는 아래와 같이 도식화할 수 있으며, 새로운 최적포트폴리오는 ICE의 비중이 정확히 30%일 때 결정됩니다.\n\n# Set ice&gt;=0.3\nportfolio2 &lt;- portfolio %&gt;% filter(ice&gt;=0.3)\nsharpe2=max(portfolio2$sharpe)\ntangent2 &lt;- tibble(vol=seq(0.1,0.14,0.01)) %&gt;% \n  mutate(return=monthly_stat$avg_rf[1]+sharpe2*vol)\n\nportfolio2 %&gt;% arrange(desc(sharpe))\n\n# A tibble: 1,905 × 6\n     cme   ice  ndaq return   vol sharpe\n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n 1 0.34    0.3 0.36   0.176 0.119   1.36\n 2 0.34    0.3 0.36   0.176 0.119   1.36\n 3 0.345   0.3 0.355  0.176 0.119   1.36\n 4 0.345   0.3 0.355  0.176 0.119   1.36\n 5 0.335   0.3 0.365  0.176 0.119   1.36\n 6 0.335   0.3 0.365  0.176 0.119   1.36\n 7 0.35    0.3 0.35   0.176 0.119   1.36\n 8 0.35    0.3 0.35   0.176 0.119   1.36\n 9 0.33    0.3 0.37   0.176 0.119   1.36\n10 0.33    0.3 0.37   0.176 0.119   1.36\n# ℹ 1,895 more rows\n\nplot_tangent2 &lt;- plot_portfolio +\n  geom_point(data=portfolio2 %&gt;% filter(cme!=0&ice!=0&ndaq!=0),\n             size=1,color=\"black\",alpha=0.2)+\n  geom_line(data=tangent2)+\n  annotate(geom=\"text\",x=0.117,y=0.2,label=\"CAL, y=1.3639x+0.0141\")+\n  annotate(geom=\"text\",x=0.117,y=0.193,label=\"sharpe r/o=1.3639\")+\n  annotate(geom=\"text\",x=0.11,y=0.18,label=\"Optimal p/f\")\nplot_tangent2\n\n\n\n\n\n\n\n\nOptimal p/f의 기대수익률/변동성/구성비율은 아래와 같습니다.\n\noptimal &lt;- portfolio2 %&gt;% arrange(sharpe %&gt;% desc()) %&gt;% slice(1)\noptimal\n\n# A tibble: 1 × 6\n    cme   ice  ndaq return   vol sharpe\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1  0.34   0.3  0.36  0.176 0.119   1.36\n\n\n(f)\n먼저, 포트폴리오의 연환산수익률이 정규분포를 따른다면 표준정규분포표를 참조하여 Value at Risk를 다음과 같이 산출할 수 있습니다.\n\\[5\\%\\;VaR=E(r_p)-1.65\\sigma_p=0.176-1.65\\times 0.119=-1.99\\%\\]\n\nVaR=optimal$return-1.65*optimal$vol; VaR\n\n[1] -0.01990571\n\n\n만약 수익률의 분포가 정규분포가 아니라면, Historical VaR 및 ES(Expected Shortfall)을 산출할 수 있습니다. 이를 데이터의 참조기간인 과거 10년간 최적포트폴리오의 월수익률이 필요합니다.\n위의 최적포트폴리오는 CME 34%, ICE 30%, Nasdaq 36%로 구성된 포트폴리오이므로, 거래비용 등을 무시하고 매월말 포트폴리오의 구성비율을 조정한다고 가정하고 포트폴리오의 명목금액을 \\(P_t\\), 각 주식의 \\((t,t+1)\\) 월수익률을 \\(r_{t,k}\\)라고 한다면 \\((t,t+1)\\)간 포트폴리오의 월수익률 \\(r_t\\)는 다음과 같습니다.\n\\[P_{t+1}=0.34\\times P_t\\times (1+r_{t,cme})+0.3\\times P_t\\times (1+r_{t,ice})+0.36\\times P_t\\times (1+r_{t,ndaq})\\]\n\\[\\Rightarrow 1+r_t=\\frac{P_{t+1}}{P_t}=0.34\\times (1+r_{t,cme})+0.3\\times (1+r_{t,ice})+0.36\\times (1+r_{t,ndaq})\\]\n이를 적용하면 과거 10년간 최적포트폴리오의 월수익률 120개를 얻을 수 있습니다.\n이를 오름차순으로 정렬하면 Historical 5% VaR은 6번째 관측값이며, 5% ES는 6개의 관측값의 평균으로 산출할 수 있습니다. 이는 월수익률 기반 VaR 및 ES이므로 \\(\\sqrt{12}\\)를 곱하여 연환산하도록 하겠습니다.\n\noptimal_monthly &lt;- tibble()\noptimal_monthly &lt;- monthly_raw %&gt;% \n  select(month,name,return) %&gt;% \n  pivot_wider(names_from = \"name\", values_from = \"return\") %&gt;% \n  mutate(pf_return=optimal$cme*(1+cme)+optimal$ice*(1+ice)+optimal$ndaq*(1+ndaq)-1) %&gt;% \n  select(month,cme,ice,ndaq,pf_return) %&gt;% \n  arrange(pf_return) %&gt;% \n  slice(1:6)\noptimal_monthly\n\n# A tibble: 6 × 5\n  month       cme     ice    ndaq pf_return\n  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;\n1 202204 -0.0779  -0.123  -0.117    -0.106 \n2 202002 -0.0842  -0.105  -0.119    -0.103 \n3 202003 -0.127   -0.0917 -0.0697   -0.0957\n4 202209 -0.0899  -0.101  -0.0448   -0.0769\n5 202201  0.00455 -0.0739 -0.147    -0.0734\n6 202205 -0.0935  -0.116  -0.0134   -0.0714\n\n\nAnnualized 5% VaR은 -24.78%, ES는 -30.38%입니다.\n정규분포 가정 하에 산출한 VaR과 큰 차이가 나는 이유는 지난 22년 Covid-19 팬데믹으로 인해 이례적으로 주가가 월 7% 이상 하락하는 급락장이 지속(Left fat tail)되었는데, 이때의 outlier 표본이 Historical VaR 산출을 지배한 반면 정규분포 근사시에는 반영되지 않아 차이가 발생하는 것으로 추정됩니다.\n\nhist_VaR &lt;- optimal_monthly$pf_return[6]*sqrt(12)\nhist_ES &lt;- mean(optimal_monthly$pf_return[1:6])*sqrt(12)\npaste(round(hist_VaR,6), round(hist_ES,6) , round(VaR,6), sep=\" / \")\n\n[1] \"-0.247279 / -0.303873 / -0.019906\"\n\n\n(g)\n위의 최적포트폴리오와 무위험자산을 이용하여 투자를 결정한다면, 최종적인 포트폴리오의 기대수익률 및 변동성은 자본배분선(\\(E(r_p)=1.3639\\sigma_p+0.0141\\)) 위에서 결정될 것입니다.\n이때, 무위험자산의 비중은 투자자의 위험회피정도에 따른 효용함수 \\(U=E(r_p)-\\frac{1}{2}A\\sigma_p^2\\)를 최대화시키는 수준에서 결정됩니다.\n이에 따라 산출한 무위험자산의 비중은 모든 경우(A=2, 3.5, 5)에서 0이 됩니다. 이는 과거기간 중 제로금리 기간이 다소 길어 무위험자산의 수익률이 낮은 반면, 선정한 주식의 기대수익률은 상대적으로 높아 일어난 것으로 추정됩니다.\n부가적으로, 무위험자산의 비중 산식 \\(r^*=1-\\frac{E(r_p)-r_f}{A\\sigma_p^2}\\)를 역산하여 위험회피정도 \\(A\\)를 역산해보면, 약 11.48까지는 최적포트폴리오를 100% 보유하는 것이 효용을 극대화시키는 투자결정입니다.\n\n# Utility function to verify risk-free asset ratio\nutility &lt;- tibble(vol=seq(optimal$vol,0,-0.0001)) %&gt;% \n  mutate(return=sharpe2*vol+monthly_stat$avg_rf[1]) %&gt;% \n  mutate(rf_ratio=(optimal$return-return)/(optimal$return-monthly_stat$avg_rf[1])) %&gt;% \n  mutate(a2=return-0.5*2*vol^2,\n         a3.5=return-0.5*3.5*vol^2,\n         a5=return-0.5*5*vol^2)\nutility %&gt;% arrange(desc(a5)) %&gt;% slice(1)\n\n# A tibble: 1 × 6\n    vol return rf_ratio    a2  a3.5    a5\n  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.119  0.176        0 0.162 0.151 0.141\n\n\n\n(optimal$return-monthly_stat$avg_rf[1])/optimal$vol^2\n\n[1] 11.48027",
+    "crumbs": [
+      "투자분석('24봄)",
+      "투자분석 과제2"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch1-3.html",
+    "href": "재무회계_ch1-3.html",
+    "title": "재무회계 Ch1-3 과제",
+    "section": "",
+    "text": "(1) Quetion 1-31",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch1-3 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch1-3.html#quetion-1-31",
+    "href": "재무회계_ch1-3.html#quetion-1-31",
+    "title": "재무회계 Ch1-3 과제",
+    "section": "",
+    "text": "Chapter1-31\n\n\n\nAnswer\n\\((a)\\) \\(net\\; income=66387-62313=4,074million\\$\\)\n\\(net\\; cash\\;flow=65995-56411=9,584million\\$\\)\n\\((b)\\) If customer buy a product of Hewston and want to pay later, then Hewston get a certain amount of revenue but get no cash. Instead, Hewston get a asset, namely accrued revenue, that will be paid for cash.\nIn that case, a company can get revenues more than collected cash.\n\\((c)\\) If Hewston buy material from suppliers and vendors to produce its own products but want to pay after selling product, then there exists a certain amount of expense and occurs a liability, namely accrued expense, that will pay for cash.\nIn that case, a company’s expenses is bigger than its cash payments.",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch1-3 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch1-3.html#quetion-1-34",
+    "href": "재무회계_ch1-3.html#quetion-1-34",
+    "title": "재무회계 Ch1-3 과제",
+    "section": "(2) Quetion 1-34",
+    "text": "(2) Quetion 1-34\n\n\n\nChapter1-34\n\n\n\nAnswer\nTotal Assets = Current Assets + Noncurrent Assets\nTotal Liabilities = Current Liabilities + Noncurrent Liabilities\nTotal Liabilities and Shareholders’ Equity = Total Liabilities + Shareholders’ Equity\nAnd, Total Assets = Total Liabilities and Shareholders’ Equity\nApply above,\n\n\n\n\n\n\n\n\nCategory\n2013\n2012\n\n\n\n\nTotal Assets\n7,199,847\n5,450,838\n\n\nCurrent Liabilities\n4,488,461\n3,527,504\n\n\nCurrent Assets\n4,705,366\n3,062,449\n\n\nTotal Liabilities and Shareholders’ Equity\n7,199,847\n5,450,838\n\n\nNoncurrent Liabilities\n1,098,123\n789,058\n\n\nShareholders’ Equity\n1,613,263\n1,134,276\n\n\nNoncurrent Assets\n2,494,481\n2,388,389\n\n\nTotal Liabilities\n5,586,594\n4,316,562",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch1-3 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch1-3.html#quetion-2-10",
+    "href": "재무회계_ch1-3.html#quetion-2-10",
+    "title": "재무회계 Ch1-3 과제",
+    "section": "(3) Quetion 2-10",
+    "text": "(3) Quetion 2-10\n\n\n\nChapter2-10\n\n\n\nAnswer\n\\((a)\\)\n\n\n\n\n\n\n\n\n\n\n\nTransaction Number\nAssets\n=\nLiabilities\n+\nShareholder’s Equity\n\n\n\n\n(1)\n+$960m\n\n$0\n\n+$960m\n\n\n(2)\n+$1,500m\n\n+$1,500m\n\n$0\n\n\n(3)\n+$3,200m +$930m -$4,130m\n\n$0\n\n$0\n\n\n(4)\n+$860m\n\n+$860m\n\n$0\n\n\n(5)\n-$1,500m\n\n-$1,500m\n\n$0\n\n\n(6)\n-$430m +$430m -$430m\n\n-$430m -$430m\n\n+$430m\n\n\nTotal\n$1,390m\n=\n$0\n+\n$1,390m\n\n\n\n\\((b)\\)\n\n\n\nTransaction Num. (1)\nDebit\nCredit\n\n\n\n\nCash\n$960m\n\n\n\nCommon stock\n\n$1.7m\n\n\nAdditional capital\n\n$958.3m\n\n\n\n\n\n\nTransaction Num. (2)\nDebit\nCredit\n\n\n\n\nInventory\n$1,500m\n\n\n\nPayable\n\n$1,500m\n\n\n\n\n\n\nTransaction Num. (3)\nDebit\nCredit\n\n\n\n\nBuilding\n$3,200m\n\n\n\nLandscape\n$930m\n\n\n\nCash paid\n\n$4,130m\n\n\n\n\n\n\nTransaction Num. (4)\nDebit\nCredit\n\n\n\n\nFixture\n$860m\n\n\n\nPayable\n\n$860m\n\n\n\n\n\n\nTransaction Num. (5)\nDebit\nCredit\n\n\n\n\nPayable\n$1,500m\n\n\n\nCash\n\n$1,500m\n\n\n\n\n\n\nTransaction Num. (6)\nDebit\nCredit\n\n\n\n\nPayable\n$430m\n\n\n\nCash paid\n\n$430m\n\n\nCash\n$430m\n\n\n\nCommon stock\n\n$0.7m\n\n\nAdditional capital\n\n$429.3m\n\n\nPayable\n$430m\n\n\n\nCash paid\n\n$430m",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch1-3 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch1-3.html#quetion-3-12",
+    "href": "재무회계_ch1-3.html#quetion-3-12",
+    "title": "재무회계 Ch1-3 과제",
+    "section": "(4) Quetion 3-12",
+    "text": "(4) Quetion 3-12\n\n\n\nChapter3-10\n\n\n\nAnswer\n\\((a)\\)\n\\[Accounts\\,Receivable\\,in\\,Jan.+288,951-289,623=38,020\\]\n\\[Accounts\\,Receivable\\,in\\,Jan.=\\$38,692\\]\n\\((b)\\) \\[2,635+10,442-Payments\\,to\\,Gov.=3,282\\]\n\\[Payments\\,to\\,Gov.=\\$9,795\\]\n\\((c)\\)\n\\[42,236+15,162-Payments\\,to\\,suppliers=43,152\\]\n\\[Payments\\,to\\,suppliers=\\$14,246\\]\n\\((d)\\)\n\\[88,453+21,169-8,106=Retained\\,Earnings\\,in\\,Dec.\\]\n\\[Retained\\,Earnings\\,in\\,Dec.=\\$101,516\\]",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch1-3 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch4.html",
+    "href": "재무회계_ch4.html",
+    "title": "재무회계 Ch4 과제",
+    "section": "",
+    "text": "(1) Quetion 4-9\nFirst, the criteria in the definition of a liablilty is following :\nIn this perspective,\n(a) is a liability. accrued interest payable.\n(b) is a liability.(Advances from customers) It is equal to amount of received cash.\n(c) is not a liability. criteria (3) is not satisfied.\n(d) is a liability.(Provisions) It can be valued by some ratio of original product’s price.\n(e) can be liability or not. It depends on a probability of lawsuit.\nIf a probability of loss lawsuit is more than certain level,(In GAAP 80%, IFRS 50%) then it will be a liability. In that case, it can be valued by expected loss that should pay.\n(f) is not a liability. criteria (3) is not satisfied.\n(g) is a liability. It can be valued by some ratio of flight ticket’s regular price.",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch4 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch4.html#quetion-4-9",
+    "href": "재무회계_ch4.html#quetion-4-9",
+    "title": "재무회계 Ch4 과제",
+    "section": "",
+    "text": "Chapter4-9\n\n\n\n\nProbably, future sacrifices of economic benefits.\nArising from present obligation to transfer assets of privide services.\nAs a result of a past transaction.",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch4 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch4.html#quetion-4-15",
+    "href": "재무회계_ch4.html#quetion-4-15",
+    "title": "재무회계 Ch4 과제",
+    "section": "(2) Quetion 4-15",
+    "text": "(2) Quetion 4-15\n\n\n\nChapter4-15\n\n\nTotal Assets = Current Assets + Noncurrent Assets\nTotal Liabilities = Current Liabilities + Noncurrent Liabilities\nTotal Liabilities and Shareholders’ Equity = Total Liabilities + Shareholders’ Equity\nAnd, Total Assets = Total Liabilities and Shareholders’ Equity\nApply above,\n\n\n\n\n\n\n\n\n\n\nCategory\nYear7\nYear6\nYear5\nYear4\n\n\n\n\nNoncurrent Assets\n19,179.7\n18,717.4\n11,289.1\n9,713.9\n\n\nShareholders’ Equity\n21,537.3\n16,666.9\n9,002.0\n11,300.6\n\n\nTotal Assets\n30,178.9\n28,224.7\n18,491.3\n16,596.5\n\n\nCurrent Liabilities\n2,919.9\n4,351.3\n1,494.2\n1,755.2\n\n\nCurrent Assets\n10,999.2\n9,507.3\n7,202.2\n6,882.6\n\n\nNoncurrent Liabilities\n5,721.7\n7,206.5\n7,995.1\n3,540.7\n\n\nTotal Liabilities and Equity\n30,178.9\n28,224.7\n18,491.3\n16,596.5",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch4 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch5.html",
+    "href": "재무회계_ch5.html",
+    "title": "재무회계 Ch5 과제",
+    "section": "",
+    "text": "(1) Question 5-12",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch5 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch5.html#question-5-12",
+    "href": "재무회계_ch5.html#question-5-12",
+    "title": "재무회계 Ch5 과제",
+    "section": "",
+    "text": "Chapter5-12\n\n\n\nNOT recognized. It is before a completion of the earning process.\nNOT recognized. It is before a completion of the earning process.\nRevenue recoginzed. There is a completion of the earning process and receipt.(account receivable)\nNOT recognized. It can be an expense.\nNOT recognized. It is an investment, which is an expense.\nNOT recognized. There is no completion of the earning process.",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch5 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch5.html#question-5-18",
+    "href": "재무회계_ch5.html#question-5-18",
+    "title": "재무회계 Ch5 과제",
+    "section": "(2) Question 5-18",
+    "text": "(2) Question 5-18\n\n\n\nChapter5-18\n\n\nThe following table is the re-organized income statement.\n\n\n\nCategory\nYear 13\nYear 12\nYear 11\n\n\n\n\n (+) Sales of Products\n24,816\n19,503\n17,622\n\n\n (-) Cost of Products Sold\n17,292\n13,967\n13,205\n\n\n (+) Sales of Service\n4,367\n3,778\n3,342\n\n\n (-) Cost of Services Sold\n2,923\n2,570\n2,305\n\n\n(=) Gross Profit\n8,968\n6,744\n5,454\n\n\n (-) Selling and Administrative Expenses\n4,975\n4,326\n3,780\n\n\n (+) Other Operating Income\n(30)\n139\n37\n\n\n(=) Earning Before Interest and Taxes\n4,023\n2,557\n1,711\n\n\n (+) Other Non-operating Income\n342\n(321)\n(258)\n\n\n (+) Interest and Dividend Income\n273\n147\n153\n\n\n (-) Interest and Other Financial Expense\n286\n307\n407\n\n\n(=) Income Before Taxes\n4,352\n2,076\n1,199\n\n\n (-) Income Tax Expense\n595\n686\n464\n\n\n(=) Net Income\n3,757\n1,390\n735",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch5 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch6.html",
+    "href": "재무회계_ch6.html",
+    "title": "재무회계 Ch6 과제",
+    "section": "",
+    "text": "Answer\nBecause a company makes all sales on account, total sales is sum of cash collections and account receivable.\nThere are EUR33,551m cash collections and EUR138m increase in account receivavle, so 33551+138=EUR33,689m will be a total sales of company during the year.\n\nAnswer\nCost will be cash payments + increase payable - increase inventories.\n646.9+5.9-5.7=USD647.1m is cost of goods sold of company for the year.\n\nAnswer\n\\[Incloud\\;Airlines\\] \\[Statement\\;of\\;Cash\\;Flow\\;for\\;the\\;recent\\;year(thousands\\$)\\]\n\n\n\nCategory\nName\nAmount\n\n\n\n\nCashflow from operations\n\n$835,860\n\n\n+\nNet income\n474378\n\n\n+\nIncrease in accumulated depreciation\n264088\n\n\n+\nDecrease in account receivable\n15351\n\n\n-\nIncrease in other current liabilities\n114596\n\n\n-\nIncrease in inventories\n15117\n\n\n-\nIncrease in Prepayments\n16776\n\n\n-\nDecrease in account payable\n660\n\n\nCashflow from investing\n\n($1,143,355)\n\n\n-\nIncrease in property, plant, equipment\n1134644\n\n\n-\nIncreasing in other non-operating assets\n8711\n\n\nCashflow from financing\n\n$347,803\n\n\n+\nIncreasing in long-term debt\n244285\n\n\n+\nIncreasing in common stock\n96991\n\n\n+\nIncreasing in non-operating liabilities\n140026\n\n\n-\nPayment of dividends\n133499\n\n\nNet Change in Cash\n\n$40,308\n\n\nCash, beginning of year\n\n$378,511\n\n\nCash, end of year\n\n$418,819\n\n\n\n\nAnswer\n\\[Market\\;Star\\] \\[Statement\\;of\\;Cash\\;Flow\\;for\\;2011\\sim 2013(millions\\$)\\]\n\n\n\nCategory\nName\n2013\n2012\n2011\n\n\n\n\nCashflow from operations\n\n$685m\n$972m\n$506m\n\n\n+\nNet income\n499\n363\n279\n\n\n+\nIncrease in depreciation and amortizaion\n226\n196\n279\n\n\n+\nIncrease in account payable\n277\n786\n330\n\n\n-\nIncrease in account receivable\n514\n648\n238\n\n\n-\nIncrease in other current liabilities\n420\n278\n70\n\n\n-\nIncrease in inventories\n98\n13\n35\n\n\n-\nIncrease in Prepayments\n125\n(10)\n64\n\n\nCashflow from investing\n\n($1,035)\n($773)\n($584)\n\n\n-\nIncrease in property, plant, equipment\n150\n130\n115\n\n\n-\nIncrease in investments in securities\n885\n643\n469\n\n\nCashflow from financing\n\n$290\n($273)\n$162\n\n\n+\nIncreasing in long-term debt\n599\n83\n208\n\n\n+\nIncreasing in common stock\n(187)\n(252)\n42\n\n\n-\nPayment of dividends\n122\n104\n88\n\n\nNet Change in Cash\n\n($60)\n($74)\n$84",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch6 과제"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw1.html",
+    "href": "경영통계분석_hw1.html",
+    "title": "경영통계분석 과제1",
+    "section": "",
+    "text": "1. Type of variables\nQuestion\nIdentify whether the following variables are numerical or categorical. If numerical, state whether the variable is discrete or continuous. If categorical, state whether the variable is nominal or ordinal.\na. Number of companies going bankrupt in a year.\n: Numerical and Discrete\nb. Petal area of rose flowers.\n: Numerical and Continuous\nc. Key on the musical scale.\n: Categorical and Ordinal\nd. Heart beats per minute of a Tour de France cyclist, averaged over the duration of the race.\n: Numerical and Continuous\ne. Stage of fruit ripeness.\n: Categorical and Ordinal\nf. Angle of flower orientation relative to position of the sun.\n: Numerical and Continuous\ng. Tree species\n: Categorical and Nominal\nh. year of birth\n: Numerical and Discrete\ni. Gender\n: Categorical and Nominal\nj. Birth weight\n: Numerical and Continuous",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제1"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw1.html#discrete-data",
+    "href": "경영통계분석_hw1.html#discrete-data",
+    "title": "경영통계분석 과제1",
+    "section": "2. Discrete data",
+    "text": "2. Discrete data\nQuestion\nBirds of the Caribbean islands of the Lesser Antilles are descended from immigrants originating from larger islands and the nearby mainland. The data presented here are the approximate dates of immigration, in millions of years, of each of 37 bird species now present on the Lesser Antilles. The dates were calculated from the difference in mitochondrial DNA sequences between each of the species and its closest living relative on larger islands or the mainland.\n\nlibrary(tidyverse)\nbirds_caribbean &lt;- tibble(\"dates\"=c(0.00,0.00,0.04,0.21,0.29,\n0.54,0.63,0.88,0.96,1.25,\n1.67,1.75,1.84,1.96,2.01,\n2.51,2.72,3.30,3.51,4.05,\n4.85,6.94,8.73,10.57,11.11,\n12.45,14.00,17.30,17.92,18.05,\n18.43,22.48,22.48,23.48,26.32,\n26.45,28.87))\n\n\nbirds_caribbean$dates\n\n [1]  0.00  0.00  0.04  0.21  0.29  0.54  0.63  0.88  0.96  1.25  1.67  1.75\n[13]  1.84  1.96  2.01  2.51  2.72  3.30  3.51  4.05  4.85  6.94  8.73 10.57\n[25] 11.11 12.45 14.00 17.30 17.92 18.05 18.43 22.48 22.48 23.48 26.32 26.45\n[37] 28.87\n\n\na. Plot the data in a histogram and describe the shape of the frequency distribution.\n\nggplot(data=birds_caribbean, aes(x=dates))+\n  geom_histogram(binwidth=5, boundary=0, color=\"black\",fill=\"darkred\")+\n  scale_x_continuous(breaks = seq(0,30,5)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n히스토그램은 위와 같으며, 0~5구간에 전체 37종의 조류 중 20종 이상이 넘는 빈도가 집중되어 있습니다. 이는 과반 이상의 조류가 비교적 최근인 500만년 이내에 Lesser Antilles섬으로 이주해왔다는 것을 의미합니다. 나머지 약 15종의 조류는 각각 2~4종씩 ~1천만년, ~1500만년, … , ~3천만년 구간에 고르게 분포되어 있습니다.\nb. By viewing the graph alone, approximate the mean and median of the distribution. Which should be greater? Explain your reasoning.\n: 히스토그램은 왼쪽으로 치우쳐져 있으며, 이는 \\(Skewness&gt;&gt;0\\)이라는 것을 말합니다. 이러한 경우 평균은 중간값보다 크게 형성되고, 오른쪽 꼬리가 다소 긴 점을 감안하여 추정해보면, 중간값은 약 4, 평균은 약 10일 것으로 보입니다.\nc. Calculate the mean and median. Was your intuition in part (b) correct?\n\nbirds_caribbean %&gt;% \n  summarise(mean=mean(dates),\n            mid=median(dates))\n\n# A tibble: 1 × 2\n   mean   mid\n  &lt;dbl&gt; &lt;dbl&gt;\n1  8.66  3.51\n\n\n: 대략적인 경향성은 맞습니다. 실제 중간값은 3.51 및 평균은 8.66입니다.\nd. Calculate the first and third quantiles and the inter quartile range.\n\nbirds_caribbean %&gt;% \n  reframe(quantile=quantile(dates))\n\n# A tibble: 5 × 1\n  quantile\n     &lt;dbl&gt;\n1     0   \n2     1.25\n3     3.51\n4    17.3 \n5    28.9 \n\n\n: First(25%) quantiles은 1.25이며, third(75%) quantiles은 17.30입니다. IQR은 16.05입니다.\ne. Draw a box plot for these data\n\nggplot(birds_caribbean, aes(x=dates))+\n  geom_boxplot()+\n  scale_y_continuous(limits=c(-0.5,0.5))+\n  theme_bw()",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제1"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw1.html#histogram",
+    "href": "경영통계분석_hw1.html#histogram",
+    "title": "경영통계분석 과제1",
+    "section": "3. Histogram",
+    "text": "3. Histogram\nQuestion\nFrancis Galton presented the following data on the flight speeds of 3207 “old” homing pigeons traveling at least 90 miles.\na. What type of graph is this?\n: Histogram\nb. Examine the graph and visually determine the approximate value of the mean (to the nearest 100 yards per minute). Explain how you obtained your estimate.\n: 그래프는 bell-shape의 히스토그램이며, 오른쪽 꼬리가 긴 형태입니다. 아마 \\(skewness&gt;0\\)일 것으로 보이며, 평균은 중간값보다 클 것 입니다.\n그래프에서 중간값은 오른쪽 꼬리가 긴 분포를 고려할 때 약 1,000일 것으로 추정할 수 있는데, 평균값은 이보다 큰 약 1,100이 될 것으로 추정됩니다.\nc. Examine the graph and visually determine the approximate value of the median (to the nearest 100 yards per minute). Explain how you obtain your estimate.\n: 그래프에서 900~1000이 중심막대인데, bell-shape와 오른쪽 꼬리가 긴 분포를 고려할 때, 중간값은 약 1,000이 될 것으로 추정됩니다.\nd. Examine the graph and visually determine the approximate value of the mode (to the nearest 100 yards per minute). Explain how you obtained your estimate.\n: 최빈값은 가장 많은 빈도를 가지는 값 또는 구간으로, 히스토그램의 가장 높은 막대인 1000~1100에 존재할 것입니다. 막대 왼쪽에 빈도가 더 많은 점을 고려할 때 최빈값은 약 1,000일 것으로 보입니다.\ne. Examine the graph and visually determine the approximate value of the standard deviation (to the nearest 100 yards per minute). Explain how you obtained your estimate.\n: 먼저, 정규분포를 따르는 확률변수에 대해 다음 식이 성립합니다.\n\\[for\\;X\\;\\sim\\;Normal\\;Dist.\\;then\\;P[-\\sigma&lt;X&lt;\\sigma]\\approx 68.2\\%\\]\n문제의 히스토그램은 bell-shape로 정규분포를 따른다고 가정하는 것에 큰 문제는 없어보입니다. 히스토그램에서 어림잡아봤을 때, 약 \\(1,100\\pm 200\\) 구간이 70~80%에 해당한다고 보여지는데, (\\(P[900&lt;x&lt;1300]=70\\sim80\\%\\))\n이는 (b)의 추정 평균을 이용하면 \\(평균\\pm 200\\)입니다. 즉, 히스토그램이 정규분포를 따른다고 가정하면, 히스토그램의 형태는 \\(N(1050,\\sigma^2=(200-\\alpha)^2)\\)의 확률밀도함수가 유사할 것입니다. 한편, 히스토그램은 오른쪽 꼬리가 긴 형태를 가지고 있어 변동성은 정규분포 대비 다소 클 것입니다.\n따라서, 최종적으로 히스토그램 데이터의 표준편차는 약 200으로 추정됩니다.",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제1"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw1.html#sample-statistics",
+    "href": "경영통계분석_hw1.html#sample-statistics",
+    "title": "경영통계분석 과제1",
+    "section": "4. Sample Statistics",
+    "text": "4. Sample Statistics\n\nhandheight &lt;- tibble(\"person\"=c(\"A\",\"B\",\"C\",\"D\",\"E\"),\n                     \"hand\"=c(17,15,19,17,21),\n                     \"height\"=c(150,154,169,172,175))\nhandheight\n\n# A tibble: 5 × 3\n  person  hand height\n  &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 A         17    150\n2 B         15    154\n3 C         19    169\n4 D         17    172\n5 E         21    175\n\n\na. Calculate the sample variances for hand and height, respectively.\n표분 분산은 \\(s_x^2=\\frac{\\sum_{k=1}^n(X_k-\\bar{X})^2}{n-1}\\)입니다.\n\nsample_var &lt;- handheight %&gt;% \n  mutate(hand_tmp=hand-mean(handheight$hand),\n         height_tmp=height-mean(handheight$height)) %&gt;% \n  mutate(hand_tmp=hand_tmp^2,\n         height_tmp=height_tmp^2) %&gt;% \n  summarise(s_var_hand=sum(hand_tmp)/4,\n            s_var_height=sum(height_tmp)/4)\nsample_var\n\n# A tibble: 1 × 2\n  s_var_hand s_var_height\n       &lt;dbl&gt;        &lt;dbl&gt;\n1        5.2         126.\n\n\nb. Calculate the sample covariance.\n표본 공분산은 \\(s_{xy}=\\frac{\\sum_{k=1}^n(X_k-\\bar{X})(Y_k-\\bar{Y})}{n-1}\\) 입니다.\n\nsample_cov &lt;- handheight %&gt;% \n  mutate(s_cov_tmp=(hand-mean(handheight$hand))*(height-mean(handheight$height))) %&gt;% \n  summarise(s_cov=sum(s_cov_tmp)/4)\nsample_cov\n\n# A tibble: 1 × 1\n  s_cov\n  &lt;dbl&gt;\n1  18.5\n\n\nc. Calculate the sample correlation and interpret the result.\n표본 상관계수는 \\(r_{xy}=\\frac{s_{x,y}}{s_xs_y}\\) 입니다.\n\nsample_corr=sample_cov$s_cov/sqrt(sample_var$s_var_hand*sample_var$s_var_height)\nsample_corr\n\n[1] 0.7213147\n\n\n표본상관계수는 약 0.72이며, 이는 두 변수간에 강한 양의 선형관계가 존재하는 것을 말합니다. 즉, 손의 크기와 키 사이에는 양의 상관관계가 있어 손이 큰 집단은 키도 큰 경향이 있고, 키가 큰 집단은 손도 큰 경향이 있다는 것을 의미합니다.\n\n\n\n\n\n\nR 내장함수\n\n\n\n참고로, R 내장함수는 표본연산을 기본으로 하고 있어 내장함수를 이용하여 표현 가능합니다.\n\nvar(handheight$hand)\n\n[1] 5.2\n\nvar(handheight$height)\n\n[1] 126.5\n\ncov(handheight$hand,handheight$height)\n\n[1] 18.5\n\ncor(handheight$hand,handheight$height)\n\n[1] 0.7213147",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제1"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw2.html",
+    "href": "경영통계분석_hw2.html",
+    "title": "경영통계분석 과제2",
+    "section": "",
+    "text": "Question 1\nAt one large midwest university, about 40% of the college seniors have a social science major. Five seniors will be selected at random. Let X denote the number that don’t have a social science major.\n(a) List the probability distribution\n학생을 선정할 때, 사회과학 전공이 아닌 경우를 1로, 사회과학 전공인 경우를 0으로 하면 이는 확률 0.6의 독립된 베르누이 시행으로 볼 수 있습니다.\n따라서, 이를 5번 반복하는 확률변수 \\(X\\)는 \\(X\\sim B(5,0.6)\\)를 따른다고 볼 수 있으며, \\(P(X=k)={5\\choose k}0.6^k0.4^{(5-k)}\\)이므로 이에 따른 확률분포는 아래와 같습니다.\nlibrary(tidyverse)\nbinomial &lt;- tibble(k=c(0,1,2,3,4,5), prob=choose(5,k)*0.6^k*0.4^(5-k))\nbinomial\n\n# A tibble: 6 × 2\n      k   prob\n  &lt;dbl&gt;  &lt;dbl&gt;\n1     0 0.0102\n2     1 0.0768\n3     2 0.230 \n4     3 0.346 \n5     4 0.259 \n6     5 0.0778\n(b) Calculate mean and variance from the entries in the list from part (a).\n평균은 3, 분산은 1.2입니다.\nmean=sum(binomial$k*binomial$prob)\nvariance=sum(binomial$k^2*binomial$prob)-mean^2\npaste(mean,variance,sep=\" / \")\n\n[1] \"3 / 1.2\"\n(c) Calculate E(X)=np and Var(X)=np(1-p) and compare your answer with part (b).\nnp와 np(1-p)의 값은 각각 3, 1.2로, 평균 및 분산과 같습니다.",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제2"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw2.html#question-1",
+    "href": "경영통계분석_hw2.html#question-1",
+    "title": "경영통계분석 과제2",
+    "section": "",
+    "text": "kX\n0\n1\n2\n3\n4\n5\n\n\n\n\nP(X=k)\n0.0102\n0.0768\n0.230\n0.346\n0.259\n0.0778",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제2"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw2.html#question-2",
+    "href": "경영통계분석_hw2.html#question-2",
+    "title": "경영통계분석 과제2",
+    "section": "Question 2",
+    "text": "Question 2\nIf X has a normal distribution with μ = 100 and σ = 5 , find b such that\n(a) P(X&lt;b)=0.67\nb=102.2\n\n# Set parameter\nmean &lt;- 100; std &lt;- 5\n# (a) P(X&lt;b)=0.67, Using bisection method\ni &lt;- mean-3*std;j &lt;- mean+3*std;mid &lt;- (i+j)/2\nwhile(abs(pnorm(mid,mean,std)-0.67)&gt;0.000001){\n  if(pnorm(mid,mean,std)-0.67&gt;=0){j &lt;- mid}\n  if(pnorm(mid,mean,std)-0.67&lt;0){i &lt;- mid}\n  mid=(i+j)/2\n}\npaste(j,pnorm(j,mean,std),sep=\" / \")\n\n[1] \"102.200012207031 / 0.670032330457297\"\n\n\n(b) P(X&gt;b)=0.011\nb=111.451\n\n# (b) P(X&gt;b)=0.011, Using bisection method\ni &lt;- mean-3*std;j &lt;- mean+3*std;mid &lt;- (i+j)/2\nwhile(abs(pnorm(mid,mean,std)-(1-0.011))&gt;0.000001){\n  if(pnorm(mid,mean,std)-(1-0.011)&gt;=0){j &lt;- mid}\n  if(pnorm(mid,mean,std)-(1-0.011)&lt;0){i &lt;- mid}\n  mid=(i+j)/2}\npaste(i,1-pnorm(i,mean,std),sep=\" / \")\n\n[1] \"111.451416015625 / 0.0110024524392477\"\n\n\n(c) P(|X-100|&lt;b)=0.966\nb=10.601\n\n# (c) P(|X-100|&lt;b)=0.966, Using bisection method\ni &lt;- mean-3*std;j &lt;- mean+3*std;mid &lt;- (i+j)/2\nwhile(abs(1-(1-pnorm(j,mean,std))*2-0.966)&gt;0.000001){\n  if(pnorm(mid,mean,std)-(1-(1-0.966)/2)&gt;=0){j &lt;- mid}\n  if(pnorm(mid,mean,std)-(1-(1-0.966)/2)&lt;0){i &lt;- mid}\n  mid=(i+j)/2\n}\npaste(j-100,1-(1-pnorm(j,mean,std))*2,sep=\" / \")\n\n[1] \"10.6003761291504 / 0.966000298159686\"\n\n\n(d) P(X&lt;110)=b\nb=0.9772\n\n# (d) P(X&lt;110)=b, Using bisection method\nb_d &lt;- pnorm(110,mean,std); b_d\n\n[1] 0.9772499\n\n\n(e) P(X&gt;95)=b\nb=0.8413\n\n# (e) P(X&gt;95)=b\nb_e &lt;- 1-pnorm(95,mean,std); b_e\n\n[1] 0.8413447",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제2"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw2.html#question-3",
+    "href": "경영통계분석_hw2.html#question-3",
+    "title": "경영통계분석 과제2",
+    "section": "Question 3",
+    "text": "Question 3\nSuppose the amount of sun block lotion in plastic bottles leaving a filling machine has a normal distribution. The bottles are labeled 300 milliliter(ml) but the actual mean is 302 ml and the standard deviation is 2 ml.\n(a) What is the probability that an individual bottle will contain less than 299 ml?\n로션의 양(ml)에 대한 확률변수 \\(X\\)는 \\(X\\sim N(302,2^2)\\)를 따르므로, \\(P(X&lt;299)\\approx 6.68\\%\\)\n\npnorm(299,302,2)\n\n[1] 0.0668072\n\n\n(b) If you pick up 5 bottles and check the amount of sun block lotion in each bottle, what is the probability that all of 5 bottles contain less than 299 ml? (Assume that they are independent.)\n각각의 병이 확률변수 \\(X_i,\\;i=1,2,3,4,5\\)라고 하면 \\(X_i\\sim N(302,2^2)\\)이며 각 확률변수는 독립이므로 \\(P(X_i\\in k_1,\\;X_j\\in k_2)=P(X_i\\in k_1)P(X_j\\in k_2)\\)가 성립합니다.\n따라서, 모든 병이 299ml 미만일 확률 \\(P(X_i&lt;299\\;for\\;all\\;i)=\\prod_{k=1}^5 P(X_i&lt;299)\\approx 0.668^5\\)\n\npnorm(299,302,2)^5\n\n[1] 1.330811e-06",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제2"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw2.html#question-4",
+    "href": "경영통계분석_hw2.html#question-4",
+    "title": "경영통계분석 과제2",
+    "section": "Question 4",
+    "text": "Question 4\nThe number of complaints per day, X, received by a cable TV distributor has the probability distribution\n\n\n\nx\n0\n1\n2\n3\n\n\n\n\nf(x)\n0.4\n0.3\n0.1\n0.2\n\n\n\n(a) Find the expected value and the standard deviation of the number of complaints per day.\n평균은 1.1, 표준편차는 \\(\\sqrt{1.29}\\approx 1.136\\)입니다.\n\ncomplaints &lt;- tibble(x=c(0,1,2,3), prob=c(0.4,0.3,0.1,0.2))\nmean &lt;- sum(complaints$x*complaints$prob)\nvol &lt;- sum(complaints$x^2*complaints$prob)-mean^2\nstd &lt;- sqrt(vol)\npaste(mean,std,sep=\" / \")\n\n[1] \"1.1 / 1.13578166916005\"\n\n\n(b) What is the approximate probability that the distributor will receive more than 2 complaints in average during 100 days?\n먼저, \\(X_i\\)를 i일 뒤에 컴플레인이 들어오는 횟수라고 한다면 \\(X_i\\)는 위 분포를 따르게 될 것입니다. 100일 뒤까지의 컴플레인이 들어오는 횟수를 \\(X_1,\\;X_2\\;,...,X_{100}\\)이라고 한다면, 각각의 \\(X_i\\)는 독립이고 동일한 분포(iid)를 가지는 표본입니다.\n한편, 중심극한정리(Central Limit Theorem)에 따라, 표본의 크기가 충분히 크다면 해당 표본들을 정규분포로 근사시킬 수 있습니다.\n\\[if\\;X_i\\;are\\;iid,\\;\\frac{\\sum_{k=1}^{n}(X_i-\\mu)}{\\sqrt{n}\\times\\sigma}\\sim N(0,1)\\;for\\;large\\;n\\]\n100번의 독립시행 \\(X_1\\sim X_{100}\\)은 정규근사하기 충분한 표본이므로 이를 적용하면 다음과 같습니다.\n\\[By\\;CLT,\\;\\frac{\\sum_{k=1}^{100}(X_i-1.1)}{\\sqrt{100}\\times\\sqrt{1.29}}=\\frac{\\sum_{k=1}^{100}X_i-110}{\\sqrt{129}}\\sim N(0,1)\\]\n이제, 100일 동안의 일평균 컴플레인 횟수가 2보다 클 확률은 다음과 같습니다.\n\\[P[\\frac{\\sum_{k=1}^{100}X_i}{100}&gt;2]=P[\\frac{\\sum_{k=1}^{100}X_i-110}{\\sqrt{129}}=Z&gt;\\frac{90}{\\sqrt{129}}]\\]\n해당 확률을 R을 통해 구해보면, 0에 가깝습니다.\n\n1-pnorm(90/sqrt(129),0,1)\n\n[1] 1.110223e-15\n\n\n(c) If we observe for five days, what is the probability that the distributor will receive exactly 1 complaint only for two days?\n컴플레인을 1개만 받을 확률은 0.3입니다.\n하루를 컴플레인을 1개만 받는 경우를 1, 1개가 아닌 경우를 0으로만 나눈다면, 해당 시행은 확률 0.3의 베르누이 시행입니다. 이를 5일 동안 관측한다면 각각은 독립이므로 해당 분포는 \\(B(5,0.3)\\)인 이항분포입니다.\n즉, 5일중 2일만 컴플레인을 정확히 1개 받을 확률은 \\({5\\choose2}0.3^20.7^3=30.87\\%\\)\n\nchoose(5,2)*0.3^2*0.7^3\n\n[1] 0.3087\n\n\n(d) If we observe for 100 days, what is the approximate distribution of the number of days that the distributor will not receive any complaint?\n하루에 컴플레인이 없을 확률은 0.4로, 컴플레인이 없는 경우를 1, 있는 경우를 0으로 나눈다면 해당 시행은 확률 0.4의 베르누이 시행으로 볼 수 있습니다.\n이를 100일간의 표본으로 나누어 시행하면 하루단위 시행은 각각 독립이므로, 이는 확률 0.4 및 시행횟수 100의 이항분포(\\(B(100,0.4)\\))를 따르게 됩니다.\n한편, 해당 이항분포는 동일한 확률을 가진 100개의 베르누이시행(\\(B_i\\sim B(1,0.4)\\))으로 나누어 볼 수 있고, (b)와 동일하게 CLT를 이용한다면 아래와 같이 표현할 수 있습니다. \\[\\frac{\\sum_{k=1}^{100}(B_i-0.4)}{\\sqrt{100}\\sqrt{1\\times 0.4 \\times 0.6}}\\sim N(0,1),\\;Since\\;X=\\sum_{k=1}^{100}B_i,\\;\\frac{X-40}{\\sqrt{24}}\\sim N(0,1)\\;\\Rightarrow\\;X\\sim N(40,24)\\]\n즉, 평균이 40이고 분산이 24인 정규분포로 근사할 수 있습니다.\n(e) Using the approximate distribution in (d), what is the approximate probability that the number of days that the distributor will not receive any complaint is at most 30 days?\n해당 확률은 \\(P(X\\leq 30)\\;for\\;X\\sim B(100,0.4)\\)과 같습니다.\n위의 정규분포 근사를 활용하면 \\(X\\sim N(40,24),\\;then\\;P(X\\leq 30)\\approx 2.06\\%\\)\n\npnorm(30,40,sqrt(24))\n\n[1] 0.02061342",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제2"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw2.html#question-5",
+    "href": "경영통계분석_hw2.html#question-5",
+    "title": "경영통계분석 과제2",
+    "section": "Question 5",
+    "text": "Question 5\nThe probability that a voter will believe a rumor about a politician is 0.3.\n(a) Find the probability that the first 3 voters don’t believe the rumor but the 4th voter believe it.\n\\(0.7\\times 0.7\\times 0.7\\times 0.3=0.1029=10.29\\%\\)\n(b) Find the probability that the exactly one person believe the rumor if 5 voters are told individually\n각 유권자는 소문을 개별적으로 확인하였으므로 유권자들이 루머를 믿는 확률변수는 각각 독립입니다.\n루머를 믿을 확률은 0.3이므로 루머를 믿는 경우를 1, 안믿는 경우를 0이라고 한다면 이는 확률 0.3의 베르누이 시행입니다. 이를 5번 반복하면 5명의 유권자 중 루머를 믿는 유권자의 수는 \\(B(5,0.3)\\)를 따릅니다.\n정확히 한사람만 루머를 믿을 확률은, \\({5\\choose1}0.3^10.7^4\\approx 36.02\\%\\)\n\nchoose(5,1)*0.3*0.7^4\n\n[1] 0.36015",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제2"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw2.html#question-6",
+    "href": "경영통계분석_hw2.html#question-6",
+    "title": "경영통계분석 과제2",
+    "section": "Question 6",
+    "text": "Question 6\nHere is the assignment of probabilities that describes the age (in years) and the gender of a randomly selected American College student.\n\n\n\nCategory\n14~18\n18~25\n25~35\n35~\n\n\n\n\nMale\n0.01\n0.28\n0.13\n0.04\n\n\nFemail\n0.02\n0.3\n0.14\n0.08\n\n\n\nA college student will be selected at random. Let A=[student is Female] and B=[student is at least 25 but less than 35 years old]. Find,\n(a) P(A) and P(B)\n\\(P(A)=0.02+0.3+0.14+0.08=0.54\\)\n\\(P(B)=0.13+0.14=0.27\\)\n(b) P(A or B)\n\\(P(A\\,or\\,B)=P(A\\cup B)=P(A)+P(B)-P(A\\cap B)=0.54+0.27-0.14=0.67\\)",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제2"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw2.html#question-7",
+    "href": "경영통계분석_hw2.html#question-7",
+    "title": "경영통계분석 과제2",
+    "section": "Question 7",
+    "text": "Question 7\nShow the following statement:If \\(X\\sim t[k]\\), then \\(X^2\\sim F[1,k]\\)\n\\[X\\sim t[k]\\;\\Leftrightarrow\\;X=\\frac{Z}{\\sqrt(V/k)}\\;for\\;Z\\sim N(0,1),\\;V\\sim \\chi^2(k)\\]\n\\[\\Leftrightarrow X^2=\\frac{Z^2}{V/k}=\\frac{U/1}{V/k}\\;for\\;U=Z^2\\sim \\chi^2(1)\\]\n\\[\\Leftrightarrow F=X^2=\\frac{U/1}{V/k}\\sim F(1,k)\\;for\\;U\\sim\\chi^2(1),\\;V\\sim\\chi^2(k)\\;\\;\\;\\square\\]",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제2"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw3.html",
+    "href": "경영통계분석_hw3.html",
+    "title": "경영통계분석 과제3",
+    "section": "",
+    "text": "Question 1\nif \\(X_1,\\;X_2,\\;...\\;,\\;X_n\\) are i.i.d random variables with mean \\(\\mu\\) and variance \\(\\sigma^2\\), calculate the covariance \\(\\bar{X}\\) and \\(X_i-\\bar{X}\\) for any \\(i=1,\\,...\\,,n\\).",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제3"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw3.html#question-1",
+    "href": "경영통계분석_hw3.html#question-1",
+    "title": "경영통계분석 과제3",
+    "section": "",
+    "text": "Answer\n먼저, 임의의 확률변수 \\(U, V\\)에 대하여 \\(Cov(U,V)=E[(U-E[U])(V-E[V])]=E[UV]-E[U]E[V]\\) 입니다.\n\\(\\bar{X}=\\frac{1}{n}\\sum_{i=1}^n X_i\\Rightarrow E[\\bar{X}]=\\mu,\\;E[X_i-\\bar{X}]=0\\;for\\;all\\;i\\)이고, 각각의 \\(X_i\\)는 독립이므로 \\(E[X_iX_j]=E[X_i]E[X_j]=\\mu^2\\;for\\;i\\neq j\\)이며, \\(E[X_i^2]=Var[X_i]+E[X_i]^2=\\sigma^2+\\mu^2\\)입니다.\n이를 이용하면 \\(E[\\bar{X}^2]=E[\\frac{\\sum_i X_i^2+\\sum_{i,j}^{i\\neq j}X_iX_j}{n^2}]=\\frac{n(\\sigma^2+\\mu^2)+n(n-1)\\mu^2}{n^2}=\\frac{n\\sigma^2+n^2\\mu^2}{n^2}=\\frac{\\sigma^2}{n}+\\mu^2\\)입니다.\n이제 공분산을 구해보겠습니다.\n\\[Cov[\\bar{X},X_i-\\bar{X}]=E[\\bar{X}(X_i-\\bar{X})]-\\mu\\times 0=E[\\bar{X}X_i]-E[\\bar{X}^2]\\]\n\\[=\\frac{E[X_i(X_1+...+X_n)]}{n}-\\frac{\\sigma^2}{n}-\\mu^2=\\frac{E[X_i^2]+(n-1)\\mu^2-\\sigma^2-n\\mu^2}{n}\\]\n\\[=\\frac{\\sigma^2+\\mu^2-\\mu^2-\\sigma^2}{n}=0\\]\n즉, 공분산은 0입니다.\n\n\n\n\n\n\n간결한 풀이방법\n\n\n\n\\(Cov[X_i,X_j]=0\\;for\\;i\\neq j,\\;Cov[X_i,X_i]=Var[X_i]=\\sigma^2,\\;Var[\\bar{X}]=\\frac{\\sigma^2}{n}\\)이므로,\n\\(Cov[\\bar{X},X_i-\\bar{X}]=Cov[\\bar{X},X_i]-Cov[\\bar{X},\\bar{X}]=\\frac{Var[X_i]}{n}-Var[\\bar{X}]=0\\)",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제3"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw3.html#question-2",
+    "href": "경영통계분석_hw3.html#question-2",
+    "title": "경영통계분석 과제3",
+    "section": "Question 2",
+    "text": "Question 2\nA commercial for a manufacturer of household appliance claims that 3% of all its product require a service call in the first year. A consumer protection association wants to check the claim by surveying 400 households that recently purchased one of the company’s appliances. What is the probability that more than 5% require a service call within the first year?\n\nCalculate the probability using the approximate normal approach.\nCalculate the probability using the binomial distribution.\n\n\nAnswer\n각각의 가구를 조사하는 일은 독립이며, 클레임이 있는 경우를 1, 없는 경우를 0으로 나누면 이는 \\(Ber(0.03)\\)의 베르누이시행입니다.\n이를 400번 반복하므로 분포는 \\(B(400,0.03)\\)의 이항분포이며, 정규분포로 근사하면 아래와 같습니다.\n\\[By\\;CLT,\\;\\frac{\\sum_{i=1}^{400}(X_i-0.03)}{\\sqrt{400}\\sqrt{0.03\\times 0.97}}\\sim N(0,1)\\Rightarrow X\\sim N(12,11.64)\\;for\\;X\\sim B(400,0.03)\\]\n클레임이 있는 가구가 5%를 초과할 확률은 20가구를 초과할 확률 \\(P(X&gt;20)\\)이므로, (a) 0.95% 및 (b) 1.05%입니다.\n정규분포 근사는 n이 매우 크고 p가 0.5와 인접할 때 정확도가 높은데, n은 충분히 크지만 p가 매우 작아 다소 오차가 발생하는 것으로 추정됩니다.\n\n# (a) normal dist.\n1-pnorm(20,12,sqrt(11.64))\n\n[1] 0.009517584\n\n# (b) binomial dist.\nprob=0\nfor(i in 0:20){\n    prob=prob+choose(400,i)*0.03^i*0.97^(400-i)\n}\n1-prob\n\n[1] 0.01045374",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제3"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw3.html#question-3",
+    "href": "경영통계분석_hw3.html#question-3",
+    "title": "경영통계분석 과제3",
+    "section": "Question 3",
+    "text": "Question 3\nSuppose that \\(X\\) has normal dist. with \\(\\mu=10,\\;\\sigma=2\\)\n(a) \\(P(6&lt;X&lt;14)\\) : 0.9545\n\nmean=10; std=2\npnorm(14,mean,std)-pnorm(6,mean,std)\n\n[1] 0.9544997\n\n\n\n\n\n\n\n\nNote\n\n\n\n이는 \\(P(X\\in (\\mu-2\\sigma,\\mu+2\\sigma))\\)이므로, 95.45%임이 잘 알려져있습니다.\n\n\n(b) \\(P(X\\leq c)=0.95\\) : c=13.29\n\n# (a) P(X&lt;=c)=0.95, Using bisection method\ni &lt;- mean-3*std\nj &lt;- mean+3*std\nmid &lt;- (i+j)/2\nwhile(abs(pnorm(mid,mean,std)-0.95)&gt;0.000001){\n  if(pnorm(mid,mean,std)-0.95&gt;=0){j &lt;- mid}\n  if(pnorm(mid,mean,std)-0.95&lt;0){i &lt;- mid}\n  mid=(i+j)/2\n}\npaste(j,pnorm(j,mean,std),sep=\" / \")\n\n[1] \"13.2897644042969 / 0.950002947051978\"\n\n\n(c) for sample \\({X_1,...,X_4}\\), \\(P(\\bar{X}\\leq 12)\\) : 0.9772\n\\(E(\\bar{X})=10,\\;Var(\\bar{X})=\\frac{4}{4}=1\\)이고, 각각의 \\(X_i\\)는 i.i.d 정규분포이므로 \\(\\bar{X}\\sim N(10,1)\\)입니다.\n\npnorm(12,10,1)\n\n[1] 0.9772499",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제3"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw3.html#question-4",
+    "href": "경영통계분석_hw3.html#question-4",
+    "title": "경영통계분석 과제3",
+    "section": "Question 4",
+    "text": "Question 4\nBits are sent over a communications channel in packets of 160. If the probability of a bit being corrupted (one error) over this channel is 0.2 and such errors are independent. Let X denotes the number of bits that are corrupted over this channels\n\nWhat is the distribution of X? Can it be approximated as normal distribution?\nApproximately, what is the probability that more than 50 bits in a packet are corrupted?\n\n\nAnswer\n한번의 전송에 에러가 발생하는 경우를 1, 아닌 경우를 0으로 나누면 이는 확률 0.2의 베르누이 시행입니다. 이를 160번 반복하고 에러가 발생하는 횟수인 \\(X\\)는 \\(B(160,0.2)\\) 이항분포를 따를 것 입니다.\n해당 이항분포는 시행횟수가 충분히 크지만(&gt;30), 확률이 0.2로 다소 낮아 정규분포 \\(N(32,25.6)\\)를 사용할 때 근소한 오차가 발생할 수 있습니다.\n\\(P(X&gt;30)\\)을 구해보면,정규분포는 34.63%, 이항분포는 39.05%으로 오차가 다소 존재하므로 이에 유의해야합니다.\n\nprob=0\nfor(i in 0:30){\n    prob=prob+choose(160,i)*0.2^i*0.8^(160-i)\n}\npaste(pnorm(30,32,sqrt(25.6)),prob,sep=\" / \")\n\n[1] \"0.34631639202098 / 0.390465138866041\"\n\n\n에러가 50번을 초과하여 발생할 확률은 \\(P(X&gt;50)\\)이므로, 정규분포를 이용한 확률은 0.0187%입니다. 한편, 이항분포를 이용한 확률은 0.0265%입니다.\n\nprob=0\nfor(i in 0:50){\n    prob=prob+choose(160,i)*0.2^i*0.8^(160-i)\n}\npaste(1-pnorm(50,32,sqrt(25.6)),1-prob,sep=\" / \")\n\n[1] \"0.000187156123554355 / 0.000264520708086802\"",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제3"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw3.html#question-5",
+    "href": "경영통계분석_hw3.html#question-5",
+    "title": "경영통계분석 과제3",
+    "section": "Question 5",
+    "text": "Question 5\nA large population is described by the probability distribution, Let \\(X_1\\) and \\(X_2\\) be a random sample of size2 from the distribution.\n\n\n\nX\nf(x)\n\n\n\n\n0\n0.1\n\n\n1\n0.2\n\n\n2\n0.7\n\n\n\n\nDetermine the sampling distribution of \\(max(X_1,X_2)\\)\nDetermine the sampling distribution of \\(X_1+X_2\\)\n\n\nAnswer\n먼저 \\(X_1,X_2\\)는 모집단으로부터 추출한 표본으로 i.i.d를 만족할 것 입니다. 따라서 \\(f(X_1=x_1,X_2=x2)=f(x_1)f(x_2)\\)로 산출할 수 있습니다.\n\\(x_m\\in\\{0,1,2\\}\\;for\\;x_m\\sim max(X_1,X_2)\\)이고, 순서쌍 \\((x_1,x_2)\\)로 경우의 수를 나타내면 \\((0,0)\\Rightarrow x_m=0\\) 및 \\((0,1),\\,(1,0),\\,(1,1)\\Rightarrow x_m=1\\) 및 \\((2,0),\\,(2,1),\\,(2,2),\\,(0,2),\\,(1,2)\\Rightarrow x_m=2\\)입니다. 따라서, \\(max(X_1,X_2)\\)의 분포는,\n\n\n\n\\(x_m\\)\n\\(max(X_1,X_2)\\)\n\n\n\n\n0\n0.01\n\n\n1\n0.02+0.02+0.04=0.08\n\n\n2\n0.7+0.21=0.91\n\n\n\n위와 유사한 방법으로 \\(X_1+X_2\\)의 경우의 수를 나타내면 다음과 같습니다.\n\n\n\n\\(x_1\\in X_1\\)\n\\(x_2\\in X_2\\)\n\\(\\Rightarrow\\)\n\\(x_+\\in X_1+X_2\\)\n\n\n\n\n0\n0\n\n0\n\n\n0\n1\n\n1\n\n\n1\n0\n\n1\n\n\n1\n1\n\n2\n\n\n2\n0\n\n2\n\n\n0\n2\n\n2\n\n\n1\n2\n\n3\n\n\n2\n1\n\n3\n\n\n2\n2\n\n4\n\n\n\n따라서, \\(X_1+X_2\\)의 분포는,\n\n\n\n\\(x_+\\)\n\\(X_1+X_2\\)\n\n\n\n\n0\n0.01\n\n\n1\n0.02+0.02=0.04\n\n\n2\n0.04+0.07+0.07=0.18\n\n\n3\n0.14+0.14=0.28\n\n\n4\n0.49",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제3"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw4.html",
+    "href": "경영통계분석_hw4.html",
+    "title": "경영통계분석 과제4",
+    "section": "",
+    "text": "Problem 1.\nAssume that the standard deviation of the heights of five-year-old boys is 3.5 inches. How many five-year-old need to be sampled if we want to be 90% sure that the population mean height is estimated within .5 inch?",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제4"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw4.html#problem-1.",
+    "href": "경영통계분석_hw4.html#problem-1.",
+    "title": "경영통계분석 과제4",
+    "section": "",
+    "text": "Answer\n크기가 N인 표본을 임의추출하고, 충분히 크다고 가정하겠습니다.\n모표준편차가 3.5(inch)이므로, 크기가 N인 표본평균 \\(\\bar{X}\\)은 중심극한정리(CLT)에 의해 정규분포 \\(N(\\mu,\\frac{3.5^2}{N})\\)을 따르게 될 것입니다.\n이를 이용하여 신뢰수준이 90%인 모평균의 신뢰구간을 양편으로 추정해보겠습니다.\n\\[P(z_{0.95}=-z_{0.05}&lt;\\frac{\\bar{X}-\\mu}{3.5/\\sqrt{N}}&lt;z_{0.05})=0.9\\Rightarrow P(\\bar{X}-z_{0.05}\\frac{3.5}{\\sqrt{N}}&lt;\\mu&lt;\\bar{X}+z_{0.05}\\frac{3.5}{\\sqrt{N}})=0.9\\]\n여기서, 모평균을 0.5inch 이내로 추정하는 것의 의미는, 표본오차가 0.5이내, 즉 \\(z_{0.05}\\frac{3.5}{\\sqrt{N}}&lt;0.5\\)라는 뜻입니다.\n\\(z_{0.05}\\approx 1.65\\)이므로, 이를 정리하면 \\(1.65\\times 7&lt;\\sqrt{N}\\Rightarrow 133.4025&lt;N\\)\n즉, 표본의 수가 134명 이상이라면 90% 신뢰구간을 0.5inch 오차 이내로 추정할 수 있습니다.\n또한, 이는 충분히 큰 표본이므로 앞서 CLT를 이용하는 것에 위배되지 않습니다.",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제4"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw4.html#problem-2.",
+    "href": "경영통계분석_hw4.html#problem-2.",
+    "title": "경영통계분석 과제4",
+    "section": "Problem 2.",
+    "text": "Problem 2.\nAn employee of an on-campus copy center wants to determine the mean number of copies before a cartridge needs to be replaced. She records the life length in thousands of copies for 43 cartridges and obtains \\(n=43,\\bar{x}=8.12, s=1.78\\) thousand copies Obtain a 90% confidence interval for the population mean, µ , number of copies in thousands before a cartridge should be replaced.\n\nAnswer\n먼저, 43개의 샘플이 충분히 크다고 생각하고 시작하겠습니다.\nCLT에 따라 표본평균 \\(\\bar{X}\\sim N(\\mu,\\sigma/\\sqrt{43})\\)이며, 표본분산 \\(\\frac{42\\times s^2}{\\sigma^2}\\sim \\chi^2(42)\\)입니다.\n이를 정리하면 \\(\\frac{\\bar{X}-\\mu}{s/\\sqrt{43}}\\sim t(42)\\)가 되는데, 표본의 크기가 충분히 크므로 \\(t(n-1)\\rightarrow N(0,1)\\)로 근사할 수 있습니다.\n이제, 이를 이용하여 모평균의 90% 신뢰구간을 추정해보겠습니다.\n\\[P(\\mu\\in(\\bar{X}\\pm z_{0.05}\\frac{s}{\\sqrt{43}}))=0.90\\Rightarrow P(\\mu\\in(7.672,8.568))=0.90\\]\n즉, 신뢰구간은 (7.672, 8.568)입니다.",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제4"
+    ]
+  },
+  {
+    "objectID": "경영통계분석_hw4.html#problem-3.",
+    "href": "경영통계분석_hw4.html#problem-3.",
+    "title": "경영통계분석 과제4",
+    "section": "Problem 3.",
+    "text": "Problem 3.\nData on the average weekly earnings were obtained from a survey of 50 nonsupervisory production workers in the mining industry. The sample mean and standard deviation were found to be $630 and $35, respectively.\n\nEstimate the true mean weekly earnings and determine the 95% error margin.\nConstruct a 95% confidence interval for the true mean weekly earnings\n\n\nAnswer\n먼저, 표본평균 \\(\\bar{X}\\)의 성질에 따라 \\(E(\\bar{X})=\\mu,\\;\\bar{X}\\rightarrow^p \\mu\\)이므로 \\(\\bar{X}\\)는 모평균에 대한 불편(unbiased) 및 일치(consistent)추정량입니다.\n따라서 모평균의 estimator로 표본평균을 선정하고, 모평균을 $630으로 추정하겠습니다.\n한편, 표본의 수가 50으로 충분히 크므로 앞서 이용한 논리를 그대로 준용하여 \\(\\frac{\\bar{X}-\\mu}{s/\\sqrt{50}}\\sim t(49)\\approx N(0,1)\\)라고 할 수 있습니다.\n따라서 95%의 error margin은 \\(z_{0.05}\\frac{s}{\\sqrt{50}}=8.167\\)입니다.\n마지막으로, 95%의 신뢰수준으로 추정한 모평균의 신뢰구간은 아래와 같습니다.\n\\[P(\\bar{X}-z_{0.025}\\frac{s}{\\sqrt{50}}&lt;\\mu&lt;\\bar{X}-z_{0.025}\\frac{s}{\\sqrt{50}})\\Rightarrow Confidence\\;interval\\;is\\;(620.299,639.702)\\]",
+    "crumbs": [
+      "경영통계분석('24봄)",
+      "경영통계분석 과제4"
+    ]
+  }
+]

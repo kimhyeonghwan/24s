@@ -1,0 +1,626 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hwan, Kaist MFE",
+    "section": "",
+    "text": "Welcome!\n안녕하세요.\n카이스트 MFE 24학번 김형환입니다.",
+    "crumbs": [
+      "Welcome!"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "소개글을 몇자 적어볼 예정",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "24S_derivatives.html",
+    "href": "24S_derivatives.html",
+    "title": "선물옵션(’24봄)",
+    "section": "",
+    "text": "류혁선 교수님의 선물옵션 수업입니다.\n교재를 요약하는 숙제가 있어 챕터별로 페이지를 나눠 요약하려고 합니다.",
+    "crumbs": [
+      "선물옵션('24봄)"
+    ]
+  },
+  {
+    "objectID": "Chapter3.html",
+    "href": "Chapter3.html",
+    "title": "Chapter 3",
+    "section": "",
+    "text": "기본 원리\n기관이나 개인이 선물을 이용하여 리스크를 헷지한다는 것은, 기본적으로 자신이 보유한 포지션이 지닌 가격변동위험과 반대 방향의 가격변동위험을 가진 선물계약을 보유하는 것을 의미합니다.\n즉, 현재 A회사의 포지션이 원달러 환율에 의한 가격변동위험에 노출되어 있어 향후 3개월간 달러당 환율이 1원 오를때 1억원의 손실을 입는 구조라면 달러당 환율이 1원 오를때 1억원의 이익이 발생하는 3개월 만기 선물계약을 보유하면 됩니다.\n이렇게 되면, 향후 3개월간 달러당 환율이 10원 올라 나의 포지션에서 10억원의 손실이 발생하더라도 선물계약에서 10억원의 이익이 발생하여 손익이 상쇄(offset)됩니다. 따라서 선물계약을 체결한 시점 이후의 가격변동위험은 “0”이기 때문에 A회사가 체감하는 환율의 실질가격(realized price, effective price)은 3개월간 선물계약의 체결가격으로 고정(lock)됩니다. 이러한 과정을 “헷징”이라고 합니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 3"
+    ]
+  },
+  {
+    "objectID": "Chapter3.html#기본-원리",
+    "href": "Chapter3.html#기본-원리",
+    "title": "Chapter 3",
+    "section": "",
+    "text": "매도 헷지 vs. 매수 헷지\n\n\n\n헷지 과정에서 선물을 매도하는 경우 매도 헷지(Short Hedges), 매수하는 경우 매수 헷지(Long Hedges)라고 합니다.\n매도 헷지는 특정 자산을 미래시점에 매도할 예정으로, 자산의 가격하락위험 회피를 목적으로 선물을 매도하여 가격이 하락하더라도 선물계약에서 이익이 발생하도록 하는 헷지 방법입니다. 주로 원자재 생산자, 수출업자 등 현재 자산을 보유하고있거나 보유할 예정으로 이를 판매할 목적인 경우 활용합니다.\n매수 헷지는 특정 자산을 미래시점에 매수할 예정으로, 자산의 가격상승위험 회피를 목적으로 선물을 매수하는 헷지 방법입니다. 주로 원자재를 이용하여 상품을 제조하는 제조업자, 수입업자 등 미래에 특정 자산을 구매할 목적인 경우 활용합니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 3"
+    ]
+  },
+  {
+    "objectID": "Chapter3.html#헷징에-대한-논쟁",
+    "href": "Chapter3.html#헷징에-대한-논쟁",
+    "title": "Chapter 3",
+    "section": "헷징에 대한 논쟁",
+    "text": "헷징에 대한 논쟁\n회사가 본인이 직면한 리스크를 최소화할 수 있다는 점에서 헷징의 중요성과 필요성은 명확합니다. 파생상품을 이용하여 적은 비용으로 리스크를 최소화하고, 본연의 경영활동에 집중할 수 있기 때문입니다. 그러나, 실제로 헷징이 완벽하게 이루어지는 경우는 많지 않은데, 여기에는 다양한 이유들이 있습니다.\n\n헷징과 주주 : 회사가 직면한 리스크에 대해서, 대개 주주들은 이를 인지하고 직접 헷지하거나 포트폴리오를 다변화하여 관리합니다. 이 경우, 회사의 리스크 헷지를 주주들이 원하지 않을 수 있습니다.\n헷징과 경쟁자 : 산업군 내 경쟁자가 존재하고, 모든 경쟁자가 헷징을 하지 않는 경우 헷징이 경쟁에 불리하게 작용할 수 있습니다. 내가 헷징을 하지 않으면 가격변동위험에 노출되지만, 다른 경쟁사도 동일 위험에 노출되므로 경쟁력에는 영향이 없습니다. 반대로, 나만 헷징하는 경우 가격변동위험은 최소화되지만 향후 가격이 유리하게 변동하여 선물계약에서 손실이 발생한다면, 나에게만 손실이 발생하므로 경쟁력이 약화될 수 있습니다.\n헷징과 손익 : 선물을 이용한 헷징은 미래가격을 선물가격으로 고정시켜 가격변동위험을 없애는 것입니다. 향후 가격변동으로 인해 선물계약에서 이익이 발생할 수도, 손실이 발생할 수도 있습니다. 하지만, 때때로 의사결정자 또는 주주들은 헷징으로 인해 선물에서 평가손실이 발생하면 이를 납득하지 못하곤 합니다. 모든 의사결정자와 주주가 파생상품 메커니즘을 정확히 이해하기는 어렵기 때문입니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 3"
+    ]
+  },
+  {
+    "objectID": "Chapter3.html#베이시스-리스크",
+    "href": "Chapter3.html#베이시스-리스크",
+    "title": "Chapter 3",
+    "section": "베이시스 리스크",
+    "text": "베이시스 리스크\n선물을 이용한 헷징은 내가 보유한 자산에 대한 선물을 내가 헷지하고자 하는 기간에 대해 내가 보유한 수량만큼 매수하거나 매도하는 방식으로 이루어집니다. 하지만, 실제로 정확한 헷징은 매우 어렵습니다.\n  1. 선물의 기초자산과 보유한 자산이 완벽히 동일해야 합니다.\n  2. 내가 보유한 자산을 언제까지 헷지할 것인지 정확히 알아야 합니다.\n  3. 헷징 종료일과 선물 만기일이 항상 동일하지 않습니다. 이 경우, 헷징 종료시 선물계약을 처분해야합니다.\n상기 이유들은 베이시스 리스크를 발생시키는 원인이 됩니다.\n\n베이시스(Basis) : 베이시스란, 기초자산의 가격에서 선물가격을 차감한 값을 말합니다. \\[Basis = Spot\\;price - Futures\\;price\\] 선물의 본질을 고려할 때, 선물가격은 현물가격과 유사하게 형성되며 만기일에는 현물가격으로 수렴하는 것을 직관적으로 알 수 있습니다. 따라서, 베이시스는 0을 중심으로 움직이다가, 선물 만기일이 가까워지면서 0으로 수렴하게 됩니다.\n선물을 이용하여 헷지하는 경우, 일반적으로 선물 만기일 이전에 헷지를 종료하게 됩니다. 이때, 헷지종료시점에 선물가격(\\(F_t\\))은 현물가격(\\(S_t\\))과 다르므로 그 차이(\\(B_2=F_2-S_2\\))만큼 예기치 못한 손익이 발생합니다. 이를 베이시스 리스크라고 합니다.\n만약, 선물의 기초자산과 보유한 자산이 정확히 일치하지 않는 경우 헷지종료시점의 기초자산가격과 보유한 자산의 가격의 차이(\\(S^*_t-S_t\\))만큼 추가적인 손익이 발생합니다. 즉, 베이시스 리스크가 확대되며 이러한 헷지를 교차헷지라고 합니다.\n선물계약 선택 : 베이시스 리스크 최소화를 위해서는 내가 보유한 자산과 정확히 일치하거나 거의 유사한(\\(corelation\\approx 1\\)) 기초자산의 선물을, 헷지종료시점을 기준으로 가장 가까운 만기의 선물을 선택하는 것이 유리합니다. 다만, 실제로는 선물 유동성이 최근월물 위주로 형성되므로, 최근월물을 롤오버하는 방식이 많이 사용됩니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 3"
+    ]
+  },
+  {
+    "objectID": "Chapter3.html#교차-헷지cross-hedging",
+    "href": "Chapter3.html#교차-헷지cross-hedging",
+    "title": "Chapter 3",
+    "section": "교차 헷지(Cross Hedging)",
+    "text": "교차 헷지(Cross Hedging)\n교차 헷지는 내가 보유한 자산과 선물의 기초자산이 같지 않은 경우를 말합니다. 항공사가 항공기 제트연료 가격 헷지를 위해 등유선물을 이용하는 것을 예로 들 수 있습니다.\n헷지비율(hedge ratio)은 보유자산의 명목금액 대비 선물계약의 명목금액의 비율로, 일반적으로 가격변동위험 최소화를 위해 1이 되도록 설정합니다.\n그러나, 교차 헷지를 해야하는 경우 헷지비율을 1로 설정해도 가격변동위험을 최소화되지 않을 수 있습니다. 이 경우, 보유 포트폴리오의 변동성이 최소화되는 헷지비율을 설정해야 합니다.\n\n헷지비율 계산 : 먼저, 보유자산의 가격을 \\(S\\), 선물가격을 \\(F\\), 헷지비율을 \\(h\\)라고 하고 \\(S\\)와 \\(F\\)간에 선형성이 존재한다고 가정하면, 가격의 증분 \\(\\Delta S\\)와 \\(\\Delta F\\)를 아래와 같이 표현할 수 있습니다. \\[\\Delta S=a+b\\Delta F+\\epsilon\\] 이때, \\(h\\)만큼 매도헷지를 실행한 포트폴리오 가격의 증분은, \\[\\Delta S-h\\Delta F=a+(b-h)\\Delta F+\\epsilon\\] 포트폴리오의 변동성 최소화를 위해서는 \\(h=b\\)임을 쉽게 알 수 있습니다.\n따라서, 선형회귀분석으로 추정한 계수 \\(b\\)가 최적 헷지비율(\\(h^*\\))이 됩니다. \\[h^*=b=\\rho \\frac{\\sigma _S}{\\sigma _F}\\] 이를 통해 보유자산과 선물 기초자산이 동일한 경우(\\(\\rho=1, \\sigma _S=\\sigma _F\\))의 최적헷지비율은 1이 되며, 선물의 가격이 현물의 2배 민감도로 움직일 때(\\(\\sigma _F=2\\sigma _S\\)) 최적헷지비율이 0.5가 되는 것을 이해할 수 있습니다.\n최적 계약 수 : 보유자산의 수량을 \\(Q_A\\), 선물 1계약의 수량을 \\(Q_F\\), 최적헷지비율을 \\(h^*\\)라고 하면, 최적헷지를 위한 선물계약 수 \\(N^*\\)는, \\[N^*=\\frac{h^* Q_A}{Q_F}\\]\n\n\n\n\n\n\n\n최적헷지비율 및 계약수 예시\n\n\n\n제트연료 가격의 변동성을 \\(\\sigma _A=0.1\\), 등유선물 가격의 변동성을 \\(\\sigma _F=0.2\\), 제트연료와 등유선물 가격간 상관계수를 \\(\\rho = 0.8\\)라고 하고, 헷지대상 제트연료가 200만 갤런 및 CME등유선물이 1계약당 4만갤런이라고 하자. 그러면, \\[h^*=0.8*\\frac{0.1}{0.2}=0.4\\] \\[N^*=0.4*\\frac{2,000,000}{40,000}=20contract\\]\n\n\n\n일일정산의 영향 : 현재까지는 일일정산이 없다고 가정하였으나, 실제 선물을 거래할 때는 오늘 선물의 종가로 보유선물계약을 평가하여 하루단위로 손익을 정산하고 있습니다.\n일일정산 반영을 위해 앞선 수식을 일수익률을 기준으로 정리해보겠습니다. 보유자산 가격의 일수익률의 표준편차를 \\(\\hat{\\sigma}_S\\), 선물가격의 일수익률의 표준편차를 \\(\\hat{\\sigma}_F\\), 현물 및 선물의 일수익률간 상관계수를 \\(\\hat{\\rho}\\)라고 하면, \\[h^*=\\rho \\frac{\\sigma _S}{\\sigma _F}=\\hat{\\rho} \\frac{\\hat{\\sigma} _S S}{\\hat{\\sigma} _F F}\\] \\[N^*=\\frac{h^* Q_A}{Q_F}=\\hat{\\rho} \\frac{\\hat{\\sigma} _S S Q_A}{\\hat{\\sigma} _F F Q_F}\\] 이제, 실제 가격변화를 사용한 최적헷지비율 \\(h^*\\)대신 일수익률을 이용한 최적헷지비율을 \\(\\hat{h}^*\\)라고 하면, 아래와 같이 정리할 수 있습니다. \\[\\hat{h}^*=\\hat{\\rho} \\frac{\\hat{\\sigma} _S}{\\hat{\\sigma} _F},\\; N^*=\\frac{\\hat{h}^* V_A}{V_F}=\\frac{\\hat{h}^* A Q_A}{F Q_F}\\]\n\n\n\n\n\n\n\n최적헷지비율 및 계약수 예시2\n\n\n\n제트연료 가격이 \\(1.1\\), 등유선물 가격이 \\(1.2\\), 제트연료와 등유선물 일수익률간 상관계수를 \\(\\hat{\\rho} = 0.8\\)라고 하고, 헷지대상 제트연료가 200만 갤런 및 CME등유선물이 1계약당 4만갤런이라고 하자. 그러면, 하루 헷지에 필요한 최적수량은 \\[N^*=0.8*\\frac{2,000,000 \\times 1.1}{40,000 \\times 1.2}=36.67\\]",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 3"
+    ]
+  },
+  {
+    "objectID": "Chapter3.html#주가지수선물",
+    "href": "Chapter3.html#주가지수선물",
+    "title": "Chapter 3",
+    "section": "주가지수선물",
+    "text": "주가지수선물\n주가지수란, 주식 포트폴리오의 수익률을 추정하도록 설계한 지수를 말합니다. 일반적으로 구성종목을 정한 후, 동일한 비중 또는 시가총액(유통주식수*주가)비율로 비중을 정하는 방식을 차용합니다. 보통 배당은 반영하지 않아 자본손익만을 추종하며, 구성종목의 주가 변동에 따라 지수의 구성비중이 실시간 변동하는 특징이 있습니다.\n\n주요 지수 : 미국의 대표적인 주가지수로는 다우존스30(DJIA), S&P500, Nasdaq100 등이 있고 중국의 CSI300 및 국내는 KOSPI200, KOSDAQ150 등이 있습니다.\n주식 포트폴리오 헷지 : 주가지수선물을 이용하여 주식 포트폴리오를 헷지할 때, 포트폴리오의 가치를 \\(V_A\\), 주가지수선물 1계약의 가치를 \\(V_F\\), 해당 지수에 대한 포트폴리오 베타를 \\(\\beta\\)라고 하면 최적계약 수는 아래와 같습니다. \\[N^*=\\beta\\frac{V_A}{V_F}\\] 만약 헷지기간 중 베타가 변동하는 경우, \\((\\beta - \\beta ^*)\\times\\frac{V_A}{V_F}\\)만큼 선물계약을 조정해야 합니다.\n주식 포트폴리오를 헷지하는 이유 : 원문 책의 Table3.4를 참조하면, 주식포트폴리오 헷지를 통해 가격변동위험을 통제하고 나면 투자자가 얻는 수익은 무위험이자율 수준입니다.\n여기서 한가지 근원적인 의문이 발생합니다. 이자율 정도의 수익은 은행에 돈을 넣어두면 생기는데, 왜 주식포트폴리오를 매수하고 번거롭게 선물로 헷지하는 일을 해야하는거지?\n이에 대한 답으로는 “시장 전체의 위험(market risk)는 헷지하고 포트폴리오의 초과 수익(\\(\\alpha\\))만 얻고싶은” 경우, “포트폴리오를 장기간 보유할 계획이나, 단기적으로 가격변동에 대한 헷지가 필요”한 경우 등이 있습니다.\n\n\n\n\n\n\n\n시장위험 헷지 예시\n\n\n\n현재 주식 포트폴리오의 가치는 200만 달러, 베타는 1.1, CME SnP500선물 1계약의 가치는 10만 달러라고 하자.\n시장 위험을 헷지하기 위한 최적계약수는 \\(N^*=1.1\\times\\frac{2,000,000}{100,000}=22\\)이고, 22계약을 매도하여 헷징포트폴리오를 구축하였다.\n선물 만기일에 S&P500지수는 20%하락, 나의 포트폴리오는 12%하락하였다면, 헷징포트폴리오는 -24만$ 및 선물에서 +44만$ 이익이 발생하여 합계 20만$의 이익이 발생한다.\n즉, 시장은 전체적으로 하락하였으나 내 포트폴리오가 outperform하여 초과이익 \\(\\alpha\\)가 발생한 것으로 해석할 수 있다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 3"
+    ]
+  },
+  {
+    "objectID": "Chapter3.html#스택-앤-롤stack-and-roll",
+    "href": "Chapter3.html#스택-앤-롤stack-and-roll",
+    "title": "Chapter 3",
+    "section": "스택 앤 롤(Stack And Roll)",
+    "text": "스택 앤 롤(Stack And Roll)\n선물을 이용하여 헷지할 때, 헷지종료시점이 선물 만기일보다 나중인 경우가 있습니다. 이때는 먼저 선물을 이용해 헷지한 다음, 만기일 직전에 선물 포지션을 청산함과 동시에 만기가 긴 선물로 새로운 포지션을 구축하는 방법을 사용합니다. 이것이 스택 앤 롤 방법입니다.\n물론 헷지종료시점과 정확히 일치하는 선물을 사용하는 것이 가장 좋지만, 선물의 유동성은 만기가 짧은 종목에 집중되어 있어 원하는 만기의 선물을 거래하기 어렵습니다. 실제로는 가장 만기가 짧은 최근월물로 헷지하고, 만기가 도래할 때마다 다음 최근월물로 갈아타는 롤오버(Roll-over) 방식이 많이 사용됩니다.\n\n\n\n\n\n\nStack and Roll의 위험성 : Metallgesellschaft 사례\n\n\n\nMetallgesellschaft(이하, MG)는 독일의 원자재 회사로 등유와 가솔린을 판매하는 사업을 영위.\n판매계약은 향후 5~10년까지 고정가격에 체결되어있어, MG는 원자재 가격상승위험 회피를 위해 선물을 매수하여 헷지 실행. 다만, 만기가 5~10년 뒤인 선물은 거래가 어려워 최근월물을 롤오버하였는데, 여기서 단기적으로 원자재의 가격이 하락하면서 선물 포지션에서 손실이 누적됨.\n이를 만회하기 위해서는 판매대금을 받아야하는데, 미래시점의 판매대금을 미리 받을 수는 없어 현금흐름위험(cashflow risk)에 직면.\n결국 선물 포지션이 강제청산(margin call)되면서, 막대한 손실을 입음.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 3"
+    ]
+  },
+  {
+    "objectID": "Chapter3.html#appendix-capm",
+    "href": "Chapter3.html#appendix-capm",
+    "title": "Chapter 3",
+    "section": "Appendix : CAPM",
+    "text": "Appendix : CAPM\n자본자산가격결정모형(CAPM, Capital Asset Pricing Model)은 포트폴리오의 리스크 대비 기대수익률을 측정하는 모델입니다. 리스크는 시장 전체의 리스크로 분산(diversified)할 수 없는 Systematic risk와 분산할 수 있는 자산 고유의 위험인 Nonsystematic risk로 구성됩니다. CAPM 유도에 필요한 가정과 결과 산식은 다음과 같습니다.\n\n투자자는 기대수익률과 수익률의 표준편차만을 고려하여 투자자산을 결정한다.\n자산의 수익률은 시장의 수익률 대비 민감도 \\(\\beta\\)로부터 산출된다.(Only one factor) 즉, 자산들간의 상관계수는 각 자산의 \\(\\beta\\)의 비율과 같다.\n투자자는 한 투자기간에 대해서만 고려하며, 투자기간은 모든 투자자가 같다.\n투자자는 무위험수익률 \\(R_f\\)로 무한히 빌리거나 빌려줄 수 있다.\n세금은 고려하지 않는다.\n자산의 기대수익률과 표준편차, 상관계수는 모든 투자자에게 동일하다.\n\n\\[E(R_{portfolio})=R_f+\\beta(R_{market}-R_f)\\]",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 3"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html",
+    "href": "Chapter4.html",
+    "title": "Chapter 4",
+    "section": "",
+    "text": "4.1 이자율의 종류\n이자율이란 돈을 빌린사람이 빌려준 사람에게 지급하는 돈에 적용되는 율로 주택담보, 예금수익률, 신용대출 등 수많은 이자율의 종류가 있습니다. 이자율에 영향을 주는 요소 중 하나로 신용위험(Credit Risk)가 있는데, 돈을 빌린사람이 디폴트 등으로 돈을 값지 못하게 될 위험을 말합니다. 그 위험이 클수록 이자율은 증가하게 되고, 해당 이자율과 무위험이자율 간의 차이를 신용스프레드(Credit Spread)라 합니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#이자율의-종류",
+    "href": "Chapter4.html#이자율의-종류",
+    "title": "Chapter 4",
+    "section": "",
+    "text": "Treasury Rates\nT-bill, T-bond와 같은 국가가 발행한 채권에 투자할 때 얻는 수익률을 말합니다. 이 수익률은 결국 해당 채권을 발행한 국가에 돈을 빌려주고 받는 이자율을 의미합니다. 일반적으로 선진국의 국채가 파산할 위험은 거의 없기때문에, 무위험이자율로 여겨지곤 합니다. 그러나, 개발도상국의 국채를 생각해보면 파산위험이 0은 아니므로, 엄밀한 의미의 무위험이자율은 아닙니다.\n\n\nOvernight Rates\n각국의 시중은행은 중앙은행의 정책에 따라 지급준비금이라는 형태로 일정 비율 이상의 현금을 유지해야합니다. 매일 마감작업 이후, 지급준비금이 부족한 은행은 현금이 충분한 은행으로부터 지급준비금 부족액을 다음날까지 빌리게 되는데, 이 때 적용되는 것이 1일물 금리입니다. 대표적으로 미국 연준의 경우 federal funds rate를 예시로 들 수 있고, 이 금리를 이용하여 이루어진 실제 은행간 거래를 거래량 가중평균하여 산출한 금리를 effective federal funds rate라고 합니다. 다른 예시로는 영국의 SONIA(sterling overnight index average), EU의 ESTER(euro short-term rate), 스위스의 SARON(swiss average rate overnight), 일본의 TONAR(tokyo overnight average rate)가 있으며, 우리나라는 콜금리가 대표적입니다.\n\n\nRepo rates or RP rates\n연준금리나 일반적인 1일물 금리와 달리, 담보부 금리입니다. 주로 금융기관 간에 국채나 안전자산을 담보로 짧은기간 현금을 빌릴때 이용되는 금리이며, 담보가 있는 만큼 신용 기반의 1일물 금리보다 무위험에 가깝기때문에 조금 더 낮게 형성됩니다. 일반적으로 overnight repos가 쓰이지만, 간혹 기간이 긴 term repos도 사용됩니다. 대표적으로 미국의 SOFR(secured overnight financing rate)가 있으며, 우리나라의 신규 금리인 KOFR(Korea overnight financing rate)도 여기에 해당합니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#reference-rates",
+    "href": "Chapter4.html#reference-rates",
+    "title": "Chapter 4",
+    "section": "4.2 Reference rates",
+    "text": "4.2 Reference rates\n기준금리는 금융시장에서 매우 중요한 역할을 담당합니다. 시장참가자간 돈을 빌리는 등 거래를 할 때, 기준금리에 일정 금리를 가산하는 식으로 주로 활용되기 때문에 합리적이고 공정한 방식으로 산출되는 것이 매우 중요합니다.\n\nLibor, London Inter Bank Offered Rates\n역사적으로 매우 중요한 기준금리로서, 런던의 글로벌 은행들 간의 거래에 적용되는 금리로 1일물부터 1년물까지 존재합니다. 글로벌 은행들의 신용은 매우 높은 수준이기 때문에, 일반적으로 무위험금리의 대용치로 많이 사용되었습니다. 대게 장외파생상품 또는 다양한 금융상품에 있어 기준금리로 활용되었기 때문에, libor에 연계된 자금규모는 수백조 달러에 육박하였습니다. 그러나, 신용 기반의 금리인 점과 은행의 호가금리에 기반한다는 치명적인 단점이 있고, 2012년 이를 이용한 Libor 조작사태가 벌어지면서 기준금리의 대규모 전환을 맞이하였고, EU벤치마크법 등 다양한 논의 끝에 현재는 다른 무위험금리로 Libor를 대체하고자 하는 추세입니다.\n\n\nThe New reference rates\n각국은 Libor를 대체할 새로운 기준금리를 개발하였고, 상기에 서술한 KOFR, SOFR, SONIA, ESTER, SARON, TONAR 등이 여기에 해당합니다.\n새로운 기준금리는 1일물 금리로 정의되며, 이를 기반으로 3개월, 6개월 등의 기간구조를 산출합니다. SOFR를 예시로 들면, n일간 SOFR금리는 다음과 같습니다.\n\\[[(1+r_1 \\hat{d}_1)(1+r_2 \\hat{d}_2)\\dots(1+r_n \\hat{d}_n)-1]\\times \\frac{360}{D}\\] \\[where\\;\\hat{d}_i=\\frac{d_i}{360},\\;D=\\sum d_i\\]\n대게 \\(d_i\\)는 1이며, 주말이나 휴일이 포함된 경우 해당 일을 가산합니다. 이러한 방식으로 산출 된 기준금리는 무위험금리로 여겨집니다. 1일물 금리를 compounding하여 산출하였고, 담보가 있거나 신용위험이 거의 없는 기관간 금리이기 때문입니다.\nLibor와 새로운 기준금리의 또하나의 큰 차이점은 산출시점입니다. 3개월 Libor는 현재시점에서 forward looking 방식으로 산출되지만, 3개월 SOFR는 과거 3개월간 실현된 1일물 SOFR를 compounding하여 backward looking 방식으로 산출합니다.\n\n\nReference rates and Credit risk\n은행간 금리의 또다른 문제점은, 평소에는 파산할 위험이 거의 없지만, 금융위기같은 극단적인 상황에서는 은행도 파산할 수 있으며, 따라서 은행의 신용위험이 증가한다는 것 입니다. 이러한 경우, 무위험금리로 여겨지던 Libor금리에 은행의 신용위험이 더해지면서 실질적으로 무위험금리+신용스프레드가 적용된 Libor금리가 형성되므로 정상적인 기준금리의 역할을 할 수 없습니다.\n그러나, 새로운 기준금리는 사실상 무위험금리에 해당하므로 신용위험으로 인해 기준금리가 왜곡될 문제는 없다고 봐도 무방합니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#the-risk-free-rate",
+    "href": "Chapter4.html#the-risk-free-rate",
+    "title": "Chapter 4",
+    "section": "4.3 The Risk-free rate",
+    "text": "4.3 The Risk-free rate\n앞선 장에서, 파생상품의 프라이싱에는 무위험 포트폴리오를 구축할 수 있고, 여기에서 무위험이자율 만큼의 수익이 발생한다는 가정을 사용하였습니다. 즉, 무위험이자율은 파생상품의 프라이싱에 매우 핵심적인 역할을 하고 있습니다. 실제로 트레이더들은 국채를 이용해서 무위험 포트폴리오를 구축하는 것이 자연스러워보이나, 현실은 그렇지 않습니다. 일반적으로 국채금리는 세금 등의 규제적인 이유로 낮게 형성되기 때문입니다.\n\n대부분의 은행이 여유자본을 활용할 때, 국채에 투자하는 일은 없고 대신 다른 무위험자산을 찾는다.\n미국의 경우, 대부분의 주에서 국채의 이자수익에 대한 세금혜택이 존재\n\n따라서, 무위험이자율은 앞서 살펴본 1일물 금리를 주로 사용하게 됩니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#measuring-interest-rates",
+    "href": "Chapter4.html#measuring-interest-rates",
+    "title": "Chapter 4",
+    "section": "4.4 Measuring interest rates",
+    "text": "4.4 Measuring interest rates\n예금 이자에 1년간 10%의 금리가 적용된다는 것은, 이자율의 측정방법을 무엇으로 하느냐에 따라 다른 결과가 나올 수 있습니다.\n\n단리 : 100만원을 투자하고 1년 후 110만원을 돌려받으므로 10% 수익에 해당\n복리 : 복리 주기에 따른 중간이자를 다시 재투자하므로, 단리보다 실질이자율이 높게 됨\n\nsemiannually : \\(100\\times 1.05\\times 1.05=110.25\\), 10.25%\nmonthly : \\(100\\times(1+\\frac{10\\%}{12})^{12}=110.47\\), 10.47%\n즉, \\(원금\\times(1+\\frac{이자율}{지급횟수})^{기간\\times 지급횟수}\\)\n\n연속복리 : 이자를 매 순간순간 지급하고 재투자한다면,\n\n\\[원금\\times(1+\\frac{이자율}{지급횟수})^{기간\\times 지급횟수}\\rightarrow 원금\\times e^{이자율\\times 기간}\\] \\[where\\;지급횟수\\rightarrow \\infty\\]",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#zero-rates",
+    "href": "Chapter4.html#zero-rates",
+    "title": "Chapter 4",
+    "section": "4.5 Zero-rates",
+    "text": "4.5 Zero-rates\n원금을 n년간 투자할 때, 중간이자 및 옵션 없이 만기에 원금과 이자를 일시에 정산받는다면, 이때 적용되는 이자율은 쿠폰이 없는 채권에 투자한 것과 같으므로 zero-coupon interest rate라고 할 수 있습니다. 일반적으로 이를 n-year spot rate 또는 n-year zero rate라고 합니다.\n채권에 투자할 때, 일반적으로 이표채에 투자하게되므로 5년 만기 국채를 사더라도 해당 국채의 YTM이 5년짜리 zero-rate를 의미하는 것은 아닙니다. 중간에 이자수익이 발생하기 때문입니다.(\\(Duration\\ne 5\\))\n\n예시 : 5년 zero rate가 연속복리로 5%라면 5년후 수익은 \\(100\\times e^{0.05\\times 5}=128.40\\)",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#bond-pricing",
+    "href": "Chapter4.html#bond-pricing",
+    "title": "Chapter 4",
+    "section": "4.6 Bond pricing",
+    "text": "4.6 Bond pricing\n채권의 가치평가는 채권의 만기까지 발생하는 이자와 원금을 각각 현재가치로 환산한 후 합하여 계산합니다. 여기에서, 각각의 이자와 원금을 현재가치로 할인하는데 쓰이는 이자율이 zero rates입니다.\n\n\n\nyears\nZero rates\n\n\n\n\n0.5\n5.0%\n\n\n1.0\n5.8%\n\n\n1.5\n6.4%\n\n\n2.0\n6.8%\n\n\n\n원금이 100$이고 쿠폰이 6%인 채권이 semiannually 이자를 지급하고, 위의 zero rates를 적용하면 채권의 가격은 다음과 같습니다.\n\\[3e^{-0.05\\times 0.5}+3e^{-0.058\\times 1.0}+3e^{-0.064\\times 1.5}+103e^{-0.068\\times 2.0}=98.39\\]\n\nBond Yield\n채권의 수익률이란, 채권의 현금흐름과 현재 가격을 일치시키는 수익률을 말합니다. 즉, 상기 zero rates를 통해 구한 채권가격과 채권의 현금흐름에 단일 수익률을 적용하여 구한 현재가치가 같아지면 됩니다.\n\\[YTM\\; y\\; :\\; 3e^{-y\\times 0.5}+3e^{-y\\times 1.0}+3e^{-y\\times 1.5}+103e^{-y\\times 2.0}=98.39\\]\n수치해석방법을 통해 y를 구하면, 약 6.76%임을 알 수 있습니다.\n\n\nPar Yield\npar yield란, zero rates를 통해 채권가격을 산출할 때, 채권가격이 par가 되는 coupon rate를 말합니다. 즉, 위의 예시에서 par yield는\n\\[\\frac{c}{2}e^{-0.05\\times 0.5}+\\frac{c}{2}e^{-0.058\\times 1.0}+\\frac{c}{2}e^{-0.064\\times 1.5}+(100+\\frac{c}{2})e^{-0.068\\times 2.0}=100(par)\\] \\[c\\approx 6.87\\%\\]",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#determining-zero-rates",
+    "href": "Chapter4.html#determining-zero-rates",
+    "title": "Chapter 4",
+    "section": "4.7 Determining zero rates",
+    "text": "4.7 Determining zero rates\n실제로 zero rates는 잘 알려져있지 않으므로, 국채수익률을 이용하여 zero rates를 역산하는 방식을 주로 사용합니다. 이때 사용하는 방식을 Bootstrap method라고 하며, 다음과 같습니다.\n\n채권은 연 2회 이자를 지급한다고 가정\n3개월, 6개월, 1년, 2년, 1.5년, 2년 zero rates를 구하고자 함\n각 만기별 국채를 통해 만기별 채권 YTM을 산출\n3개월 및 6개월 국채는 잔여 이자지급이 없으므로 YTM=zero-rate\n6개월 zero-rate와 1년만기 국채의 가격을 통해 1년 zero-rate 산출\n6개월 및 1년 zero-rate와 1.5년 국채가격을 통해 1.5년 zero-rate 산출\n같은 방법으로 2년 zero-rate 산출",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#foward-rates",
+    "href": "Chapter4.html#foward-rates",
+    "title": "Chapter 4",
+    "section": "4.8 Foward rates",
+    "text": "4.8 Foward rates\n선도금리란, 미래시점에 적용되는 금리를 말합니다. 예를 들어 현재시점에서 1년뒤에 1년간 적용되는 선도금리를 구한다고 가정하면, 1년 zero rate와 2년 zero rate의 관계를 통해 구할 수 있습니다.\n현재시점에서 원금을 2년 zero rate에 투자한 것과 1년 zer rate + 선도금리에 투자한 포트폴리오의 수익은 동일해야 하므로, \\[100e^z_1e^f_{12}=100e^{z_2\\times 2}\\rightarrow f_{12}=2\\times z_2=z_1\\] 연속복리 수익률에서 \\(t_0\\)시점에서 \\(t_1\\sim t_2\\)까지의 선도수익률 \\(F_{12}\\)을 일반화하면, \\[F_{12}=\\frac{t_2\\times z_2-t_1\\times z_1}{t_2-t_1}\\]\n\\[F_{12}=z_2+(z_2-z_1)\\frac{t_1}{t_2-t_1}\\rightarrow z+t\\frac{\\partial z}{\\partial t}\\;for\\; t_2\\rightarrow t_1\\]\n해당 극한값은 기간이 매우 짧을때 적용할 수 있는 선도수익률로, instantaneous forward rate라고 합니다.\n\nFoward rates : furthermore\ninstantaneous forword rate의 유도방법\n\\(Let P()\\; i\\;  a\\; present\\; value\\; functions,\\; P(t,T)=e^{-(T-t)z_T}\\)\n\\(Then,\\; Forward\\; rate\\; F(t,T,T+\\delta)=F\\; is,\\)\n\\(\\frac{e^{\\delta\\times F}}{P(t,T)}=\\frac{1}{P(t,T+\\delta)}\\Rightarrow F=\\frac{1}{\\delta}\\ln[\\frac{P(t,T)}{P(t,T+\\delta)}]=-\\frac{\\ln[P(t,T+\\delta)]-\\ln[P(t,T)]}{\\delta}\\)\n\\[instantaneous\\; forward\\; rate\\; \\hat{F}=-\\frac{\\partial}{\\partial T}\\ln[P(t,T)]\\; where\\;\\delta \\rightarrow 0\\]",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#forward-rate-agreements",
+    "href": "Chapter4.html#forward-rate-agreements",
+    "title": "Chapter 4",
+    "section": "4.9 Forward rate agreements",
+    "text": "4.9 Forward rate agreements\nFRA는 금리파생상품의 일종으로, 계약자들은 향후 특정시점에 변동금리를 현재시점의 FRA계약금리로 고정시키고 계약만기시점에 변동금리와 고정금리를 주고받는 형태의 계약입니다.\nFRA매수자는 변동금리를 받고 고정금리(FRA계약금리)를 주며, 따라서 변동금리가 향후 상승하면 유리한 포지션입니다. 따라서 향후 돈을 빌리고자 하는 사람들이 사용합니다. 반대로 FRA매도자는 변동금리를 주고 고정금리를 받으므로, 금리 하락시 유리한 포지션입니다.\nFRA는 옵션 등이 없는 계약이므로, 계약을 체결하는 시점에 매수자 및 매도자가 동등한 위치에서 계약을 체결합니다. 따라서 체결시점의 계약은 누군가에게 유리하게 체결되어서는 안되고, 이는 계약의 가치가 0원임을 의미합니다. 즉, 계약만기시점의 Forward rate가 일반적인 FRA의 계약금리가 됩니다.\n계약금리가 Forward rate로 설정되지 않는다면, 차익거래기회가 발생합니다. Forward rate보다 낮게 FRA계약이 체결된다면, 투자자는 FRA매수와 동시에 FRA원금만큼 Forward rate에 돈을 빌려줌으로써 Forward rate - FRA금리 만큼의 무위험차익을 얻을 수 있습니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#duration",
+    "href": "Chapter4.html#duration",
+    "title": "Chapter 4",
+    "section": "4.10 Duration",
+    "text": "4.10 Duration\n채권의 듀레이션이란, 채권 소유자의 원금회수기간을 의미합니다. 즉, 채권이 원금(=채권가격)만큼의 현금흐름을 발생시키는데 걸리는 시간을 말합니다. 따라서 듀레이션은 채권의 각 현금흐름이 원금에서 차지하는 비율을 시간가중평균하여 산출하게 됩니다.\n채권이 \\(c_i\\)만큼의 현금흐름을 발생시키고, 현재 가격은 \\(B\\), 수익률은 \\(y\\)라고 하면 채권의 가격과 현금흐름은 \\(B=\\sum c_ie^{-yt_i}\\)입니다.\n이에 대한 시간가중평균인 듀레이션은 다음과 같습니다.\n\\[D=\\frac{\\sum t_ic_ie^{-yt_i}}{B}=\\sum t_i[\\frac{c_ie^{-yt_i}}{B}],\\; \\sum t_i=1\\]\n간단한 미분의 성질을 활용하면, \\(\\Delta B=\\frac{dB}{dy}\\Delta y=-\\Delta y \\sum c_it_ie^{-yt_i}=-\\Delta y\\times B\\times D\\)\n즉, \\(\\frac{\\Delta B}{B}=-D\\Delta y\\)를 유도할 수 있습니다.\n이는 채권가격의 변화율 \\(\\frac{\\Delta B}{B}\\)가 수익률 변화분과 반대방향으로 \\(D\\)의 비율만큼 움직인다는 것을 의미합니다. 이러한 관점에서 듀레이션을 채권가격의 민감도라고 표현합니다.\nDV01이란 수익률이 0.01%(1bp)변화할때 채권가격의 변동분을 말합니다. 즉, \\(DV01=-0.0001\\times B\\times D\\)\n\nModified duration\n연속복리수익률을 사용하지않고 annual 등 복리수익률을 사용하는 경우, 듀레이션과 채권가격 간의 관계는 다음과 같습니다.\n\\[\\Delta B=-\\frac{BD\\Delta y}{1+y/m}\\]\n이러한 이자율 측정방법간 차이를 보정하기 위해 수정듀레이션을 \\(D^*=\\frac{D}{1+y/m}\\)이라고 하며, \\(\\Delta B=-BD^*\\Delta y\\)를 사용합니다.\n\n\nBond portfolios\n채권으로 포트폴리오를 구성할 때, 상기 듀레이션에 관한 식을 모두 적용할 수 있습니다. 다만, 유의해야할 점은 \\(\\Delta y\\)는 모든 채권수익률이 변화할때를 말한다는 것 입니다. 즉, 채권의 만기에 따른 수익률 곡선이 평행하게 이동(parallel shift)할 때만 듀레이션을 이용한 계산을 적용할 수 있습니다.\n금융기관은 부채와 자산간의 듀레이션을 일치시키는 방법으로 금리변화에 따른 위험을 회피할 수 있습니다. 그러나, 금리 곡선이 평행하게 이동하지 않고 가파르거나 평평하게 움직이는 것에 대한 위험은 여전히 남아있습니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#convexity",
+    "href": "Chapter4.html#convexity",
+    "title": "Chapter 4",
+    "section": "4.11 Convexity",
+    "text": "4.11 Convexity\n듀레이션을 이용한 채권가격변화분은 수익률 변화분이 커질수록 정밀도가 떨어집니다. 이때 이용하는 것이 Convexity로, non-linear한 채권 가격을 듀레이션을 통해 linear하게 추정할때, 오차분을 보정해주는 역할을 합니다.\n\\[C=\\frac{1}{B}\\frac{d^2B}{dy^2}=\\frac{\\sum c_it_i^2e^{-yt_i}}{B}\\]\n한편, 테일러 급수를 활용하여 2차 다항함수까지 전개한 채권가격에 듀레이션과 컨벡서티를 적용한 식은 다음과 같습니다.\n\\[\\Delta B=\\frac{dB}{dy}\\Delta y+\\frac{1}{2}\\frac{d^2B}{dy^2}\\Delta y^2=-BD\\Delta y+\\frac{1}{2}BC(\\Delta y)^2\\] \\[\\Rightarrow\\frac{\\Delta B}{B}=-D\\Delta y+\\frac{1}{2}C(\\Delta y)^2\\]\n포트폴리오의 컨벡서티까지 0에 가깝게하는 경우(감마헷지), 이자율이 크게 변화하더라도 어느정도 보정할 수 있으나, 역시 가파르거나 평평하게 수익률 곡선이 움직이는 경우의 위험은 존재합니다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "Chapter4.html#theories-of-the-term-structure-of-interest-rates",
+    "href": "Chapter4.html#theories-of-the-term-structure-of-interest-rates",
+    "title": "Chapter 4",
+    "section": "4.12 Theories of the term structure of interest rates",
+    "text": "4.12 Theories of the term structure of interest rates\n제로금리 커브는 일반적으로 로그함수처럼 완만하게 우상향하는 곡선이지만, 때때로는 flat하기도, 우하향하기도 하며 심지어는 기간에따라 등락을 반복하기도 합니다. 이를 설명하는 금리의 기간구조에 대해서는 많은 이론들이 존재합니다.\n\nexpectations theory : 장기금리는 미래의 단기금리의 기대값과 동일. 현재의 선도금리가 미래의 제로금리의 기대값.\nmarket segmentation theory : 단기, 중기, 장기금리는 각각 시장참여자가 달라 서로 큰 관계가 없으며, 각 시장별 투자자의 수급이나 전망에 따라 형성.\nliquidity preference theory : 유동성 선호이론. 사람들은 현금을 보유하는 것을 선호하므로, 돈을 빌릴때 장기간으로 빌리고 싶어함. 따라서 금리는 일반적으로 우상향. 선도금리가 제로금리보다 높게 형성. 현실과 가장 부합.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Chapter 4"
+    ]
+  },
+  {
+    "objectID": "24S_derivatives_hw.html",
+    "href": "24S_derivatives_hw.html",
+    "title": "Futures&Options Homework",
+    "section": "",
+    "text": "Chapter3",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Futures&Options Homework"
+    ]
+  },
+  {
+    "objectID": "24S_derivatives_hw.html#chapter3",
+    "href": "24S_derivatives_hw.html#chapter3",
+    "title": "Futures&Options Homework",
+    "section": "",
+    "text": "Problem 3.4 (Hedging with Futures)\nA company has a $20 million portfolio with a beta of 1.2. It would like to use futures contracts on a stock index to hedge its risk. The index futures price currently stading at 1080, and each contract is for delivery of $250 times the index.\n\nwhat is the hedge that minimizes risk?\nwhat should the company do if it wants to reduce the beta of the portfolio to 0.6?\n\nSolving\n먼저, 선물 1계약의 가치는 \\(1,080\\times 250USD=270,000USD\\)입니다.\n리스크 최소화를 위한 최적 헷지비율은 \\(\\hat{h}^*=\\beta\\times\\frac{V_{portfolio}}{V_{futures contract}}\\)이므로,\n\n리스크 최소화를 위해서는 \\(\\hat{h}^*=1.2\\times\\frac{20,000,000}{270,000}=88.89\\approx 89계약\\)을 매도하면 된다.\n베타를 0.6으로 줄이기 위해서는 포트폴리오 베타를 0.6만큼 헷지하면 된다. \\(h=0.6\\times\\frac{20,000,000}{270,000}=44.44\\approx 44계약\\)을 매도하면 된다.\n\n\n\nProblem 3.24 (CAPM)\nA portfolio manager has maintained an actively managed portfolio with a beta of 0.2. During the last year, the risk-free rate was 5% and equities performed very badly providing a return of -30%. The portfolio manager produced a return of -10% and claims that in the circumstances it was a good performance. Discuss this claim.\nSolving\nCAPM에 근거하여 수익률을 산출할 때, 매니저의 주장은 옳지 않다.\n먼저, CAPM에 근거한 포트폴리오 수익률은 \\(R_{portfolio}=r_f+\\beta(r_{market}-r_f)\\)이며, 여기에 따르면 베타가 0.2인 주식포트폴리오의 기대수익률은 무위험자산 : 시장 = 8:2로 투자한 시장포트폴리오의 수익률인 \\(5\\% + 0.2(-30\\%-5\\%)=-2\\%\\)이다.\n즉, 매니저가 good performance라는 의미는 -2%보다 높은 수익률을 달성해서 시장포트폴리오를 out-perform한다는 의미인데, 이를 8%나 하회하는 -10%의 성적을 거두었으니 좋은 성과를 냈다고 볼 수 없다.\n\n\n\n\n\n\n잘못푼 예시\n\n\n\n시장 전체의 수익률이 -30%일 때, 베타가 0.2인 주식포트폴리오가 시장을 beat하는 수익률은 \\(0.2\\times -30\\% =-6\\%\\)이다. 포트폴리오가 good performance라는 것은 보통 시장을 out-perform한 경우를 의미하는데, 수익률이 -6%를 하회하는 -10%이므로 좋은 성과를 냈다고 보기 어렵다.\n\n\n\n\nProblem 3.25 (Changing Beta)\nIt is July 16. A company has a portfolio of stocks worth $100million. The beta of the portfolio is 1.2. The company would like to use the December futures contract on a stock index to change beta of the portfolio to 0.5 during the period July 16 to November 16. The index is currently 2,000 and each contract is on $250 times the index.\n\nWhat position should the company take?\nSuppose that the company changes its mind and decides to increase the beta of the portfolio from 1.2 to 1.5. What position in futures contracts should it take?\n\nSolving\nProblem 3.4와 동일한 방식이다. 먼저, 선물 1계약의 가치는 \\(2,000\\times 250USD=500,000USD\\)이며,\n\n포트폴리오 베타를 0.5로 줄이려면 베타를 0.7만큼 헷지하면 된다. \\(h=0.7\\times\\frac{100,000,000}{500,000}=140계약\\)을 매도 하면 된다.\n포트폴리오 베타를 1.5로 늘리려면 베타를 -0.3만큼 헷지하면 된다. 즉, 매도헷지 대신 선물매수를 통해 베타를 0.3만큼 늘리면 된다. \\(h=-0.3\\times\\frac{100,000,000}{500,000}=-60계약 매도=60계약 매수\\)하면 된다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Futures&Options Homework"
+    ]
+  },
+  {
+    "objectID": "24S_derivatives_hw.html#chapter4",
+    "href": "24S_derivatives_hw.html#chapter4",
+    "title": "Futures&Options Homework",
+    "section": "Chapter4",
+    "text": "Chapter4\n\n\n\nChapter4-2\n\n\nSolving\n\\[Price=\\frac{2}{(1+5.2\\%/2)^{1}}+\\frac{2}{(1+5.2\\%/2)^{2}}+\\frac{102}{(1+5.2\\%/2)^{3}}=98.29\\]\n\\[\\frac{2}{(1+5\\%/2)^{1}}+\\frac{2}{(1+5\\%/2)^{2}}+\\frac{102}{(1+z_{1.5}/2)^{3}},\\;z_{1.5}=5.204\\%\\]\n\n\n\nChapter4-14\n\n\nSolving\n4% 쿠폰 채권을 액면 $200만큼 매수한다면, 액면 $100의 8% 쿠폰 채권과 액면 $100의 10년 무이표채 채권을 매수한 것과 동일한 현금흐름이 발생한다.\n이 경우, 10년 무이표채 채권의 가격은 $160-$90=$70이며 10-year zero rate는 다음과 같다. \\[70=\\frac{100}{(1+z_{10})^{10}},\\;z_{10}\\approx 3.63\\%\\]\n\n\n\nChapter4-29, 9ed.\n\n\nSolving\n먼저, 2개월 후 1개월간 Libor Foward rate는 다음과 같다.\n\\[F_{2m,1m}=\\frac{\\frac{3}{12}0.1\\%-\\frac{2}{12}0.28\\%}{\\frac{1}{12}}=0.3\\%-0.56\\%=-0.26\\%\\]\n그러나, 이자율은 음수가 될 수 없으므로 선도이자율은 0%이다. 빌려주는 사람 입장에서, 안빌려주고 현금을 보유하면 이자율은 0%이므로 이는 자연스러운 현상이다.\n이 때, Libor금리로 3개월간 자금을 빌리고 2개월간 Libor로 빌려준 다음 3개월까지는 현금을 보유(또는 0%에 빌려줌)한다면 무위험 차익을 얻을 수 있다.\n차익거래가 발생하지 않으려면, 선도이자율의 균형가격이 0%까지 상승해야 한다.\n\\[F_{2m,1m}=0\\%=\\frac{\\frac{3}{12}Libor_{3m}-\\frac{2}{12}0.28\\%}{\\frac{1}{12}}\\Rightarrow Libor_{3m}\\approx 0.1867\\%\\]\n그러기 위해서는 약 0.1867%까지 3개월 Libor가 상승해야 한다.\n\n\n\nChapter4-39, 9ed.\n\n\nSolving\n먼저, 6개월 및 9개월 금리로부터 \\(F_{6m,3m}\\)의 균형가격을 산출하면,\n\\[F_{6m,3m}=\\frac{\\frac{9}{12}6\\%-\\frac{6}{12}5\\%}{\\frac{3}{12}}=8\\%\\]\n그러나, 현재 FRA 계약금리는 7%이므로 1%p만큼 저평가되어있다.\n따라서,\n\n6개월간 5%로 자금을 빌리고\n9개월간 6%에 자금을 빌려주고,\nFRA 매수계약(변동금리 수취 및 고정금리 지급)을 동일한 명목금액만큼 체결 -&gt; 6개월 후 9개월까지 3개월간 Libor금리로 자금을 빌리면 FRA 계약금리인 7%로 빌리는 효과\n\n9개월간 effective rate는 \\(\\frac{12}{9}(\\frac{6}{12}5\\%+\\frac{3}{12}7\\%)\\approx 5.6667\\%\\)이므로, \\(0.333\\%\\)만큼 무위험 차익을 만들 수 있다.",
+    "crumbs": [
+      "선물옵션('24봄)",
+      "Futures&Options Homework"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html",
+    "href": "1. Python Basics.html",
+    "title": "1  Python Basics",
+    "section": "",
+    "text": "1.1 Values and Variables",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#values-and-variables",
+    "href": "1. Python Basics.html#values-and-variables",
+    "title": "1  Python Basics",
+    "section": "",
+    "text": "1.1.1 - Values\n\ntype(\"Hello, World\")\n\nstr\n\n\n\ntype(())\n\ntuple\n\n\n\ntype([])\n\nlist\n\n\n\ntype(set())\n\nset\n\n\n\ntype({})\n\ndict\n\n\n\n# 파이썬에서는 복소수 i를 j로 표현함\ntype(2+3j)\n\ncomplex\n\n\n\n\n1.1.2 - Variables\n\nmessage=\"Hello, world!\"\nn=42\ne=2.71\nprint(n)\nprint(message)\n\n42\nHello, world!\n\n\n\nlength=4.2\nheight=3.5\narea=length*height\nprint(area)\n\n14.700000000000001\n\n\n\n# 변수는 방문앞에 이름만 바꾼것... 새로운 변수에 기존 변수를 할당하고, 기존 변수를 변경하면 새로운 변수도 영향받음\na=[1,2,3]\nb=a\na[0]=10\nprint(b)\n\n[10, 2, 3]\n\n\n\n\n1.1.3 - Variable names\n\n숫자로 시작하면 안됌\n\n\nx=1.0\nX=1.0\nX1=1.0\nx1=1.0\ndell=1.0\n# not allowed\n# x:, 1X, X1-1, for\n\n\nx,y,z=1,3.14,'a'\nprint(x,y,z)\n\n1 3.14 a",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#core-data-types",
+    "href": "1. Python Basics.html#core-data-types",
+    "title": "1  Python Basics",
+    "section": "1.2 Core Data Types",
+    "text": "1.2 Core Data Types\n\n1.2.1 - Floating Point(float)\n\nx=1\ny=1.0\nz=float(1)\nxx=1.234e-5\nprint(x,y,z,xx)\nprint(type(z),type(float(True)))\n\n1 1.0 1.0 1.234e-05\n&lt;class 'float'&gt; &lt;class 'float'&gt;\n\n\n\n# float 타입은 근사치를 사용하기때문에 사용에 유의\n1-0.9==0.1\n\nFalse\n\n\n\nfloat('inf')\n\ninf\n\n\n\n\n1.2.2 - Complex\n\nx=1j\ny=2+3j\nz=complex(1)\nprint(x,y,z,y.real,y.imag)\nprint(type(y.imag))\n\n1j (2+3j) (1+0j) 2.0 3.0\n&lt;class 'float'&gt;\n\n\n\n\n1.2.3 - Integer\n\n# Integer는 float와 달리 정확하다\nx=2**127+2**65 \nx\n\n170141183460469231768580791863303208960\n\n\n\n\n1.2.4 - Boolean(bool)\n\nprint(bool(1),bool(1.2),bool(-1),bool(0.1))\n\nTrue True True True\n\n\n\nprint(bool(0),bool(0.0),bool(0.0000),bool(None),bool(\"\"),bool(()))\n\nFalse False False False False False\n\n\n\n3&gt;4\n\nFalse",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#operators",
+    "href": "1. Python Basics.html#operators",
+    "title": "1  Python Basics",
+    "section": "1.3 Operators",
+    "text": "1.3 Operators\n\n1.3.1 - Arithmetic Operators\n\na=10\nb=20\n\n\n# 나누기 연산은 항상 float로 반환됨을 유의\nprint(a+b,a-b,a*b,b/a)\n\n30 -10 200 2.0\n\n\n\n# 나머지 연산자\nb%a\n\n0\n\n\n\n# 몫 연산자\nb//a\n\n2\n\n\n\n# 거듭제곱 연산자, 우선순위가 가장 높음\na**b\n\n100000000000000000000\n\n\n\n\n1.3.2 - Relational Operators\n\nprint(a==b,a!=b,a&gt;b,a&lt;b,a&gt;=b,a&lt;=b)\n\nFalse True False True False True\n\n\n\n\n1.3.3 - Assignment Operators\n\nt=0\nt+=1\nt\n\n1\n\n\n\nt/=2\nt\n\n0.5\n\n\n\nt*=2\nt\n\n1.0\n\n\n\n\n1.3.4 - Logical Operators\n\nprint(True and False, True or False, not True)\n\nFalse True False\n\n\n\n# 논리연산자는 container가 bool이 아닌 경우 용법이 다름\n# or은 가장 먼저나오는 True값을 반환, and는 가장 먼저나오는 false값을 반환\nprint('' or 'abc',0 or 1, 'abc' or '','abc' or 'ab')\nprint(1 and 0, 'abc' and 0, None and '' and 0)\n\nabc 1 abc abc\n0 0 None",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#python-operators-precedence",
+    "href": "1. Python Basics.html#python-operators-precedence",
+    "title": "1  Python Basics",
+    "section": "1.4 Python Operators Precedence",
+    "text": "1.4 Python Operators Precedence\n\n1.4.1 - Python Operators Precedence\n\n# 거듭제곱 &gt; 덧샘뺄샘 &gt; 나눗셈, 몫, 나머지 &gt; 부등호 &gt; 논리\n1+3/2\n\n2.5\n\n\n\n2400//500*500+2000%500\n\n2000\n\n\n\n(2400//500)*500+(2000%500)\n\n2000",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#mathmatical-function",
+    "href": "1. Python Basics.html#mathmatical-function",
+    "title": "1  Python Basics",
+    "section": "1.5 Mathmatical Function",
+    "text": "1.5 Mathmatical Function\n\n# built-in\nprint(abs(-1),round(1.111,1))\n\n1 1.1\n\n\n\n# functional in math module\nimport math\n\n# factorial, floor, isfinite, isinf, isnan, trunc\n# exp, log, log10, sqrt, cos, sin, tan, degrees, radians, pi, e\n\nprint(\nmath.ceil(1.11),\nmath.log(10),\nmath.log(10,10),\nmath.exp(1),\nmath.e,\nmath.pi,\nmath.trunc(math.pi),\nmath.degrees(1),\nmath.cos(math.pi)\n)\n\n2 2.302585092994046 1.0 2.718281828459045 2.718281828459045 3.141592653589793 3 57.29577951308232 -1.0",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1. Python Basics.html#python-io",
+    "href": "1. Python Basics.html#python-io",
+    "title": "1  Python Basics",
+    "section": "1.6 Python I/O",
+    "text": "1.6 Python I/O\n\n1.6.1 - Python Output\n\n# print(object1, object2, ... , sep=' ', end='\\n',...)\nprint(1,2,3,4)\nprint(1,2,3,4,sep='*')\nprint(1,2,3,4,end='END')\nprint(1,2,3,4,sep='')\n\n1 2 3 4\n1*2*3*4\n1 2 3 4END1234\n\n\n\n# formatting\nx=5; y=10\nprint('The value of x is {} and y is {}'.format(x,y))\nprint('I love {2} and {1}, but hate {0}'.format('cucumber','butter','bread'))\n\nThe value of x is 5 and y is 10\nI love bread and butter, but hate cucumber\n\n\n\n\n1.6.2 - Python Input\n\n# Input value is a string\nnum=input('Enter a number:')\nprint(num)\nprint(int(num))\n\n10\n10",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Python Basics</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html",
+    "href": "2. Containers.html",
+    "title": "2  Containers",
+    "section": "",
+    "text": "2.0.1 - Accessing Values in Strings\n# 잘 알아둘것, 많이 사용\nword='KAIST MFE Program'\n# indexing\nprint(word[0],word[5],word[6],sep=\"/\")\n# slicing\n# str[a:b:c] = start a, end b, jump c\n# a is inclusive, b is exclusive, c can be minus\n# default : a =0, b=n+1, c=1 but when c is minus then default : a=n, b=0(inclusive)\nprint(word[0:5],word[6:9],word[10:])\nprint(word[:2],word[-2:])\nprint(word[0:10:2])\nprint(word[::-1])\n\nK/ /M\nKAIST MFE Program\nKA am\nKITME\nmargorP EFM TSIAK\ntext='Python strings are sliceable.'\ntext[10]\n\n'i'\nlength=len(text)\ntext[length]\n\nIndexError: string index out of range\ntext[length-1]\n\n'.'",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html#lists",
+    "href": "2. Containers.html#lists",
+    "title": "2  Containers",
+    "section": "2.1 Lists",
+    "text": "2.1 Lists\n\n# a mutable sequence of objects, important!!\n# To create List object, use [] or list()\nx1=[1,2,3,4]\nx2=[1,1.0,1+0j,'one',None,True]\nx3=[[1,2,3,4],[5,6,7],[8,9]] # nested list\n# 리스트 안에는 무엇이든 올 수 있음\nprint(x1,x2,x3,sep='\\n')\n\n[1, 2, 3, 4]\n[1, 1.0, (1+0j), 'one', None, True]\n[[1, 2, 3, 4], [5, 6, 7], [8, 9]]\n\n\n\ne1=list()\ntype(e1)\n\nlist\n\n\n\nlen(e1)\n\nNameError: name 'e1' is not defined\n\n\n\nlist('cat')\n\n['c', 'a', 't']\n\n\n\na_tuple=('abc')\nlist(a_tuple)\n\n['a', 'b', 'c']\n\n\n\n2.1.1 - Accessing Items in lists\n\n# indexing -&gt; original object, slicing -&gt; make sub-list\nmyList=[5,2.3,'hello']\nprint(\n    myList[0],\n    myList[-1],\n    myList[-3]\n)\n\n5 hello 5\n\n\n\nmany_types=[1,55.5,\"Am I in a list?\",True,\"the end\"]\nprint(\n    many_types[2:4],\n    many_types[2:],\n    many_types[:3],\n    many_types[-4:-2],\n    many_types[-2:-5:-1],\n    many_types[:-3],\n    many_types[:3:2],\n    many_types[:-2:2],\n    sep='\\n'\n)\n\n['Am I in a list?', True]\n['Am I in a list?', True, 'the end']\n[1, 55.5, 'Am I in a list?']\n[55.5, 'Am I in a list?']\n[True, 'Am I in a list?', 55.5]\n[1, 55.5]\n[1, 'Am I in a list?']\n[1, 'Am I in a list?']\n\n\n\n# Multidimensional lists can alse be indexed and sliced.\nx=[[1,2,3],[4,5,6],[7,8,9,0]]\nx[0]\n\n[1, 2, 3]\n\n\n\nx[0][1]\n\n2\n\n\n\nx[0][0:2]\n\n[1, 2]\n\n\n\n\n2.1.2 - Updating Lists\n\n# List object is an immutable!!\ncolorList=['red','blue','green','black','white']\nprint(id(colorList),colorList)\n\n2665431628288 ['red', 'blue', 'green', 'black', 'white']\n\n\n\ncolorList[2]='yellow'\nprint(id(colorList),colorList)\n\n2665431628288 ['red', 'blue', 'yellow', 'black', 'white']\n\n\n\ncolorList[2:4]=['gray','purple']\ncolorList\n\n['red', 'blue', 'gray', 'purple', 'white']\n\n\n\ncolorList[1:4]='r e d'\ncolorList\n\n['red', 'r', ' ', 'e', ' ', 'd', 'white']\n\n\n\ncolorList[1:]=['orange']\ncolorList\n\n['red', 'orange']\n\n\n\n\n2.1.3 - Basic List Operations\n\nL1=[1,2,3]; L2=[4,5,6]; L3=[7,8,9,0]\nprint(\n    L1+L2+L3,\n    [L1],\n    [L1]+[L2]+[L3],\n    sep='\\n')\n\n[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]\n[[1, 2, 3]]\n[[1, 2, 3], [4, 5, 6], [7, 8, 9, 0]]\n\n\n\nprint(\n    L1*3,\n    3*L1,\n    [L1]*3,\n    [L1+L2]*3,\n    [1,2,3] in [L1]+[L2],\n    sep='\\n'\n)\n\n[1, 2, 3, 1, 2, 3, 1, 2, 3]\n[1, 2, 3, 1, 2, 3, 1, 2, 3]\n[[1, 2, 3], [1, 2, 3], [1, 2, 3]]\n[[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]]\nTrue\n\n\n\n\n2.1.4 - Built-in List Functions and Mothods\n\n# len, min, max, del x[slice]\n# x.append(value), x.extend(list), x.remove(value), x.count(value),\n# x.insert(index, value), x.index(value), x.sort(), x.reverse()\nx=[0,1,2,3,4,5,6,7,8,9]\ndel x[0] # 많이 사용\nx\n\n[1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n\n\ndel x[:3]\nx\n\n[4, 5, 6, 7, 8, 9]\n\n\n\ndel x[:]\nx\n\n[]\n\n\n\nx=[0,1,2,3,4,5,6,7,8,9]\nlen(x)\n\n10\n\n\n\n# in place\nx.reverse()\nx\n\n[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]\n\n\n\n# not in place\nsorted(x)\n\n[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n\n\nx\n\n[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]\n\n\n\n# in place\nx.sort()\nx\n\n[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n\n\n\n2.1.5 - Coping List\n\npockets=[5,3,6,7]\npockets_copy=pockets\npockets_copy.append(1)\npockets_copy\n\n[5, 3, 6, 7, 1]\n\n\n\n# pockets_copy is just labeling of pockets\npockets\n\n[5, 3, 6, 7, 1]\n\n\n\n# [:] makes copy of original list object\n# At list [:] is copy, but at Array(numpy) [:] is view\npockets_realcopy=pockets[:]\npockets_realcopy.append(1)\npockets_realcopy\n\n[5, 3, 6, 7, 1, 1]\n\n\n\npockets\n\n[5, 3, 6, 7, 1]\n\n\n\npockets_method=pockets.copy()\npockets_method.append(1)\npockets_method\n\n[5, 3, 6, 7, 1, 1]\n\n\n\npockets\n\n[5, 3, 6, 7, 1]",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html#tuples",
+    "href": "2. Containers.html#tuples",
+    "title": "2  Containers",
+    "section": "2.2 Tuples",
+    "text": "2.2 Tuples\n\n2.2.0.1 : tuples are basically immutable lists. To create a tuple, () or tuple()\n\nt=(12345,54321,'hello')\nt\n\n(12345, 54321, 'hello')\n\n\n\n# if it contains a single variables, should include comma!\nx=(2)\ntype(x)\n\nint\n\n\n\nx=(2,)\ntype(x)\n\ntuple\n\n\n\na=1,2,3,'hello'\na\n\n(1, 2, 3, 'hello')\n\n\n\nw,x,y,z=a\nprint(w,x,y,z)\n\n1 2 3 hello\n\n\n\nx,_,y,_=a\nprint(x,y)\n\n1 3\n\n\n\nx,*y=a\nprint(x,y)\n\n1 [2, 3, 'hello']\n\n\n\n\n2.2.1 - Accesing values in tuples\n\n# can be indexed or sliced.\nx=(1,2,3,4,5,6,7,8,9)\nprint(\n    x[5],\n    x[-3],\n    x[3:7],\n    x[3:7:2],\n    sep='\\n'\n)\n\n6\n7\n(4, 5, 6, 7)\n(4, 6)\n\n\n\n\n2.2.2 - Updating Tuples\n\n# Tuples are immutable : impossible to add/remove/replace elements in a tuple\ntup1=(12,34.56)\ntup1[0]=100\n\nTypeError: 'tuple' object does not support item assignment\n\n\n\ntup2=([1,2],[3,4])\ntup2[0][0]=100\ntup2\n\n([100, 2], [3, 4])\n\n\n\n\n2.2.3 - Basic tuples operations\n\ntup1=(1,2,3,4)\ntup2='a','b','c'\ntup1+tup2\n\n(1, 2, 3, 4, 'a', 'b', 'c')\n\n\n\ntup1*3\n\n(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4)\n\n\n\n'a' in tup2\n\nTrue\n\n\n\ntup1[0:1]+tup2[1:]\n\n(1, 'b', 'c')\n\n\n\ntup1[0:1]+tup2[1]\n\nTypeError: can only concatenate tuple (not \"str\") to tuple\n\n\n\n# concatenation\ntup_even=tup1[1::2]+(6,)\ntup_even\n\n(2, 4, 6)\n\n\n\n\n2.2.4 - Built-in tuple functions and methods\n\n# len, max, min, x.index, x.count\nanimals=('lama','sheep','lama',48)\nlen(animals)\n\n4\n\n\n\nprint(\n    animals.index('lama'),\n    animals.count('sheep'),\n    sep='\\n')\n\n0\n1\n\n\n\n# to fix tuple, tuple -&gt; list -&gt; tuple\nx_list=list(x)\nx_list.reverse()\nx=tuple(x_list)\nx\n\n(9, 8, 7, 6, 5, 4, 3, 2, 1)\n\n\n\n# tuple is faster than list!\n%timeit x=[1,2,3,4,5]\n%timeit x=(1,2,3,4,5)\n\n47.3 ns ± 0.743 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)\n10.2 ns ± 0.0818 ns per loop (mean ± std. dev. of 7 runs, 100,000,000 loops each)",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html#dictionaries",
+    "href": "2. Containers.html#dictionaries",
+    "title": "2  Containers",
+    "section": "2.3 Dictionaries",
+    "text": "2.3 Dictionaries\n\n2.3.0.1 : a mutable, unordered collection of key-value pairs\n\n\n2.3.0.2 : To create a dict, {key1:value1, key2:value2} initiate with {}, dict()\n\n\n2.3.0.3 : Keys must be unique and immutable data! (If tuples, it can only contain immutable data.)\n\ntype({})\n\ndict\n\n\n\n# two-value sequenced can convert to dict easy!\nlot=[(1,2),(3,4),(5,6)]\ndict(lot)\n\n{1: 2, 3: 4, 5: 6}\n\n\n\nlos=['a1','b2','c3']\ndict(los)\n\n{'a': '1', 'b': '2', 'c': '3'}\n\n\n\ndict(a=1,b=2,c=3)\n\n{'a': 1, 'b': 2, 'c': 3}\n\n\n\na=\"abc\"\ndict(a=1,b=2,c=3)\n\n{'a': 1, 'b': 2, 'c': 3}\n\n\n\n\n2.3.1 - Accesing values in dictionary\n\ndict1=dict(Name='Zara', Age=7, Class='First')\ndict1\n\n{'Name': 'Zara', 'Age': 7, 'Class': 'First'}\n\n\n\ndict1['Name']\n\n'Zara'\n\n\n\n\n2.3.2 - Updating dict\n\ndict1['Age']=8\ndict1['School']='ABC School'\ndict1\n\n{'Name': 'Zara', 'Age': 8, 'Class': 'First', 'School': 'ABC School'}\n\n\n\na='Town'\ndict1[a]='Downtown'\ndict1\n\n{'Name': 'Zara',\n 'Age': 8,\n 'Class': 'First',\n 'School': 'ABC School',\n 'Town': 'Downtown'}\n\n\n\n\n2.3.3 - Basic dict operations\n\n# Check only key value!!\nprint(\n    'Name' in dict1,\n    'Age' in dict1,\n    'Country' in dict1,\n    'Country' not in dict1,\n    'Zara' in dict1,\n    sep='\\n'\n)\n\nTrue\nTrue\nFalse\nTrue\nFalse\n\n\n\n\n2.3.4 - Bulit-in dict functions and methods\n\n# len, del x[key]\n# x.clear(), x.items(), x.keys(), x.values(), x.update(dict2)\nprint(dict1, len(dict1), sep='\\n')\n\n{'Name': 'Zara', 'Age': 8, 'Class': 'First', 'School': 'ABC School', 'Town': 'Downtown'}\n5\n\n\n\ndel dict1['Town']\ndict1\n\n{'Name': 'Zara', 'Age': 8, 'Class': 'First', 'School': 'ABC School'}\n\n\n\ndict1.clear()\ndict1\n\n{}\n\n\n\ndel dict1\ndict1\n\nNameError: name 'dict1' is not defined\n\n\n\ndict1=dict(a=1,b=2,c=3)\ndict1.keys()\n\ndict_keys(['a', 'b', 'c'])\n\n\n\nlist(dict1.keys())\n\n['a', 'b', 'c']\n\n\n\ndict1.values()\n\ndict_values([1, 2, 3])\n\n\n\nlist(dict1.values())\n\n[1, 2, 3]\n\n\n\ndict1.items()\n\ndict_items([('a', 1), ('b', 2), ('c', 3)])\n\n\n\nd2=dict(apples=1,oranges=2,pears=2)\nud=dict(pears=4,grapes=5,lemons=6)\nd2.update(ud)\nd2\n\n{'apples': 1, 'oranges': 2, 'pears': 4, 'grapes': 5, 'lemons': 6}\n\n\n\n\n2.3.5 - Coping Dictionary\n\ndict1\n\n{'a': 1, 'b': 2, 'c': 3}\n\n\n\ndict2=dict1.copy()\ndict2.clear()\ndict1\n\n{'a': 1, 'b': 2, 'c': 3}\n\n\n\ndict2=dict1\ndict2.clear()\ndict1\n\n{}",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "2. Containers.html#sets",
+    "href": "2. Containers.html#sets",
+    "title": "2  Containers",
+    "section": "2.4 Sets",
+    "text": "2.4 Sets\n\n2.4.0.1 : unordered collection with immutable and unique elements -&gt; Just dict.key !\n\n\n2.4.0.2 : initiate should be set(), {} is dict!!\n\n# elements of set should be immutable!\nlist1=[[1,2],[3,4]]\nset(list1)\n\nTypeError: unhashable type: 'list'\n\n\n\nlist2=[(1,2),(3,4)]\nset(list2)\n\n{(1, 2), (3, 4)}\n\n\n\n# if elements are not unique, automatically remove duplicates\nlist3=[1,2,2,3,4]\nset(list3)\n\n{1, 2, 3, 4}\n\n\n\ndict1=dict(a=1,b=2,c=3)\nset(dict1)\n\n{'a', 'b', 'c'}\n\n\n\nset(dict1.keys())\n\n{'a', 'b', 'c'}\n\n\n\nset(dict1.values())\n\n{1, 2, 3}\n\n\n\nset(dict1.items())\n\n{('a', 1), ('b', 2), ('c', 3)}\n\n\n\n\n2.4.1 - Accesing or Updating items in a Set",
+    "crumbs": [
+      "Python('24봄)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Containers</span>"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html",
+    "href": "Python Quiz1.html",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "",
+    "text": "1. Calculate the following\nimport math",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#calculate-the-following",
+    "href": "Python Quiz1.html#calculate-the-following",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "",
+    "text": "(1) 근의 공식 코드 작성\n\na=2.0;b=-1.0;c=-15.0;\nprint(\n    (-b+math.sqrt(b**2-4*a*c))/(2*a),\n    (-b-math.sqrt(b**2-4*a*c))/(2*a)\n)\n\n3.0 -2.5\n\n\n\n\n(2) 정규분포 확률밀도함수 코드 작성\n\nmean=2; std=math.sqrt(3); x=1;\nprint(\n    (1/(math.sqrt(2*math.pi)*std))*(math.e**(-((x-mean)**2)/(2*(std)**2)))\n)\n\n0.19496965572274114",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#why-the-error-occurs",
+    "href": "Python Quiz1.html#why-the-error-occurs",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "2. Why the error occurs?",
+    "text": "2. Why the error occurs?\n\n(1) Input error\n\na=input(\"enter a number:\")\n\na+3\n\ninput 값은 string타입으로 받게되므로, integer타입인 3과 더하기 연산을 하면 오류 발생, input 값을 받아 integer로 변환하여 integer간 연산을 하거나, 3을 string으로 변환하여 문자열간 연산을 하거나 해야함.\n\n\n(2) Range error\n\ntmp='My String'\ntmp[10]\n\ntmp는 공백포함 9자리 문자열이므로 index는 0~8까지만 할 수 있고 9부터는 범위 밖이므로 오류 발생.\n\n\n(3) method error\n\nex1='sample string'\nex2=ex1.upper\nex2[:4]\n\nmethod를 사용할 때, 뒤에 ()를 붙여야 작동함. 붙이지 않을경우 단순히 함수를 호출하는 것.",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#string",
+    "href": "Python Quiz1.html#string",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "3. String",
+    "text": "3. String\n\ngrade='ABCDF'\n\n\n(1) ‘+’를 이용해서 ’ABCDFFFDCBA’ 만들기\n\ngrade_str=grade+grade[-1]+grade[::-1]\ngrade_str\n\n'ABCDFFFDCBA'\n\n\n\n\n(2) A의 개수\n\ngrade_str.count('A')\n\n2\n\n\n\n\n(3) ’FFF’를 반환하는 4가지 다른 표현식\n\nprint(\n    grade_str[4:7],\n    grade_str[6:3:-1],\n    grade_str[-7:-4],\n    grade_str[-5:-8:-1]\n)\n\nFFF FFF FFF FFF\n\n\n\n\n(4) ’ABCDAAADCBA’로 수정하기\n\ngrade_str=grade_str.replace('F','A')\ngrade_str\n\n'ABCDAAADCBA'\n\n\n\n\n(5) 소문자로 모두 바꾸기\n\ngrade_str=grade_str.lower()\ngrade_str\n\n'abcdaaadcba'",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#why-the-error-occurs-1",
+    "href": "Python Quiz1.html#why-the-error-occurs-1",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "4. Why the error occurs?",
+    "text": "4. Why the error occurs?\n\n(1) slicing 반환 형식\n\nL=[[1,3,5,7,9],[2,4,6,8,10]]\nL[0][1:2]=30\n\nlist를 원소로 가지는 list에서 slicing하는 경우, output은 list로 나타나게 되는데, list에 integer 30을 할당하려고 하므로 오류가 발생함.\n30을 list로 만들어 할당하거나, slicing 대신 indexing을 통해 output을 integer로 만드는 방법을 사용해야 함.\n\n\n(2) 단일 원소 tuple 표현\n\nT=(10,20,30)\nT[:2]+(40)\n\ntuple에 더하기를 사용하는 경우인데, (40)은 tuple이 아니라 integer이므로 오류가 발생함. 단일 원소를 가지는 tuple을 표현하려면 (40,)으로 써야함.\n\n\n(3) 변수 할당 labeling vs. copy\n\nD=dict(A=10,B=20,C=30)\n# Copy method를 써야 복사본이 할당됨\n# D2=D.copy()\nD2=D\ndel D2['A']\nD['A']\n\nD2=D는 D2에 D.copy가 할당되는게 아니라 단순히 D에 D2라는 label만 새로 달아준것임. 따라서, D2에 ‘A’ key를 제거하면 D의 ‘A’ key도 사라지게 되므로 호출시 오류 발생.\n\n\n(4) Key값은 Immutable 해야함\n\nD3={['Park','Male']:30,}\n\nDictionary 타입의 key값은 immutable한 값만 허용되므로 mutable한 list를 사용하면 오류 발생. tuple을 쓰던지 해야함.\n\n\n(5) slicing&indexing for Dict\n\ndict_y={(1,):10,(2,):20,(3,):30,(4,):40}\ndict_y[(1,)]\n\nDictionary은 순서가 없음. slicing이 불가하며 indexing도 key값으로만 접근 가능.",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#list",
+    "href": "Python Quiz1.html#list",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "5. List",
+    "text": "5. List\n\ndays=['Mon','Tues','Wed','Thur','Fri',['Sat','Sun']]\n\n\n(1) indexing, slicing\n\nprint(\n    [days[5]],\n    days[-1::-2],\n    days[5][0],\n    sep='\\n'\n)\n\n[['Sat', 'Sun']]\n[['Sat', 'Sun'], 'Thur', 'Tues']\nSat\n\n\n\n\n(2) ‘+’ 활용\n\ndays2=[days[0:5]]+days[5][0:1]+days[5][1:]\ndays2\n\n[['Mon', 'Tues', 'Wed', 'Thur', 'Fri'], 'Sat', 'Sun']\n\n\n\n\n(3) remove method\n\ndays2[0].remove('Wed')\ndays2[0].remove('Fri')\ndays2\n\n[['Mon', 'Tues', 'Thur'], 'Sat', 'Sun']\n\n\n\n\n(4) insert method\n\ndays2[0].insert(2,'W')\ndays2\n\n[['Mon', 'Tues', 'W', 'Thur'], 'Sat', 'Sun']",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#list2",
+    "href": "Python Quiz1.html#list2",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "6. list2",
+    "text": "6. list2\n\nNums=[1,5,2,7,3,6,4]\n\n\n(1) append method\n\nNums.append(7)\nNums\n\n[1, 5, 2, 7, 3, 6, 4, 7]\n\n\n\n\n(2) sorting list\n\nNums.sort()\nNums.reverse()\nNums\n\n[7, 7, 6, 5, 4, 3, 2, 1]\n\n\n\n\n(3) slicing and replacing\n\nNums[::2]=['a','a','a','a']\nNums\n\n['a', 7, 'a', 5, 'a', 3, 'a', 1]",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "Python Quiz1.html#tuple",
+    "href": "Python Quiz1.html#tuple",
+    "title": "금융공학프로그래밍3, Quiz1",
+    "section": "7. tuple",
+    "text": "7. tuple\n\nprice=(180,130,110,160,140,170)\n\n\n(1) sorting tuple via translate to list\n\nprice_list=list(price)\nprice_list.sort()\nprice=tuple(price_list)\nprice\n\n(110, 130, 140, 160, 170, 180)\n\n\n\n\n(2) basic operation\n\n170 in price\n\nTrue\n\n\n\n\n(3) concatenating tuple\n\nprice=price[0:4]+(0,)*3+price[len(price)-1:]\nprice\n\n(110, 130, 140, 160, 0, 0, 0, 180)",
+    "crumbs": [
+      "Python('24봄)",
+      "금융공학프로그래밍3, Quiz1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html",
+    "href": "채권분석_hw1.html",
+    "title": "채권분석 과제1",
+    "section": "",
+    "text": "1. CB\n(Question)\n전환사채를 액면 F 만큼 매입할 때 전환가가 P라면, 전환주식수는 F/P 로 주어진다. 특정 전환사채를 액면 1억원 만큼 시장에서 매입하였다. 매입가는 1억 1천만원이다. 전환가격은 5만원으로 주어져 있다.\n해당 주식의 시장가 가 6만원일 때 전환하여 매도하였다면 투자자의 수익률은무엇인가? % 로 쓰되, 소수점 둘째 자리까지만 쓰시오.\n(Answer) 9.09%\n\\(전환주식수 = \\frac{1억원}{5만원} = 2,000주, 전환주식의 가치 = 2000\\times 60,000원=1억\\,2천만원\\)\n\\(투자원금=1억1천만원, 수익률=\\frac{1.2억}{1.1억}-1\\approx 9.09\\%\\)",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html#frn",
+    "href": "채권분석_hw1.html#frn",
+    "title": "채권분석 과제1",
+    "section": "2. FRN",
+    "text": "2. FRN\n(Question)\n정부가 2년 만기 변동금리채권을 발행한다고 가정하자. 기준금리는 만기 1년 현물 이자율 (spot rate 또는 1년 만기 무이표채 국채의 이자율) 이고, 해당 변동금리채권의 이자는 1년마다 계산하여 지급한다, 즉 1년 말에 지급하고 2년 만기시 원금과 함께 지급한다.\n현재 1년 spot rate 을 \\(r_{1,0}\\), 1년 후 spot rate 을 \\(r_{1,1}\\) 이라 하면 받게 되는 총 금액은 액면 100 당 \\(100r_{1,0}\\) (1년 시점) 과 \\(100(1 + r_{1,1})\\) (2년 시점)이다. 물론 \\(r_{1,1}\\) 은 현재 시점에서는 알 수 없는 확률변수이다.\n액면이 100 인 위의 2년 만기 변동금리채권의 현재 시점의 공정한 가격을 구하시오. 투자자는 시장에서 1년 만기 무이표채 국채를 현재 시점이던 1년 후 시점이던 자유롭게 거래할 수 있다.\n(Answer) 100\n상기 FRN은 1년 만기 무이표 국채의 이자율만큼의 쿠폰을 지급하고 있다. 이러한 액면 100인 FRN의 현금흐름은 현재 1년 만기 무이표국채에 100만큼 투자하고, 1년 뒤 만기시점에 다시 1년 만기 무이표국채에 투자함으로써 복제할 수 있다.\n즉, 해당 FRN은 무위험이자율 만큼의 연수익률을 보장하는 채권으로서 쿠폰=할인율이므로 공정가격은 par-value에 형성되어야 한다.\n\\[FRN\\; price=\\frac{100r_{1.0}}{1+r_{1,0}}+\\frac{100(1+r_{1,1})}{(1+r_{1,0})(1+r_{1,1})}=\\frac{100r_{1.0}}{1+r_{1,0}}+\\frac{100}{1+r_{1,0}}=100\\]",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html#ytm",
+    "href": "채권분석_hw1.html#ytm",
+    "title": "채권분석 과제1",
+    "section": "3. YTM",
+    "text": "3. YTM\n(Question)\n잔존만기가 3년이고 연 8% 이자를 6개월마다 제공하는 채권을 가정하자. A 투자자는 이 채권에 관심이 있고 거래하는 딜러는 100달러 액면당 92.5067 달러를 요구한다.\n이때 이 채권의 수익률은 얼마인가? % 로 표시하되 소수점은 반올림하여 정수로 나타내시오.\n(Answer) 11%\n채권의 수익률 \\(y\\)와 가격에 관한 산식은 다음과 같다.\n\\[92.5067=\\sum_{k=1}^6\\frac{8/2}{(1+y/2)^{k}}+\\frac{100}{(1+y/2)^{6}}\\]\n이를 엑셀 해찾기 기능으로 근사한 \\(y\\)값은 약 11%이다.",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html#continuous-compounding",
+    "href": "채권분석_hw1.html#continuous-compounding",
+    "title": "채권분석 과제1",
+    "section": "4. Continuous compounding",
+    "text": "4. Continuous compounding\n(Question) 10.71%\n위의 문제는 compounding frequency 를 연 1회로 가정하고 있다. 이것은 이산복리법이다. 이 frequency가 무한이 되는 연속복리법에 따르면 1달러 투자가 1년 후에 \\(e^y\\) 가 된다. 여기서 \\(y\\) 는 연속복리이자율이다.\n위 현금흐름 수익률을 연속복리이자율로 표현하시오. %로 나타내되 소수점 둘째 자리까지 쓰시오.\n(Answer)\n(3)의 현금흐름을 연속복리로 표현하면 다음과 같다.\n\\[92.5067=\\sum_{k=1}^6\\frac{8}{2}e^{-0.5ky}+100e^{-3y}\\]\n이를 엑셀 해찾기 기능으로 근사한 \\(y\\)값은 10.71%이다.",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "채권분석_hw1.html#arbitrage",
+    "href": "채권분석_hw1.html#arbitrage",
+    "title": "채권분석 과제1",
+    "section": "5. Arbitrage",
+    "text": "5. Arbitrage\n(Question)\n아래와 같은 세 개의 채권이 시장에서 거래되고 있다. 트레이더 B 는 이를 보고 곧 차익거래의 기회가 있음을 파악하고 전략적으로 거래하여 이익을 얻었다. 어떤 전략이 가능할지 본인의 생각을 기술하시오.\n\n채권 a: 만기 1년 무이표채, 액면 100 당 가격 90\n채권 b: 만기 2년 무이표채, 액면 100 당 가격 80\n채권 c: 만기 2년 이표채, coupon rate 10%, 매년 말 이자지급, 액면 100 당 가격 100\n\n(Answer) 채권a:채권b=1:11로 투자하여 채권c를 만들고 시장에 매도\n채권a와 채권b의 수익률은 zero-rates이며, 이를 \\(y_a,y_b\\)라고 할 때, 다음과 같이 쓸 수 있다. \\[\\frac{100}{1+y_a}=90,\\; \\frac{100}{(1+y_b)^2}=80 \\Rightarrow \\frac{1}{1+y_a}=0.9,\\;\\frac{1}{(1+y_b)^2}=0.8\\]\n이를 이용하여 채권c의 현금흐름을 평가하면, \\(\\frac{10}{1+y_a}+\\frac{110}{(1+y_b)^2}=9+88=97\\)\n즉, 액면 100인 채권c의 공정가격은 97이나, 현재 100에 거래되고 있으므로 3만큼 고평가되어있는 상태이다.\n따라서, 트레이더B가 채권a:채권b=1:11 비중으로 매수한다면 액면이 10인 채권c의 현금흐름을 정확하게 복제할 수 있고, 이 복제 채권c를 현재 시장가격인 액면가(par)에 팔 수 있다면 무위험 차익거래를 할 수 있다.\n예를 들어, 액면 1억원 채권a를 9,000만원에, 액면 11억원 채권b를 8.8억원에 구매한다면 액면 10억원 채권c와 현금흐름이 동일하므로, 이를 시장에 10억원에 팔 수 있다면 0.3억원의 무위험 차익거래 수익을 얻을 수 있게 된다.",
+    "crumbs": [
+      "채권분석('24봄)",
+      "채권분석 과제1"
+    ]
+  },
+  {
+    "objectID": "재무회계_hw2.html",
+    "href": "재무회계_hw2.html",
+    "title": "재무회계 과제2",
+    "section": "",
+    "text": "(1) Quetion 1-31",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 과제2"
+    ]
+  },
+  {
+    "objectID": "재무회계_hw2.html#quetion-1-31",
+    "href": "재무회계_hw2.html#quetion-1-31",
+    "title": "재무회계 과제2",
+    "section": "",
+    "text": "Chapter1-31\n\n\n\nAnswer\n\\((a)\\) \\(net\\; income=66387-62313=4,074million\\$\\)\n\\(net\\; cash\\;flow=65995-56411=9,584million\\$\\)\n\\((b)\\) If customer buy a product of Hewston and want to pay later, then Hewston get a certain amount of revenue but get no cash. Instead, Hewston get a asset, namely accrued revenue, that will be paid for cash.\nIn that case, a company can get revenues more than collected cash.\n\\((c)\\) If Hewston buy material from suppliers and vendors to produce its own products but want to pay after selling product, then there exists a certain amount of expense and occurs a liability, namely accrued expense, that will pay for cash.\nIn that case, a company’s expenses is bigger than its cash payments.",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 과제2"
+    ]
+  },
+  {
+    "objectID": "재무회계_hw2.html#quetion-1-34",
+    "href": "재무회계_hw2.html#quetion-1-34",
+    "title": "재무회계 과제2",
+    "section": "(2) Quetion 1-34",
+    "text": "(2) Quetion 1-34\n\n\n\nChapter1-34\n\n\n\nAnswer\nTotal Assets = Current Assets + Noncurrent Assets\nTotal Liabilities = Current Liabilities + Noncurrent Liabilities\nTotal Liabilities and Shareholders’ Equity = Total Liabilities + Shareholders’ Equity\nAnd, Total Assets = Total Liabilities and Shareholders’ Equity\nApply above,\n\n\n\n\n\n\n\n\nCategory\n2013\n2012\n\n\n\n\nTotal Assets\n7,199,847\n5,450,838\n\n\nCurrent Liabilities\n4,488,461\n3,527,504\n\n\nCurrent Assets\n4,705,366\n3,062,449\n\n\nTotal Liabilities and Shareholders’ Equity\n7,199,847\n5,450,838\n\n\nNoncurrent Liabilities\n1,098,123\n789,058\n\n\nShareholders’ Equity\n1,613,263\n1,134,276\n\n\nNoncurrent Assets\n2,494,481\n2,388,389\n\n\nTotal Liabilities\n5,586,594\n4,316,562",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 과제2"
+    ]
+  },
+  {
+    "objectID": "재무회계_hw2.html#quetion-2-10",
+    "href": "재무회계_hw2.html#quetion-2-10",
+    "title": "재무회계 과제2",
+    "section": "(3) Quetion 2-10",
+    "text": "(3) Quetion 2-10\n\n\n\nChapter2-10\n\n\n\nAnswer\n\\((a)\\)\n\n\n\n\n\n\n\n\n\n\n\nTransaction Number\nAssets\n=\nLiabilities\n+\nShareholder’s Equity\n\n\n\n\n(1)\n+$960m\n\n$0\n\n+$960m\n\n\n(2)\n+$1,500m\n\n+$1,500m\n\n$0\n\n\n(3)\n+$3,200m +$930m -$4,130m\n\n$0\n\n$0\n\n\n(4)\n+$860m\n\n+$860m\n\n$0\n\n\n(5)\n-$1,500m\n\n-$1,500m\n\n$0\n\n\n(6)\n-$430m +$430m -$430m\n\n-$430m -$430m\n\n+$430m\n\n\nTotal\n$1,390m\n=\n$0\n+\n$1,390m\n\n\n\n\\((b)\\)\n\n\n\nTransaction Num. (1)\nDebit\nCredit\n\n\n\n\nCash\n$960m\n\n\n\nCommon stock\n\n$1.7m\n\n\nAdditional capital\n\n$958.3m\n\n\n\n\n\n\nTransaction Num. (2)\nDebit\nCredit\n\n\n\n\nInventory\n$1,500m\n\n\n\nPayable\n\n$1,500m\n\n\n\n\n\n\nTransaction Num. (3)\nDebit\nCredit\n\n\n\n\nBuilding\n$3,200m\n\n\n\nLandscape\n$930m\n\n\n\nCash paid\n\n$4,130m\n\n\n\n\n\n\nTransaction Num. (4)\nDebit\nCredit\n\n\n\n\nFixture\n$860m\n\n\n\nPayable\n\n$860m\n\n\n\n\n\n\nTransaction Num. (5)\nDebit\nCredit\n\n\n\n\nPayable\n$1,500m\n\n\n\nCash\n\n$1,500m\n\n\n\n\n\n\nTransaction Num. (6)\nDebit\nCredit\n\n\n\n\nPayable\n$430m\n\n\n\nCash paid\n\n$430m\n\n\nCash\n$430m\n\n\n\nCommon stock\n\n$0.7m\n\n\nAdditional capital\n\n$429.3m\n\n\nPayable\n$430m\n\n\n\nCash paid\n\n$430m",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 과제2"
+    ]
+  },
+  {
+    "objectID": "재무회계_hw2.html#quetion-3-12",
+    "href": "재무회계_hw2.html#quetion-3-12",
+    "title": "재무회계 과제2",
+    "section": "(4) Quetion 3-12",
+    "text": "(4) Quetion 3-12\n\n\n\nChapter3-10\n\n\n\nAnswer\n\\((a)\\)\n\\[Accounts\\,Receivable\\,in\\,Jan.+288,951-289,623=38,020\\]\n\\[Accounts\\,Receivable\\,in\\,Jan.=\\$38,692\\]\n\\((b)\\) \\[2,635+10,442-Payments\\,to\\,Gov.=3,282\\]\n\\[Payments\\,to\\,Gov.=\\$9,795\\]\n\\((c)\\)\n\\[42,236+15,162-Payments\\,to\\,suppliers=43,152\\]\n\\[Payments\\,to\\,suppliers=\\$14,246\\]\n\\((d)\\)\n\\[88,453+21,169-8,106=Retained\\,Earnings\\,in\\,Dec.\\]\n\\[Retained\\,Earnings\\,in\\,Dec.=\\$101,516\\]",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 과제2"
+    ]
+  }
+]

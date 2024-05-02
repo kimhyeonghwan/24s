@@ -1,0 +1,63 @@
+# 경영통계분석 과제4 {.unnumbered}
+
+## Problem 1.
+
+Assume that the standard deviation of the heights of five-year-old boys is 3.5 inches. How many five-year-old need to be sampled if we want to be 90% sure that the population mean height is estimated within .5 inch?
+
+### Answer
+
+크기가 N인 표본을 임의추출하고, 충분히 크다고 가정하겠습니다.
+
+모표준편차가 3.5(inch)이므로, 크기가 N인 표본평균 $\bar{X}$은 중심극한정리(CLT)에 의해 정규분포 $N(\mu,\frac{3.5^2}{N})$을 따르게 될 것입니다.
+
+이를 이용하여 신뢰수준이 90%인 모평균의 신뢰구간을 양편으로 추정해보겠습니다.
+
+$$P(z_{0.95}=-z_{0.05}<\frac{\bar{X}-\mu}{3.5/\sqrt{N}}<z_{0.05})=0.9\Rightarrow P(\bar{X}-z_{0.05}\frac{3.5}{\sqrt{N}}<\mu<\bar{X}+z_{0.05}\frac{3.5}{\sqrt{N}})=0.9$$
+
+여기서, 모평균을 0.5inch 이내로 추정하는 것의 의미는, 표본오차가 0.5이내, 즉 $z_{0.05}\frac{3.5}{\sqrt{N}}<0.5$라는 뜻입니다.
+
+$z_{0.05}\approx 1.65$이므로, 이를 정리하면 $1.65\times 7<\sqrt{N}\Rightarrow 133.4025<N$
+
+즉, 표본의 수가 134명 이상이라면 90\% 신뢰구간을 0.5inch 오차 이내로 추정할 수 있습니다.
+
+또한, 이는 충분히 큰 표본이므로 앞서 CLT를 이용하는 것에 위배되지 않습니다.
+
+## Problem 2.
+
+An employee of an on-campus copy center wants to determine the mean number of copies before a cartridge needs to be replaced. She records the life length in thousands of copies for 43 cartridges and obtains $n=43,\bar{x}=8.12, s=1.78$ thousand copies Obtain a 90% confidence interval for the population mean, µ , number of copies in thousands before a cartridge should be replaced.
+
+### Answer
+
+먼저, 43개의 샘플이 충분히 크다고 생각하고 시작하겠습니다.
+
+CLT에 따라 표본평균 $\bar{X}\sim N(\mu,\sigma/\sqrt{43})$이며, 표본분산 $\frac{42\times s^2}{\sigma^2}\sim \chi^2(42)$입니다.
+
+이를 정리하면 $\frac{\bar{X}-\mu}{s/\sqrt{43}}\sim t(42)$가 되는데, 표본의 크기가 충분히 크므로 $t(n-1)\rightarrow N(0,1)$로 근사할 수 있습니다.
+
+이제, 이를 이용하여 모평균의 90% 신뢰구간을 추정해보겠습니다.
+
+$$P(\mu\in(\bar{X}\pm z_{0.05}\frac{s}{\sqrt{43}}))=0.90\Rightarrow P(\mu\in(7.672,8.568))=0.90$$
+
+즉, 신뢰구간은 (7.672, 8.568)입니다.
+
+
+## Problem 3.
+
+Data on the average weekly earnings were obtained from a survey of 50 nonsupervisory production workers in the mining industry. The sample mean and standard deviation were found to be $630 and $35, respectively.
+
+(a) Estimate the true mean weekly earnings and determine the 95% error margin.
+(b) Construct a 95% confidence interval for the true mean weekly earnings
+
+### Answer
+
+먼저, 표본평균 $\bar{X}$의 성질에 따라 $E(\bar{X})=\mu,\;\bar{X}\rightarrow^p \mu$이므로 $\bar{X}$는 모평균에 대한 불편(unbiased) 및 일치(consistent)추정량입니다.
+
+따라서 **모평균의 estimator로 표본평균을 선정하고, 모평균을 \$630으로 추정**하겠습니다.
+
+한편, 표본의 수가 50으로 충분히 크므로 앞서 이용한 논리를 그대로 준용하여 $\frac{\bar{X}-\mu}{s/\sqrt{50}}\sim t(49)\approx N(0,1)$라고 할 수 있습니다.
+
+따라서 **95%의 error margin은 $z_{0.05}\frac{s}{\sqrt{50}}=8.167$입니다.**
+
+마지막으로, 95%의 신뢰수준으로 추정한 모평균의 신뢰구간은 아래와 같습니다.
+
+$$P(\bar{X}-z_{0.025}\frac{s}{\sqrt{50}}<\mu<\bar{X}-z_{0.025}\frac{s}{\sqrt{50}})\Rightarrow Confidence\;interval\;is\;(620.299,639.702)$$

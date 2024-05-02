@@ -1,0 +1,133 @@
+# 재무회계 Ch1-3 과제 {.unnumbered}
+
+## (1) Quetion 1-31
+
+![Chapter1-31](images/재무회계_hw2_1-31.png)
+
+### ***Answer***
+
+**$(a)$** $net\; income=66387-62313=4,074million\$$
+
+$net\; cash\;flow=65995-56411=9,584million\$$
+
+**$(b)$** If customer buy a product of Hewston and want to pay later, then Hewston get a certain amount of revenue but get no cash. Instead, Hewston get a asset, namely accrued revenue, that will be paid for cash.
+
+In that case, a company can get revenues more than collected cash.
+
+**$(c)$** If Hewston buy material from suppliers and vendors to produce its own products but want to pay after selling product, then there exists a certain amount of expense and occurs a liability, namely accrued expense, that will pay for cash. 
+
+In that case, a company's expenses is bigger than its cash payments.
+
+## (2) Quetion 1-34
+
+![Chapter1-34](images/재무회계_hw2_1-34.png)
+
+### ***Answer***
+
+*Total Assets = Current Assets + Noncurrent Assets*
+
+*Total Liabilities = Current Liabilities + Noncurrent Liabilities*
+
+*Total Liabilities and Shareholders' Equity = Total Liabilities + Shareholders' Equity*
+
+And, *Total Assets = Total Liabilities and Shareholders' Equity*
+
+Apply above,
+
+|   Category                               |           2013|          2012|
+|------------------------------------------|--------------:|-------------:|
+|Total Assets                              |  **7,199,847**|     5,450,838|
+|Current Liabilities                       |      4,488,461|     3,527,504|
+|Current Assets                            |  **4,705,366**|     3,062,449|
+|Total Liabilities and Shareholders' Equity|      7,199,847| **5,450,838**|
+|Noncurrent Liabilities                    |      1,098,123|       789,058|
+|Shareholders' Equity                      |  **1,613,263**|     1,134,276|
+|Noncurrent Assets                         |      2,494,481|     2,388,389|
+|Total Liabilities                         |  **5,586,594**| **4,316,562**|
+
+## (3) Quetion 2-10
+
+![Chapter2-10](images/재무회계_hw2_2-10.png)
+
+### ***Answer***
+
+**$(a)$**
+
+| Transaction Number |   Assets | = |Liabilities| + |Shareholder's Equity|
+|:------------------:|---------:|---|----------:|---|-------------------:|
+| (1)                |+\$960m|   |\$0|   |+\$960m|
+| (2)                |+\$1,500m |   |+\$1,500m|   |\$0|
+| (3)                |+\$3,200m  +\$930m  -\$4,130m|   |\$0|   |\$0|
+| (4)                |+\$860m |   |+\$860m |   |\$0|
+| (5)                |-\$1,500m |   |-\$1,500m |   |\$0|
+| (6)                |-\$430m   +\$430m   -\$430m |   |-\$430m   -\$430m |   |+\$430m |
+| **Total**          |**\$1,390m**| = |**\$0**| + |**\$1,390m**|
+
+**$(b)$**
+
+| Transaction Num. (1) | Debit | Credit |
+|----------------------|------:|-------:|
+|Cash|\$960m||
+|Common stock||\$1.7m|
+|Additional capital||\$958.3m|
+
+| Transaction Num. (2) | Debit | Credit |
+|----------------------|------:|-------:|
+|Inventory|\$1,500m||
+|Payable||\$1,500m|
+
+| Transaction Num. (3) | Debit | Credit |
+|----------------------|------:|-------:|
+|Building|\$3,200m||
+|Landscape|\$930m||
+|Cash paid||\$4,130m|
+
+| Transaction Num. (4) | Debit | Credit |
+|----------------------|------:|-------:|
+|Fixture|\$860m||
+|Payable||\$860m|
+
+| Transaction Num. (5) | Debit | Credit |
+|----------------------|------:|-------:|
+|Payable|\$1,500m||
+|Cash||\$1,500m|
+
+| Transaction Num. (6) | Debit | Credit |
+|----------------------|------:|-------:|
+|Payable|\$430m||
+|Cash paid||\$430m|
+|Cash|\$430m||
+|Common stock||\$0.7m|
+|Additional capital||\$429.3m|
+|Payable|\$430m||
+|Cash paid||\$430m||
+
+
+## (4) Quetion 3-12
+
+![Chapter3-10](images/재무회계_hw2_3-12.png)
+
+### ***Answer***
+
+**$(a)$**
+
+$$Accounts\,Receivable\,in\,Jan.+288,951-289,623=38,020$$
+
+$$Accounts\,Receivable\,in\,Jan.=\$38,692$$
+
+**$(b)$**
+$$2,635+10,442-Payments\,to\,Gov.=3,282$$
+
+$$Payments\,to\,Gov.=\$9,795$$
+
+**$(c)$**
+
+$$42,236+15,162-Payments\,to\,suppliers=43,152$$
+
+$$Payments\,to\,suppliers=\$14,246$$
+
+**$(d)$**
+
+$$88,453+21,169-8,106=Retained\,Earnings\,in\,Dec.$$
+
+$$Retained\,Earnings\,in\,Dec.=\$101,516$$

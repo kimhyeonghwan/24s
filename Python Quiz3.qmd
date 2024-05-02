@@ -1,0 +1,98 @@
+# 금융공학프로그래밍3, Quiz3 {.unnumbered}
+
+## 1. Calculate the following by using 'while' loop.
+
+$$\sum_{i\geq 1, i^4<1000}^{10}i^4$$
+
+```{python}
+i=1
+sum_i4=0
+while i>=1 and i**4<1000 and i<=10:
+    sum_i4+=i**4
+    i+=1
+sum_i4
+```
+
+## 2. List comprehension
+
+```{python}
+x=[1,2,3,4]
+y=[5,6,7,8]
+```
+
+### (1) Cartesian product
+
+```{python}
+z=list([i,j] for i in x for j in y)
+z
+```
+
+### (2) Cartesian product with condition
+
+```{python}
+z=list([i,j] for i in x for j in y if i+j>=8)
+z
+```
+
+## 3. Function
+
+```{python}
+def grading (score):
+    if type(score)!=int and type(score)!=float:
+        print("Score must be integer or float type.")
+    elif score>100 or score<0:
+        print("Score must be a number between 0 and 100!!")
+    elif score>90:
+        print("Grade is A !")
+    elif score>80:
+        print("Grade is B !")
+    elif score>70:
+        print("Grade is C !")
+    elif score>60:
+        print("Grade is D !")
+    else:
+        print("Grade is F !")
+```
+
+```{python}
+grading(score=75)
+```
+
+```{python}
+grading(score=-5)
+```
+
+## 4. Explain why the error occurs
+
+(1) positional argument와 keyword argument를 혼용하는 경우, positional argument가 먼저 와야합니다. keyword argument를 먼저 사용하는 경우 오류가 발생합니다.
+
+```{python}
+#| eval: false
+def infoprint( name, age, gender):
+    print(name, 'is', age, 'years old', gender, '.')
+
+infoprint (name='Kim', 30, 'male')
+```
+
+(2) 'Kim'은 positional argument로 name에 할당, 'male'은 keyword로 gender에 할당되고 age는 할당값이 없어서 오류가 발생하였습니다. 함수 정의시 age는 default값을 정의하지 않았으므로 반드시 값을 할당해야 합니다.
+
+```{python}
+#| eval: false
+def infoprint( name, age, gender):
+    print(name, 'is', age, 'years old', gender, '.')
+
+infoprint ( 'Kim', gender='male' )
+```
+
+(3) 함수 myfactorial 정의시 변수 fac을 사용하는데, 해당 변수는 함수 안에서 정의된바 없으므로 함수 밖에서 정의된 global variable인 fac을 가져와서 사용하게 됩니다. 그러나, 이런 경우 global variable의 읽기만 가능하고 쓰기는 불가능하므로 for문 내에 fac을 수정하는 것은 허용되지 않습니다.
+
+```{python}
+#| eval: false
+fac = 1
+def myfactorial(n):
+    for i in range(n):
+         fac *= i+1
+    return fac
+
+myfactorial(n=5)
+```

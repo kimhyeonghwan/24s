@@ -1,0 +1,61 @@
+project:
+  type: book
+
+execute:
+  freeze: auto
+
+book:
+  title: "KAIST MFE, 2024 Spring"
+  author: "Kim Hyeonghwan"
+  date: "2024. 4. 29."
+  cover-image: cover.png
+  chapters:
+    - index.qmd
+
+    - part : Python('24봄)
+      chapters: 
+        - 1. Python Basics.ipynb
+        - 2. Containers.ipynb
+        - 3. Control Flows.ipynb
+        - 4. Functions.ipynb
+        - 5. Numpy.ipynb
+        - 6. Pandas.ipynb
+        - Python Quiz1.qmd
+        - Python Quiz2.qmd
+        - Python Quiz3.qmd
+        - Python Quiz4.qmd
+        - Python midterm_quarto.qmd
+    - part : 채권분석('24봄)
+      chapters:
+        - 채권분석_hw1.qmd
+        - 채권분석_hw2.qmd
+        - 채권분석_hw3.qmd
+    - part : 투자분석('24봄)
+      chapters: 
+        - investment_hw1.qmd
+        - investment_hw2.qmd
+    - part : 재무회계('24봄)
+      chapters:
+        - 재무회계_ch1-3.qmd
+        - 재무회계_ch4.qmd
+        - 재무회계_ch5.qmd
+        - 재무회계_ch6.qmd
+        - 재무회계_ch8.qmd
+        - 재무회계_ch9.qmd
+    - part : 경영통계분석('24봄)
+      chapters:
+        - 경영통계분석_hw1.qmd
+        - 경영통계분석_hw2.qmd 
+        - 경영통계분석_hw3.qmd
+        - 경영통계분석_hw4.qmd
+  downloads: pdf
+
+format:
+  html:
+    theme: cosmo
+    linestretch : 2
+  pdf:
+    documentclass: scrreprt
+    include-in-header: header.tex
+
+

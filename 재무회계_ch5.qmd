@@ -1,0 +1,35 @@
+# 재무회계 Ch5 과제 {.unnumbered}
+
+## (1) Question 5-12
+
+![Chapter5-12](images/재무회계_5-12.png)
+
+(a) NOT recognized. It is before a completion of the earning process.
+(b) NOT recognized. It is before a completion of the earning process.
+(c) **Revenue recoginzed.** There is a completion of the earning process and receipt.(account receivable)
+(d) NOT recognized. It can be an expense.
+(e) NOT recognized. It is an investment, which is an expense.
+(f) NOT recognized. There is no completion of the earning process.
+
+## (2) Question 5-18
+
+![Chapter5-18](images/재무회계_5-18.png)
+
+The following table is the re-organized income statement.
+
+|Category|Year 13|Year 12|Year 11|
+|:----------|------:|------:|------:|
+|&nbsp;(+) Sales of Products|24,816|**19,503**|17,622|
+|&nbsp;(-) Cost of Products Sold|17,292|13,967|13,205|
+|&nbsp;(+) Sales of Service|4,367|3,778|3,342|
+|&nbsp;(-) Cost of Services Sold|**2,923**|2,570|2,305|
+|(=) **Gross Profit**|8,968|6,744|**5,454**|
+|&nbsp;(-) Selling and Administrative Expenses|4,975|**4,326**|3,780|
+|&nbsp;(+) Other Operating Income|**(30)**|139|37|
+|(=) **Earning Before Interest and Taxes**|4,023|2,557|**1,711**|
+|&nbsp;(+) Other Non-operating Income|**342**|(321)|(258)|
+|&nbsp;(+) Interest and Dividend Income|273|147|**153**|
+|&nbsp;(-) Interest and Other Financial Expense|286|**307**|407|
+|(=) **Income Before Taxes**|**4,352**|2,076|1,199|
+|&nbsp;(-) Income Tax Expense|595|686|464|
+|(=) **Net Income**|3,757|1,390|**735**|

@@ -1,0 +1,53 @@
+# 재무회계 Ch4 과제 {.unnumbered}
+
+## (1) Quetion 4-9
+
+![Chapter4-9](images/재무회계_4-9.png)
+
+First, the criteria in the definition of a liablilty is following :
+
+ (1) Probably, future sacrifices of economic benefits.
+ (2) Arising from present obligation to transfer assets of privide services.
+ (3) As a result of a past transaction.
+
+In this perspective,
+
+**(a) is a liability.** accrued interest payable.
+
+**(b) is a liability.**(Advances from customers) It is equal to amount of received cash.
+
+**(c) is not a liability.** criteria (3) is not satisfied.
+
+**(d) is a liability.**(Provisions) It can be valued by some ratio of original product's price.
+
+**(e) can be liability or not.** It depends on a probability of lawsuit.
+
+If a probability of loss lawsuit is more than certain level,(In GAAP 80%, IFRS 50%) then it will be a liability. In that case, it can be valued by expected loss that should pay.
+
+**(f) is not a liability.** criteria (3) is not satisfied.
+
+**(g) is a liability.** It can be valued by some ratio of flight ticket's regular price.
+
+## (2) Quetion 4-15
+
+![Chapter4-15](images/재무회계_4-15.png)
+
+*Total Assets = Current Assets + Noncurrent Assets*
+
+*Total Liabilities = Current Liabilities + Noncurrent Liabilities*
+
+*Total Liabilities and Shareholders' Equity = Total Liabilities + Shareholders' Equity*
+
+And, *Total Assets = Total Liabilities and Shareholders' Equity*
+
+Apply above,
+
+|   Category                          |       Year7|      Year6|      Year5|      Year4|
+|-------------------------------------|-----------:|----------:|----------:|----------:|
+|Noncurrent Assets                    |**19,179.7**|18,717.4|11,289.1|9,713.9|
+|Shareholders' Equity                 |21,537.3|16,666.9|9,002.0|**11,300.6**|
+|Total Assets                         |**30,178.9**|28,224.7|**18,491.3**|**16,596.5**|
+|Current Liabilities                  |**2,919.9**|4,351.3|1,494.2|1,755.2|
+|Current Assets                       |10,999.2|**9,507.3**|**7,202.2**|6,882.6|
+|Noncurrent Liabilities               |5,721.7|**7,206.5**|**7,995.1**|3,540.7|
+|Total Liabilities and Equity         |30,178.9|**28,224.7**|18,491.3|**16,596.5**|

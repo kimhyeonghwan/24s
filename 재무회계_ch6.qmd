@@ -1,0 +1,72 @@
+# 재무회계 Ch6 과제 {.unnumbered}
+
+![](images/재무회계_6-14.png)
+
+***Answer***
+
+Because a company makes all sales on account, **total sales is sum of cash collections and account receivable.**
+
+There are EUR33,551m cash collections and EUR138m increase in account receivavle, so 33551+138=**EUR33,689m will be a total sales** of company during the year.
+
+![](images/재무회계_6-16.png)
+
+***Answer***
+
+Cost will be **cash payments + increase payable - increase inventories**.
+
+646.9+5.9-5.7=**USD647.1m is cost of goods sold** of company for the year.
+
+![](images/재무회계_6-26.png)
+
+***Answer***
+
+$$Incloud\;Airlines$$
+$$Statement\;of\;Cash\;Flow\;for\;the\;recent\;year(thousands\$)$$
+
+|Category|Name|Amount|
+|:------:|:------|--------:|
+|Cashflow from operations||**\$835,860**|
+|+|Net income|474378|
+|+|Increase in accumulated depreciation|264088|
+|+|Decrease in account receivable|15351|
+|-|Increase in other current liabilities|114596|
+|-|Increase in inventories|15117|
+|-|Increase in Prepayments|16776|
+|-|Decrease in account payable|660|
+|Cashflow from investing||**(\$1,143,355)**|
+|-|Increase in property, plant, equipment|1134644|
+|-|Increasing in other non-operating assets|8711|
+|Cashflow from financing||**\$347,803**|
+|+|Increasing in long-term debt|244285|
+|+|Increasing in common stock|96991|
+|+|Increasing in non-operating liabilities|140026|
+|-|Payment of dividends|133499|
+|**Net Change in Cash**||**\$40,308**|
+|Cash, beginning of year||**\$378,511**|
+|Cash, end of year||**\$418,819**|
+
+![](images/재무회계_6-29.png)
+
+***Answer***
+
+$$Market\;Star$$
+$$Statement\;of\;Cash\;Flow\;for\;2011\sim 2013(millions\$)$$
+
+|Category|Name|2013|2012|2011|
+|:------:|:------|--------:|--------:|--------:|
+|Cashflow from operations||**\$685m**|**\$972m**|**\$506m**|
+|+|Net income|499|363|279|
+|+|Increase in depreciation and amortizaion|226|196|279|
+|+|Increase in account payable|277|786|330|
+|-|Increase in account receivable|514|648|238|
+|-|Increase in other current liabilities|420|278|70|
+|-|Increase in inventories|98|13|35|
+|-|Increase in Prepayments|125|(10)|64|
+|Cashflow from investing||**(\$1,035)**|**(\$773)**|**(\$584)**|
+|-|Increase in property, plant, equipment|150|130|115|
+|-|Increase in investments in securities|885|643|469|
+|Cashflow from financing||**\$290**|**(\$273)**|**\$162**|
+|+|Increasing in long-term debt|599|83|208|
+|+|Increasing in common stock|(187)|(252)|42|
+|-|Payment of dividends|122|104|88||
+|**Net Change in Cash**||**(\$60)**|**(\$74)**|**\$84**|

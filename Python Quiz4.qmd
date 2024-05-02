@@ -1,0 +1,72 @@
+# 금융공학프로그래밍3, Quiz4 {.unnumbered}
+
+## 1. Find out which one of following is wrong?
+
+    game/
+    __init__.py
+    sound/
+        __init__.py
+        echo.py
+        wav.py
+    graphic/
+        __init__.py
+        screen.py
+        render.py
+    play/
+        __init__.py
+        run.py
+        test.py
+
+① >>> from game.sound import echo 
+
+    >>> echo.echo_test()
+
+**Right**
+
+② >>> from game.sound.echo import echo_test
+
+    >>> echo_test()
+
+**Right** 
+
+③ >>> import game
+
+    >>> game.sound.echo.echo_test()
+
+**FALSE!!** : \_\_init\_\_.py가 empty이므로 game package import시 하단의 하부구조가 자동으로 import 되지 않습니다. 따라서, eco.py 내의 함수 eco_test()를 호출하기 위해서는 eco.py 또는 eco_test()를 직접 호출하여야 합니다.
+
+④ >>> import game.sound.echo
+
+    >>> game.sound.echo.echo_test()
+
+**Right**
+
+## 2.
+
+np.arrange[5]를 이용하여 array구조를 만들면, dtype이 integer인 array가 생성됩니다.
+
+이중 하나의 object를 float타입으로 수정하더라도, dtype은 integer로 고정되므로 입력한 float타입의 데이터가 integer로 수정되어 할당됩니다.
+
+## 3. 
+
+indexing방식으로 호출하였으므로 1-dimensional이 됩니다. 2-dimensional을 유지하기 위해서는 slicing방식으로 호출하여야 합니다.
+
+(ex: rmat[0:1])
+
+## 4.
+
+np.hstack 함수는 array를 병합하는 함수로, np.concatenate에 axis=1 옵션과 동일한 함수입니다.
+
+병합하는 두 array간 dimension이 동일해야하는데, a=2, b=1이므로 오류가 발생합니다.
+
+다른 dimension간 병합을 수행하려면 np.colmun_stack함수를 사용하여야 합니다.
+
+## 5. 
+
+a는 2-dim. 3X5 array, b는 0-dim. 3 array입니다.
+
+b[np.newaxis,:]는 0-dim인 b에 x축을 추가하여 1X3 array로 만들어주게 됩니다.
+
+3X5와 1X3간에 덧셈이 성립하지 않으므로 오류가 발생합니다.
+
+한편, b[:,np.newaxis]를 사용하면 3X1 array가 되므로, 덧셈이 가능합니다.

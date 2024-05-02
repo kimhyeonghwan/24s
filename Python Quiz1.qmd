@@ -1,0 +1,256 @@
+# 금융공학프로그래밍3, Quiz1 {.unnumbered}
+
+## 1. Calculate the following
+
+```{python}
+import math
+```
+
+### (1) 근의 공식 코드 작성
+
+```{python}
+a=2.0;b=-1.0;c=-15.0;
+print(
+    (-b+math.sqrt(b**2-4*a*c))/(2*a),
+    (-b-math.sqrt(b**2-4*a*c))/(2*a)
+)
+```
+
+### (2) 정규분포 확률밀도함수 코드 작성
+
+```{python}
+mean=2; std=math.sqrt(3); x=1;
+print(
+    (1/(math.sqrt(2*math.pi)*std))*(math.e**(-((x-mean)**2)/(2*(std)**2)))
+)
+```
+
+## 2. Why the error occurs?
+
+### (1) Input error
+
+```{python}
+#| eval: false
+a=input("enter a number:")
+
+a+3
+```
+
+input 값은 string타입으로 받게되므로, integer타입인 3과 더하기 연산을 하면 오류 발생, input 값을 받아 integer로 변환하여 integer간 연산을 하거나, 3을 string으로 변환하여 문자열간 연산을 하거나 해야함.
+
+### (2) Range error
+
+```{python}
+#| eval: false
+tmp='My String'
+tmp[10]
+```
+
+tmp는 공백포함 9자리 문자열이므로 index는 0\~8까지만 할 수 있고 9부터는 범위 밖이므로 오류 발생.
+
+### (3) method error
+
+```{python}
+#| eval: false
+ex1='sample string'
+ex2=ex1.upper
+ex2[:4]
+```
+
+method를 사용할 때, 뒤에 ()를 붙여야 작동함. 붙이지 않을경우 단순히 함수를 호출하는 것.
+
+## 3. String
+
+```{python}
+grade='ABCDF'
+```
+
+### (1) '+'를 이용해서 'ABCDFFFDCBA' 만들기
+
+```{python}
+grade_str=grade+grade[-1]+grade[::-1]
+grade_str
+```
+
+### (2) A의 개수
+
+```{python}
+grade_str.count('A')
+```
+
+### (3) 'FFF'를 반환하는 4가지 다른 표현식
+
+```{python}
+print(
+    grade_str[4:7],
+    grade_str[6:3:-1],
+    grade_str[-7:-4],
+    grade_str[-5:-8:-1]
+)
+```
+
+### (4) 'ABCDAAADCBA'로 수정하기
+
+```{python}
+grade_str=grade_str.replace('F','A')
+grade_str
+```
+
+### (5) 소문자로 모두 바꾸기
+
+```{python}
+grade_str=grade_str.lower()
+grade_str
+```
+
+## 4. Why the error occurs?
+
+### (1) slicing 반환 형식
+
+```{python}
+#| eval: false
+L=[[1,3,5,7,9],[2,4,6,8,10]]
+L[0][1:2]=30
+```
+
+list를 원소로 가지는 list에서 slicing하는 경우, output은 list로 나타나게 되는데, list에 integer 30을 할당하려고 하므로 오류가 발생함.
+
+30을 list로 만들어 할당하거나, slicing 대신 indexing을 통해 output을 integer로 만드는 방법을 사용해야 함.
+
+### (2) 단일 원소 tuple 표현
+
+```{python}
+#| eval: false
+T=(10,20,30)
+T[:2]+(40)
+```
+
+tuple에 더하기를 사용하는 경우인데, (40)은 tuple이 아니라 integer이므로 오류가 발생함. 단일 원소를 가지는 tuple을 표현하려면 (40,)으로 써야함.
+
+### (3) 변수 할당 labeling vs. copy
+
+```{python}
+#| eval: false
+D=dict(A=10,B=20,C=30)
+# Copy method를 써야 복사본이 할당됨
+# D2=D.copy()
+D2=D
+del D2['A']
+D['A']
+```
+
+D2=D는 D2에 D.copy가 할당되는게 아니라 단순히 D에 D2라는 label만 새로 달아준것임. 따라서, D2에 'A' key를 제거하면 D의 'A' key도 사라지게 되므로 호출시 오류 발생.
+
+### (4) Key값은 Immutable 해야함
+
+```{python}
+#| eval: false
+D3={['Park','Male']:30,}
+```
+
+Dictionary 타입의 key값은 immutable한 값만 허용되므로 mutable한 list를 사용하면 오류 발생. tuple을 쓰던지 해야함.
+
+### (5) slicing&indexing for Dict
+
+```{python}
+#| eval: false
+dict_y={(1,):10,(2,):20,(3,):30,(4,):40}
+dict_y[(1,)]
+```
+
+Dictionary은 순서가 없음. slicing이 불가하며 indexing도 key값으로만 접근 가능.
+
+## 5. List
+
+```{python}
+days=['Mon','Tues','Wed','Thur','Fri',['Sat','Sun']]
+```
+
+### (1) indexing, slicing
+
+```{python}
+print(
+    [days[5]],
+    days[-1::-2],
+    days[5][0],
+    sep='\n'
+)
+```
+
+### (2) '+' 활용
+
+```{python}
+days2=[days[0:5]]+days[5][0:1]+days[5][1:]
+days2
+```
+
+### (3) remove method
+
+```{python}
+days2[0].remove('Wed')
+days2[0].remove('Fri')
+days2
+```
+
+### (4) insert method
+
+```{python}
+days2[0].insert(2,'W')
+days2
+```
+
+## 6. list2
+
+```{python}
+Nums=[1,5,2,7,3,6,4]
+```
+
+### (1) append method
+
+```{python}
+Nums.append(7)
+Nums
+```
+
+### (2) sorting list
+
+```{python}
+Nums.sort()
+Nums.reverse()
+Nums
+```
+
+### (3) slicing and replacing
+
+```{python}
+Nums[::2]=['a','a','a','a']
+Nums
+```
+
+## 7. tuple
+
+```{python}
+price=(180,130,110,160,140,170)
+```
+
+### (1) sorting tuple via translate to list
+
+```{python}
+price_list=list(price)
+price_list.sort()
+price=tuple(price_list)
+price
+```
+
+### (2) basic operation
+
+```{python}
+170 in price
+```
+
+### (3) concatenating tuple
+
+```{python}
+price=price[0:4]+(0,)*3+price[len(price)-1:]
+price
+```

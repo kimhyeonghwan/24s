@@ -1,0 +1,89 @@
+# 금융공학프로그래밍3, Quiz2 {.unnumbered}
+
+## 1. Dictionary
+
+```{python}
+icecream=dict(cheery=[12,100],cookies=[18,200],greentea=[15,140],mango=[10,200])
+```
+
+### (1)
+Change the price of 'cookies' as 13
+```{python}
+icecream['cookies'][0]=13
+icecream['cookies']
+```
+
+### (2)
+Add the following information to the dictionary 'icecream'.
+- 'Strawberry' is priced at 12 and inventory is 170.
+- ‘pistachio’ is priced at 15 and inventory is 100.
+
+```{python}
+update_dict=dict(Strawberry=[12,170],pistachio=[15,100])
+icecream.update(update_dict)
+icecream
+```
+
+## 2. Dictionary2
+
+```{python}
+d1=dict(key1=1,key2=3,key3=2,key10=7)
+d2=dict(key3=1,key2=2,key7=2,key5=4,key1=7,key9=8,key0=7)
+```
+
+### (1)
+Select the largest two values of the dictionary 'd2'.
+
+```{python}
+d2_list=list(d2.values())
+d2_list.sort()
+d2_list.reverse()
+d2_list[0:2]
+```
+
+### (2)
+Create a set of values which are the unique values of ‘d2’. 
+
+```{python}
+set(d2.values())
+```
+
+### (3)
+Write code that returns True if keys of ‘d1’ are all contained in the key of ‘d2’ and False otherwise.
+
+```{python}
+set(d1.keys()) <= set(d2.keys())
+```
+
+### (4)
+Create a set of values which are common in both ‘d1’ and ‘d2’
+
+```{python}
+set(d1.values())&set(d2.values())
+```
+
+### 3. if statement
+For any arbitrary string object A, if the first character of A is ‘#’, we want it to be replaced with ‘\*’. Otherwise, we want to add ‘\*’ as the first character of A. Write appropriate code using an if statement for this
+
+```{python}
+A="#abcde"
+
+if A[0]=="#":
+    A="*"+A[1:]
+else:
+    A="*"+A
+
+A
+```
+
+### 4. for loop
+Calculate the following by using ‘for’ loop : $\sum_{i=1}^{10} i^4$
+
+```{python}
+result=int()
+
+for i in range(1,11):
+    result+=i**4
+
+result
+```

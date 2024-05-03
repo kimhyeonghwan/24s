@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -358,10 +358,65 @@ ul.task-list li input[type="checkbox"] {
 
 <p><img src="images/재무회계8-16.png" class="img-fluid"></p>
 <p><strong><em>Answer</em></strong></p>
-<p>debit : cash EUR8.4</p>
-<p>credit : g</p>
+<p><strong><em>(a)</em></strong></p>
+<p>debit : cash EUR 8.4</p>
+<p>credit : revenue EUR 8.4</p>
+<p><strong><em>(b)</em></strong></p>
+<p>debit : cash EUR 48.4</p>
+<p>credit : revenue EUR 8.4 / advances from customer EUR 40</p>
+<p><strong><em>(c)</em></strong></p>
+<p>debit : advances from customer EUR 8.4</p>
+<p>credit : revenue EUR 8.4</p>
 <p><img src="images/재무회계8-26.png" class="img-fluid"></p>
+<p><strong><em>(a)</em></strong></p>
+<p>debit : account receivable USD 240,000</p>
+<p>credit : sales revenue UST 240,000</p>
+<p><strong><em>(b)</em></strong></p>
+<p>debit : bad debt expense USD 4,800</p>
+<p>credit : allowance for uncollectible accounts USD 4,800</p>
+<p><strong><em>(c)</em></strong></p>
+<p>debit : allowance for uncollectible accounts USD 4,400</p>
+<p>credit : account receivable USD 4,400</p>
+<p><strong><em>(d)</em></strong></p>
+<p>debit : cash USD 231,200</p>
+<p>credit : account receivavle USD 231,200</p>
 <p><img src="images/재무회계8-34.png" class="img-fluid"></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">category</th>
+<th style="text-align: right;">2014</th>
+<th style="text-align: right;">2013</th>
+<th style="text-align: right;">2012</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Cost</td>
+<td style="text-align: right;">600000</td>
+<td style="text-align: right;">3000000</td>
+<td style="text-align: right;">1200000</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Ratio</td>
+<td style="text-align: right;">12.5%</td>
+<td style="text-align: right;">62.5%</td>
+<td style="text-align: right;">25.0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Revenue</td>
+<td style="text-align: right;">750000</td>
+<td style="text-align: right;">3750000</td>
+<td style="text-align: right;">1500000</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Income</td>
+<td style="text-align: right;">150000</td>
+<td style="text-align: right;">750000</td>
+<td style="text-align: right;">300000</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -445,24 +500,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -497,11 +534,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

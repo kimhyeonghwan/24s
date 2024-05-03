@@ -4,10 +4,56 @@
 
 ***Answer***
 
-debit : cash EUR8.4
+***(a)***
 
-credit : g
+debit : cash EUR 8.4
+
+credit : revenue EUR 8.4
+
+***(b)***
+
+debit : cash EUR 48.4
+
+credit : revenue EUR 8.4 / advances from customer EUR 40
+
+***(c)***
+
+debit : advances from customer EUR 8.4
+
+credit : revenue EUR 8.4
 
 ![](images/재무회계8-26.png)
 
+***(a)***
+
+debit : account receivable USD 240,000
+
+credit : sales revenue UST 240,000
+
+***(b)***
+
+debit : bad debt expense USD 4,800
+
+credit : allowance for uncollectible accounts USD 4,800
+
+***(c)***
+
+debit : allowance for uncollectible accounts USD 4,400
+
+credit : account receivable USD 4,400
+
+***(d)***
+
+debit : cash USD 231,200
+
+credit : account receivavle USD 231,200
+
+
 ![](images/재무회계8-34.png)
+
+|category|2014|2013|2012|
+|:------:|------:|------:|------:|
+|Cost|600000|3000000|1200000|
+|Ratio|12.5%|62.5%|25.0%|
+|Revenue|750000|3750000|1500000|
+|Income|150000|750000|300000|

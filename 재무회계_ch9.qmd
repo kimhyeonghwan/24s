@@ -2,6 +2,35 @@
 
 ![](images/재무회계9-17.png)
 
+***Answer***
+
+|Category|Inventory|Income|
+|:------:|--------:|-----:|
+|Querter 1|USD 20m|-|
+|Querter 2|USD 16.5m|-USD 3.5m|
+|Querter 3|USD 16.5m|-|
+|Querter 4|-|+USD 11m|
+
 ![](images/재무회계9-21.png)
 
+|Cost of sold|Amount(m\$)|
+|:----------:|----------:|
+|Total manufacturing cost|2752.0|
+|Work in process inventory|100.8-119.1=(18.3)|
+|Finished goods inventory|286.2-322.3=(36.1)|
+|Cost of sold|2697.6|
+
+|Net income|Amount(m\$)|
+|:--------:|----------:|
+|Sales|6700.2|
+|Cost of sold|(2697.6)|
+|Selling and ad. expenses|(2903.7)|
+|Interest expense|(151.9)|
+|Income tax|947*35%=(331.5)|
+|**Net income**|**615.5**|
+
 ![](images/재무회계9-26.png)
+
+The amount of sales is 2080.
+
+Under FIFO, cost will be : $1978+2814+2080+450\times 4.1=8717$

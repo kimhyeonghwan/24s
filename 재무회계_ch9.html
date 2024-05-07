@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -195,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">채권분석(’24봄)</span></a>
+ <span class="menu-text">채권분석&amp;기간구조(’24봄)</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -217,6 +246,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./채권분석_hw3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">채권분석 과제3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./이자율기간구조_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">이자율기간구조 과제1</span></a>
   </div>
 </li>
       </ul>
@@ -357,8 +392,102 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><img src="images/재무회계9-17.png" class="img-fluid"></p>
+<p><strong><em>Answer</em></strong></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Category</th>
+<th style="text-align: right;">Inventory</th>
+<th style="text-align: right;">Income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Querter 1</td>
+<td style="text-align: right;">USD 20m</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Querter 2</td>
+<td style="text-align: right;">USD 16.5m</td>
+<td style="text-align: right;">-USD 3.5m</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Querter 3</td>
+<td style="text-align: right;">USD 16.5m</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Querter 4</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">+USD 11m</td>
+</tr>
+</tbody>
+</table>
 <p><img src="images/재무회계9-21.png" class="img-fluid"></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Cost of sold</th>
+<th style="text-align: right;">Amount(m$)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Total manufacturing cost</td>
+<td style="text-align: right;">2752.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Work in process inventory</td>
+<td style="text-align: right;">100.8-119.1=(18.3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Finished goods inventory</td>
+<td style="text-align: right;">286.2-322.3=(36.1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Cost of sold</td>
+<td style="text-align: right;">2697.6</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Net income</th>
+<th style="text-align: right;">Amount(m$)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Sales</td>
+<td style="text-align: right;">6700.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Cost of sold</td>
+<td style="text-align: right;">(2697.6)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Selling and ad. expenses</td>
+<td style="text-align: right;">(2903.7)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Interest expense</td>
+<td style="text-align: right;">(151.9)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Income tax</td>
+<td style="text-align: right;">947*35%=(331.5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Net income</strong></td>
+<td style="text-align: right;"><strong>615.5</strong></td>
+</tr>
+</tbody>
+</table>
 <p><img src="images/재무회계9-26.png" class="img-fluid"></p>
+<p>The amount of sales is 2080.</p>
+<p>Under FIFO, cost will be : <span class="math inline">\(1978+2814+2080+450\times 4.1=8717\)</span></p>
 
 
 

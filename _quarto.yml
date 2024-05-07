@@ -25,11 +25,12 @@ book:
         - Python Quiz3.qmd
         - Python Quiz4.qmd
         - Python midterm_quarto.qmd
-    - part : 채권분석('24봄)
+    - part : 채권분석&기간구조('24봄)
       chapters:
         - 채권분석_hw1.qmd
         - 채권분석_hw2.qmd
         - 채권분석_hw3.qmd
+        - 이자율기간구조_hw1.qmd
     - part : 투자분석('24봄)
       chapters: 
         - investment_hw1.qmd

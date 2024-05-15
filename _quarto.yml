@@ -35,6 +35,7 @@ book:
       chapters: 
         - investment_hw1.qmd
         - investment_hw2.qmd
+        - investment_hw3.qmd
     - part : 재무회계('24봄)
       chapters:
         - 재무회계_ch1-3.qmd

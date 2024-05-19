@@ -4,6 +4,12 @@ project:
 execute:
   freeze: auto
 
+jupyter: 
+  kernelspec: 
+    name: hwan
+    display_name: hwan
+    language: python
+
 book:
   title: "KAIST MFE, 2024 Spring"
   author: "Kim Hyeonghwan"
@@ -24,6 +30,7 @@ book:
         - Python Quiz2.qmd
         - Python Quiz3.qmd
         - Python Quiz4.qmd
+        - Python Quiz5.qmd
         - Python midterm_quarto.qmd
     - part : 채권분석&기간구조('24봄)
       chapters:
@@ -50,6 +57,7 @@ book:
         - 경영통계분석_hw2.qmd 
         - 경영통계분석_hw3.qmd
         - 경영통계분석_hw4.qmd
+        - 경영통계분석_hw5.qmd
   downloads: pdf
 
 format:

@@ -220,6 +220,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Python Quiz5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Python midterm_quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python Midterm</span></a>
   </div>
@@ -370,6 +376,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">경영통계분석 과제4</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제5</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -455,12 +467,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="calculate-the-following" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-the-following">1. Calculate the following</h2>
-<div id="121c92f8" class="cell" data-execution_count="1">
+<div id="9d977ea4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="근의-공식-코드-작성" class="level3">
 <h3 class="anchored" data-anchor-id="근의-공식-코드-작성">(1) 근의 공식 코드 작성</h3>
-<div id="962be4ba" class="cell" data-execution_count="2">
+<div id="b757ba5f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">2.0</span><span class="op">;</span>b<span class="op">=-</span><span class="fl">1.0</span><span class="op">;</span>c<span class="op">=-</span><span class="fl">15.0</span><span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span>b<span class="op">+</span>math.sqrt(b<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>a),</span>
@@ -473,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="정규분포-확률밀도함수-코드-작성" class="level3">
 <h3 class="anchored" data-anchor-id="정규분포-확률밀도함수-코드-작성">(2) 정규분포 확률밀도함수 코드 작성</h3>
-<div id="0b3f0fd6" class="cell" data-execution_count="3">
+<div id="0e7bea3c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mean<span class="op">=</span><span class="dv">2</span><span class="op">;</span> std<span class="op">=</span>math.sqrt(<span class="dv">3</span>)<span class="op">;</span> x<span class="op">=</span><span class="dv">1</span><span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="op">/</span>(math.sqrt(<span class="dv">2</span><span class="op">*</span>math.pi)<span class="op">*</span>std))<span class="op">*</span>(math.e<span class="op">**</span>(<span class="op">-</span>((x<span class="op">-</span>mean)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(std)<span class="op">**</span><span class="dv">2</span>)))</span>
@@ -488,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="why-the-error-occurs">2. Why the error occurs?</h2>
 <section id="input-error" class="level3">
 <h3 class="anchored" data-anchor-id="input-error">(1) Input error</h3>
-<div id="67170d36" class="cell" data-execution_count="4">
+<div id="2e14603a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="bu">input</span>(<span class="st">"enter a number:"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>a<span class="op">+</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -497,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="range-error" class="level3">
 <h3 class="anchored" data-anchor-id="range-error">(2) Range error</h3>
-<div id="a916d510" class="cell" data-execution_count="5">
+<div id="3a6ea568" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tmp<span class="op">=</span><span class="st">'My String'</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tmp[<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -505,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="method-error" class="level3">
 <h3 class="anchored" data-anchor-id="method-error">(3) method error</h3>
-<div id="a0942ed8" class="cell" data-execution_count="6">
+<div id="ef8b2f4f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ex1<span class="op">=</span><span class="st">'sample string'</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ex2<span class="op">=</span>ex1.upper</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ex2[:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -515,12 +527,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="string" class="level2">
 <h2 class="anchored" data-anchor-id="string">3. String</h2>
-<div id="533631f9" class="cell" data-execution_count="7">
+<div id="f140672c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>grade<span class="op">=</span><span class="st">'ABCDF'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="를-이용해서-abcdfffdcba-만들기" class="level3">
 <h3 class="anchored" data-anchor-id="를-이용해서-abcdfffdcba-만들기">(1) ‘+’를 이용해서 ’ABCDFFFDCBA’ 만들기</h3>
-<div id="a56cb150" class="cell" data-execution_count="8">
+<div id="379e5b73" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>grade_str<span class="op">=</span>grade<span class="op">+</span>grade[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span>grade[::<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>grade_str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -530,7 +542,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a의-개수" class="level3">
 <h3 class="anchored" data-anchor-id="a의-개수">(2) A의 개수</h3>
-<div id="b32f7e28" class="cell" data-execution_count="9">
+<div id="28d7bdd7" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>grade_str.count(<span class="st">'A'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>2</code></pre>
@@ -539,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="fff를-반환하는-4가지-다른-표현식" class="level3">
 <h3 class="anchored" data-anchor-id="fff를-반환하는-4가지-다른-표현식">(3) ’FFF’를 반환하는 4가지 다른 표현식</h3>
-<div id="fe19c357" class="cell" data-execution_count="10">
+<div id="181763c9" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    grade_str[<span class="dv">4</span>:<span class="dv">7</span>],</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    grade_str[<span class="dv">6</span>:<span class="dv">3</span>:<span class="op">-</span><span class="dv">1</span>],</span>
@@ -553,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="abcdaaadcba로-수정하기" class="level3">
 <h3 class="anchored" data-anchor-id="abcdaaadcba로-수정하기">(4) ’ABCDAAADCBA’로 수정하기</h3>
-<div id="85bd06f8" class="cell" data-execution_count="11">
+<div id="888449e7" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>grade_str<span class="op">=</span>grade_str.replace(<span class="st">'F'</span>,<span class="st">'A'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>grade_str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -563,7 +575,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="소문자로-모두-바꾸기" class="level3">
 <h3 class="anchored" data-anchor-id="소문자로-모두-바꾸기">(5) 소문자로 모두 바꾸기</h3>
-<div id="2fb2bed3" class="cell" data-execution_count="12">
+<div id="4f09b619" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>grade_str<span class="op">=</span>grade_str.lower()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>grade_str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -576,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="why-the-error-occurs-1">4. Why the error occurs?</h2>
 <section id="slicing-반환-형식" class="level3">
 <h3 class="anchored" data-anchor-id="slicing-반환-형식">(1) slicing 반환 형식</h3>
-<div id="c96f71d7" class="cell" data-execution_count="13">
+<div id="75459623" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span>[[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>],[<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>]]</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>L[<span class="dv">0</span>][<span class="dv">1</span>:<span class="dv">2</span>]<span class="op">=</span><span class="dv">30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -585,7 +597,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="단일-원소-tuple-표현" class="level3">
 <h3 class="anchored" data-anchor-id="단일-원소-tuple-표현">(2) 단일 원소 tuple 표현</h3>
-<div id="503f8923" class="cell" data-execution_count="14">
+<div id="9f783892" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>T[:<span class="dv">2</span>]<span class="op">+</span>(<span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -593,7 +605,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="변수-할당-labeling-vs.-copy" class="level3">
 <h3 class="anchored" data-anchor-id="변수-할당-labeling-vs.-copy">(3) 변수 할당 labeling vs.&nbsp;copy</h3>
-<div id="8c00d963" class="cell" data-execution_count="15">
+<div id="70432fef" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span><span class="bu">dict</span>(A<span class="op">=</span><span class="dv">10</span>,B<span class="op">=</span><span class="dv">20</span>,C<span class="op">=</span><span class="dv">30</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy method를 써야 복사본이 할당됨</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># D2=D.copy()</span></span>
@@ -605,14 +617,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="key값은-immutable-해야함" class="level3">
 <h3 class="anchored" data-anchor-id="key값은-immutable-해야함">(4) Key값은 Immutable 해야함</h3>
-<div id="58f2b3f0" class="cell" data-execution_count="16">
+<div id="f7a379bb" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>D3<span class="op">=</span>{[<span class="st">'Park'</span>,<span class="st">'Male'</span>]:<span class="dv">30</span>,}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Dictionary 타입의 key값은 immutable한 값만 허용되므로 mutable한 list를 사용하면 오류 발생. tuple을 쓰던지 해야함.</p>
 </section>
 <section id="slicingindexing-for-dict" class="level3">
 <h3 class="anchored" data-anchor-id="slicingindexing-for-dict">(5) slicing&amp;indexing for Dict</h3>
-<div id="95db80f1" class="cell" data-execution_count="17">
+<div id="c12c0136" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dict_y<span class="op">=</span>{(<span class="dv">1</span>,):<span class="dv">10</span>,(<span class="dv">2</span>,):<span class="dv">20</span>,(<span class="dv">3</span>,):<span class="dv">30</span>,(<span class="dv">4</span>,):<span class="dv">40</span>}</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>dict_y[(<span class="dv">1</span>,)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -621,12 +633,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="list" class="level2">
 <h2 class="anchored" data-anchor-id="list">5. List</h2>
-<div id="f444917d" class="cell" data-execution_count="18">
+<div id="8af59a0e" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>days<span class="op">=</span>[<span class="st">'Mon'</span>,<span class="st">'Tues'</span>,<span class="st">'Wed'</span>,<span class="st">'Thur'</span>,<span class="st">'Fri'</span>,[<span class="st">'Sat'</span>,<span class="st">'Sun'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="indexing-slicing" class="level3">
 <h3 class="anchored" data-anchor-id="indexing-slicing">(1) indexing, slicing</h3>
-<div id="ea90fa81" class="cell" data-execution_count="19">
+<div id="dd930fba" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    [days[<span class="dv">5</span>]],</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    days[<span class="op">-</span><span class="dv">1</span>::<span class="op">-</span><span class="dv">2</span>],</span>
@@ -642,7 +654,7 @@ Sat</code></pre>
 </section>
 <section id="활용" class="level3">
 <h3 class="anchored" data-anchor-id="활용">(2) ‘+’ 활용</h3>
-<div id="e20ca4da" class="cell" data-execution_count="20">
+<div id="bfa77355" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>days2<span class="op">=</span>[days[<span class="dv">0</span>:<span class="dv">5</span>]]<span class="op">+</span>days[<span class="dv">5</span>][<span class="dv">0</span>:<span class="dv">1</span>]<span class="op">+</span>days[<span class="dv">5</span>][<span class="dv">1</span>:]</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>days2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -652,7 +664,7 @@ Sat</code></pre>
 </section>
 <section id="remove-method" class="level3">
 <h3 class="anchored" data-anchor-id="remove-method">(3) remove method</h3>
-<div id="67a3c426" class="cell" data-execution_count="21">
+<div id="32cb3fd8" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>days2[<span class="dv">0</span>].remove(<span class="st">'Wed'</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>days2[<span class="dv">0</span>].remove(<span class="st">'Fri'</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>days2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -663,7 +675,7 @@ Sat</code></pre>
 </section>
 <section id="insert-method" class="level3">
 <h3 class="anchored" data-anchor-id="insert-method">(4) insert method</h3>
-<div id="525ad36e" class="cell" data-execution_count="22">
+<div id="3f995e03" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>days2[<span class="dv">0</span>].insert(<span class="dv">2</span>,<span class="st">'W'</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>days2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
@@ -674,12 +686,12 @@ Sat</code></pre>
 </section>
 <section id="list2" class="level2">
 <h2 class="anchored" data-anchor-id="list2">6. list2</h2>
-<div id="12392801" class="cell" data-execution_count="23">
+<div id="abc080a5" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>Nums<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="append-method" class="level3">
 <h3 class="anchored" data-anchor-id="append-method">(1) append method</h3>
-<div id="a427979d" class="cell" data-execution_count="24">
+<div id="a540eeab" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Nums.append(<span class="dv">7</span>)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>Nums</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -689,7 +701,7 @@ Sat</code></pre>
 </section>
 <section id="sorting-list" class="level3">
 <h3 class="anchored" data-anchor-id="sorting-list">(2) sorting list</h3>
-<div id="235387c9" class="cell" data-execution_count="25">
+<div id="66f05440" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Nums.sort()</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>Nums.reverse()</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>Nums</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -700,7 +712,7 @@ Sat</code></pre>
 </section>
 <section id="slicing-and-replacing" class="level3">
 <h3 class="anchored" data-anchor-id="slicing-and-replacing">(3) slicing and replacing</h3>
-<div id="34aeff2c" class="cell" data-execution_count="26">
+<div id="1adec101" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Nums[::<span class="dv">2</span>]<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'a'</span>]</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>Nums</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -711,12 +723,12 @@ Sat</code></pre>
 </section>
 <section id="tuple" class="level2">
 <h2 class="anchored" data-anchor-id="tuple">7. tuple</h2>
-<div id="f6bb694e" class="cell" data-execution_count="27">
+<div id="51b55d94" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>price<span class="op">=</span>(<span class="dv">180</span>,<span class="dv">130</span>,<span class="dv">110</span>,<span class="dv">160</span>,<span class="dv">140</span>,<span class="dv">170</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sorting-tuple-via-translate-to-list" class="level3">
 <h3 class="anchored" data-anchor-id="sorting-tuple-via-translate-to-list">(1) sorting tuple via translate to list</h3>
-<div id="005742f0" class="cell" data-execution_count="28">
+<div id="e099ca43" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>price_list<span class="op">=</span><span class="bu">list</span>(price)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>price_list.sort()</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>price<span class="op">=</span><span class="bu">tuple</span>(price_list)</span>
@@ -728,7 +740,7 @@ Sat</code></pre>
 </section>
 <section id="basic-operation" class="level3">
 <h3 class="anchored" data-anchor-id="basic-operation">(2) basic operation</h3>
-<div id="e4709d8a" class="cell" data-execution_count="29">
+<div id="3b3c0a9a" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dv">170</span> <span class="kw">in</span> price</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>True</code></pre>
@@ -737,7 +749,7 @@ Sat</code></pre>
 </section>
 <section id="concatenating-tuple" class="level3">
 <h3 class="anchored" data-anchor-id="concatenating-tuple">(3) concatenating tuple</h3>
-<div id="53b1ef24" class="cell" data-execution_count="30">
+<div id="ff4fbee4" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>price<span class="op">=</span>price[<span class="dv">0</span>:<span class="dv">4</span>]<span class="op">+</span>(<span class="dv">0</span>,)<span class="op">*</span><span class="dv">3</span><span class="op">+</span>price[<span class="bu">len</span>(price)<span class="op">-</span><span class="dv">1</span>:]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>price</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">

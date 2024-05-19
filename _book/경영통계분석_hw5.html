@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KAIST MFE, 2024 Spring - 경영통계분석 과제5</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./경영통계분석_hw4.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./경영통계분석_hw1.html">경영통계분석(’24봄)</a></li><li class="breadcrumb-item"><a href="./경영통계분석_hw5.html">경영통계분석 과제5</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">KAIST MFE, 2024 Spring</a> 
+        <div class="sidebar-tools-main">
+    <a href="./KAIST-MFE,-2024-Spring.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Python(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1. Python Basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2. Containers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Containers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3. Control Flows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Control Flows</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4. Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5. Numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numpy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6. Pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python midterm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Midterm</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">채권분석&amp;기간구조(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./채권분석_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">채권분석 과제1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./채권분석_hw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">채권분석 과제2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./채권분석_hw3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">채권분석 과제3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./이자율기간구조_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">이자율기간구조 과제1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">투자분석(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./investment_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">투자분석 과제1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./investment_hw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">투자분석 과제2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./investment_hw3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">투자분석 과제3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">재무회계(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch1-3 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch4 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch5 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch6 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch8 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch9 과제</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">경영통계분석(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw5.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">경영통계분석 과제5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#problem-1." id="toc-problem-1." class="nav-link active" data-scroll-target="#problem-1.">Problem 1.</a>
+  <ul class="collapse">
+  <li><a href="#answer" id="toc-answer" class="nav-link" data-scroll-target="#answer">Answer</a></li>
+  </ul></li>
+  <li><a href="#problem-2." id="toc-problem-2." class="nav-link" data-scroll-target="#problem-2.">Problem 2.</a>
+  <ul class="collapse">
+  <li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1">Answer</a></li>
+  </ul></li>
+  <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3">Problem 3</a>
+  <ul class="collapse">
+  <li><a href="#answer-2" id="toc-answer-2" class="nav-link" data-scroll-target="#answer-2">Answer</a></li>
+  </ul></li>
+  <li><a href="#problem-4." id="toc-problem-4." class="nav-link" data-scroll-target="#problem-4.">Problem 4.</a>
+  <ul class="collapse">
+  <li><a href="#answer-3" id="toc-answer-3" class="nav-link" data-scroll-target="#answer-3">Answer</a></li>
+  </ul></li>
+  <li><a href="#problem-5." id="toc-problem-5." class="nav-link" data-scroll-target="#problem-5.">Problem 5.</a>
+  <ul class="collapse">
+  <li><a href="#answer-4" id="toc-answer-4" class="nav-link" data-scroll-target="#answer-4">Answer</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./경영통계분석_hw1.html">경영통계분석(’24봄)</a></li><li class="breadcrumb-item"><a href="./경영통계분석_hw5.html">경영통계분석 과제5</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">경영통계분석 과제5</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="problem-1." class="level2">
+<h2 class="anchored" data-anchor-id="problem-1.">Problem 1.</h2>
+<ol type="1">
+<li>In a given situation, suppose H0 was not rejected at α=.02. Answer the following questions as “yes”, “no”, or “can’t tell” as the case may be.</li>
+</ol>
+<ol type="a">
+<li>Would H0 also be retained at α=.01?</li>
+<li>Would H0 also be retained at α=.05?</li>
+<li>Is the p-value smaller than .02?</li>
+</ol>
+<section id="answer" class="level3">
+<h3 class="anchored" data-anchor-id="answer">Answer</h3>
+<p>H0가 <span class="math inline">\(\alpha=0.02\)</span>에서 기각되지 않았다는 것은, 주장하고자 하는 대립가설에 대한 통계량의 p-value가 0.02보다 크다는 의미입니다.</p>
+<p>따라서, 우리가 알 수 있는 것은 0.02보다 낮은 신뢰수준에서 H0를 기각할 수 없다는 것 뿐입니다.</p>
+<ol type="a">
+<li>Yes</li>
+<li>Can’t tell</li>
+<li>No</li>
+</ol>
+</section>
+</section>
+<section id="problem-2." class="level2">
+<h2 class="anchored" data-anchor-id="problem-2.">Problem 2.</h2>
+<ol start="2" type="1">
+<li>A company’s mixed nuts are sold in cans and the label says that 25% of the contents is cashews. Suspecting that this might be an overstatement, an inspector takes a random sample of 35 cans and measures the percent weight of cashews [i.e.&nbsp;100(weight of cashews/weight of all nuts)] in each can. The mean and standard deviation of these measurements are found to be 23.5 and 3.1, respectively. Do these results constitute strong evidence in support of the inspector’s belief?</li>
+</ol>
+<ol type="a">
+<li><p>Identify H0 and H1.</p></li>
+<li><p>Carry out the hypothesis test at the 5% level of significance using the p-value (use normal distribution).</p></li>
+</ol>
+<section id="answer-1" class="level3">
+<h3 class="anchored" data-anchor-id="answer-1">Answer</h3>
+<p>H0 : 캐슈넛의 포함비율은 25%이다. (<span class="math inline">\(\mu=25\)</span>)</p>
+<p>H1 : 캐슈넛의 포함비율은 25%보다 낮아 표기가 과장되었다. (<span class="math inline">\(\mu&lt;25\)</span>)</p>
+<p>정규분포 가정 하에서 표본의 크기가 충분히 크므로 z검정을 수행할 수 있으며, p-value는 아래와 같이 산출할 수 있습니다.</p>
+<p><span class="math display">\[P(\bar{X}\geq 25)=P(\frac{\bar{X}-23.5}{3.1/\sqrt{35}}\geq \frac{1.5}{3.1/\sqrt{35}})=P(Z\geq 2.86)=P(Z&lt;-2.86=t_0)=0.0021\]</span></p>
+<p>p-value&lt;0.05이므로, 5% 신뢰수준에서 귀무가설을 기각할 수 있습니다.</p>
+<p>이는 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정을 지지하는 결과입니다.</p>
+<p>심지어, p-value가 매우 낮아 1% 신뢰수준이라고 하더라도 귀무가설을 기각할 수 있습니다.</p>
+<p>결론적으로, 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정은 캐슈넛의 포함비율이 정규분포를 따르는 경우 매우 합리적으로 보여집니다.</p>
+</section>
+</section>
+<section id="problem-3" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3">Problem 3</h2>
+<ol start="3" type="1">
+<li>From extensive records, it is known that the duration of treating a disease by a standard therapy has a mean of 15 days. It is claimed that a new therapy can reduce the treatment time. To test this claim, the new therapy is tried on 70 patients, and from the data of their homes to recovery, the sample mean and standard deviation are found to be 14.6 and 3.0 days, respectively.</li>
+</ol>
+<ol type="a">
+<li><p>Perform the hypothesis test using a 2.5% level of significance, based on the rejection region.</p></li>
+<li><p>Calculate the p-value and interpret the result.</p></li>
+<li><p>State any assumptions you make about the populations.</p></li>
+</ol>
+<section id="answer-2" class="level3">
+<h3 class="anchored" data-anchor-id="answer-2">Answer</h3>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">(a)</h4>
+<p>표본의 수는 70이며(충분히 큼), 표본의 평균은 14.6 및 표준편차는 3입니다.</p>
+<p>새로운 치료법의 치료기간이 평균적으로 15일보다 낮다면, 새로운 치료법이 효율적이라고 할 수 있습니다.</p>
+<p>따라서, 새로운 치료법의 평균치료기간(모평균)이 15일보다 낮다는 가설을 주장하기 위해 표준정규분포를 이용한 z-검정을 실시하겠습니다.</p>
+<p>H0 : <span class="math inline">\(\mu=15\)</span></p>
+<p>H1 : <span class="math inline">\(\mu&lt;15\)</span></p>
+<p>단측검정이며, 신뢰수준 2.5%에 대한 임계값은 <span class="math inline">\(P(Z&lt;x)\approx 0.025,\;x=-1.96\)</span> 입니다.</p>
+<p>z검정에 이용하는 통계량은 <span class="math inline">\(z_0=\frac{14.6-15}{3/\sqrt(70)}=-1.1155&gt;-1.96=z_{0.025}\)</span> 입니다.</p>
+<p>따라서, 귀무가설을 기각할 수 없으며 동 가정 하에서 새로운 치료법이 개선되었다는 주장을 지지하지 않습니다.</p>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">(b)</h4>
+<p>p-value는 <span class="math inline">\(P(Z&lt;z_0=-1.1155)\approx 0.132\)</span> 입니다.</p>
+<p>이 뜻은 실제 새로운 치료방법의 치료기간이 15일보다 짧지 않을 확률이 약 13.2%라는 의미입니다.</p>
+<p>만약 신뢰수준을 15%로 상항하여 동 검정을 수행한다면 귀무가설을 기각할 수 있겠으나, 의사결정이 잘못되었을 리스크가 13.2%로 존재한다는 의미입니다. (1종오류)</p>
+</section>
+<section id="c" class="level4">
+<h4 class="anchored" data-anchor-id="c">(c)</h4>
+<p>저는 z검정을 사용하였습니다.</p>
+<p>표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 모표준편차를 모르는 상황이지만 충분히 큰 표본에 대해 t분포와 z분포가 유사한 점을 이용하여 z검정을 사용한 것 입니다.</p>
+<p>따라서, <strong>모분산의 정규분포 가정 및 표본표준편차가 모표준편차와 같다는 가정</strong> 하에서 검정을 실시한 것 입니다.</p>
+</section>
+</section>
+</section>
+<section id="problem-4." class="level2">
+<h2 class="anchored" data-anchor-id="problem-4.">Problem 4.</h2>
+<ol start="4" type="1">
+<li>In a study of interspousal aggression and its possible effect on child behavior, the behavior problem checklist scores were recorded for 47 children whose parents were classified as aggressive. The sample mean and standard deviation were 7.92 and 3.45, respectively. For a sample of 38 children whose parents were classified as nonaggressive, the mean and standard deviation of the BPC scores were 5.80 and 2.87, respectively.</li>
+</ol>
+<ol type="a">
+<li><p>Do these observations substantiate the conjecture that the children of aggressive families have a higher mean BPC than those of nonaggressive families? (Answer by calculating the p-value.)</p></li>
+<li><p>State any assumptions you make about the populations.</p></li>
+</ol>
+<section id="answer-3" class="level3">
+<h3 class="anchored" data-anchor-id="answer-3">Answer</h3>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">(a)</h4>
+<p>먼저, 각 표본의 수가 30보다 크므로 z검정을 수행하도록 하겠습니다.</p>
+<p>부모가 공격적이라고 응답한 아이 집단을 A, 공격적이지 않다고 응답한 아이 집단을 B라고 하고 가설을 수립하면,</p>
+<p>H0 : <span class="math inline">\(\mu_A=\mu_B\;\Rightarrow\;\mu_A-\mu_B=0\)</span></p>
+<p>H1 : <span class="math inline">\(\mu_A&gt;\mu_B\;\Rightarrow\;\mu_A-\mu_B&gt;0\)</span></p>
+<p>한편, 각각 독립인 표본에 대하여 두 집단의 평균의 차이를 검정할 때 필요한 표본평균의 분포는 아래와 같습니다.</p>
+<p><span class="math display">\[\bar{X}^*=\bar{X_A}-\bar{X_B}\sim N(\mu_A-\mu_B,\frac{\sigma_A}{\sqrt{47}}+\frac{\sigma_B}{\sqrt{38}}\approx \frac{s_A}{\sqrt{47}}+\frac{s_B}{\sqrt{38}})\]</span></p>
+<p>따라서, z통계량은 <span class="math inline">\(z_0=\frac{\mu_A-\mu_B-0}{\frac{s_A}{\sqrt{47}}+\frac{s_B}{\sqrt{38}}}=\frac{7.92-5.80}{3.45/\sqrt{47}+2.87/\sqrt{38}}=2.188\)</span> 이며,</p>
+<p>P-value는 <span class="math inline">\(P(Z&gt;2.188)=P(Z&lt;-2.188)=0.0143\)</span> 입니다.</p>
+<p>따라서, 신뢰수준 약 1.5%에서 귀무가설을 기각할 수 있으며 공격적으로 응답한 아이 집단의 BPC 점수가 평균적으로 높다는 주장을 강하게 지지한다고 할 수 있습니다.</p>
+</section>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">(b)</h4>
+<p>저는 z검정을 사용하였습니다.</p>
+<p>표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 모표준편차를 모르는 상황이지만 충분히 큰 표본에 대해 t분포와 z분포가 유사한 점을 이용하여 z검정을 사용한 것 입니다.</p>
+<p>따라서, <strong>모분산의 정규분포 가정 및 표본표준편차가 모표준편차와 같다는 가정</strong> 하에서 검정을 실시한 것 이며, <strong>추가적으로 두 집단의 독립성</strong>을 가정하고 실시하였습니다.</p>
+</section>
+</section>
+</section>
+<section id="problem-5." class="level2">
+<h2 class="anchored" data-anchor-id="problem-5.">Problem 5.</h2>
+<ol start="5" type="1">
+<li>The data on the weight of male and female wolves are as follows:</li>
+</ol>
+<table class="table">
+<thead>
+<tr class="header">
+<th>구 분</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>57</td>
+<td>84</td>
+<td>90</td>
+<td>71</td>
+<td>71</td>
+<td>77</td>
+<td>68</td>
+<td>73</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>71</td>
+<td>93</td>
+<td>101</td>
+<td>84</td>
+<td>88</td>
+<td>117</td>
+<td>86</td>
+<td>86</td>
+<td>93</td>
+<td>86</td>
+<td>106</td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li><p>Test the null hypothesis that the mean weights of males and females are equal versus a two-sided alternative. Take <span class="math inline">\(\alpha=0.05\)</span></p></li>
+<li><p>State any assumptions you make about the populations for (a).</p></li>
+<li><p>Test the null hypothesis that the variances of weights of males and females are equal. Take <span class="math inline">\(\alpha=0.05\)</span></p></li>
+<li><p>State any assumptions you make about the populations for (c).</p></li>
+</ol>
+<section id="answer-4" class="level3">
+<h3 class="anchored" data-anchor-id="answer-4">Answer</h3>
+<section id="a-2" class="level4">
+<h4 class="anchored" data-anchor-id="a-2">(a)</h4>
+<p>먼저, 각 샘플의 모양을 살펴보면 아래와 같습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">gender=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"F"</span>,<span class="dv">8</span>),<span class="fu">rep</span>(<span class="st">"M"</span>,<span class="dv">11</span>)),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">weight=</span><span class="fu">c</span>(<span class="dv">57</span>,<span class="dv">84</span>,<span class="dv">90</span>,<span class="dv">71</span>,<span class="dv">71</span>,<span class="dv">77</span>,<span class="dv">68</span>,<span class="dv">73</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                          <span class="dv">71</span>,<span class="dv">93</span>,<span class="dv">101</span>,<span class="dv">84</span>,<span class="dv">88</span>,<span class="dv">117</span>,<span class="dv">86</span>,<span class="dv">86</span>,<span class="dv">93</span>,<span class="dv">86</span>,<span class="dv">106</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(weight,<span class="fu">aes</span>(<span class="at">x=</span>weight,<span class="at">colour=</span>gender))<span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="경영통계분석_hw5_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>여성, 남성별로 표본의 수, 표본평균, 표본표준편차는 아래와 같습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>weight <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cnt=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sample=</span><span class="fu">sum</span>(cnt),<span class="at">mean=</span><span class="fu">mean</span>(weight),<span class="at">vol=</span><span class="fu">sd</span>(weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  gender sample  mean   vol
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 F           8  73.9  10.1
+2 M          11  91.9  12.4</code></pre>
+</div>
+</div>
+<p>각 표본이 대략적으로 bell-shape를 형성하고 있으며, 독립일 것 입니다,</p>
+<p>따라서, 평균의 차이가 있는지 알아보기 위해서 t검정을 수행하겠습니다.</p>
+<p>H0 : <span class="math inline">\(\mu_F=\mu_M\;\)</span>, H1 : <span class="math inline">\(\mu_F\neq\mu_M\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(weight<span class="sc">~</span>gender,<span class="at">data=</span>weight,<span class="at">alternative=</span><span class="st">"two.sided"</span>,<span class="at">paired=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  weight by gender
+t = -3.4971, df = 16.715, p-value = 0.002821
+alternative hypothesis: true difference in means between group F and group M is not equal to 0
+95 percent confidence interval:
+ -28.928413  -7.139769
+sample estimates:
+mean in group F mean in group M 
+       73.87500        91.90909 </code></pre>
+</div>
+</div>
+<p><strong>p-value는 0.0028로 신뢰수준 5% 하에서 귀무가설을 기각</strong>할 수 있습니다.</p>
+</section>
+<section id="b-2" class="level4">
+<h4 class="anchored" data-anchor-id="b-2">(b)</h4>
+<p>모집단의 정규성과 남성과 여성 몸무게 집단의 독립성을 가정하였습니다.</p>
+</section>
+<section id="c-1" class="level4">
+<h4 class="anchored" data-anchor-id="c-1">(c)</h4>
+<p>두 집단의 분산이 같은지에 대해 검정하기 위해 분산차이에 대한 F검정을 수행하겠습니다.</p>
+<p>H0 : <span class="math inline">\(\frac{\sigma_M}{\sigma_F}=1\;\)</span>, H1 : <span class="math inline">\(\frac{\sigma_M}{\sigma_F}\neq 1\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(weight<span class="sc">~</span>gender,<span class="at">data=</span>weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  weight by gender
+F = 0.66063, num df = 7, denom df = 10, p-value = 0.5981
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.1672544 3.1453141
+sample estimates:
+ratio of variances 
+         0.6606253 </code></pre>
+</div>
+</div>
+<p>P-value는 0.598로 귀무가설을 기각하지 못하였습니다. 이는 두 집단의 분산이 같다는 것을 지지하고 있습니다.</p>
+</section>
+<section id="d" class="level4">
+<h4 class="anchored" data-anchor-id="d">(d)</h4>
+<p>F검정을 위해 두 집단이 서로 독립이라고 가정하였습니다.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./경영통계분석_hw4.html" class="pagination-link" aria-label="경영통계분석 과제4">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">경영통계분석 과제4</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,105 @@
+# 금융공학프로그래밍3, Quiz5 {.unnumbered}
+
+## Problem 1
+
+1. Create a 2-dimensional ndarray object 'Arr' with the code below and answer the following.
+```{python}
+import numpy as np
+np.random.seed(123)
+Arr=np.random.randn(8,10)
+```
+
+(1) Write an expression to calculate column sum of Arr.
+```{python}
+np.sum(Arr,axis=0)
+```
+
+(2) Write an expression that finds the position (row and column index) of an element greater than 2 in Arr
+
+```{python}
+np.where(Arr>2)
+```
+
+## Problem 2
+
+2. Write 3 different expressions to create a pandas Series object 'S' displayed as follows.
+
+    \>>> S
+
+    a 0
+
+    b 1
+
+    c 2
+
+    d 3
+
+    dtype: int64
+
+```{python}
+import pandas as pd
+S=pd.Series([0,1,2,3],index=['a','b','c','d'])
+S
+```
+
+```{python}
+S=pd.Series(dict(a=0,b=1,c=2,d=3))
+S
+```
+
+```{python}
+S=pd.Series(np.arange(4),index=['a','b','c','d'])
+S
+```
+
+## Problem 3
+
+3. Write 4 different expressions to select the 2nd and the 3rd elements of Snew.
+```{python}
+Snew = pd.Series({'a': 1, 'b':4, 'c':2, 'd':3} )
+```
+
+```{python}
+Snew[1:3]
+```
+
+```{python}
+Snew.iloc[[1,2]]
+```
+
+```{python}
+Snew['b':'c']
+```
+```{python}
+Snew[['b','c']]
+```
+
+## Problem 4~5
+
+```{python}
+np.random.seed(123)
+DF = pd.DataFrame(np.random.randn(6,7),
+                  columns=list('abcdefg'),
+                  index=[3,2,4,5,1,0])
+DF
+```
+
+4. Fill in the appropriate expression in square brackets so you can select columns 'c' and 'e'.
+
+```{python}
+DF.iloc[:,2:5:2]
+```
+
+```{python}
+DF[['c','e']]
+```
+
+5. Fill in the appropriate expression in square brackets so that you can select rows with negative values for column 'c'.
+
+```{python}
+DF.loc[DF.c<0,:]
+```
+
+```{python}
+DF[DF.c<0]
+```

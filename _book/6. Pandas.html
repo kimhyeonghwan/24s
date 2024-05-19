@@ -223,6 +223,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Python Quiz5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Python midterm_quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python Midterm</span></a>
   </div>
@@ -371,6 +377,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./경영통계분석_hw4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">경영통계분석 과제4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제5</span></a>
   </div>
 </li>
       </ul>
@@ -2063,6 +2075,152 @@ Name: 0, dtype: int64</code></pre>
 <td>3</td>
 <td>0</td>
 <td>-1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pandas-dataframe-manipulation" class="level4" data-number="6.0.0.3">
+<h4 data-number="6.0.0.3" class="anchored" data-anchor-id="pandas-dataframe-manipulation"><span class="header-section-number">6.0.0.3</span> Pandas DataFrame Manipulation</h4>
+<div id="cell-41" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.rand(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.254541</td>
+<td>0.022793</td>
+<td>0.292160</td>
+<td>0.256052</td>
+<td>0.742068</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.959650</td>
+<td>0.210256</td>
+<td>0.937732</td>
+<td>0.523141</td>
+<td>0.660096</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.694372</td>
+<td>0.674311</td>
+<td>0.502167</td>
+<td>0.164087</td>
+<td>0.527422</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.591313</td>
+<td>0.952835</td>
+<td>0.800817</td>
+<td>0.357809</td>
+<td>0.029770</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.004058</td>
+<td>0.930224</td>
+<td>0.908414</td>
+<td>0.104988</td>
+<td>0.372187</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.062482</td>
+<td>0.480021</td>
+<td>0.220693</td>
+<td>0.820707</td>
+<td>0.578013</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0.678025</td>
+<td>0.481827</td>
+<td>0.727163</td>
+<td>0.119174</td>
+<td>0.252283</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cell-42" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="dv">0</span>,<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.254541</td>
+<td>0.022793</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.959650</td>
+<td>0.210256</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.694372</td>
+<td>0.674311</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.591313</td>
+<td>0.952835</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.004058</td>
+<td>0.930224</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.062482</td>
+<td>0.480021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0.678025</td>
+<td>0.481827</td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,216 @@
+# 경영통계분석 과제5 {.unnumbered}
+
+## Problem 1.
+
+1. In a given situation, suppose H0 was not rejected at α=.02. Answer the following questions as “yes”, “no”, or “can’t tell” as the case may be.
+
+(a) Would H0 also be retained at α=.01?
+(b) Would H0 also be retained at α=.05?
+(c) Is the p-value smaller than .02?
+
+### Answer
+
+H0가 $\alpha=0.02$에서 기각되지 않았다는 것은, 주장하고자 하는 대립가설에 대한 통계량의 p-value가 0.02보다 크다는 의미입니다.
+
+따라서, 우리가 알 수 있는 것은 0.02보다 낮은 신뢰수준에서 H0를 기각할 수 없다는 것 뿐입니다.
+
+(a) Yes
+(b) Can't tell
+(c) No
+
+## Problem 2.
+
+2. A company’s mixed nuts are sold in cans and the label says that 25% of the contents is cashews. Suspecting that this might be an overstatement, an inspector takes a random sample of 35 cans and measures the percent weight of cashews [i.e. 100(weight of cashews/weight of all nuts)] in each can. The mean and standard deviation of these measurements are found to be 23.5 and 3.1, respectively. Do these results constitute strong evidence in support of the inspector’s belief?
+
+(a) Identify H0 and H1.
+
+(b) Carry out the hypothesis test at the 5% level of significance using the p-value (use normal distribution).
+
+### Answer
+
+H0 : 캐슈넛의 포함비율은 25%이다. ($\mu=25$)
+
+H1 : 캐슈넛의 포함비율은 25%보다 낮아 표기가 과장되었다. ($\mu<25$)
+
+정규분포 가정 하에서 표본의 크기가 충분히 크므로 z검정을 수행할 수 있으며, p-value는 아래와 같이 산출할 수 있습니다.
+
+$$P(\bar{X}\geq 25)=P(\frac{\bar{X}-23.5}{3.1/\sqrt{35}}\geq \frac{1.5}{3.1/\sqrt{35}})=P(Z\geq 2.86)=P(Z<-2.86=t_0)=0.0021$$
+
+p-value<0.05이므로, 5% 신뢰수준에서 귀무가설을 기각할 수 있습니다.
+
+이는 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정을 지지하는 결과입니다.
+
+심지어, p-value가 매우 낮아 1% 신뢰수준이라고 하더라도 귀무가설을 기각할 수 있습니다.
+
+결론적으로, 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정은 캐슈넛의 포함비율이 정규분포를 따르는 경우 매우 합리적으로 보여집니다.
+
+## Problem 3
+
+3. From extensive records, it is known that the duration of treating a disease by a standard
+therapy has a mean of 15 days. It is claimed that a new therapy can reduce the treatment time. To
+test this claim, the new therapy is tried on 70 patients, and from the data of their homes to
+recovery, the sample mean and standard deviation are found to be 14.6 and 3.0 days, respectively.
+
+(a) Perform the hypothesis test using a 2.5% level of significance, based on the rejection region.
+
+(b) Calculate the p-value and interpret the result.
+
+(c) State any assumptions you make about the populations.
+
+### Answer
+
+#### (a)
+
+표본의 수는 70이며(충분히 큼), 표본의 평균은 14.6 및 표준편차는 3입니다.
+
+새로운 치료법의 치료기간이 평균적으로 15일보다 낮다면, 새로운 치료법이 효율적이라고 할 수 있습니다.
+
+따라서, 새로운 치료법의 평균치료기간(모평균)이 15일보다 낮다는 가설을 주장하기 위해 표준정규분포를 이용한 z-검정을 실시하겠습니다.
+
+H0 : $\mu=15$
+
+H1 : $\mu<15$
+
+단측검정이며, 신뢰수준 2.5%에 대한 임계값은 $P(Z<x)\approx 0.025,\;x=-1.96$ 입니다.
+
+z검정에 이용하는 통계량은 $z_0=\frac{14.6-15}{3/\sqrt(70)}=-1.1155>-1.96=z_{0.025}$ 입니다.
+
+따라서, 귀무가설을 기각할 수 없으며 동 가정 하에서 새로운 치료법이 개선되었다는 주장을 지지하지 않습니다.
+
+#### (b)
+
+p-value는 $P(Z<z_0=-1.1155)\approx 0.132$ 입니다.
+
+이 뜻은 실제 새로운 치료방법의 치료기간이 15일보다 짧지 않을 확률이 약 13.2%라는 의미입니다.
+
+만약 신뢰수준을 15%로 상항하여 동 검정을 수행한다면 귀무가설을 기각할 수 있겠으나, 의사결정이 잘못되었을 리스크가 13.2%로 존재한다는 의미입니다. (1종오류)
+
+#### (c)
+
+저는 z검정을 사용하였습니다.
+
+표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 모표준편차를 모르는 상황이지만 충분히 큰 표본에 대해 t분포와 z분포가 유사한 점을 이용하여 z검정을 사용한 것 입니다.
+
+따라서, **모분산의 정규분포 가정 및 표본표준편차가 모표준편차와 같다는 가정** 하에서 검정을 실시한 것 입니다.
+
+
+## Problem 4.
+
+4. In a study of interspousal aggression and its possible effect on child behavior, the behavior
+problem checklist scores were recorded for 47 children whose parents were classified as aggressive.
+The sample mean and standard deviation were 7.92 and 3.45, respectively. For a sample of 38
+children whose parents were classified as nonaggressive, the mean and standard deviation of the
+BPC scores were 5.80 and 2.87, respectively.
+
+(a) Do these observations substantiate the conjecture that the children of aggressive families
+have a higher mean BPC than those of nonaggressive families? (Answer by calculating the
+p-value.)
+
+(b) State any assumptions you make about the populations.
+
+### Answer
+
+#### (a)
+
+먼저, 각 표본의 수가 30보다 크므로 z검정을 수행하도록 하겠습니다.
+
+부모가 공격적이라고 응답한 아이 집단을 A, 공격적이지 않다고 응답한 아이 집단을 B라고 하고 가설을 수립하면,
+
+H0 : $\mu_A=\mu_B\;\Rightarrow\;\mu_A-\mu_B=0$
+
+H1 : $\mu_A>\mu_B\;\Rightarrow\;\mu_A-\mu_B>0$
+
+한편, 각각 독립인 표본에 대하여 두 집단의 평균의 차이를 검정할 때 필요한 표본평균의 분포는 아래와 같습니다.
+
+$$\bar{X}^*=\bar{X_A}-\bar{X_B}\sim N(\mu_A-\mu_B,\frac{\sigma_A}{\sqrt{47}}+\frac{\sigma_B}{\sqrt{38}}\approx \frac{s_A}{\sqrt{47}}+\frac{s_B}{\sqrt{38}})$$
+
+따라서, z통계량은 $z_0=\frac{\mu_A-\mu_B-0}{\frac{s_A}{\sqrt{47}}+\frac{s_B}{\sqrt{38}}}=\frac{7.92-5.80}{3.45/\sqrt{47}+2.87/\sqrt{38}}=2.188$ 이며,
+
+P-value는 $P(Z>2.188)=P(Z<-2.188)=0.0143$ 입니다.
+
+따라서, 신뢰수준 약 1.5%에서 귀무가설을 기각할 수 있으며 공격적으로 응답한 아이 집단의 BPC 점수가 평균적으로 높다는 주장을 강하게 지지한다고 할 수 있습니다.
+
+#### (b)
+
+저는 z검정을 사용하였습니다.
+
+표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 모표준편차를 모르는 상황이지만 충분히 큰 표본에 대해 t분포와 z분포가 유사한 점을 이용하여 z검정을 사용한 것 입니다.
+
+따라서, **모분산의 정규분포 가정 및 표본표준편차가 모표준편차와 같다는 가정** 하에서 검정을 실시한 것 이며, **추가적으로 두 집단의 독립성**을 가정하고 실시하였습니다.
+
+## Problem 5.
+
+5. The data on the weight of male and female wolves are as follows:
+
+|구 분||||||||||
+|------|---|---|---|---|---|---|---|---|--|--|--|
+|Female| 57| 84| 90| 71| 71| 77| 68| 73||||
+|Male| 71 |93 |101 |84 |88 |117| 86 |86 |93 |86 |106|
+
+(a) Test the null hypothesis that the mean weights of males and females are equal versus a two-sided alternative. Take $\alpha=0.05$
+
+(b) State any assumptions you make about the populations for (a).
+
+(c) Test the null hypothesis that the variances of weights of males and females are equal. Take $\alpha=0.05$
+
+(d) State any assumptions you make about the populations for (c).
+
+### Answer
+
+#### (a)
+
+먼저, 각 샘플의 모양을 살펴보면 아래와 같습니다.
+```{r}
+#| output: false
+library(tidyverse)
+library(patchwork)
+weight <- tibble(gender=c(rep("F",8),rep("M",11)),
+                 weight=c(57,84,90,71,71,77,68,73,
+                          71,93,101,84,88,117,86,86,93,86,106))
+```
+
+```{r}
+ggplot(weight,aes(x=weight,colour=gender))+
+  geom_density() +
+  theme_bw()
+```
+
+여성, 남성별로 표본의 수, 표본평균, 표본표준편차는 아래와 같습니다.
+```{r}
+weight %>%
+  group_by(gender) %>% 
+  mutate(cnt=1) %>% 
+  summarise(sample=sum(cnt),mean=mean(weight),vol=sd(weight))
+```
+
+각 표본이 대략적으로 bell-shape를 형성하고 있으며, 독립일 것 입니다,
+
+따라서, 평균의 차이가 있는지 알아보기 위해서 t검정을 수행하겠습니다.
+
+H0 : $\mu_F=\mu_M\;$, H1 : $\mu_F\neq\mu_M$
+
+```{r}
+t.test(weight~gender,data=weight,alternative="two.sided",paired=F)
+```
+
+**p-value는 0.0028로 신뢰수준 5% 하에서 귀무가설을 기각**할 수 있습니다.
+
+#### (b)
+
+모집단의 정규성과 남성과 여성 몸무게 집단의 독립성을 가정하였습니다.
+
+#### (c)
+
+두 집단의 분산이 같은지에 대해 검정하기 위해 분산차이에 대한 F검정을 수행하겠습니다.
+
+H0 : $\frac{\sigma_M}{\sigma_F}=1\;$, H1 : $\frac{\sigma_M}{\sigma_F}\neq 1$
+
+```{r}
+var.test(weight~gender,data=weight)
+```
+
+P-value는 0.598로 귀무가설을 기각하지 못하였습니다. 이는 두 집단의 분산이 같다는 것을 지지하고 있습니다.
+
+#### (d)
+
+F검정을 위해 두 집단이 서로 독립이라고 가정하였습니다.

@@ -1,0 +1,53 @@
+# 재무회계 Ch10 과제 {.unnumbered}
+
+## Problem 10-21
+
+![](images/재무회계_10-21.png)
+
+### Answer
+
+Carrying value : $10,000,000-(2\times\frac{10,000,000-1,000,000}{6})=7,000,000USD$
+
+Depreciation : $\frac{7,000,000-600,000}{2}=3,200,000USD$
+
+## Problem 10-29
+
+![](images/재무회계_10-29.png)
+
+### Answer
+
+#### (a)
+
+debit : Computer 400,000 / Software 40,000
+
+credit : Cash 440,000
+
+#### (b)
+
+debit : Computer 20,000 / Software 10,000
+
+credit : Cash 30,000
+
+#### (c)
+
+debit : Depreciation 76,000(=2*(420000-40000)/10) / Amortization 25,000(=2*50000/4)
+
+credit : Accumulated Depreciation 76,000 / Software 25,000
+
+#### (d)
+
+debit : Loss of software 25,000
+
+credit : Software 25,000
+
+#### (e)
+
+debit : Depreciation 24,000(=(420000-38000*2-56000)/12)
+
+credit : Accumulated depreciation 24,000
+
+#### (f)
+
+debit : Depreciation 24,000 / Cash 260,000 / Accumulated depreciation 124,000 / Loss of computer 36,000
+
+credit : Accumulated depreciation 24,000 / Computer 420,000

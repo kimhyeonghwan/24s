@@ -293,6 +293,12 @@ window.Quarto = {
  <span class="menu-text">이자율기간구조 과제1</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./이자율기간구조_hw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">이자율기간구조 과제2</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -367,6 +373,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./재무회계_ch9.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">재무회계 Ch9 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch10 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch11 과제</span></a>
   </div>
 </li>
       </ul>
@@ -501,12 +519,12 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="answer-1">Answer</h3>
 <p>H0 : 캐슈넛의 포함비율은 25%이다. (<span class="math inline">\(\mu=25\)</span>)</p>
 <p>H1 : 캐슈넛의 포함비율은 25%보다 낮아 표기가 과장되었다. (<span class="math inline">\(\mu&lt;25\)</span>)</p>
-<p>정규분포 가정 하에서 표본의 크기가 충분히 크므로 z검정을 수행할 수 있으며, p-value는 아래와 같이 산출할 수 있습니다.</p>
-<p><span class="math display">\[P(\bar{X}\geq 25)=P(\frac{\bar{X}-23.5}{3.1/\sqrt{35}}\geq \frac{1.5}{3.1/\sqrt{35}})=P(Z\geq 2.86)=P(Z&lt;-2.86=t_0)=0.0021\]</span></p>
-<p>p-value&lt;0.05이므로, 5% 신뢰수준에서 귀무가설을 기각할 수 있습니다.</p>
+<p>정규분포 가정 하에서 표본의 크기가 충분히 크므로 z검정을 수행할 수 있으며, z통계량 <span class="math inline">\(z_0\)</span> 및 p-value는 아래와 같이 산출할 수 있습니다.</p>
+<p><span class="math display">\[z_0=\frac{\bar{X}-\mu}{s/\sqrt{35}}=\frac{-1.5}{3.1/\sqrt{35}}=-2.86,\;P(Z&lt;z_0=-2.86)=0.0021\]</span></p>
+<p>p-value=0.0021&lt;0.05이므로, 5% 신뢰수준에서 귀무가설을 기각할 수 있습니다.</p>
 <p>이는 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정을 지지하는 결과입니다.</p>
 <p>심지어, p-value가 매우 낮아 1% 신뢰수준이라고 하더라도 귀무가설을 기각할 수 있습니다.</p>
-<p>결론적으로, 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정은 캐슈넛의 포함비율이 정규분포를 따르는 경우 매우 합리적으로 보여집니다.</p>
+<p>결론적으로, 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정은 합리적으로 보입니다.</p>
 </section>
 </section>
 <section id="problem-3" class="level2">
@@ -541,8 +559,8 @@ window.Quarto = {
 <section id="c" class="level4">
 <h4 class="anchored" data-anchor-id="c">(c)</h4>
 <p>저는 z검정을 사용하였습니다.</p>
-<p>표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 모표준편차를 모르는 상황이지만 충분히 큰 표본에 대해 t분포와 z분포가 유사한 점을 이용하여 z검정을 사용한 것 입니다.</p>
-<p>따라서, <strong>모분산의 정규분포 가정 및 표본표준편차가 모표준편차와 같다는 가정</strong> 하에서 검정을 실시한 것 입니다.</p>
+<p>표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 표본표준편차는 모표준편차의 불편 및 일치추정량이므로 <span class="math inline">\(s\rightarrow\sigma\;for\;large\;sample\)</span>인 점을 이용한 것 입니다.</p>
+<p>따라서, <strong>1. 임의추출(random samples)</strong> 이외의 별도의 가정은 없습니다.</p>
 </section>
 </section>
 </section>
@@ -564,16 +582,16 @@ window.Quarto = {
 <p>H0 : <span class="math inline">\(\mu_A=\mu_B\;\Rightarrow\;\mu_A-\mu_B=0\)</span></p>
 <p>H1 : <span class="math inline">\(\mu_A&gt;\mu_B\;\Rightarrow\;\mu_A-\mu_B&gt;0\)</span></p>
 <p>한편, 각각 독립인 표본에 대하여 두 집단의 평균의 차이를 검정할 때 필요한 표본평균의 분포는 아래와 같습니다.</p>
-<p><span class="math display">\[\bar{X}^*=\bar{X_A}-\bar{X_B}\sim N(\mu_A-\mu_B,\frac{\sigma_A}{\sqrt{47}}+\frac{\sigma_B}{\sqrt{38}}\approx \frac{s_A}{\sqrt{47}}+\frac{s_B}{\sqrt{38}})\]</span></p>
+<p><span class="math display">\[\bar{X}^*=\bar{X_A}-\bar{X_B}\sim N(\mu_A-\mu_B,\frac{\sigma_A^2}{47}+\frac{\sigma_B^2}{38}\approx\frac{s_A^2}{47}+\frac{s_B^2}{38})\]</span></p>
 <p>따라서, z통계량은 <span class="math inline">\(z_0=\frac{\mu_A-\mu_B-0}{\frac{s_A}{\sqrt{47}}+\frac{s_B}{\sqrt{38}}}=\frac{7.92-5.80}{3.45/\sqrt{47}+2.87/\sqrt{38}}=2.188\)</span> 이며,</p>
 <p>P-value는 <span class="math inline">\(P(Z&gt;2.188)=P(Z&lt;-2.188)=0.0143\)</span> 입니다.</p>
 <p>따라서, 신뢰수준 약 1.5%에서 귀무가설을 기각할 수 있으며 공격적으로 응답한 아이 집단의 BPC 점수가 평균적으로 높다는 주장을 강하게 지지한다고 할 수 있습니다.</p>
 </section>
 <section id="b-1" class="level4">
 <h4 class="anchored" data-anchor-id="b-1">(b)</h4>
-<p>저는 z검정을 사용하였습니다.</p>
-<p>표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 모표준편차를 모르는 상황이지만 충분히 큰 표본에 대해 t분포와 z분포가 유사한 점을 이용하여 z검정을 사용한 것 입니다.</p>
-<p>따라서, <strong>모분산의 정규분포 가정 및 표본표준편차가 모표준편차와 같다는 가정</strong> 하에서 검정을 실시한 것 이며, <strong>추가적으로 두 집단의 독립성</strong>을 가정하고 실시하였습니다.</p>
+<p>위와 마찬가지로 표본의 크기가 충분하므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 표본표준편차는 모표준편차로 수렴하므로 이를 대용치로 이용한 것 입니다.</p>
+<p>다만, 두 집단의 평균차이를 검정한 것이므로 두 모집단이 서로 독립이여야 합니다.</p>
+<p>따라서, <strong>1. 임의추출(random samples), 2. 두 모집단이 독립</strong>이라고 가정하였습니다.</p>
 </section>
 </section>
 </section>
@@ -674,7 +692,7 @@ window.Quarto = {
 2 M          11  91.9  12.4</code></pre>
 </div>
 </div>
-<p>각 표본이 대략적으로 bell-shape를 형성하고 있으며, 독립일 것 입니다,</p>
+<p>각 표본이 대략적으로 bell-shape를 형성하고 있으므로, 정규성 가정에 큰 무리는 없어보입니다.</p>
 <p>따라서, 평균의 차이가 있는지 알아보기 위해서 t검정을 수행하겠습니다.</p>
 <p>H0 : <span class="math inline">\(\mu_F=\mu_M\;\)</span>, H1 : <span class="math inline">\(\mu_F\neq\mu_M\)</span></p>
 <div class="cell">
@@ -697,7 +715,9 @@ mean in group F mean in group M
 </section>
 <section id="b-2" class="level4">
 <h4 class="anchored" data-anchor-id="b-2">(b)</h4>
-<p>모집단의 정규성과 남성과 여성 몸무게 집단의 독립성을 가정하였습니다.</p>
+<p>모집단의 분포를 모르고 표본의 크기도 충분하지 않으므로, 표본평균의 정규성이 보장되지 않습니다.</p>
+<p>또한, 두 집단의 평균 차이를 검정하기 위해서는 독립일 필요가 있으며, t분포 유도를 위해 두 집단의 분산이 동일해야합니다.</p>
+<p>따라서, <strong>1. 임의추출(random samples), 2. 모집단의 정규성, 3. 두 모집단은 독립, 4. 두 모집단은 등분산</strong>이라고 가정하였습니다.</p>
 </section>
 <section id="c-1" class="level4">
 <h4 class="anchored" data-anchor-id="c-1">(c)</h4>
@@ -723,7 +743,9 @@ ratio of variances
 </section>
 <section id="d" class="level4">
 <h4 class="anchored" data-anchor-id="d">(d)</h4>
-<p>F검정을 위해 두 집단이 서로 독립이라고 가정하였습니다.</p>
+<p>표본의 크기가 충분하지 않으므로 정규성이 담보되지 않아 F분포 및 카이제곱분포 유도를 위해 정규성 가정이 필요합니다.</p>
+<p>또한, F분포 유도를 위해 두 집단이 독립일 필요가 있습니다.</p>
+<p>따라서, <strong>1. 임의추출(random samples), 2. 모집단의 정규성, 3. 두 모집단은 독립</strong>이라고 가정하였습니다.</p>
 
 
 </section>

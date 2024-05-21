@@ -736,6 +736,72 @@
     ]
   },
   {
+    "objectID": "이자율기간구조_hw2.html",
+    "href": "이자율기간구조_hw2.html",
+    "title": "이자율기간구조 과제2",
+    "section": "",
+    "text": "Problem 1\n한 제조업체의 재무담당자가 usd 100 million 에 달하는 운전자본 working capital 을 3개월 정도 repo 시장에 투자하여 이익을 취하고자 한다.\n기간은 2020년 1월 15일(현재, 포함)에 시작하여 2020년 4월 15일(불포함)이 환매일이다. 즉 재무담당자는 91일 동안 daily SOFR 를 얻게 된다.\n그러나 최근 SOFR 의 하락세가 고민이 되어 투자금의 절반인 50 million 은 2020년 4월 만기인 3개월 SOFR 선물을 매수하여 수익 금리를 고정하는 효과를 가지려고 한다.\n기간 내내 금리가 1bp 하락한다면, act/360 기준으로 회사는 얼마의 손해가 발생하는가?\n이 절반에 대하여 SOFR 선물로 헤지를 한다면 몇 개의 선물 계약을 해야할지 본인의 계산을 쓰세요.",
+    "crumbs": [
+      "채권분석&기간구조('24봄)",
+      "이자율기간구조 과제2"
+    ]
+  },
+  {
+    "objectID": "이자율기간구조_hw2.html#problem-1",
+    "href": "이자율기간구조_hw2.html#problem-1",
+    "title": "이자율기간구조 과제2",
+    "section": "",
+    "text": "Answer\n전체 노출액 중 절반은 정확히 헷지하였으므로, 기간 중 노출액은 50mUSD입니다.\n노출기간은 91일이므로, 회사의 손해는 \\(50,000,000\\times 0.0001\\times\\frac{91}{360}=1263.889USD\\)\nSOFR선물은 (100-r)로 호가하며, 1bp에 대해 25$만큼 변동합니다.\n따라서, 손실액만큼 SOFR선물에서 이익이 발생하도록 하려면 \\(\\frac{1263.889}{25}=50.56\\), 약 51계약 매수해야합니다.",
+    "crumbs": [
+      "채권분석&기간구조('24봄)",
+      "이자율기간구조 과제2"
+    ]
+  },
+  {
+    "objectID": "이자율기간구조_hw2.html#problem-2",
+    "href": "이자율기간구조_hw2.html#problem-2",
+    "title": "이자율기간구조 과제2",
+    "section": "Problem 2",
+    "text": "Problem 2\n다음의 표는 2020년 6월 5일 ICE에서 가져온 usd스왑데이터이다. 편의상 각 스왑금리는 연 1회 지급한다고 하자. 우리는 bootstrapping 기법을 이용하여 이 스왑금리들을 할인율곡선 또 는 현물이자율 곡선으로 변환할 수 있다.\n이 문제에서는 그와 달리 매해 말 지급부담을 지니고 있는 은행 A를 고려한다. 이 은행은 현 시점에서 floating rate notes 변동금리부채권과 스왑을 매수하여 이 지급부담을 맞추려고 한다. 이때 변동금리부채권과 스왑의 액면값들을 구하는 것을 reverse bootstrapping 이라 한다. 보다 정확히 다음의 구조를 고려하자.\n\n각 FRN은 \\(N_1, ... , N_6\\)의 액면을 가지고 있으며 이들은 i번째 해의 말까지 매년 \\(N_i\\) 에 해당하는 변동금리를 지급하고 i번째 해의 말에는 액면 \\(N_i\\) 도 지급한다.\n각 스왑의 액면 역시 \\(N_i\\)이며 A는 floating rate payer이다. 즉 i번째 해의 말까지 매년 \\(N_i\\)에 해당하는 변동금리를 거래상대방에게 지급한다. 역으로 거래상대방은 매해 말 \\(N_is_i\\) 을 지불한다. 여기에서 \\(s_i\\)는 i 만기 스왑금리이다.\n\n\\(N_1,...,N_6\\)를 구하고 소수점 네째자리까지 리포트하시오.\n\nlibrary(tidyverse)\n\n\nswap &lt;- tibble(tenor=c(1:6),\n               rate=c(0.307,0.299,0.346,0.424,0.517,0.614))\nswap\n\n# A tibble: 6 × 2\n  tenor  rate\n  &lt;int&gt; &lt;dbl&gt;\n1     1 0.307\n2     2 0.299\n3     3 0.346\n4     4 0.424\n5     5 0.517\n6     6 0.614\n\n\n\nAnswer",
+    "crumbs": [
+      "채권분석&기간구조('24봄)",
+      "이자율기간구조 과제2"
+    ]
+  },
+  {
+    "objectID": "이자율기간구조_hw2.html#problem-3",
+    "href": "이자율기간구조_hw2.html#problem-3",
+    "title": "이자율기간구조 과제2",
+    "section": "Problem 3",
+    "text": "Problem 3\n미 재무부에서 발표하는 일별 par yield 데이터를 찾되, 2024년 1월부터 5월까지 매월 첫번째 일자의 커브를 구하시오. 그리고 이 5개의 금리 커브에 대하여 Nelson-Siegel-Svensson 모형을 적용하여 본인이 구한 최선의 fitted curve를 리포트하시오. 1개월 금리부터 30년 금리까지 데이터 전체를 활용하시오.\n여기서 정답은 없으니, 본인이 적절한 초기값 및 제약식을 넣어 문제를 푸세요.\n\nAnswer\n먼저, 미 재무부의 daily par yield 데이터를 이용하여 산출한 매월 첫번째 일자의 커브는 아래와 같습니다.\n\nuspar &lt;- tibble()\nuspar &lt;- read_csv(\"investment_hw/usparyield.csv\") %&gt;% \n  arrange(Date) %&gt;% \n  mutate(year=substr(Date,7,10),\n         month=substr(Date,1,2)) %&gt;% \n  group_by(year,month) %&gt;% \n  slice(1) %&gt;% \n  pivot_longer(cols = contains(\" \"),values_to = \"par\", names_to = \"time\") %&gt;% \n  mutate(maturity=c(1,2,3,4,6,12,24,36,60,84,120,240,360)/12) %&gt;% \n  ungroup()\n\nggplot(uspar,aes(x=maturity,y=par,colour=month))+\n  geom_line()+\n  theme_bw()\n\n다음으로, NSS모형을 이용한 최적 fitted curve를 구해보겠습니다.\n\n\n\n\n\n\nNelson-Siegel-Svensson Model\n\n\n\nNSS모형은 instantaneous forword rate를 추정하는 대표적인 모형으로, 3개의 factor와 6개의 parameter(\\(\\beta_0\\sim\\beta_3, \\tau_1\\sim\\tau_2\\))를 이용합니다.\n\\[f(t)=\\beta_0+\\beta_1e^{-\\frac{t}{\\tau_1}}+\\beta_2\\frac{t}{\\tau_1}e^{-\\frac{t}{\\tau1}}+\\beta_3\\frac{t}{\\tau_2}e^{-\\frac{t}{\\tau_2}}\\]\n이를 통해 continuous-compounding spot rate curve를 추정할 수 있습니다.\n\\[r(t)=\\beta_0+\\beta_1\\frac{1-e^{-\\frac{t}{\\tau_1}}}{\\frac{t}{\\tau_1}}+\\beta_2[\\frac{1-e^{-\\frac{t}{\\tau_1}}}{\\frac{t}{\\tau_1}}-e^{-\\frac{t}{\\tau_1}}]+\\beta_3[\\frac{1-e^{-\\frac{t}{\\tau_2}}}{\\frac{t}{\\tau_2}}-e^{-\\frac{t}{\\tau_2}}]\\]\n\n\n저는 최적 fitted curve를 시뮬레이션을 통해 산출할 예정입니다.\n먼저, 초기값을 \\(\\beta_0=30y\\;\\;par\\;\\;rate,\\;\\;\\;\\beta_1=1m\\;\\;par\\;\\;rate-\\beta_0\\) 및 \\(\\beta_{2,3},\\;\\tau_{1,2}\\)는 \\((-5,\\;5)\\) 범위의 Uniform dist. random number로 설정하겠습니다.\n해당 초기값에 따라 constraint condition을 기준금리의 변동폭을 고려하여 25bp, \\(|\\beta_0+\\beta_1-1m\\;\\;par\\;\\;rate|&lt;0.25\\)로 설정하고 finite difference method(optim fn. in R)를 통해 최적해를 산출합니다. (tau와 beta는 별도의 제약식 없이 진행하였습니다.)\n이러한 방식을 1,000번 반복하는 Monte-carlo simulation을 통해 1,000개의 최적해를 산출하고, 1,000개의 NSS rate curve에서 MSE가 가장 낮은 curve를 최적 fitted curve로 선정하겠습니다.\n이를 구현하기 위한 R코드 및 24년 1~5월의 fitted curve는 아래와 같습니다.\n\n1. NSS Model 함수\n\n# (nelson_siegel) return NSS model rates for given parameters\n# maturity : vector of year maturity\n# params : vector of NSS medel 6 parameters, beta0 to tau2\n\nnelson_siegel &lt;- function(maturity, params){\n  \n  # parameters \n  beta0 = params[1]\n  beta1 = params[2]\n  beta2 = params[3]\n  beta3 = params[4]\n  tau1  = params[5]\n  tau2  = params[6]\n  \n  # function \n  beta0 + \n    beta1 * (1 - exp(-maturity/tau1)) / (maturity/tau1) + \n    beta2 * ((1 - exp(-maturity/tau1)) / (maturity/tau1) - exp(-maturity/tau1)) + \n    beta3 * ((1 - exp(-maturity/tau2)) / (maturity/tau2) - exp(-maturity/tau2)) \n  \n}\n\n\n\n2. NSS 최적해 산출 함수(finite difference method)\n\n# (optim_nelson_siegel) return optimal tibble for given term-structure,\n#                       using finite difference method\n# maturity : vector of year maturity\n# term_sturucture : vector of real spot rate, order to maturity, omit %\n\noptim_nelson_siegel &lt;- function(term_structure = NULL, maturity = NULL, params = rep(0.1, 6),\n                                contraint_threshold = 0.1, tau_threshold = 10, beta_threshold = 30){\n  \n  loss_function &lt;- function(params){\n    \n    # parameters \n    beta0 = params[1]\n    beta1 = params[2]\n    beta2 = params[3]\n    beta3 = params[4]\n    tau1  = params[5]\n    tau2  = params[6]\n    \n    # contraints\n    contraint = abs(beta0 + beta1 - term_structure[1])\n    \n    if(contraint &gt; contraint_threshold ){\n      return(NA)\n    }\n    \n    # if(tau1 &gt; tau_threshold | tau2 &gt; tau_threshold){\n    #   return(NA)\n    # }\n    # \n    # if(beta2 &gt; beta_threshold | beta3 &gt; beta_threshold ){\n    #   return(NA)\n    # }\n    \n    sum(\n      (term_structure - beta0 - \n         beta1 *  (1 - exp(-maturity/tau1)) / (maturity/tau1) -\n         beta2 * ((1 - exp(-maturity/tau1)) / (maturity/tau1) - exp(-maturity/tau1)) - \n         beta3 * ((1 - exp(-maturity/tau2)) / (maturity/tau2) - exp(-maturity/tau2)) \n      )^2)\n    \n  }\n  \n  # set initial values for to beta0 and beta1 that respect the contraint \n  # beta0 is long-term rate & beta1 is short-term rate minus beta0\n  params = c(term_structure[length(term_structure)],\n             term_structure[1]-term_structure[length(term_structure)],\n             params[3:6] )\n               \n  # beta0 & beta1 is equal to (short-term rate)/2\n  # params = c(term_structure[1]/2,term_structure[1]/2,params[3:6] )\n  \n  # minimization of the loss function \n  optimization = optim(params, loss_function)\n  \n  # optimal parameters \n  optim_params = c(beta0 = optimization$par[1], \n                   beta1 = optimization$par[2], \n                   beta2 = optimization$par[3],\n                   beta3 = optimization$par[4],\n                   tau1  = optimization$par[5], \n                   tau2  = optimization$par[6])\n  \n  # fitted value from Nelson-Siegel base function \n  fitted_values = nelson_siegel(maturity, optim_params)\n  \n  # compute the mean square error\n  mse_fit = sd(fitted_values - term_structure, na.rm = TRUE)\n  \n  # output \n  dplyr::tibble( \n    maturity = list(maturity),\n    term_structure = list(term_structure),\n    start_params = list(params),\n    optim_params = list(optim_params),\n    fit = list(fitted_values),\n    mse = mse_fit\n  )\n} \n\n\n\n3. Uniform dist. random number 생성\n\n# (random_params) return random number follows an uniform distribution\n# n.params: number of parameter to generate \n# params.min: for random generation, minimum parameter\n# params.max: for random generation, maximum parameter\n# seed: to control randomness \n\nrandom_params &lt;- function(n.params = 1, params.min = 0, params.max = 5, seed = 1){\n  \n  set.seed(seed)\n  \n  runif(n.params, params.min, params.max)\n  \n}\n\n\n\n4. Monte-carlo simulation (Calibration)\n\n# (calibrate_nelson_siegel) return n-times \"optim_nelson_siegel\" outputs\n#                           using Monte-carlo simulation for random 3 parameters(beta2 to tau2)\n# n: number of simulations \n# params.min: for random generation, minimum parameter\n# params.max: for random generation, maximum parameter\n# verbose: disply progress in the importation.\n\ncalibrate_nelson_siegel &lt;- function(object, n = 100, params.min = -5, params.max = 5, \n                                    contraint_threshold = 0.01, verbose = TRUE ){\n  \n  # initialize the parameters \n  term_structure = object$term_structure[[1]]\n  maturity = object$maturity[[1]]\n  \n  # list containing all the simulations \n  simulations = list()\n  \n  # safe version to avoid errors if we made many simulations\n  safe_optim = purrr::safely(optim_nelson_siegel)\n  \n  for(i in 1:n){\n    \n    # generate a random seed\n    random_seed = mean(random_params(10, 0, 100000, seed = i))\n    \n    # generate random parameters \n    random_params = random_params(6, params.min, params.max, seed = random_seed)\n    \n    simulations[[i]] = safe_optim(term_structure  = term_structure, maturity = maturity, params = random_params, contraint_threshold = contraint_threshold)$result\n    \n    if( verbose &(i%%50 == 0)){message(\"Simulations: \", i, \"/\", n)}\n    \n  }\n  \n  # unique dataset for all the simulation\n  simulations_df = dplyr::bind_rows(simulations) \n  \n  # add the initial object\n  simulations_df = dplyr::bind_rows(object, simulations) \n  \n  # index for the simulations \n  simulations_df = dplyr::mutate(simulations_df, n = 1:nrow(simulations_df)) \n  \n  return(simulations_df)\n  \n}\n\n\n\n5. Optimal fitted curve 산출 및 시각화\n\n# (optimal_params_ns) summarize of all above, return optimal result minimize MSE from n-times simulation.\n# term_structure = NULL\n# maturity = NULL\n# n = 1000\n# params.init = rep(0.1, 6)\n# params.min = -5\n# params.max = 5\n# contraint_threshold = 0.1\n# label = NULL (label for the plot)\n# verbose = TRUE\n\noptimal_params_ns &lt;- function(term_structure = NULL, maturity = NULL, \n                              n = 1000, params.init = rep(0.1, 6), params.min = -5, params.max = 5,\n                              contraint_threshold = 0.1, label = NULL, verbose = TRUE){\n  \n  # first fit \n  first_fit_ns = optim_nelson_siegel(term_structure = term_structure, maturity = maturity, params = params.init)\n  \n  # simulations \n  sim_fit_ns = calibrate_nelson_siegel(first_fit_ns, n = n, params.min = params.min, params.max = params.max, contraint_threshold = contraint_threshold)\n  \n  # best parameters \n  df_optim_params = sim_fit_ns[which(sim_fit_ns$mse == min(sim_fit_ns$mse, na.rm = TRUE)),]\n  \n  \n  # setting the title of the plot \n  if(!is.null(label) & is.character(label)){\n    \n    plot_title = paste0(\"Fitted Nelson-Siegel-Svensonn vs Real Value \", \"(\", label, \")\" )\n    \n  } else {\n    \n    plot_title = \"Fitted Nelson-Siegel-Svensonn vs Real Value\"\n  }\n  \n  \n  # plot of fitted vs real values \n  plot_df =  dplyr::inner_join(\n    dplyr::tibble(\n      t = maturity,\n      pred = df_optim_params$fit[[1]]\n    ),\n    dplyr::tibble(\n      t = maturity,\n      real = term_structure\n    ),\n    by = \"t\"\n  ) \n  \n  # Plot Real value vs Fitted Values \n  plot_ns = plot_df %&gt;%\n    mutate(label = paste0(\"T = \", round(t, 3)))%&gt;%\n    ggplot()+\n    geom_point(aes(t, pred), color = \"red\", size = 2, alpha = 0.8) +\n    geom_point(aes(t, real), color = \"black\", alpha = 0.5)+\n    geom_line(aes(t, pred), color = \"red\", size = 1) +\n    geom_line(aes(t, real), color = \"black\", linetype = \"dashed\") +\n    geom_label(aes(t+1, real-0.001, label = label), size = 1.5)+\n    theme(axis.text.x = element_text(angle = 25, face = \"bold\", size = 7), \n          axis.text.y = element_text(face = \"bold\"), \n          axis.title  = element_text(face = \"bold\"),\n          plot.title  = element_text(face = \"bold\"),\n          plot.subtitle = element_text(face = \"italic\"),\n          plot.caption = element_text(face = \"italic\"),\n          panel.grid.major.x = element_line(colour=\"grey60\", linetype=\"dotted\"),\n          panel.grid.minor.x = element_blank(),\n          panel.grid.major.y = element_line(colour=\"grey60\", linetype=\"dotted\"),\n          legend.text = element_text(face = \"italic\", size = 5),\n          legend.title = element_text(face = \"bold\"),\n          legend.position = \"top\" ) +\n    scale_x_continuous(breaks=c(0, 0.5, 1,2,3,4,5,7,10,15, 20, 25, 30))+\n    ggtitle(plot_title, subtitle = \"Fitted Value in Red and Real Values in Black\" )+\n    xlab(\"Maturities\")+\n    ylab(\"\") + \n    labs(caption = paste0(\"Mean Squared Error of the Fit: \", round(df_optim_params$mse, 6)))+\n    theme_bw()\n  \n  \n  \n  # output \n  structure(\n    list(\n      optim_params = tibble( beta0=df_optim_params$optim_params[[1]][1],\n                             beta1=df_optim_params$optim_params[[1]][2],\n                             beta2=df_optim_params$optim_params[[1]][3],\n                             beta3=df_optim_params$optim_params[[1]][4],\n                             tau1=df_optim_params$optim_params[[1]][5],\n                             tau2=df_optim_params$optim_params[[1]][6]),\n      plot_ns = plot_ns,\n      simulations = sim_fit_ns,\n      df_optim = df_optim_params\n      \n    )\n  )\n  \n}\n\n\n\nResult\n앞서 도식화한 24년 1~5월의 US par-yield curve에 위 방법을 적용하여 각각 모델링한 fitted curve는 아래와 같습니다.\n\nuspar_jan &lt;- uspar %&gt;% filter(month==\"01\")\nuspar_feb &lt;- uspar %&gt;% filter(month==\"02\")\nuspar_mar &lt;- uspar %&gt;% filter(month==\"03\")\nuspar_apr &lt;- uspar %&gt;% filter(month==\"04\")\nuspar_may &lt;- uspar %&gt;% filter(month==\"05\")\n\nJan &lt;- optimal_params_ns(uspar_jan$par,uspar_jan$maturity,n=1000,contraint_threshold = 0.25)\nFeb &lt;- optimal_params_ns(uspar_feb$par,uspar_feb$maturity,n=1000,contraint_threshold = 0.25)\nMar &lt;- optimal_params_ns(uspar_mar$par,uspar_mar$maturity,n=1000,contraint_threshold = 0.25)\nApr &lt;- optimal_params_ns(uspar_apr$par,uspar_apr$maturity,n=1000,contraint_threshold = 0.25)\nMay &lt;- optimal_params_ns(uspar_may$par,uspar_may$maturity,n=1000,contraint_threshold = 0.25)\n\n\nJan$plot_ns\n\n\n\n\n\n\n\nFeb$plot_ns\n\n\n\n\n\n\n\nMar$plot_ns\n\n\n\n\n\n\n\nApr$plot_ns\n\n\n\n\n\n\n\nMay$plot_ns",
+    "crumbs": [
+      "채권분석&기간구조('24봄)",
+      "이자율기간구조 과제2"
+    ]
+  },
+  {
+    "objectID": "이자율기간구조_hw2.html#problem-4",
+    "href": "이자율기간구조_hw2.html#problem-4",
+    "title": "이자율기간구조 과제2",
+    "section": "Problem 4",
+    "text": "Problem 4\n위 문제에서 구한 모수값들을 가지고 6월 첫날의 금리커브를 예측하려고 한다. 모수값들에 대하여 적절한 (예: 엑셀에서 제공하는 선형 추세선을 찾아 사용) 예측값들을 구하고 이를 바탕으로 금리 커브를 구하시오.\n\nAnswer\n먼저, 문제3에서 최종적으로 산출한 NSS fitted curve에 대하여 각각의 파라미터는 아래와 같습니다.\n\noptim_parameters &lt;- Jan$optim_params %&gt;% \n  union_all(Feb$optim_params) %&gt;% \n  union_all(Mar$optim_params) %&gt;% \n  union_all(Apr$optim_params) %&gt;% \n  union_all(May$optim_params) %&gt;% \n  mutate(month=c(\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\"))\noptim_parameters\n\n# A tibble: 5 × 7\n  beta0 beta1 beta2 beta3  tau1   tau2 month\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;\n1  2.35 3.35  -2.33  5.88 2.10  11.8   Jan  \n2  4.32 0.961 -3.16  1.34 2.06   0.127 Feb  \n3  3.32 2.30  -3.09  4.07 2.63  10.3   Mar  \n4  2.69 2.89  -3.15  6.44 3.45  11.7   Apr  \n5  3.46 2.05   1.74  4.09 0.802 14.1   May  \n\n\n이를 이용하여 6월달의 US par-yield curve를 예측하고자 할 때, 모수값들을 활용하여 NSS모델의 6월 예상파라미터를 추정할 수 있습니다.\n여기에는 AR, ARMA, GARCH 등의 여러 모델을 생각할 수 있겠으나, 저는 직전 달의 모수값이 다음 달의 모수값에 대한 최적 추정치라고 생각합니다. 즉, 5월달의 NSS모델의 모수값을 6월의 예상파라미터로 고려하겠습니다.\n이를 이용하여 산출한** 6월 예상 US par-yield 및 curve는 아래와 같습니다.**\n\nest_jun &lt;- tibble(maturity=uspar_may$maturity,\n                  par=May$df_optim$fit[[1]])\nest_jun\n\n# A tibble: 13 × 2\n   maturity   par\n      &lt;dbl&gt; &lt;dbl&gt;\n 1   0.0833  5.50\n 2   0.167   5.49\n 3   0.25    5.48\n 4   0.333   5.46\n 5   0.5     5.42\n 6   1       5.26\n 7   2       4.97\n 8   3       4.78\n 9   5       4.63\n10   7       4.62\n11  10       4.68\n12  20       4.80\n13  30       4.76\n\nggplot(est_jun,aes(x=maturity,y=par))+\n  geom_line(colour=\"blue\", size=1)+\n  scale_x_continuous(breaks=c(0, 0.5, 1,2,3,4,5,7,10,15, 20, 25, 30))+\n  ggtitle(\"Expected US par-yield curve in June 1, based on NSS in May 1.\")+\n  xlab(\"Maturities\")+\n  ylab(\"\") + \n  theme_bw()",
+    "crumbs": [
+      "채권분석&기간구조('24봄)",
+      "이자율기간구조 과제2"
+    ]
+  },
+  {
+    "objectID": "이자율기간구조_hw2.html#problem-5",
+    "href": "이자율기간구조_hw2.html#problem-5",
+    "title": "이자율기간구조 과제2",
+    "section": "Problem 5",
+    "text": "Problem 5\nhw2.xlsx 에는 2011-10-28 부터 2016-10-28 까지의 스왑 데이터가 결측치가 있는 날들은 제외하고 들어 있다. 이를 이용하여 일별 금리변화를 주도하는 세 가지 주성분을 구하여 리포트하시오.\n\nAnswer",
+    "crumbs": [
+      "채권분석&기간구조('24봄)",
+      "이자율기간구조 과제2"
+    ]
+  },
+  {
     "objectID": "investment_hw1.html",
     "href": "investment_hw1.html",
     "title": "투자분석 과제1",
@@ -975,6 +1041,83 @@
     "crumbs": [
       "재무회계('24봄)",
       "재무회계 Ch9 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch10.html",
+    "href": "재무회계_ch10.html",
+    "title": "재무회계 Ch10 과제",
+    "section": "",
+    "text": "Problem 10-21",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch10 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch10.html#problem-10-21",
+    "href": "재무회계_ch10.html#problem-10-21",
+    "title": "재무회계 Ch10 과제",
+    "section": "",
+    "text": "Answer\nCarrying value : \\(10,000,000-(2\\times\\frac{10,000,000-1,000,000}{6})=7,000,000USD\\)\nDepreciation : \\(\\frac{7,000,000-600,000}{2}=3,200,000USD\\)",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch10 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch10.html#problem-10-29",
+    "href": "재무회계_ch10.html#problem-10-29",
+    "title": "재무회계 Ch10 과제",
+    "section": "Problem 10-29",
+    "text": "Problem 10-29\n\n\nAnswer\n\n(a)\ndebit : Computer 400,000 / Software 40,000\ncredit : Cash 440,000\n\n\n(b)\ndebit : Computer 20,000 / Software 10,000\ncredit : Cash 30,000\n\n\n(c)\ndebit : Depreciation 76,000(=2(420000-40000)/10) / Amortization 25,000(=250000/4)\ncredit : Accumulated Depreciation 76,000 / Software 25,000\n\n\n(d)\ndebit : Loss of software 25,000\ncredit : Software 25,000\n\n\n(e)\ndebit : Depreciation 24,000(=(420000-38000*2-56000)/12)\ncredit : Accumulated depreciation 24,000\n\n\n(f)\ndebit : Depreciation 24,000 / Cash 260,000 / Accumulated depreciation 124,000 / Loss of computer 36,000\ncredit : Accumulated depreciation 24,000 / Computer 420,000",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch10 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch11.html",
+    "href": "재무회계_ch11.html",
+    "title": "재무회계 Ch11 과제",
+    "section": "",
+    "text": "Problem 11-18.",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch11 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch11.html#problem-11-18.",
+    "href": "재무회계_ch11.html#problem-11-18.",
+    "title": "재무회계 Ch11 과제",
+    "section": "",
+    "text": "Answer",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch11 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch11.html#problem-11-19.",
+    "href": "재무회계_ch11.html#problem-11-19.",
+    "title": "재무회계 Ch11 과제",
+    "section": "Problem 11-19.",
+    "text": "Problem 11-19.",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch11 과제"
+    ]
+  },
+  {
+    "objectID": "재무회계_ch11.html#exhibit-11.2",
+    "href": "재무회계_ch11.html#exhibit-11.2",
+    "title": "재무회계 Ch11 과제",
+    "section": "Exhibit 11.2",
+    "text": "Exhibit 11.2",
+    "crumbs": [
+      "재무회계('24봄)",
+      "재무회계 Ch11 과제"
     ]
   },
   {
@@ -1246,7 +1389,7 @@
     "href": "경영통계분석_hw5.html#problem-2.",
     "title": "경영통계분석 과제5",
     "section": "Problem 2.",
-    "text": "Problem 2.\n\nA company’s mixed nuts are sold in cans and the label says that 25% of the contents is cashews. Suspecting that this might be an overstatement, an inspector takes a random sample of 35 cans and measures the percent weight of cashews [i.e. 100(weight of cashews/weight of all nuts)] in each can. The mean and standard deviation of these measurements are found to be 23.5 and 3.1, respectively. Do these results constitute strong evidence in support of the inspector’s belief?\n\n\nIdentify H0 and H1.\nCarry out the hypothesis test at the 5% level of significance using the p-value (use normal distribution).\n\n\nAnswer\nH0 : 캐슈넛의 포함비율은 25%이다. (\\(\\mu=25\\))\nH1 : 캐슈넛의 포함비율은 25%보다 낮아 표기가 과장되었다. (\\(\\mu&lt;25\\))\n정규분포 가정 하에서 표본의 크기가 충분히 크므로 z검정을 수행할 수 있으며, p-value는 아래와 같이 산출할 수 있습니다.\n\\[P(\\bar{X}\\geq 25)=P(\\frac{\\bar{X}-23.5}{3.1/\\sqrt{35}}\\geq \\frac{1.5}{3.1/\\sqrt{35}})=P(Z\\geq 2.86)=P(Z&lt;-2.86=t_0)=0.0021\\]\np-value&lt;0.05이므로, 5% 신뢰수준에서 귀무가설을 기각할 수 있습니다.\n이는 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정을 지지하는 결과입니다.\n심지어, p-value가 매우 낮아 1% 신뢰수준이라고 하더라도 귀무가설을 기각할 수 있습니다.\n결론적으로, 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정은 캐슈넛의 포함비율이 정규분포를 따르는 경우 매우 합리적으로 보여집니다.",
+    "text": "Problem 2.\n\nA company’s mixed nuts are sold in cans and the label says that 25% of the contents is cashews. Suspecting that this might be an overstatement, an inspector takes a random sample of 35 cans and measures the percent weight of cashews [i.e. 100(weight of cashews/weight of all nuts)] in each can. The mean and standard deviation of these measurements are found to be 23.5 and 3.1, respectively. Do these results constitute strong evidence in support of the inspector’s belief?\n\n\nIdentify H0 and H1.\nCarry out the hypothesis test at the 5% level of significance using the p-value (use normal distribution).\n\n\nAnswer\nH0 : 캐슈넛의 포함비율은 25%이다. (\\(\\mu=25\\))\nH1 : 캐슈넛의 포함비율은 25%보다 낮아 표기가 과장되었다. (\\(\\mu&lt;25\\))\n정규분포 가정 하에서 표본의 크기가 충분히 크므로 z검정을 수행할 수 있으며, z통계량 \\(z_0\\) 및 p-value는 아래와 같이 산출할 수 있습니다.\n\\[z_0=\\frac{\\bar{X}-\\mu}{s/\\sqrt{35}}=\\frac{-1.5}{3.1/\\sqrt{35}}=-2.86,\\;P(Z&lt;z_0=-2.86)=0.0021\\]\np-value=0.0021&lt;0.05이므로, 5% 신뢰수준에서 귀무가설을 기각할 수 있습니다.\n이는 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정을 지지하는 결과입니다.\n심지어, p-value가 매우 낮아 1% 신뢰수준이라고 하더라도 귀무가설을 기각할 수 있습니다.\n결론적으로, 캐슈넛의 포함비율이 25% 보다 낮다는 조사자의 추정은 합리적으로 보입니다.",
     "crumbs": [
       "경영통계분석('24봄)",
       "경영통계분석 과제5"
@@ -1257,7 +1400,7 @@
     "href": "경영통계분석_hw5.html#problem-3",
     "title": "경영통계분석 과제5",
     "section": "Problem 3",
-    "text": "Problem 3\n\nFrom extensive records, it is known that the duration of treating a disease by a standard therapy has a mean of 15 days. It is claimed that a new therapy can reduce the treatment time. To test this claim, the new therapy is tried on 70 patients, and from the data of their homes to recovery, the sample mean and standard deviation are found to be 14.6 and 3.0 days, respectively.\n\n\nPerform the hypothesis test using a 2.5% level of significance, based on the rejection region.\nCalculate the p-value and interpret the result.\nState any assumptions you make about the populations.\n\n\nAnswer\n\n(a)\n표본의 수는 70이며(충분히 큼), 표본의 평균은 14.6 및 표준편차는 3입니다.\n새로운 치료법의 치료기간이 평균적으로 15일보다 낮다면, 새로운 치료법이 효율적이라고 할 수 있습니다.\n따라서, 새로운 치료법의 평균치료기간(모평균)이 15일보다 낮다는 가설을 주장하기 위해 표준정규분포를 이용한 z-검정을 실시하겠습니다.\nH0 : \\(\\mu=15\\)\nH1 : \\(\\mu&lt;15\\)\n단측검정이며, 신뢰수준 2.5%에 대한 임계값은 \\(P(Z&lt;x)\\approx 0.025,\\;x=-1.96\\) 입니다.\nz검정에 이용하는 통계량은 \\(z_0=\\frac{14.6-15}{3/\\sqrt(70)}=-1.1155&gt;-1.96=z_{0.025}\\) 입니다.\n따라서, 귀무가설을 기각할 수 없으며 동 가정 하에서 새로운 치료법이 개선되었다는 주장을 지지하지 않습니다.\n\n\n(b)\np-value는 \\(P(Z&lt;z_0=-1.1155)\\approx 0.132\\) 입니다.\n이 뜻은 실제 새로운 치료방법의 치료기간이 15일보다 짧지 않을 확률이 약 13.2%라는 의미입니다.\n만약 신뢰수준을 15%로 상항하여 동 검정을 수행한다면 귀무가설을 기각할 수 있겠으나, 의사결정이 잘못되었을 리스크가 13.2%로 존재한다는 의미입니다. (1종오류)\n\n\n(c)\n저는 z검정을 사용하였습니다.\n표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 모표준편차를 모르는 상황이지만 충분히 큰 표본에 대해 t분포와 z분포가 유사한 점을 이용하여 z검정을 사용한 것 입니다.\n따라서, 모분산의 정규분포 가정 및 표본표준편차가 모표준편차와 같다는 가정 하에서 검정을 실시한 것 입니다.",
+    "text": "Problem 3\n\nFrom extensive records, it is known that the duration of treating a disease by a standard therapy has a mean of 15 days. It is claimed that a new therapy can reduce the treatment time. To test this claim, the new therapy is tried on 70 patients, and from the data of their homes to recovery, the sample mean and standard deviation are found to be 14.6 and 3.0 days, respectively.\n\n\nPerform the hypothesis test using a 2.5% level of significance, based on the rejection region.\nCalculate the p-value and interpret the result.\nState any assumptions you make about the populations.\n\n\nAnswer\n\n(a)\n표본의 수는 70이며(충분히 큼), 표본의 평균은 14.6 및 표준편차는 3입니다.\n새로운 치료법의 치료기간이 평균적으로 15일보다 낮다면, 새로운 치료법이 효율적이라고 할 수 있습니다.\n따라서, 새로운 치료법의 평균치료기간(모평균)이 15일보다 낮다는 가설을 주장하기 위해 표준정규분포를 이용한 z-검정을 실시하겠습니다.\nH0 : \\(\\mu=15\\)\nH1 : \\(\\mu&lt;15\\)\n단측검정이며, 신뢰수준 2.5%에 대한 임계값은 \\(P(Z&lt;x)\\approx 0.025,\\;x=-1.96\\) 입니다.\nz검정에 이용하는 통계량은 \\(z_0=\\frac{14.6-15}{3/\\sqrt(70)}=-1.1155&gt;-1.96=z_{0.025}\\) 입니다.\n따라서, 귀무가설을 기각할 수 없으며 동 가정 하에서 새로운 치료법이 개선되었다는 주장을 지지하지 않습니다.\n\n\n(b)\np-value는 \\(P(Z&lt;z_0=-1.1155)\\approx 0.132\\) 입니다.\n이 뜻은 실제 새로운 치료방법의 치료기간이 15일보다 짧지 않을 확률이 약 13.2%라는 의미입니다.\n만약 신뢰수준을 15%로 상항하여 동 검정을 수행한다면 귀무가설을 기각할 수 있겠으나, 의사결정이 잘못되었을 리스크가 13.2%로 존재한다는 의미입니다. (1종오류)\n\n\n(c)\n저는 z검정을 사용하였습니다.\n표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 표본표준편차는 모표준편차의 불편 및 일치추정량이므로 \\(s\\rightarrow\\sigma\\;for\\;large\\;sample\\)인 점을 이용한 것 입니다.\n따라서, 1. 임의추출(random samples) 이외의 별도의 가정은 없습니다.",
     "crumbs": [
       "경영통계분석('24봄)",
       "경영통계분석 과제5"
@@ -1268,7 +1411,7 @@
     "href": "경영통계분석_hw5.html#problem-4.",
     "title": "경영통계분석 과제5",
     "section": "Problem 4.",
-    "text": "Problem 4.\n\nIn a study of interspousal aggression and its possible effect on child behavior, the behavior problem checklist scores were recorded for 47 children whose parents were classified as aggressive. The sample mean and standard deviation were 7.92 and 3.45, respectively. For a sample of 38 children whose parents were classified as nonaggressive, the mean and standard deviation of the BPC scores were 5.80 and 2.87, respectively.\n\n\nDo these observations substantiate the conjecture that the children of aggressive families have a higher mean BPC than those of nonaggressive families? (Answer by calculating the p-value.)\nState any assumptions you make about the populations.\n\n\nAnswer\n\n(a)\n먼저, 각 표본의 수가 30보다 크므로 z검정을 수행하도록 하겠습니다.\n부모가 공격적이라고 응답한 아이 집단을 A, 공격적이지 않다고 응답한 아이 집단을 B라고 하고 가설을 수립하면,\nH0 : \\(\\mu_A=\\mu_B\\;\\Rightarrow\\;\\mu_A-\\mu_B=0\\)\nH1 : \\(\\mu_A&gt;\\mu_B\\;\\Rightarrow\\;\\mu_A-\\mu_B&gt;0\\)\n한편, 각각 독립인 표본에 대하여 두 집단의 평균의 차이를 검정할 때 필요한 표본평균의 분포는 아래와 같습니다.\n\\[\\bar{X}^*=\\bar{X_A}-\\bar{X_B}\\sim N(\\mu_A-\\mu_B,\\frac{\\sigma_A}{\\sqrt{47}}+\\frac{\\sigma_B}{\\sqrt{38}}\\approx \\frac{s_A}{\\sqrt{47}}+\\frac{s_B}{\\sqrt{38}})\\]\n따라서, z통계량은 \\(z_0=\\frac{\\mu_A-\\mu_B-0}{\\frac{s_A}{\\sqrt{47}}+\\frac{s_B}{\\sqrt{38}}}=\\frac{7.92-5.80}{3.45/\\sqrt{47}+2.87/\\sqrt{38}}=2.188\\) 이며,\nP-value는 \\(P(Z&gt;2.188)=P(Z&lt;-2.188)=0.0143\\) 입니다.\n따라서, 신뢰수준 약 1.5%에서 귀무가설을 기각할 수 있으며 공격적으로 응답한 아이 집단의 BPC 점수가 평균적으로 높다는 주장을 강하게 지지한다고 할 수 있습니다.\n\n\n(b)\n저는 z검정을 사용하였습니다.\n표본의 크기가 충분히 크므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 모표준편차를 모르는 상황이지만 충분히 큰 표본에 대해 t분포와 z분포가 유사한 점을 이용하여 z검정을 사용한 것 입니다.\n따라서, 모분산의 정규분포 가정 및 표본표준편차가 모표준편차와 같다는 가정 하에서 검정을 실시한 것 이며, 추가적으로 두 집단의 독립성을 가정하고 실시하였습니다.",
+    "text": "Problem 4.\n\nIn a study of interspousal aggression and its possible effect on child behavior, the behavior problem checklist scores were recorded for 47 children whose parents were classified as aggressive. The sample mean and standard deviation were 7.92 and 3.45, respectively. For a sample of 38 children whose parents were classified as nonaggressive, the mean and standard deviation of the BPC scores were 5.80 and 2.87, respectively.\n\n\nDo these observations substantiate the conjecture that the children of aggressive families have a higher mean BPC than those of nonaggressive families? (Answer by calculating the p-value.)\nState any assumptions you make about the populations.\n\n\nAnswer\n\n(a)\n먼저, 각 표본의 수가 30보다 크므로 z검정을 수행하도록 하겠습니다.\n부모가 공격적이라고 응답한 아이 집단을 A, 공격적이지 않다고 응답한 아이 집단을 B라고 하고 가설을 수립하면,\nH0 : \\(\\mu_A=\\mu_B\\;\\Rightarrow\\;\\mu_A-\\mu_B=0\\)\nH1 : \\(\\mu_A&gt;\\mu_B\\;\\Rightarrow\\;\\mu_A-\\mu_B&gt;0\\)\n한편, 각각 독립인 표본에 대하여 두 집단의 평균의 차이를 검정할 때 필요한 표본평균의 분포는 아래와 같습니다.\n\\[\\bar{X}^*=\\bar{X_A}-\\bar{X_B}\\sim N(\\mu_A-\\mu_B,\\frac{\\sigma_A^2}{47}+\\frac{\\sigma_B^2}{38}\\approx\\frac{s_A^2}{47}+\\frac{s_B^2}{38})\\]\n따라서, z통계량은 \\(z_0=\\frac{\\mu_A-\\mu_B-0}{\\frac{s_A}{\\sqrt{47}}+\\frac{s_B}{\\sqrt{38}}}=\\frac{7.92-5.80}{3.45/\\sqrt{47}+2.87/\\sqrt{38}}=2.188\\) 이며,\nP-value는 \\(P(Z&gt;2.188)=P(Z&lt;-2.188)=0.0143\\) 입니다.\n따라서, 신뢰수준 약 1.5%에서 귀무가설을 기각할 수 있으며 공격적으로 응답한 아이 집단의 BPC 점수가 평균적으로 높다는 주장을 강하게 지지한다고 할 수 있습니다.\n\n\n(b)\n위와 마찬가지로 표본의 크기가 충분하므로 CLT에 따라 표본평균이 정규분포를 따르게 되며, 표본표준편차는 모표준편차로 수렴하므로 이를 대용치로 이용한 것 입니다.\n다만, 두 집단의 평균차이를 검정한 것이므로 두 모집단이 서로 독립이여야 합니다.\n따라서, 1. 임의추출(random samples), 2. 두 모집단이 독립이라고 가정하였습니다.",
     "crumbs": [
       "경영통계분석('24봄)",
       "경영통계분석 과제5"
@@ -1279,7 +1422,7 @@
     "href": "경영통계분석_hw5.html#problem-5.",
     "title": "경영통계분석 과제5",
     "section": "Problem 5.",
-    "text": "Problem 5.\n\nThe data on the weight of male and female wolves are as follows:\n\n\n\n\n구 분\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFemale\n57\n84\n90\n71\n71\n77\n68\n73\n\n\n\n\n\nMale\n71\n93\n101\n84\n88\n117\n86\n86\n93\n86\n106\n\n\n\n\nTest the null hypothesis that the mean weights of males and females are equal versus a two-sided alternative. Take \\(\\alpha=0.05\\)\nState any assumptions you make about the populations for (a).\nTest the null hypothesis that the variances of weights of males and females are equal. Take \\(\\alpha=0.05\\)\nState any assumptions you make about the populations for (c).\n\n\nAnswer\n\n(a)\n먼저, 각 샘플의 모양을 살펴보면 아래와 같습니다.\n\nlibrary(tidyverse)\nlibrary(patchwork)\nweight &lt;- tibble(gender=c(rep(\"F\",8),rep(\"M\",11)),\n                 weight=c(57,84,90,71,71,77,68,73,\n                          71,93,101,84,88,117,86,86,93,86,106))\n\n\nggplot(weight,aes(x=weight,colour=gender))+\n  geom_density() +\n  theme_bw()\n\n\n\n\n\n\n\n\n여성, 남성별로 표본의 수, 표본평균, 표본표준편차는 아래와 같습니다.\n\nweight %&gt;%\n  group_by(gender) %&gt;% \n  mutate(cnt=1) %&gt;% \n  summarise(sample=sum(cnt),mean=mean(weight),vol=sd(weight))\n\n# A tibble: 2 × 4\n  gender sample  mean   vol\n  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 F           8  73.9  10.1\n2 M          11  91.9  12.4\n\n\n각 표본이 대략적으로 bell-shape를 형성하고 있으며, 독립일 것 입니다,\n따라서, 평균의 차이가 있는지 알아보기 위해서 t검정을 수행하겠습니다.\nH0 : \\(\\mu_F=\\mu_M\\;\\), H1 : \\(\\mu_F\\neq\\mu_M\\)\n\nt.test(weight~gender,data=weight,alternative=\"two.sided\",paired=F)\n\n\n    Welch Two Sample t-test\n\ndata:  weight by gender\nt = -3.4971, df = 16.715, p-value = 0.002821\nalternative hypothesis: true difference in means between group F and group M is not equal to 0\n95 percent confidence interval:\n -28.928413  -7.139769\nsample estimates:\nmean in group F mean in group M \n       73.87500        91.90909 \n\n\np-value는 0.0028로 신뢰수준 5% 하에서 귀무가설을 기각할 수 있습니다.\n\n\n(b)\n모집단의 정규성과 남성과 여성 몸무게 집단의 독립성을 가정하였습니다.\n\n\n(c)\n두 집단의 분산이 같은지에 대해 검정하기 위해 분산차이에 대한 F검정을 수행하겠습니다.\nH0 : \\(\\frac{\\sigma_M}{\\sigma_F}=1\\;\\), H1 : \\(\\frac{\\sigma_M}{\\sigma_F}\\neq 1\\)\n\nvar.test(weight~gender,data=weight)\n\n\n    F test to compare two variances\n\ndata:  weight by gender\nF = 0.66063, num df = 7, denom df = 10, p-value = 0.5981\nalternative hypothesis: true ratio of variances is not equal to 1\n95 percent confidence interval:\n 0.1672544 3.1453141\nsample estimates:\nratio of variances \n         0.6606253 \n\n\nP-value는 0.598로 귀무가설을 기각하지 못하였습니다. 이는 두 집단의 분산이 같다는 것을 지지하고 있습니다.\n\n\n(d)\nF검정을 위해 두 집단이 서로 독립이라고 가정하였습니다.",
+    "text": "Problem 5.\n\nThe data on the weight of male and female wolves are as follows:\n\n\n\n\n구 분\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFemale\n57\n84\n90\n71\n71\n77\n68\n73\n\n\n\n\n\nMale\n71\n93\n101\n84\n88\n117\n86\n86\n93\n86\n106\n\n\n\n\nTest the null hypothesis that the mean weights of males and females are equal versus a two-sided alternative. Take \\(\\alpha=0.05\\)\nState any assumptions you make about the populations for (a).\nTest the null hypothesis that the variances of weights of males and females are equal. Take \\(\\alpha=0.05\\)\nState any assumptions you make about the populations for (c).\n\n\nAnswer\n\n(a)\n먼저, 각 샘플의 모양을 살펴보면 아래와 같습니다.\n\nlibrary(tidyverse)\nlibrary(patchwork)\nweight &lt;- tibble(gender=c(rep(\"F\",8),rep(\"M\",11)),\n                 weight=c(57,84,90,71,71,77,68,73,\n                          71,93,101,84,88,117,86,86,93,86,106))\n\n\nggplot(weight,aes(x=weight,colour=gender))+\n  geom_density() +\n  theme_bw()\n\n\n\n\n\n\n\n\n여성, 남성별로 표본의 수, 표본평균, 표본표준편차는 아래와 같습니다.\n\nweight %&gt;%\n  group_by(gender) %&gt;% \n  mutate(cnt=1) %&gt;% \n  summarise(sample=sum(cnt),mean=mean(weight),vol=sd(weight))\n\n# A tibble: 2 × 4\n  gender sample  mean   vol\n  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 F           8  73.9  10.1\n2 M          11  91.9  12.4\n\n\n각 표본이 대략적으로 bell-shape를 형성하고 있으므로, 정규성 가정에 큰 무리는 없어보입니다.\n따라서, 평균의 차이가 있는지 알아보기 위해서 t검정을 수행하겠습니다.\nH0 : \\(\\mu_F=\\mu_M\\;\\), H1 : \\(\\mu_F\\neq\\mu_M\\)\n\nt.test(weight~gender,data=weight,alternative=\"two.sided\",paired=F)\n\n\n    Welch Two Sample t-test\n\ndata:  weight by gender\nt = -3.4971, df = 16.715, p-value = 0.002821\nalternative hypothesis: true difference in means between group F and group M is not equal to 0\n95 percent confidence interval:\n -28.928413  -7.139769\nsample estimates:\nmean in group F mean in group M \n       73.87500        91.90909 \n\n\np-value는 0.0028로 신뢰수준 5% 하에서 귀무가설을 기각할 수 있습니다.\n\n\n(b)\n모집단의 분포를 모르고 표본의 크기도 충분하지 않으므로, 표본평균의 정규성이 보장되지 않습니다.\n또한, 두 집단의 평균 차이를 검정하기 위해서는 독립일 필요가 있으며, t분포 유도를 위해 두 집단의 분산이 동일해야합니다.\n따라서, 1. 임의추출(random samples), 2. 모집단의 정규성, 3. 두 모집단은 독립, 4. 두 모집단은 등분산이라고 가정하였습니다.\n\n\n(c)\n두 집단의 분산이 같은지에 대해 검정하기 위해 분산차이에 대한 F검정을 수행하겠습니다.\nH0 : \\(\\frac{\\sigma_M}{\\sigma_F}=1\\;\\), H1 : \\(\\frac{\\sigma_M}{\\sigma_F}\\neq 1\\)\n\nvar.test(weight~gender,data=weight)\n\n\n    F test to compare two variances\n\ndata:  weight by gender\nF = 0.66063, num df = 7, denom df = 10, p-value = 0.5981\nalternative hypothesis: true ratio of variances is not equal to 1\n95 percent confidence interval:\n 0.1672544 3.1453141\nsample estimates:\nratio of variances \n         0.6606253 \n\n\nP-value는 0.598로 귀무가설을 기각하지 못하였습니다. 이는 두 집단의 분산이 같다는 것을 지지하고 있습니다.\n\n\n(d)\n표본의 크기가 충분하지 않으므로 정규성이 담보되지 않아 F분포 및 카이제곱분포 유도를 위해 정규성 가정이 필요합니다.\n또한, F분포 유도를 위해 두 집단이 독립일 필요가 있습니다.\n따라서, 1. 임의추출(random samples), 2. 모집단의 정규성, 3. 두 모집단은 독립이라고 가정하였습니다.",
     "crumbs": [
       "경영통계분석('24봄)",
       "경영통계분석 과제5"

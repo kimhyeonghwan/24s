@@ -469,7 +469,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./채권분석_hw1.html">채권분석&amp;기간구조('24봄)</a></li><li class="breadcrumb-item"><a href="./이자율기간구조_hw2.html">이자율기간구조 과제2</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">이자율기간구조 과제2</h1>
+<div class="quarto-title-block"><div><h1 class="title">이자율기간구조 과제2</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -503,34 +503,135 @@ window.Quarto = {
 </section>
 <section id="problem-2" class="level2">
 <h2 class="anchored" data-anchor-id="problem-2">Problem 2</h2>
-<p>다음의 표는 2020년 6월 5일 ICE에서 가져온 usd스왑데이터이다. 편의상 각 스왑금리는 연 1회 지급한다고 하자. 우리는 bootstrapping 기법을 이용하여 이 스왑금리들을 할인율곡선 또 는 현물이자율 곡선으로 변환할 수 있다.</p>
-<p>이 문제에서는 그와 달리 매해 말 지급부담을 지니고 있는 은행 A를 고려한다. 이 은행은 현 시점에서 floating rate notes 변동금리부채권과 스왑을 매수하여 이 지급부담을 맞추려고 한다. 이때 변동금리부채권과 스왑의 액면값들을 구하는 것을 reverse bootstrapping 이라 한다. 보다 정확히 다음의 구조를 고려하자.</p>
+<p>다음의 표는 2020년 6월 5일 ICE에서 가져온 usd스왑데이터이다. 편의상 각 스왑금리는 연 1회 지급한다고 하자. 우리는 bootstrapping 기법을 이용하여 이 스왑금리들을 할인율곡선 또는 현물이자율 곡선으로 변환할 수 있다.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">구 분</th>
+<th style="text-align: right;">1</th>
+<th style="text-align: right;">2</th>
+<th style="text-align: right;">3</th>
+<th style="text-align: right;">4</th>
+<th style="text-align: right;">5</th>
+<th style="text-align: right;">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Swap rate</td>
+<td style="text-align: right;">0.307%</td>
+<td style="text-align: right;">0.299%</td>
+<td style="text-align: right;">0.346%</td>
+<td style="text-align: right;">0.424%</td>
+<td style="text-align: right;">0.517%</td>
+<td style="text-align: right;">0.614%</td>
+</tr>
+</tbody>
+</table>
+<p>이 문제에서는 그와 달리 매해 말 지급부담을 지니고 있는 은행 A를 고려한다. 이 은행은 현 시점에서 floating rate notes 변동금리부채권과 스왑을 매수하여 이 지급부담을 맞추려고 한다. 이때 변동금리부채권과 스왑의 액면값들을 구하는 것을 reverse bootstrapping이라 한다. 보다 정확히 다음의 구조를 고려하자.</p>
 <ul>
 <li>각 FRN은 <span class="math inline">\(N_1, ... , N_6\)</span>의 액면을 가지고 있으며 이들은 i번째 해의 말까지 매년 <span class="math inline">\(N_i\)</span> 에 해당하는 변동금리를 지급하고 i번째 해의 말에는 액면 <span class="math inline">\(N_i\)</span> 도 지급한다.</li>
 <li>각 스왑의 액면 역시 <span class="math inline">\(N_i\)</span>이며 A는 floating rate payer이다. 즉 i번째 해의 말까지 매년 <span class="math inline">\(N_i\)</span>에 해당하는 변동금리를 거래상대방에게 지급한다. 역으로 거래상대방은 매해 말 <span class="math inline">\(N_is_i\)</span> 을 지불한다. 여기에서 <span class="math inline">\(s_i\)</span>는 i 만기 스왑금리이다.</li>
 </ul>
 <p><span class="math inline">\(N_1,...,N_6\)</span>를 구하고 소수점 네째자리까지 리포트하시오.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>swap <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">tenor=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>),</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">rate=</span><span class="fu">c</span>(<span class="fl">0.307</span>,<span class="fl">0.299</span>,<span class="fl">0.346</span>,<span class="fl">0.424</span>,<span class="fl">0.517</span>,<span class="fl">0.614</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>swap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  tenor  rate
-  &lt;int&gt; &lt;dbl&gt;
-1     1 0.307
-2     2 0.299
-3     3 0.346
-4     4 0.424
-5     5 0.517
-6     6 0.614</code></pre>
-</div>
-</div>
 <section id="answer-1" class="level3">
 <h3 class="anchored" data-anchor-id="answer-1">Answer</h3>
+<p>은행이 매년 1m$의 채무를 커버하기위해 1~6년 만기의 FRN을 <span class="math inline">\(N_1\sim N_6\)</span>만큼 매수하고, 여기에서 발생하는 변동금리이자분을 고정금리로 전환하기위해 Fixed-payer로 IRS를 동일한 명목금액 <span class="math inline">\(N_1\sim N_6\)</span> 만큼 체결한다면, 매년 은행의 pay-off는 아래와 같습니다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Year</th>
+<th style="text-align: right;">FRN</th>
+<th style="text-align: right;">IRS</th>
+<th style="text-align: right;">Net</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=1}^6N_ir_i+N_1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=1}^6(N_is_i-N_ir_i)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N_1+\sum_{i=1}^6N_is_i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=2}^6N_ir_i+N_2\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=2}^6(N_is_i-N_ir_i)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N_2+\sum_{i=2}^6N_is_i\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=3}^6N_ir_i+N_3\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=3}^6(N_is_i-N_ir_i)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N_3+\sum_{i=3}^6N_is_i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=4}^6N_ir_i+N_4\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=4}^6(N_is_i-N_ir_i)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N_4+\sum_{i=4}^6N_is_i\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=5}^6N_ir_i+N_5\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\sum_{i=5}^6(N_is_i-N_ir_i)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N_5+\sum_{i=5}^6N_is_i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: right;"><span class="math inline">\(N_6r_6+N_6\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N_6s_6-N_6r_6\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N_6+N_6s_6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>해당 pay-off에 따라 6년의 액면금액 <span class="math inline">\(N_6\)</span>부터 reverse-bootstrapping방식으로 <span class="math inline">\(N_i\)</span>를 모두 산출한 결과는 아래와 같습니다.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(N_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(N_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(N_3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(N_4\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(N_5\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(N_6\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0.9753m</td>
+<td style="text-align: center;">0.9783m</td>
+<td style="text-align: center;">0.9812m</td>
+<td style="text-align: center;">0.9846m</td>
+<td style="text-align: center;">0.9888m</td>
+<td style="text-align: center;">0.9939m</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>swap <span class="ot">&lt;-</span> swap <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">par=</span><span class="fu">c</span>(<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="fu">c</span>(<span class="dv">1000000</span><span class="sc">/</span>(swap<span class="sc">$</span>rate[<span class="dv">6</span>]<span class="sc">+</span><span class="dv">1</span>))))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>){</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  swap<span class="sc">$</span>par[i]<span class="ot">=</span>(<span class="dv">1000000</span><span class="sc">-</span><span class="fu">sum</span>(swap<span class="sc">$</span>rate[(i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">6</span>]<span class="sc">*</span>swap<span class="sc">$</span>par[(i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">6</span>]))<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>swap<span class="sc">$</span>rate[i])</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>swap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  tenor    rate     par
+  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1     1 0.00307 975296.
+2     2 0.00299 978291.
+3     3 0.00346 981216.
+4     4 0.00424 984611.
+5     5 0.00517 988785.
+6     6 0.00614 993897.</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="problem-3" class="level2">
@@ -541,20 +642,34 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="answer-2">Answer</h3>
 <p>먼저, <strong>미 재무부의 daily par yield</strong> 데이터를 이용하여 산출한 매월 첫번째 일자의 커브는 아래와 같습니다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>uspar <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>uspar <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/usparyield.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Date) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">substr</span>(Date,<span class="dv">7</span>,<span class="dv">10</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">month=</span><span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year,month) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">" "</span>),<span class="at">values_to =</span> <span class="st">"par"</span>, <span class="at">names_to =</span> <span class="st">"time"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">maturity=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">24</span>,<span class="dv">36</span>,<span class="dv">60</span>,<span class="dv">84</span>,<span class="dv">120</span>,<span class="dv">240</span>,<span class="dv">360</span>)<span class="sc">/</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uspar,<span class="fu">aes</span>(<span class="at">x=</span>maturity,<span class="at">y=</span>par,<span class="at">colour=</span>month))<span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>uspar <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>uspar <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/usparyield.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Date) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">substr</span>(Date,<span class="dv">7</span>,<span class="dv">10</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">month=</span><span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year,month) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">" "</span>),<span class="at">values_to =</span> <span class="st">"par"</span>, <span class="at">names_to =</span> <span class="st">"time"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">maturity=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">24</span>,<span class="dv">36</span>,<span class="dv">60</span>,<span class="dv">84</span>,<span class="dv">120</span>,<span class="dv">240</span>,<span class="dv">360</span>)<span class="sc">/</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uspar,<span class="fu">aes</span>(<span class="at">x=</span>maturity,<span class="at">y=</span>par,<span class="at">colour=</span>month))<span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>다음으로, <strong>NSS모형을 이용한 최적 fitted curve</strong>를 구해보겠습니다.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Nelson-Siegel-Svensson Model">
@@ -861,6 +976,8 @@ Nelson-Siegel-Svensson Model
 <h4 class="anchored" data-anchor-id="result">Result</h4>
 <p>앞서 도식화한 <strong>24년 1~5월의 US par-yield curve</strong>에 위 방법을 적용하여 <strong>각각 모델링한 fitted curve는 아래와 같습니다.</strong></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>uspar_jan <span class="ot">&lt;-</span> uspar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month<span class="sc">==</span><span class="st">"01"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>uspar_feb <span class="ot">&lt;-</span> uspar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month<span class="sc">==</span><span class="st">"02"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>uspar_mar <span class="ot">&lt;-</span> uspar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month<span class="sc">==</span><span class="st">"03"</span>)</span>
@@ -872,13 +989,14 @@ Nelson-Siegel-Svensson Model
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>Mar <span class="ot">&lt;-</span> <span class="fu">optimal_params_ns</span>(uspar_mar<span class="sc">$</span>par,uspar_mar<span class="sc">$</span>maturity,<span class="at">n=</span><span class="dv">1000</span>,<span class="at">contraint_threshold =</span> <span class="fl">0.25</span>)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Apr <span class="ot">&lt;-</span> <span class="fu">optimal_params_ns</span>(uspar_apr<span class="sc">$</span>par,uspar_apr<span class="sc">$</span>maturity,<span class="at">n=</span><span class="dv">1000</span>,<span class="at">contraint_threshold =</span> <span class="fl">0.25</span>)</span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>May <span class="ot">&lt;-</span> <span class="fu">optimal_params_ns</span>(uspar_may<span class="sc">$</span>par,uspar_may<span class="sc">$</span>maturity,<span class="at">n=</span><span class="dv">1000</span>,<span class="at">contraint_threshold =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Jan<span class="sc">$</span>plot_ns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -886,7 +1004,7 @@ Nelson-Siegel-Svensson Model
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -894,7 +1012,7 @@ Nelson-Siegel-Svensson Model
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -902,7 +1020,7 @@ Nelson-Siegel-Svensson Model
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -910,7 +1028,7 @@ Nelson-Siegel-Svensson Model
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-11-5.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -925,6 +1043,8 @@ Nelson-Siegel-Svensson Model
 <h3 class="anchored" data-anchor-id="answer-3">Answer</h3>
 <p>먼저, 문제3에서 최종적으로 산출한 NSS fitted curve에 대하여 각각의 파라미터는 아래와 같습니다.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>optim_parameters <span class="ot">&lt;-</span> Jan<span class="sc">$</span>optim_params <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union_all</span>(Feb<span class="sc">$</span>optim_params) <span class="sc">%&gt;%</span> </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union_all</span>(Mar<span class="sc">$</span>optim_params) <span class="sc">%&gt;%</span> </span>
@@ -932,6 +1052,7 @@ Nelson-Siegel-Svensson Model
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union_all</span>(May<span class="sc">$</span>optim_params) <span class="sc">%&gt;%</span> </span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">c</span>(<span class="st">"Jan"</span>,<span class="st">"Feb"</span>,<span class="st">"Mar"</span>,<span class="st">"Apr"</span>,<span class="st">"May"</span>))</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>optim_parameters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
   beta0 beta1 beta2 beta3  tau1   tau2 month
@@ -944,12 +1065,15 @@ Nelson-Siegel-Svensson Model
 </div>
 </div>
 <p>이를 이용하여 6월달의 US par-yield curve를 예측하고자 할 때, 모수값들을 활용하여 NSS모델의 6월 예상파라미터를 추정할 수 있습니다.</p>
-<p>여기에는 AR, ARMA, GARCH 등의 여러 모델을 생각할 수 있겠으나, 저는 직전 달의 모수값이 다음 달의 모수값에 대한 최적 추정치라고 생각합니다. 즉, <strong>5월달의 NSS모델의 모수값을 6월의 예상파라미터</strong>로 고려하겠습니다.</p>
-<p>이를 이용하여 산출한** 6월 예상 US par-yield 및 curve는 아래와 같습니다.**</p>
+<p>여기에는 AR, ARMA, GARCH 등의 여러 모델을 생각할 수 있겠으나, 저는 직전 달의 모수값이 다음 달의 모수값에 대한 최적 추정치라고 생각합니다. 모수값의 시계열자료가 5개에 불과하고, <strong>특별한 선형관계나 추세가 관찰되지 않기 때문</strong>입니다. 이에 따라 <strong>5월달의 NSS모델의 모수값을 6월의 예상파라미터</strong>로 고려하겠습니다.</p>
+<p>이를 이용하여 산출한 <strong>6월 예상 US par-yield 및 curve는 아래와 같습니다.</strong></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>est_jun <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">maturity=</span>uspar_may<span class="sc">$</span>maturity,</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">par=</span>May<span class="sc">$</span>df_optim<span class="sc">$</span>fit[[<span class="dv">1</span>]])</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>est_jun</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 13 × 2
    maturity   par
@@ -968,6 +1092,8 @@ Nelson-Siegel-Svensson Model
 12  20       4.80
 13  30       4.76</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(est_jun,<span class="fu">aes</span>(<span class="at">x=</span>maturity,<span class="at">y=</span>par))<span class="sc">+</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour=</span><span class="st">"blue"</span>, <span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>))<span class="sc">+</span></span>
@@ -975,10 +1101,11 @@ Nelson-Siegel-Svensson Model
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Maturities"</span>)<span class="sc">+</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -990,7 +1117,98 @@ Nelson-Siegel-Svensson Model
 <p>hw2.xlsx 에는 2011-10-28 부터 2016-10-28 까지의 스왑 데이터가 결측치가 있는 날들은 제외하고 들어 있다. 이를 이용하여 일별 금리변화를 주도하는 세 가지 주성분을 구하여 리포트하시오.</p>
 <section id="answer-4" class="level3">
 <h3 class="anchored" data-anchor-id="answer-4">Answer</h3>
+<p>먼저, 예제파일을 읽어와 일별/만기별 스왑금리의 차이를 bp단위로 계산하겠습니다.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/term_hw2.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">contains</span>(<span class="st">"DSWP"</span>),<span class="at">names_to =</span> <span class="st">"maturity"</span>, <span class="at">values_to =</span> <span class="st">"rate"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(maturity,observation_date) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">changes=</span>(rate<span class="sc">-</span><span class="fu">lag</span>(rate))<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(maturity<span class="sc">==</span><span class="fu">lag</span>(maturity)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date=</span>observation_date,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">maturity=</span><span class="fu">substr</span>(maturity,<span class="dv">5</span>,<span class="fu">nchar</span>(maturity)) <span class="sc">%&gt;%</span> <span class="fu">as.integer</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date,maturity,changes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>다음으로, 각 만기별 covariance matrix를 산출하면 아래와 같습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cov_matrix <span class="ot">&lt;-</span> pca <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"maturity"</span>, <span class="at">values_from =</span> <span class="st">"changes"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>cov_matrix <span class="ot">&lt;-</span> cov_matrix[,<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(cov_matrix)] <span class="sc">%&gt;%</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">1</span><span class="st">`</span>,<span class="st">`</span><span class="at">2</span><span class="st">`</span>,<span class="st">`</span><span class="at">3</span><span class="st">`</span>,<span class="st">`</span><span class="at">4</span><span class="st">`</span>,<span class="st">`</span><span class="at">5</span><span class="st">`</span>,<span class="st">`</span><span class="at">7</span><span class="st">`</span>,<span class="st">`</span><span class="at">10</span><span class="st">`</span>,<span class="st">`</span><span class="at">30</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cov</span>()</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">4</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>cov_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1     2      3      4      5      7     10     30
+1  2.213 3.055  3.523  3.696  3.704  3.431  2.955  2.098
+2  3.055 5.697  7.042  7.839  8.177  8.046  7.338  5.748
+3  3.523 7.042  9.896 11.304 12.095 12.314 11.528  9.366
+4  3.696 7.839 11.304 13.825 14.949 15.678 15.021 12.600
+5  3.704 8.177 12.095 14.949 16.859 17.865 17.439 15.007
+7  3.431 8.046 12.314 15.678 17.865 20.054 20.057 18.130
+10 2.955 7.338 11.528 15.021 17.439 20.057 21.084 19.854
+30 2.098 5.748  9.366 12.600 15.007 18.130 19.854 21.117</code></pre>
+</div>
+</div>
+<p>이제, 공분산행렬을 통해 eigenvalue와 eigenvector를 계산하겠습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>eigenstuff <span class="ot">&lt;-</span> <span class="fu">eigen</span>(cov_matrix)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>eigenstuff </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eigen() decomposition
+$values
+[1] 97.7556  9.9072  1.7153  0.5056  0.2766  0.2129  0.1903  0.1832
 
+$vectors
+         [,1]     [,2]    [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
+[1,] -0.08566 -0.28417  0.5080  0.59000  0.44064 -0.32532 -0.06279  0.04302
+[2,] -0.19278 -0.39768  0.4590  0.05126 -0.39712  0.61693  0.16366 -0.16203
+[3,] -0.28762 -0.39863  0.1332 -0.40842 -0.31307 -0.42430 -0.22186  0.49654
+[4,] -0.35997 -0.30873 -0.1546 -0.29835  0.19393 -0.30442  0.32447 -0.65316
+[5,] -0.40648 -0.19686 -0.3123 -0.04801  0.46000  0.44075 -0.53295  0.07933
+[6,] -0.44890  0.04588 -0.3212  0.29086  0.01963  0.06934  0.62949  0.45513
+[7,] -0.45266  0.28606 -0.1312  0.43332 -0.50253 -0.19855 -0.36367 -0.28993
+[8,] -0.41420  0.61983  0.5212 -0.34465  0.21905  0.04865  0.04712  0.03509</code></pre>
+</div>
+</div>
+<p>해당 <strong>eigenvalue는 각 주성분의 설명력</strong>을 나타냅니다. 각 eigenvalue의 전체 합에 대한 <strong>비율은 전체 금리변화에서 해당 주성분이 설명하는 비율</strong>을 나타냅니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>eigenstuff<span class="sc">$</span>ratio<span class="ot">=</span>eigenstuff<span class="sc">$</span>values<span class="sc">/</span><span class="fu">sum</span>(eigenstuff<span class="sc">$</span>values)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>eigenstuff<span class="sc">$</span>ratio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.882696 0.089458 0.015488 0.004565 0.002498 0.001922 0.001718 0.001654</code></pre>
+</div>
+</div>
+<p>이에 따르면, <strong>첫번째 주성분이 약 88.3%, 두번째 주성분이 8.9%, 세번째 주성분이 1.5%를 설명</strong>하고 있습니다. 이는 <strong>3가지의 주성분만으로 전체 swap rate curve 변화의 약 98.8%를 설명</strong>할 수 있다는 의미입니다.</p>
+<p>여기에서, <strong>첫번째 주성분</strong>은 <strong>전체적인 금리수준의 변화(level change effect)</strong>라고 할 수 있고 <strong>두번째 주성분</strong>은 <strong>금리곡선의 기울기 변화(slope change effect)</strong>, <strong>세번째 주성분</strong>은 <strong>금리곡선의 볼록성 변화(convecture change effect)</strong>라고 할 수 있습니다.</p>
+<p>세가지 주성분의 eigenvector를 도식화하면 아래와 같습니다.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plot_pca <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">maturity=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">PC1=</span>eigenstuff<span class="sc">$</span>vectors[,<span class="dv">1</span>],</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">PC2=</span>eigenstuff<span class="sc">$</span>vectors[,<span class="dv">2</span>],</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">PC3=</span>eigenstuff<span class="sc">$</span>vectors[,<span class="dv">3</span>]) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">contains</span>(<span class="st">"PC"</span>),<span class="at">names_to =</span> <span class="st">"components"</span>, <span class="at">values_to =</span> <span class="st">"values"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(<span class="at">x=</span>maturity,<span class="at">y=</span>values,<span class="at">colour=</span>components))<span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>plot_pca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="이자율기간구조_hw2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<!-- -->
 
 </section>
 </section>
@@ -1075,6 +1293,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1416,7 +1685,559 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text">투자분석 과제1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb29" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 이자율기간구조 과제2 {.unnumbered}</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem 1</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>한 제조업체의 재무담당자가 usd 100 million 에 달하는 운전자본 working capital 을 3개월 정도 repo 시장에 투자하여 이익을 취하고자 한다.</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>기간은 2020년 1월 15일(현재, 포함)에 시작하여 2020년 4월 15일(불포함)이 환매일이다. 즉 재무담당자는 91일 동안 daily SOFR 를 얻게 된다.</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>그러나 최근 SOFR 의 하락세가 고민이 되어 투자금의 절반인 50 million 은 2020년 4월 만기인 3개월 SOFR 선물을 매수하여 수익 금리를 고정하는 효과를 가지려고 한다.</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>기간 내내 금리가 1bp 하락한다면, act/360 기준으로 회사는 얼마의 손해가 발생하는가?</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>이 절반에 대하여 SOFR 선물로 헤지를 한다면 몇 개의 선물 계약을 해야할지 본인의 계산을 쓰세요.</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>전체 노출액 중 절반은 정확히 헷지하였으므로, 기간 중 노출액은 50mUSD입니다.</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>노출기간은 91일이므로, **회사의 손해**는 $50,000,000\times 0.0001\times\frac{91}{360}=1263.889USD$</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>SOFR선물은 (100-r)로 호가하며, 1bp에 대해 25$만큼 변동합니다.</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>따라서, 손실액만큼 SOFR선물에서 이익이 발생하도록 하려면 $\frac{1263.889}{25}=50.56$, **약 51계약 매수**해야합니다.</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem 2</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>다음의 표는 2020년 6월 5일 ICE에서 가져온 usd스왑데이터이다. 편의상 각 스왑금리는 연 1회 지급한다고 하자. 우리는 bootstrapping 기법을 이용하여 이 스왑금리들을 할인율곡선 또는 현물이자율 곡선으로 변환할 수 있다.</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>|구 분|1|2|3|4|5|6|</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>|:---:|---:|---:|---:|---:|---:|---:|</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>|Swap rate|0.307%|0.299%|0.346%|0.424%|0.517%|0.614%|</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>이 문제에서는 그와 달리 매해 말 지급부담을 지니고 있는 은행 A를 고려한다. 이 은행은 현 시점에서 floating rate notes 변동금리부채권과 스왑을 매수하여 이 지급부담을 맞추려고 한다. 이때 변동금리부채권과 스왑의 액면값들을 구하는 것을 reverse bootstrapping이라 한다. 보다 정확히 다음의 구조를 고려하자.</span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>각 FRN은 $N_1, ... , N_6$의 액면을 가지고 있으며 이들은 i번째 해의 말까지 매년 $N_i$ 에 해당하는 변동금리를 지급하고 i번째 해의 말에는 액면 $N_i$ 도 지급한다.</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>각 스왑의 액면 역시 $N_i$이며 A는 floating rate payer이다. 즉 i번째 해의 말까지 매년 $N_i$에 해당하는 변동금리를 거래상대방에게 지급한다. 역으로 거래상대방은 매해 말 $N_is_i$ 을 지불한다. 여기에서 $s_i$는 i 만기 스왑금리이다.</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>$N_1,...,N_6$를 구하고 소수점 네째자리까지 리포트하시오.</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer</span></span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>은행이 매년 1m\$의 채무를 커버하기위해 1~6년 만기의 FRN을 $N_1\sim N_6$만큼 매수하고, 여기에서 발생하는 변동금리이자분을 고정금리로 전환하기위해 Fixed-payer로 IRS를 동일한 명목금액 $N_1\sim N_6$ 만큼 체결한다면, 매년 은행의 pay-off는 아래와 같습니다.</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>|Year|FRN|IRS|Net|</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>|:---:|---:|---:|---:|</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>|1|$\sum_{i=1}^6N_ir_i+N_1$|$\sum_{i=1}^6(N_is_i-N_ir_i)$|$N_1+\sum_{i=1}^6N_is_i$|</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>|2|$\sum_{i=2}^6N_ir_i+N_2$|$\sum_{i=2}^6(N_is_i-N_ir_i)$|$N_2+\sum_{i=2}^6N_is_i$|</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>|3|$\sum_{i=3}^6N_ir_i+N_3$|$\sum_{i=3}^6(N_is_i-N_ir_i)$|$N_3+\sum_{i=3}^6N_is_i$|</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>|4|$\sum_{i=4}^6N_ir_i+N_4$|$\sum_{i=4}^6(N_is_i-N_ir_i)$|$N_4+\sum_{i=4}^6N_is_i$|</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>|5|$\sum_{i=5}^6N_ir_i+N_5$|$\sum_{i=5}^6(N_is_i-N_ir_i)$|$N_5+\sum_{i=5}^6N_is_i$|</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>|6|$N_6r_6+N_6$|$N_6s_6-N_6r_6$|$N_6+N_6s_6$|</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>해당 pay-off에 따라 6년의 액면금액 $N_6$부터 reverse-bootstrapping방식으로 $N_i$를 모두 산출한 결과는 아래와 같습니다.</span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>|$N_1$|$N_2$|$N_3$|$N_4$|$N_5$|$N_6$|</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>|:--:|:--:|:--:|:--:|:--:|:--:|</span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>|0.9753m|0.9783m|0.9812m|0.9846m|0.9888m|0.9939m|</span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>swap <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">tenor=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>),</span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a>               <span class="at">rate=</span><span class="fu">c</span>(<span class="fl">0.307</span>,<span class="fl">0.299</span>,<span class="fl">0.346</span>,<span class="fl">0.424</span>,<span class="fl">0.517</span>,<span class="fl">0.614</span>)<span class="sc">/</span><span class="dv">100</span>)</span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>swap <span class="ot">&lt;-</span> swap <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">par=</span><span class="fu">c</span>(<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="fu">c</span>(<span class="dv">1000000</span><span class="sc">/</span>(swap<span class="sc">$</span>rate[<span class="dv">6</span>]<span class="sc">+</span><span class="dv">1</span>))))</span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>){</span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>  swap<span class="sc">$</span>par[i]<span class="ot">=</span>(<span class="dv">1000000</span><span class="sc">-</span><span class="fu">sum</span>(swap<span class="sc">$</span>rate[(i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">6</span>]<span class="sc">*</span>swap<span class="sc">$</span>par[(i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">6</span>]))<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>swap<span class="sc">$</span>rate[i])</span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>swap</span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem 3</span></span>
+<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a>미 재무부에서 발표하는 일별 par yield 데이터를 찾되, 2024년 1월부터 5월까지 매월 첫번째 일자의 커브를 구하시오. 그리고 이 5개의 금리 커브에 대하여 Nelson-Siegel-Svensson 모형을 적용하여 본인이 구한 최선의 fitted curve를 리포트하시오. 1개월 금리부터 30년 금리까지 데이터 전체를 활용하시오.</span>
+<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-85"><a href="#cb29-85" aria-hidden="true" tabindex="-1"></a>여기서 정답은 없으니, 본인이 적절한 초기값 및 제약식을 넣어 문제를 푸세요.</span>
+<span id="cb29-86"><a href="#cb29-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-87"><a href="#cb29-87" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer</span></span>
+<span id="cb29-88"><a href="#cb29-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-89"><a href="#cb29-89" aria-hidden="true" tabindex="-1"></a>먼저, **미 재무부의 daily par yield** 데이터를 이용하여 산출한 매월 첫번째 일자의 커브는 아래와 같습니다.</span>
+<span id="cb29-90"><a href="#cb29-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-93"><a href="#cb29-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-94"><a href="#cb29-94" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb29-95"><a href="#cb29-95" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-96"><a href="#cb29-96" aria-hidden="true" tabindex="-1"></a>uspar <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb29-97"><a href="#cb29-97" aria-hidden="true" tabindex="-1"></a>uspar <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/usparyield.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-98"><a href="#cb29-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Date) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-99"><a href="#cb29-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">substr</span>(Date,<span class="dv">7</span>,<span class="dv">10</span>),</span>
+<span id="cb29-100"><a href="#cb29-100" aria-hidden="true" tabindex="-1"></a>         <span class="at">month=</span><span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-101"><a href="#cb29-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year,month) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-102"><a href="#cb29-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-103"><a href="#cb29-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">" "</span>),<span class="at">values_to =</span> <span class="st">"par"</span>, <span class="at">names_to =</span> <span class="st">"time"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-104"><a href="#cb29-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">maturity=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">24</span>,<span class="dv">36</span>,<span class="dv">60</span>,<span class="dv">84</span>,<span class="dv">120</span>,<span class="dv">240</span>,<span class="dv">360</span>)<span class="sc">/</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-105"><a href="#cb29-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb29-106"><a href="#cb29-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-107"><a href="#cb29-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-110"><a href="#cb29-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-111"><a href="#cb29-111" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb29-112"><a href="#cb29-112" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uspar,<span class="fu">aes</span>(<span class="at">x=</span>maturity,<span class="at">y=</span>par,<span class="at">colour=</span>month))<span class="sc">+</span></span>
+<span id="cb29-113"><a href="#cb29-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb29-114"><a href="#cb29-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb29-115"><a href="#cb29-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-116"><a href="#cb29-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-117"><a href="#cb29-117" aria-hidden="true" tabindex="-1"></a>다음으로, **NSS모형을 이용한 최적 fitted curve**를 구해보겠습니다.</span>
+<span id="cb29-118"><a href="#cb29-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-119"><a href="#cb29-119" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="Nelson-Siegel-Svensson Model"}</span>
+<span id="cb29-120"><a href="#cb29-120" aria-hidden="true" tabindex="-1"></a>NSS모형은 instantaneous forword rate를 추정하는 대표적인 모형으로, 3개의 factor와 6개의 parameter($\beta_0\sim\beta_3, \tau_1\sim\tau_2$)를 이용합니다.</span>
+<span id="cb29-121"><a href="#cb29-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-122"><a href="#cb29-122" aria-hidden="true" tabindex="-1"></a>$$f(t)=\beta_0+\beta_1e^{-\frac{t}{\tau_1}}+\beta_2\frac{t}{\tau_1}e^{-\frac{t}{\tau1}}+\beta_3\frac{t}{\tau_2}e^{-\frac{t}{\tau_2}}$$</span>
+<span id="cb29-123"><a href="#cb29-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-124"><a href="#cb29-124" aria-hidden="true" tabindex="-1"></a>이를 통해 continuous-compounding spot rate curve를 추정할 수 있습니다.</span>
+<span id="cb29-125"><a href="#cb29-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-126"><a href="#cb29-126" aria-hidden="true" tabindex="-1"></a>$$r(t)=\beta_0+\beta_1\frac{1-e^{-\frac{t}{\tau_1}}}{\frac{t}{\tau_1}}+\beta_2<span class="co">[</span><span class="ot">\frac{1-e^{-\frac{t}{\tau_1}}}{\frac{t}{\tau_1}}-e^{-\frac{t}{\tau_1}}</span><span class="co">]</span>+\beta_3<span class="co">[</span><span class="ot">\frac{1-e^{-\frac{t}{\tau_2}}}{\frac{t}{\tau_2}}-e^{-\frac{t}{\tau_2}}</span><span class="co">]</span>$$</span>
+<span id="cb29-127"><a href="#cb29-127" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb29-128"><a href="#cb29-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-129"><a href="#cb29-129" aria-hidden="true" tabindex="-1"></a>저는 **최적 fitted curve를 시뮬레이션을 통해 산출**할 예정입니다.</span>
+<span id="cb29-130"><a href="#cb29-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-131"><a href="#cb29-131" aria-hidden="true" tabindex="-1"></a>먼저, 초기값을 $\beta_0=30y\;\;par\;\;rate,\;\;\;\beta_1=1m\;\;par\;\;rate-\beta_0$ 및 $\beta_{2,3},\;\tau_{1,2}$는 $(-5,\;5)$ 범위의 Uniform dist. random number로 설정하겠습니다.</span>
+<span id="cb29-132"><a href="#cb29-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-133"><a href="#cb29-133" aria-hidden="true" tabindex="-1"></a>해당 초기값에 따라 constraint condition을 기준금리의 변동폭을 고려하여 25bp, $|\beta_0+\beta_1-1m\;\;par\;\;rate|&lt;0.25$로 설정하고 finite difference method(optim fn. in R)를 통해 최적해를 산출합니다.</span>
+<span id="cb29-134"><a href="#cb29-134" aria-hidden="true" tabindex="-1"></a>(tau와 beta는 별도의 제약식 없이 진행하였습니다.)</span>
+<span id="cb29-135"><a href="#cb29-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-136"><a href="#cb29-136" aria-hidden="true" tabindex="-1"></a>이러한 방식을 1,000번 반복하는 Monte-carlo simulation을 통해 1,000개의 최적해를 산출하고, 1,000개의 NSS rate curve에서 MSE가 가장 낮은 curve를 최적 fitted curve로 선정하겠습니다.</span>
+<span id="cb29-137"><a href="#cb29-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-138"><a href="#cb29-138" aria-hidden="true" tabindex="-1"></a>이를 구현하기 위한 **R코드 및 24년 1~5월의 fitted curve는 아래와 같습니다.**</span>
+<span id="cb29-139"><a href="#cb29-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-140"><a href="#cb29-140" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 1. NSS Model 함수</span></span>
+<span id="cb29-141"><a href="#cb29-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-144"><a href="#cb29-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-145"><a href="#cb29-145" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-146"><a href="#cb29-146" aria-hidden="true" tabindex="-1"></a><span class="co"># (nelson_siegel) return NSS model rates for given parameters</span></span>
+<span id="cb29-147"><a href="#cb29-147" aria-hidden="true" tabindex="-1"></a><span class="co"># maturity : vector of year maturity</span></span>
+<span id="cb29-148"><a href="#cb29-148" aria-hidden="true" tabindex="-1"></a><span class="co"># params : vector of NSS medel 6 parameters, beta0 to tau2</span></span>
+<span id="cb29-149"><a href="#cb29-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-150"><a href="#cb29-150" aria-hidden="true" tabindex="-1"></a>nelson_siegel <span class="ot">&lt;-</span> <span class="cf">function</span>(maturity, params){</span>
+<span id="cb29-151"><a href="#cb29-151" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-152"><a href="#cb29-152" aria-hidden="true" tabindex="-1"></a>  <span class="co"># parameters </span></span>
+<span id="cb29-153"><a href="#cb29-153" aria-hidden="true" tabindex="-1"></a>  beta0 <span class="ot">=</span> params[<span class="dv">1</span>]</span>
+<span id="cb29-154"><a href="#cb29-154" aria-hidden="true" tabindex="-1"></a>  beta1 <span class="ot">=</span> params[<span class="dv">2</span>]</span>
+<span id="cb29-155"><a href="#cb29-155" aria-hidden="true" tabindex="-1"></a>  beta2 <span class="ot">=</span> params[<span class="dv">3</span>]</span>
+<span id="cb29-156"><a href="#cb29-156" aria-hidden="true" tabindex="-1"></a>  beta3 <span class="ot">=</span> params[<span class="dv">4</span>]</span>
+<span id="cb29-157"><a href="#cb29-157" aria-hidden="true" tabindex="-1"></a>  tau1  <span class="ot">=</span> params[<span class="dv">5</span>]</span>
+<span id="cb29-158"><a href="#cb29-158" aria-hidden="true" tabindex="-1"></a>  tau2  <span class="ot">=</span> params[<span class="dv">6</span>]</span>
+<span id="cb29-159"><a href="#cb29-159" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-160"><a href="#cb29-160" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function </span></span>
+<span id="cb29-161"><a href="#cb29-161" aria-hidden="true" tabindex="-1"></a>  beta0 <span class="sc">+</span> </span>
+<span id="cb29-162"><a href="#cb29-162" aria-hidden="true" tabindex="-1"></a>    beta1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau1)) <span class="sc">/</span> (maturity<span class="sc">/</span>tau1) <span class="sc">+</span> </span>
+<span id="cb29-163"><a href="#cb29-163" aria-hidden="true" tabindex="-1"></a>    beta2 <span class="sc">*</span> ((<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau1)) <span class="sc">/</span> (maturity<span class="sc">/</span>tau1) <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau1)) <span class="sc">+</span> </span>
+<span id="cb29-164"><a href="#cb29-164" aria-hidden="true" tabindex="-1"></a>    beta3 <span class="sc">*</span> ((<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau2)) <span class="sc">/</span> (maturity<span class="sc">/</span>tau2) <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau2)) </span>
+<span id="cb29-165"><a href="#cb29-165" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-166"><a href="#cb29-166" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-167"><a href="#cb29-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-168"><a href="#cb29-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-169"><a href="#cb29-169" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 2. NSS 최적해 산출 함수(finite difference method)</span></span>
+<span id="cb29-170"><a href="#cb29-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-173"><a href="#cb29-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-174"><a href="#cb29-174" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-175"><a href="#cb29-175" aria-hidden="true" tabindex="-1"></a><span class="co"># (optim_nelson_siegel) return optimal tibble for given term-structure,</span></span>
+<span id="cb29-176"><a href="#cb29-176" aria-hidden="true" tabindex="-1"></a><span class="co">#                       using finite difference method</span></span>
+<span id="cb29-177"><a href="#cb29-177" aria-hidden="true" tabindex="-1"></a><span class="co"># maturity : vector of year maturity</span></span>
+<span id="cb29-178"><a href="#cb29-178" aria-hidden="true" tabindex="-1"></a><span class="co"># term_sturucture : vector of real spot rate, order to maturity, omit %</span></span>
+<span id="cb29-179"><a href="#cb29-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-180"><a href="#cb29-180" aria-hidden="true" tabindex="-1"></a>optim_nelson_siegel <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">term_structure =</span> <span class="cn">NULL</span>, <span class="at">maturity =</span> <span class="cn">NULL</span>, <span class="at">params =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">6</span>),</span>
+<span id="cb29-181"><a href="#cb29-181" aria-hidden="true" tabindex="-1"></a>                                <span class="at">contraint_threshold =</span> <span class="fl">0.1</span>, <span class="at">tau_threshold =</span> <span class="dv">10</span>, <span class="at">beta_threshold =</span> <span class="dv">30</span>){</span>
+<span id="cb29-182"><a href="#cb29-182" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-183"><a href="#cb29-183" aria-hidden="true" tabindex="-1"></a>  loss_function <span class="ot">&lt;-</span> <span class="cf">function</span>(params){</span>
+<span id="cb29-184"><a href="#cb29-184" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-185"><a href="#cb29-185" aria-hidden="true" tabindex="-1"></a>    <span class="co"># parameters </span></span>
+<span id="cb29-186"><a href="#cb29-186" aria-hidden="true" tabindex="-1"></a>    beta0 <span class="ot">=</span> params[<span class="dv">1</span>]</span>
+<span id="cb29-187"><a href="#cb29-187" aria-hidden="true" tabindex="-1"></a>    beta1 <span class="ot">=</span> params[<span class="dv">2</span>]</span>
+<span id="cb29-188"><a href="#cb29-188" aria-hidden="true" tabindex="-1"></a>    beta2 <span class="ot">=</span> params[<span class="dv">3</span>]</span>
+<span id="cb29-189"><a href="#cb29-189" aria-hidden="true" tabindex="-1"></a>    beta3 <span class="ot">=</span> params[<span class="dv">4</span>]</span>
+<span id="cb29-190"><a href="#cb29-190" aria-hidden="true" tabindex="-1"></a>    tau1  <span class="ot">=</span> params[<span class="dv">5</span>]</span>
+<span id="cb29-191"><a href="#cb29-191" aria-hidden="true" tabindex="-1"></a>    tau2  <span class="ot">=</span> params[<span class="dv">6</span>]</span>
+<span id="cb29-192"><a href="#cb29-192" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-193"><a href="#cb29-193" aria-hidden="true" tabindex="-1"></a>    <span class="co"># contraints</span></span>
+<span id="cb29-194"><a href="#cb29-194" aria-hidden="true" tabindex="-1"></a>    contraint <span class="ot">=</span> <span class="fu">abs</span>(beta0 <span class="sc">+</span> beta1 <span class="sc">-</span> term_structure[<span class="dv">1</span>])</span>
+<span id="cb29-195"><a href="#cb29-195" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-196"><a href="#cb29-196" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(contraint <span class="sc">&gt;</span> contraint_threshold ){</span>
+<span id="cb29-197"><a href="#cb29-197" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb29-198"><a href="#cb29-198" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb29-199"><a href="#cb29-199" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-200"><a href="#cb29-200" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if(tau1 &gt; tau_threshold | tau2 &gt; tau_threshold){</span></span>
+<span id="cb29-201"><a href="#cb29-201" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   return(NA)</span></span>
+<span id="cb29-202"><a href="#cb29-202" aria-hidden="true" tabindex="-1"></a>    <span class="co"># }</span></span>
+<span id="cb29-203"><a href="#cb29-203" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span></span>
+<span id="cb29-204"><a href="#cb29-204" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if(beta2 &gt; beta_threshold | beta3 &gt; beta_threshold ){</span></span>
+<span id="cb29-205"><a href="#cb29-205" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   return(NA)</span></span>
+<span id="cb29-206"><a href="#cb29-206" aria-hidden="true" tabindex="-1"></a>    <span class="co"># }</span></span>
+<span id="cb29-207"><a href="#cb29-207" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-208"><a href="#cb29-208" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(</span>
+<span id="cb29-209"><a href="#cb29-209" aria-hidden="true" tabindex="-1"></a>      (term_structure <span class="sc">-</span> beta0 <span class="sc">-</span> </span>
+<span id="cb29-210"><a href="#cb29-210" aria-hidden="true" tabindex="-1"></a>         beta1 <span class="sc">*</span>  (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau1)) <span class="sc">/</span> (maturity<span class="sc">/</span>tau1) <span class="sc">-</span></span>
+<span id="cb29-211"><a href="#cb29-211" aria-hidden="true" tabindex="-1"></a>         beta2 <span class="sc">*</span> ((<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau1)) <span class="sc">/</span> (maturity<span class="sc">/</span>tau1) <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau1)) <span class="sc">-</span> </span>
+<span id="cb29-212"><a href="#cb29-212" aria-hidden="true" tabindex="-1"></a>         beta3 <span class="sc">*</span> ((<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau2)) <span class="sc">/</span> (maturity<span class="sc">/</span>tau2) <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>maturity<span class="sc">/</span>tau2)) </span>
+<span id="cb29-213"><a href="#cb29-213" aria-hidden="true" tabindex="-1"></a>      )<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb29-214"><a href="#cb29-214" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-215"><a href="#cb29-215" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-216"><a href="#cb29-216" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-217"><a href="#cb29-217" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set initial values for to beta0 and beta1 that respect the contraint </span></span>
+<span id="cb29-218"><a href="#cb29-218" aria-hidden="true" tabindex="-1"></a>  <span class="co"># beta0 is long-term rate &amp; beta1 is short-term rate minus beta0</span></span>
+<span id="cb29-219"><a href="#cb29-219" aria-hidden="true" tabindex="-1"></a>  params <span class="ot">=</span> <span class="fu">c</span>(term_structure[<span class="fu">length</span>(term_structure)],</span>
+<span id="cb29-220"><a href="#cb29-220" aria-hidden="true" tabindex="-1"></a>             term_structure[<span class="dv">1</span>]<span class="sc">-</span>term_structure[<span class="fu">length</span>(term_structure)],</span>
+<span id="cb29-221"><a href="#cb29-221" aria-hidden="true" tabindex="-1"></a>             params[<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>] )</span>
+<span id="cb29-222"><a href="#cb29-222" aria-hidden="true" tabindex="-1"></a>               </span>
+<span id="cb29-223"><a href="#cb29-223" aria-hidden="true" tabindex="-1"></a>  <span class="co"># beta0 &amp; beta1 is equal to (short-term rate)/2</span></span>
+<span id="cb29-224"><a href="#cb29-224" aria-hidden="true" tabindex="-1"></a>  <span class="co"># params = c(term_structure[1]/2,term_structure[1]/2,params[3:6] )</span></span>
+<span id="cb29-225"><a href="#cb29-225" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-226"><a href="#cb29-226" aria-hidden="true" tabindex="-1"></a>  <span class="co"># minimization of the loss function </span></span>
+<span id="cb29-227"><a href="#cb29-227" aria-hidden="true" tabindex="-1"></a>  optimization <span class="ot">=</span> <span class="fu">optim</span>(params, loss_function)</span>
+<span id="cb29-228"><a href="#cb29-228" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-229"><a href="#cb29-229" aria-hidden="true" tabindex="-1"></a>  <span class="co"># optimal parameters </span></span>
+<span id="cb29-230"><a href="#cb29-230" aria-hidden="true" tabindex="-1"></a>  optim_params <span class="ot">=</span> <span class="fu">c</span>(<span class="at">beta0 =</span> optimization<span class="sc">$</span>par[<span class="dv">1</span>], </span>
+<span id="cb29-231"><a href="#cb29-231" aria-hidden="true" tabindex="-1"></a>                   <span class="at">beta1 =</span> optimization<span class="sc">$</span>par[<span class="dv">2</span>], </span>
+<span id="cb29-232"><a href="#cb29-232" aria-hidden="true" tabindex="-1"></a>                   <span class="at">beta2 =</span> optimization<span class="sc">$</span>par[<span class="dv">3</span>],</span>
+<span id="cb29-233"><a href="#cb29-233" aria-hidden="true" tabindex="-1"></a>                   <span class="at">beta3 =</span> optimization<span class="sc">$</span>par[<span class="dv">4</span>],</span>
+<span id="cb29-234"><a href="#cb29-234" aria-hidden="true" tabindex="-1"></a>                   <span class="at">tau1  =</span> optimization<span class="sc">$</span>par[<span class="dv">5</span>], </span>
+<span id="cb29-235"><a href="#cb29-235" aria-hidden="true" tabindex="-1"></a>                   <span class="at">tau2  =</span> optimization<span class="sc">$</span>par[<span class="dv">6</span>])</span>
+<span id="cb29-236"><a href="#cb29-236" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-237"><a href="#cb29-237" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fitted value from Nelson-Siegel base function </span></span>
+<span id="cb29-238"><a href="#cb29-238" aria-hidden="true" tabindex="-1"></a>  fitted_values <span class="ot">=</span> <span class="fu">nelson_siegel</span>(maturity, optim_params)</span>
+<span id="cb29-239"><a href="#cb29-239" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-240"><a href="#cb29-240" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute the mean square error</span></span>
+<span id="cb29-241"><a href="#cb29-241" aria-hidden="true" tabindex="-1"></a>  mse_fit <span class="ot">=</span> <span class="fu">sd</span>(fitted_values <span class="sc">-</span> term_structure, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-242"><a href="#cb29-242" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-243"><a href="#cb29-243" aria-hidden="true" tabindex="-1"></a>  <span class="co"># output </span></span>
+<span id="cb29-244"><a href="#cb29-244" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tibble</span>( </span>
+<span id="cb29-245"><a href="#cb29-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">maturity =</span> <span class="fu">list</span>(maturity),</span>
+<span id="cb29-246"><a href="#cb29-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">term_structure =</span> <span class="fu">list</span>(term_structure),</span>
+<span id="cb29-247"><a href="#cb29-247" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_params =</span> <span class="fu">list</span>(params),</span>
+<span id="cb29-248"><a href="#cb29-248" aria-hidden="true" tabindex="-1"></a>    <span class="at">optim_params =</span> <span class="fu">list</span>(optim_params),</span>
+<span id="cb29-249"><a href="#cb29-249" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit =</span> <span class="fu">list</span>(fitted_values),</span>
+<span id="cb29-250"><a href="#cb29-250" aria-hidden="true" tabindex="-1"></a>    <span class="at">mse =</span> mse_fit</span>
+<span id="cb29-251"><a href="#cb29-251" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-252"><a href="#cb29-252" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb29-253"><a href="#cb29-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-254"><a href="#cb29-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-255"><a href="#cb29-255" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 3. Uniform dist. random number 생성</span></span>
+<span id="cb29-256"><a href="#cb29-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-259"><a href="#cb29-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-260"><a href="#cb29-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-261"><a href="#cb29-261" aria-hidden="true" tabindex="-1"></a><span class="co"># (random_params) return random number follows an uniform distribution</span></span>
+<span id="cb29-262"><a href="#cb29-262" aria-hidden="true" tabindex="-1"></a><span class="co"># n.params: number of parameter to generate </span></span>
+<span id="cb29-263"><a href="#cb29-263" aria-hidden="true" tabindex="-1"></a><span class="co"># params.min: for random generation, minimum parameter</span></span>
+<span id="cb29-264"><a href="#cb29-264" aria-hidden="true" tabindex="-1"></a><span class="co"># params.max: for random generation, maximum parameter</span></span>
+<span id="cb29-265"><a href="#cb29-265" aria-hidden="true" tabindex="-1"></a><span class="co"># seed: to control randomness </span></span>
+<span id="cb29-266"><a href="#cb29-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-267"><a href="#cb29-267" aria-hidden="true" tabindex="-1"></a>random_params <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n.params =</span> <span class="dv">1</span>, <span class="at">params.min =</span> <span class="dv">0</span>, <span class="at">params.max =</span> <span class="dv">5</span>, <span class="at">seed =</span> <span class="dv">1</span>){</span>
+<span id="cb29-268"><a href="#cb29-268" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-269"><a href="#cb29-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed)</span>
+<span id="cb29-270"><a href="#cb29-270" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-271"><a href="#cb29-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(n.params, params.min, params.max)</span>
+<span id="cb29-272"><a href="#cb29-272" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-273"><a href="#cb29-273" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-274"><a href="#cb29-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-275"><a href="#cb29-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-276"><a href="#cb29-276" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4. Monte-carlo simulation (Calibration)</span></span>
+<span id="cb29-277"><a href="#cb29-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-280"><a href="#cb29-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-281"><a href="#cb29-281" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-282"><a href="#cb29-282" aria-hidden="true" tabindex="-1"></a><span class="co"># (calibrate_nelson_siegel) return n-times "optim_nelson_siegel" outputs</span></span>
+<span id="cb29-283"><a href="#cb29-283" aria-hidden="true" tabindex="-1"></a><span class="co">#                           using Monte-carlo simulation for random 3 parameters(beta2 to tau2)</span></span>
+<span id="cb29-284"><a href="#cb29-284" aria-hidden="true" tabindex="-1"></a><span class="co"># n: number of simulations </span></span>
+<span id="cb29-285"><a href="#cb29-285" aria-hidden="true" tabindex="-1"></a><span class="co"># params.min: for random generation, minimum parameter</span></span>
+<span id="cb29-286"><a href="#cb29-286" aria-hidden="true" tabindex="-1"></a><span class="co"># params.max: for random generation, maximum parameter</span></span>
+<span id="cb29-287"><a href="#cb29-287" aria-hidden="true" tabindex="-1"></a><span class="co"># verbose: disply progress in the importation.</span></span>
+<span id="cb29-288"><a href="#cb29-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-289"><a href="#cb29-289" aria-hidden="true" tabindex="-1"></a>calibrate_nelson_siegel <span class="ot">&lt;-</span> <span class="cf">function</span>(object, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">params.min =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">params.max =</span> <span class="dv">5</span>, </span>
+<span id="cb29-290"><a href="#cb29-290" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">contraint_threshold =</span> <span class="fl">0.01</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span> ){</span>
+<span id="cb29-291"><a href="#cb29-291" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-292"><a href="#cb29-292" aria-hidden="true" tabindex="-1"></a>  <span class="co"># initialize the parameters </span></span>
+<span id="cb29-293"><a href="#cb29-293" aria-hidden="true" tabindex="-1"></a>  term_structure <span class="ot">=</span> object<span class="sc">$</span>term_structure[[<span class="dv">1</span>]]</span>
+<span id="cb29-294"><a href="#cb29-294" aria-hidden="true" tabindex="-1"></a>  maturity <span class="ot">=</span> object<span class="sc">$</span>maturity[[<span class="dv">1</span>]]</span>
+<span id="cb29-295"><a href="#cb29-295" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-296"><a href="#cb29-296" aria-hidden="true" tabindex="-1"></a>  <span class="co"># list containing all the simulations </span></span>
+<span id="cb29-297"><a href="#cb29-297" aria-hidden="true" tabindex="-1"></a>  simulations <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb29-298"><a href="#cb29-298" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-299"><a href="#cb29-299" aria-hidden="true" tabindex="-1"></a>  <span class="co"># safe version to avoid errors if we made many simulations</span></span>
+<span id="cb29-300"><a href="#cb29-300" aria-hidden="true" tabindex="-1"></a>  safe_optim <span class="ot">=</span> purrr<span class="sc">::</span><span class="fu">safely</span>(optim_nelson_siegel)</span>
+<span id="cb29-301"><a href="#cb29-301" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-302"><a href="#cb29-302" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb29-303"><a href="#cb29-303" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-304"><a href="#cb29-304" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generate a random seed</span></span>
+<span id="cb29-305"><a href="#cb29-305" aria-hidden="true" tabindex="-1"></a>    random_seed <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">random_params</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">100000</span>, <span class="at">seed =</span> i))</span>
+<span id="cb29-306"><a href="#cb29-306" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-307"><a href="#cb29-307" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generate random parameters </span></span>
+<span id="cb29-308"><a href="#cb29-308" aria-hidden="true" tabindex="-1"></a>    random_params <span class="ot">=</span> <span class="fu">random_params</span>(<span class="dv">6</span>, params.min, params.max, <span class="at">seed =</span> random_seed)</span>
+<span id="cb29-309"><a href="#cb29-309" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-310"><a href="#cb29-310" aria-hidden="true" tabindex="-1"></a>    simulations[[i]] <span class="ot">=</span> <span class="fu">safe_optim</span>(<span class="at">term_structure  =</span> term_structure, <span class="at">maturity =</span> maturity, <span class="at">params =</span> random_params, <span class="at">contraint_threshold =</span> contraint_threshold)<span class="sc">$</span>result</span>
+<span id="cb29-311"><a href="#cb29-311" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-312"><a href="#cb29-312" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>( verbose <span class="sc">&amp;</span>(i<span class="sc">%%</span><span class="dv">50</span> <span class="sc">==</span> <span class="dv">0</span>)){<span class="fu">message</span>(<span class="st">"Simulations: "</span>, i, <span class="st">"/"</span>, n)}</span>
+<span id="cb29-313"><a href="#cb29-313" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-314"><a href="#cb29-314" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-315"><a href="#cb29-315" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-316"><a href="#cb29-316" aria-hidden="true" tabindex="-1"></a>  <span class="co"># unique dataset for all the simulation</span></span>
+<span id="cb29-317"><a href="#cb29-317" aria-hidden="true" tabindex="-1"></a>  simulations_df <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(simulations) </span>
+<span id="cb29-318"><a href="#cb29-318" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-319"><a href="#cb29-319" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add the initial object</span></span>
+<span id="cb29-320"><a href="#cb29-320" aria-hidden="true" tabindex="-1"></a>  simulations_df <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(object, simulations) </span>
+<span id="cb29-321"><a href="#cb29-321" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-322"><a href="#cb29-322" aria-hidden="true" tabindex="-1"></a>  <span class="co"># index for the simulations </span></span>
+<span id="cb29-323"><a href="#cb29-323" aria-hidden="true" tabindex="-1"></a>  simulations_df <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(simulations_df, <span class="at">n =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(simulations_df)) </span>
+<span id="cb29-324"><a href="#cb29-324" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-325"><a href="#cb29-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(simulations_df)</span>
+<span id="cb29-326"><a href="#cb29-326" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-327"><a href="#cb29-327" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-328"><a href="#cb29-328" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-329"><a href="#cb29-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-330"><a href="#cb29-330" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 5. Optimal fitted curve 산출 및 시각화</span></span>
+<span id="cb29-331"><a href="#cb29-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-334"><a href="#cb29-334" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-335"><a href="#cb29-335" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-336"><a href="#cb29-336" aria-hidden="true" tabindex="-1"></a><span class="co"># (optimal_params_ns) summarize of all above, return optimal result minimize MSE from n-times simulation.</span></span>
+<span id="cb29-337"><a href="#cb29-337" aria-hidden="true" tabindex="-1"></a><span class="co"># term_structure = NULL</span></span>
+<span id="cb29-338"><a href="#cb29-338" aria-hidden="true" tabindex="-1"></a><span class="co"># maturity = NULL</span></span>
+<span id="cb29-339"><a href="#cb29-339" aria-hidden="true" tabindex="-1"></a><span class="co"># n = 1000</span></span>
+<span id="cb29-340"><a href="#cb29-340" aria-hidden="true" tabindex="-1"></a><span class="co"># params.init = rep(0.1, 6)</span></span>
+<span id="cb29-341"><a href="#cb29-341" aria-hidden="true" tabindex="-1"></a><span class="co"># params.min = -5</span></span>
+<span id="cb29-342"><a href="#cb29-342" aria-hidden="true" tabindex="-1"></a><span class="co"># params.max = 5</span></span>
+<span id="cb29-343"><a href="#cb29-343" aria-hidden="true" tabindex="-1"></a><span class="co"># contraint_threshold = 0.1</span></span>
+<span id="cb29-344"><a href="#cb29-344" aria-hidden="true" tabindex="-1"></a><span class="co"># label = NULL (label for the plot)</span></span>
+<span id="cb29-345"><a href="#cb29-345" aria-hidden="true" tabindex="-1"></a><span class="co"># verbose = TRUE</span></span>
+<span id="cb29-346"><a href="#cb29-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-347"><a href="#cb29-347" aria-hidden="true" tabindex="-1"></a>optimal_params_ns <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">term_structure =</span> <span class="cn">NULL</span>, <span class="at">maturity =</span> <span class="cn">NULL</span>, </span>
+<span id="cb29-348"><a href="#cb29-348" aria-hidden="true" tabindex="-1"></a>                              <span class="at">n =</span> <span class="dv">1000</span>, <span class="at">params.init =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">6</span>), <span class="at">params.min =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">params.max =</span> <span class="dv">5</span>,</span>
+<span id="cb29-349"><a href="#cb29-349" aria-hidden="true" tabindex="-1"></a>                              <span class="at">contraint_threshold =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="cn">NULL</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>){</span>
+<span id="cb29-350"><a href="#cb29-350" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-351"><a href="#cb29-351" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first fit </span></span>
+<span id="cb29-352"><a href="#cb29-352" aria-hidden="true" tabindex="-1"></a>  first_fit_ns <span class="ot">=</span> <span class="fu">optim_nelson_siegel</span>(<span class="at">term_structure =</span> term_structure, <span class="at">maturity =</span> maturity, <span class="at">params =</span> params.init)</span>
+<span id="cb29-353"><a href="#cb29-353" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-354"><a href="#cb29-354" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulations </span></span>
+<span id="cb29-355"><a href="#cb29-355" aria-hidden="true" tabindex="-1"></a>  sim_fit_ns <span class="ot">=</span> <span class="fu">calibrate_nelson_siegel</span>(first_fit_ns, <span class="at">n =</span> n, <span class="at">params.min =</span> params.min, <span class="at">params.max =</span> params.max, <span class="at">contraint_threshold =</span> contraint_threshold)</span>
+<span id="cb29-356"><a href="#cb29-356" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-357"><a href="#cb29-357" aria-hidden="true" tabindex="-1"></a>  <span class="co"># best parameters </span></span>
+<span id="cb29-358"><a href="#cb29-358" aria-hidden="true" tabindex="-1"></a>  df_optim_params <span class="ot">=</span> sim_fit_ns[<span class="fu">which</span>(sim_fit_ns<span class="sc">$</span>mse <span class="sc">==</span> <span class="fu">min</span>(sim_fit_ns<span class="sc">$</span>mse, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),]</span>
+<span id="cb29-359"><a href="#cb29-359" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-360"><a href="#cb29-360" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-361"><a href="#cb29-361" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setting the title of the plot </span></span>
+<span id="cb29-362"><a href="#cb29-362" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(label) <span class="sc">&amp;</span> <span class="fu">is.character</span>(label)){</span>
+<span id="cb29-363"><a href="#cb29-363" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-364"><a href="#cb29-364" aria-hidden="true" tabindex="-1"></a>    plot_title <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"Fitted Nelson-Siegel-Svensonn vs Real Value "</span>, <span class="st">"("</span>, label, <span class="st">")"</span> )</span>
+<span id="cb29-365"><a href="#cb29-365" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-366"><a href="#cb29-366" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb29-367"><a href="#cb29-367" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-368"><a href="#cb29-368" aria-hidden="true" tabindex="-1"></a>    plot_title <span class="ot">=</span> <span class="st">"Fitted Nelson-Siegel-Svensonn vs Real Value"</span></span>
+<span id="cb29-369"><a href="#cb29-369" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-370"><a href="#cb29-370" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-371"><a href="#cb29-371" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-372"><a href="#cb29-372" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot of fitted vs real values </span></span>
+<span id="cb29-373"><a href="#cb29-373" aria-hidden="true" tabindex="-1"></a>  plot_df <span class="ot">=</span>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
+<span id="cb29-374"><a href="#cb29-374" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb29-375"><a href="#cb29-375" aria-hidden="true" tabindex="-1"></a>      <span class="at">t =</span> maturity,</span>
+<span id="cb29-376"><a href="#cb29-376" aria-hidden="true" tabindex="-1"></a>      <span class="at">pred =</span> df_optim_params<span class="sc">$</span>fit[[<span class="dv">1</span>]]</span>
+<span id="cb29-377"><a href="#cb29-377" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-378"><a href="#cb29-378" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb29-379"><a href="#cb29-379" aria-hidden="true" tabindex="-1"></a>      <span class="at">t =</span> maturity,</span>
+<span id="cb29-380"><a href="#cb29-380" aria-hidden="true" tabindex="-1"></a>      <span class="at">real =</span> term_structure</span>
+<span id="cb29-381"><a href="#cb29-381" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-382"><a href="#cb29-382" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"t"</span></span>
+<span id="cb29-383"><a href="#cb29-383" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb29-384"><a href="#cb29-384" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-385"><a href="#cb29-385" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot Real value vs Fitted Values </span></span>
+<span id="cb29-386"><a href="#cb29-386" aria-hidden="true" tabindex="-1"></a>  plot_ns <span class="ot">=</span> plot_df <span class="sc">%&gt;%</span></span>
+<span id="cb29-387"><a href="#cb29-387" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"T = "</span>, <span class="fu">round</span>(t, <span class="dv">3</span>)))<span class="sc">%&gt;%</span></span>
+<span id="cb29-388"><a href="#cb29-388" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb29-389"><a href="#cb29-389" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(t, pred), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb29-390"><a href="#cb29-390" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(t, real), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb29-391"><a href="#cb29-391" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(t, pred), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-392"><a href="#cb29-392" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(t, real), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb29-393"><a href="#cb29-393" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(t<span class="sc">+</span><span class="dv">1</span>, real<span class="fl">-0.001</span>, <span class="at">label =</span> label), <span class="at">size =</span> <span class="fl">1.5</span>)<span class="sc">+</span></span>
+<span id="cb29-394"><a href="#cb29-394" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">25</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">7</span>), </span>
+<span id="cb29-395"><a href="#cb29-395" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb29-396"><a href="#cb29-396" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title  =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb29-397"><a href="#cb29-397" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.title  =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb29-398"><a href="#cb29-398" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>),</span>
+<span id="cb29-399"><a href="#cb29-399" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>),</span>
+<span id="cb29-400"><a href="#cb29-400" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">colour=</span><span class="st">"grey60"</span>, <span class="at">linetype=</span><span class="st">"dotted"</span>),</span>
+<span id="cb29-401"><a href="#cb29-401" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb29-402"><a href="#cb29-402" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">colour=</span><span class="st">"grey60"</span>, <span class="at">linetype=</span><span class="st">"dotted"</span>),</span>
+<span id="cb29-403"><a href="#cb29-403" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">5</span>),</span>
+<span id="cb29-404"><a href="#cb29-404" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb29-405"><a href="#cb29-405" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.position =</span> <span class="st">"top"</span> ) <span class="sc">+</span></span>
+<span id="cb29-406"><a href="#cb29-406" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>))<span class="sc">+</span></span>
+<span id="cb29-407"><a href="#cb29-407" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(plot_title, <span class="at">subtitle =</span> <span class="st">"Fitted Value in Red and Real Values in Black"</span> )<span class="sc">+</span></span>
+<span id="cb29-408"><a href="#cb29-408" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Maturities"</span>)<span class="sc">+</span></span>
+<span id="cb29-409"><a href="#cb29-409" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb29-410"><a href="#cb29-410" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">"Mean Squared Error of the Fit: "</span>, <span class="fu">round</span>(df_optim_params<span class="sc">$</span>mse, <span class="dv">6</span>)))<span class="sc">+</span></span>
+<span id="cb29-411"><a href="#cb29-411" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span>
+<span id="cb29-412"><a href="#cb29-412" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-413"><a href="#cb29-413" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-414"><a href="#cb29-414" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-415"><a href="#cb29-415" aria-hidden="true" tabindex="-1"></a>  <span class="co"># output </span></span>
+<span id="cb29-416"><a href="#cb29-416" aria-hidden="true" tabindex="-1"></a>  <span class="fu">structure</span>(</span>
+<span id="cb29-417"><a href="#cb29-417" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb29-418"><a href="#cb29-418" aria-hidden="true" tabindex="-1"></a>      <span class="at">optim_params =</span> <span class="fu">tibble</span>( <span class="at">beta0=</span>df_optim_params<span class="sc">$</span>optim_params[[<span class="dv">1</span>]][<span class="dv">1</span>],</span>
+<span id="cb29-419"><a href="#cb29-419" aria-hidden="true" tabindex="-1"></a>                             <span class="at">beta1=</span>df_optim_params<span class="sc">$</span>optim_params[[<span class="dv">1</span>]][<span class="dv">2</span>],</span>
+<span id="cb29-420"><a href="#cb29-420" aria-hidden="true" tabindex="-1"></a>                             <span class="at">beta2=</span>df_optim_params<span class="sc">$</span>optim_params[[<span class="dv">1</span>]][<span class="dv">3</span>],</span>
+<span id="cb29-421"><a href="#cb29-421" aria-hidden="true" tabindex="-1"></a>                             <span class="at">beta3=</span>df_optim_params<span class="sc">$</span>optim_params[[<span class="dv">1</span>]][<span class="dv">4</span>],</span>
+<span id="cb29-422"><a href="#cb29-422" aria-hidden="true" tabindex="-1"></a>                             <span class="at">tau1=</span>df_optim_params<span class="sc">$</span>optim_params[[<span class="dv">1</span>]][<span class="dv">5</span>],</span>
+<span id="cb29-423"><a href="#cb29-423" aria-hidden="true" tabindex="-1"></a>                             <span class="at">tau2=</span>df_optim_params<span class="sc">$</span>optim_params[[<span class="dv">1</span>]][<span class="dv">6</span>]),</span>
+<span id="cb29-424"><a href="#cb29-424" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot_ns =</span> plot_ns,</span>
+<span id="cb29-425"><a href="#cb29-425" aria-hidden="true" tabindex="-1"></a>      <span class="at">simulations =</span> sim_fit_ns,</span>
+<span id="cb29-426"><a href="#cb29-426" aria-hidden="true" tabindex="-1"></a>      <span class="at">df_optim =</span> df_optim_params</span>
+<span id="cb29-427"><a href="#cb29-427" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb29-428"><a href="#cb29-428" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-429"><a href="#cb29-429" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-430"><a href="#cb29-430" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-431"><a href="#cb29-431" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-432"><a href="#cb29-432" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-433"><a href="#cb29-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-434"><a href="#cb29-434" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Result</span></span>
+<span id="cb29-435"><a href="#cb29-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-436"><a href="#cb29-436" aria-hidden="true" tabindex="-1"></a>앞서 도식화한 **24년 1~5월의 US par-yield curve**에 위 방법을 적용하여 **각각 모델링한 fitted curve는 아래와 같습니다.**</span>
+<span id="cb29-437"><a href="#cb29-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-440"><a href="#cb29-440" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-441"><a href="#cb29-441" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-442"><a href="#cb29-442" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb29-443"><a href="#cb29-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-444"><a href="#cb29-444" aria-hidden="true" tabindex="-1"></a>uspar_jan <span class="ot">&lt;-</span> uspar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month<span class="sc">==</span><span class="st">"01"</span>)</span>
+<span id="cb29-445"><a href="#cb29-445" aria-hidden="true" tabindex="-1"></a>uspar_feb <span class="ot">&lt;-</span> uspar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month<span class="sc">==</span><span class="st">"02"</span>)</span>
+<span id="cb29-446"><a href="#cb29-446" aria-hidden="true" tabindex="-1"></a>uspar_mar <span class="ot">&lt;-</span> uspar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month<span class="sc">==</span><span class="st">"03"</span>)</span>
+<span id="cb29-447"><a href="#cb29-447" aria-hidden="true" tabindex="-1"></a>uspar_apr <span class="ot">&lt;-</span> uspar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month<span class="sc">==</span><span class="st">"04"</span>)</span>
+<span id="cb29-448"><a href="#cb29-448" aria-hidden="true" tabindex="-1"></a>uspar_may <span class="ot">&lt;-</span> uspar <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month<span class="sc">==</span><span class="st">"05"</span>)</span>
+<span id="cb29-449"><a href="#cb29-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-450"><a href="#cb29-450" aria-hidden="true" tabindex="-1"></a>Jan <span class="ot">&lt;-</span> <span class="fu">optimal_params_ns</span>(uspar_jan<span class="sc">$</span>par,uspar_jan<span class="sc">$</span>maturity,<span class="at">n=</span><span class="dv">1000</span>,<span class="at">contraint_threshold =</span> <span class="fl">0.25</span>)</span>
+<span id="cb29-451"><a href="#cb29-451" aria-hidden="true" tabindex="-1"></a>Feb <span class="ot">&lt;-</span> <span class="fu">optimal_params_ns</span>(uspar_feb<span class="sc">$</span>par,uspar_feb<span class="sc">$</span>maturity,<span class="at">n=</span><span class="dv">1000</span>,<span class="at">contraint_threshold =</span> <span class="fl">0.25</span>)</span>
+<span id="cb29-452"><a href="#cb29-452" aria-hidden="true" tabindex="-1"></a>Mar <span class="ot">&lt;-</span> <span class="fu">optimal_params_ns</span>(uspar_mar<span class="sc">$</span>par,uspar_mar<span class="sc">$</span>maturity,<span class="at">n=</span><span class="dv">1000</span>,<span class="at">contraint_threshold =</span> <span class="fl">0.25</span>)</span>
+<span id="cb29-453"><a href="#cb29-453" aria-hidden="true" tabindex="-1"></a>Apr <span class="ot">&lt;-</span> <span class="fu">optimal_params_ns</span>(uspar_apr<span class="sc">$</span>par,uspar_apr<span class="sc">$</span>maturity,<span class="at">n=</span><span class="dv">1000</span>,<span class="at">contraint_threshold =</span> <span class="fl">0.25</span>)</span>
+<span id="cb29-454"><a href="#cb29-454" aria-hidden="true" tabindex="-1"></a>May <span class="ot">&lt;-</span> <span class="fu">optimal_params_ns</span>(uspar_may<span class="sc">$</span>par,uspar_may<span class="sc">$</span>maturity,<span class="at">n=</span><span class="dv">1000</span>,<span class="at">contraint_threshold =</span> <span class="fl">0.25</span>)</span>
+<span id="cb29-455"><a href="#cb29-455" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-456"><a href="#cb29-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-459"><a href="#cb29-459" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-460"><a href="#cb29-460" aria-hidden="true" tabindex="-1"></a>Jan<span class="sc">$</span>plot_ns</span>
+<span id="cb29-461"><a href="#cb29-461" aria-hidden="true" tabindex="-1"></a>Feb<span class="sc">$</span>plot_ns</span>
+<span id="cb29-462"><a href="#cb29-462" aria-hidden="true" tabindex="-1"></a>Mar<span class="sc">$</span>plot_ns</span>
+<span id="cb29-463"><a href="#cb29-463" aria-hidden="true" tabindex="-1"></a>Apr<span class="sc">$</span>plot_ns</span>
+<span id="cb29-464"><a href="#cb29-464" aria-hidden="true" tabindex="-1"></a>May<span class="sc">$</span>plot_ns</span>
+<span id="cb29-465"><a href="#cb29-465" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-466"><a href="#cb29-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-467"><a href="#cb29-467" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem 4</span></span>
+<span id="cb29-468"><a href="#cb29-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-469"><a href="#cb29-469" aria-hidden="true" tabindex="-1"></a>위 문제에서 구한 모수값들을 가지고 6월 첫날의 금리커브를 예측하려고 한다. 모수값들에 대하여 적절한 (예: 엑셀에서 제공하는 선형 추세선을 찾아 사용) 예측값들을 구하고 이를 바탕으로 금리 커브를 구하시오.</span>
+<span id="cb29-470"><a href="#cb29-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-471"><a href="#cb29-471" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer</span></span>
+<span id="cb29-472"><a href="#cb29-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-473"><a href="#cb29-473" aria-hidden="true" tabindex="-1"></a>먼저, 문제3에서 최종적으로 산출한 NSS fitted curve에 대하여 각각의 파라미터는 아래와 같습니다.</span>
+<span id="cb29-474"><a href="#cb29-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-477"><a href="#cb29-477" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-478"><a href="#cb29-478" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb29-479"><a href="#cb29-479" aria-hidden="true" tabindex="-1"></a>optim_parameters <span class="ot">&lt;-</span> Jan<span class="sc">$</span>optim_params <span class="sc">%&gt;%</span> </span>
+<span id="cb29-480"><a href="#cb29-480" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union_all</span>(Feb<span class="sc">$</span>optim_params) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-481"><a href="#cb29-481" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union_all</span>(Mar<span class="sc">$</span>optim_params) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-482"><a href="#cb29-482" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union_all</span>(Apr<span class="sc">$</span>optim_params) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-483"><a href="#cb29-483" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union_all</span>(May<span class="sc">$</span>optim_params) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-484"><a href="#cb29-484" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">c</span>(<span class="st">"Jan"</span>,<span class="st">"Feb"</span>,<span class="st">"Mar"</span>,<span class="st">"Apr"</span>,<span class="st">"May"</span>))</span>
+<span id="cb29-485"><a href="#cb29-485" aria-hidden="true" tabindex="-1"></a>optim_parameters</span>
+<span id="cb29-486"><a href="#cb29-486" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-487"><a href="#cb29-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-488"><a href="#cb29-488" aria-hidden="true" tabindex="-1"></a>이를 이용하여 6월달의 US par-yield curve를 예측하고자 할 때, 모수값들을 활용하여 NSS모델의 6월 예상파라미터를 추정할 수 있습니다.</span>
+<span id="cb29-489"><a href="#cb29-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-490"><a href="#cb29-490" aria-hidden="true" tabindex="-1"></a>여기에는 AR, ARMA, GARCH 등의 여러 모델을 생각할 수 있겠으나, 저는 직전 달의 모수값이 다음 달의 모수값에 대한 최적 추정치라고 생각합니다. 모수값의 시계열자료가 5개에 불과하고, **특별한 선형관계나 추세가 관찰되지 않기 때문**입니다. 이에 따라 **5월달의 NSS모델의 모수값을 6월의 예상파라미터**로 고려하겠습니다.</span>
+<span id="cb29-491"><a href="#cb29-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-492"><a href="#cb29-492" aria-hidden="true" tabindex="-1"></a>이를 이용하여 산출한 **6월 예상 US par-yield 및 curve는 아래와 같습니다.**</span>
+<span id="cb29-493"><a href="#cb29-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-496"><a href="#cb29-496" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-497"><a href="#cb29-497" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb29-498"><a href="#cb29-498" aria-hidden="true" tabindex="-1"></a>est_jun <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">maturity=</span>uspar_may<span class="sc">$</span>maturity,</span>
+<span id="cb29-499"><a href="#cb29-499" aria-hidden="true" tabindex="-1"></a>                  <span class="at">par=</span>May<span class="sc">$</span>df_optim<span class="sc">$</span>fit[[<span class="dv">1</span>]])</span>
+<span id="cb29-500"><a href="#cb29-500" aria-hidden="true" tabindex="-1"></a>est_jun</span>
+<span id="cb29-501"><a href="#cb29-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-502"><a href="#cb29-502" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(est_jun,<span class="fu">aes</span>(<span class="at">x=</span>maturity,<span class="at">y=</span>par))<span class="sc">+</span></span>
+<span id="cb29-503"><a href="#cb29-503" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour=</span><span class="st">"blue"</span>, <span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb29-504"><a href="#cb29-504" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>))<span class="sc">+</span></span>
+<span id="cb29-505"><a href="#cb29-505" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Expected US par-yield curve in June 1, based on NSS in May 1."</span>)<span class="sc">+</span></span>
+<span id="cb29-506"><a href="#cb29-506" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Maturities"</span>)<span class="sc">+</span></span>
+<span id="cb29-507"><a href="#cb29-507" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb29-508"><a href="#cb29-508" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb29-509"><a href="#cb29-509" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-510"><a href="#cb29-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-511"><a href="#cb29-511" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem 5</span></span>
+<span id="cb29-512"><a href="#cb29-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-513"><a href="#cb29-513" aria-hidden="true" tabindex="-1"></a>hw2.xlsx 에는 2011-10-28 부터 2016-10-28 까지의 스왑 데이터가 결측치가 있는 날들은 제외하고 들어 있다. 이를 이용하여 일별 금리변화를 주도하는 세 가지 주성분을 구하여 리포트하시오.</span>
+<span id="cb29-514"><a href="#cb29-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-515"><a href="#cb29-515" aria-hidden="true" tabindex="-1"></a><span class="fu">### Answer</span></span>
+<span id="cb29-516"><a href="#cb29-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-517"><a href="#cb29-517" aria-hidden="true" tabindex="-1"></a>먼저, 예제파일을 읽어와 일별/만기별 스왑금리의 차이를 bp단위로 계산하겠습니다.</span>
+<span id="cb29-518"><a href="#cb29-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-521"><a href="#cb29-521" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-522"><a href="#cb29-522" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb29-523"><a href="#cb29-523" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb29-524"><a href="#cb29-524" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/term_hw2.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-525"><a href="#cb29-525" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">contains</span>(<span class="st">"DSWP"</span>),<span class="at">names_to =</span> <span class="st">"maturity"</span>, <span class="at">values_to =</span> <span class="st">"rate"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-526"><a href="#cb29-526" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(maturity,observation_date) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-527"><a href="#cb29-527" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">changes=</span>(rate<span class="sc">-</span><span class="fu">lag</span>(rate))<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-528"><a href="#cb29-528" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(maturity<span class="sc">==</span><span class="fu">lag</span>(maturity)) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-529"><a href="#cb29-529" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date=</span>observation_date,</span>
+<span id="cb29-530"><a href="#cb29-530" aria-hidden="true" tabindex="-1"></a>         <span class="at">maturity=</span><span class="fu">substr</span>(maturity,<span class="dv">5</span>,<span class="fu">nchar</span>(maturity)) <span class="sc">%&gt;%</span> <span class="fu">as.integer</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-531"><a href="#cb29-531" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date,maturity,changes)</span>
+<span id="cb29-532"><a href="#cb29-532" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-533"><a href="#cb29-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-534"><a href="#cb29-534" aria-hidden="true" tabindex="-1"></a>다음으로, 각 만기별 covariance matrix를 산출하면 아래와 같습니다.</span>
+<span id="cb29-535"><a href="#cb29-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-538"><a href="#cb29-538" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-539"><a href="#cb29-539" aria-hidden="true" tabindex="-1"></a>cov_matrix <span class="ot">&lt;-</span> pca <span class="sc">%&gt;%</span> </span>
+<span id="cb29-540"><a href="#cb29-540" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"maturity"</span>, <span class="at">values_from =</span> <span class="st">"changes"</span>)</span>
+<span id="cb29-541"><a href="#cb29-541" aria-hidden="true" tabindex="-1"></a>cov_matrix <span class="ot">&lt;-</span> cov_matrix[,<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(cov_matrix)] <span class="sc">%&gt;%</span> </span>
+<span id="cb29-542"><a href="#cb29-542" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">1</span><span class="st">`</span>,<span class="st">`</span><span class="at">2</span><span class="st">`</span>,<span class="st">`</span><span class="at">3</span><span class="st">`</span>,<span class="st">`</span><span class="at">4</span><span class="st">`</span>,<span class="st">`</span><span class="at">5</span><span class="st">`</span>,<span class="st">`</span><span class="at">7</span><span class="st">`</span>,<span class="st">`</span><span class="at">10</span><span class="st">`</span>,<span class="st">`</span><span class="at">30</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-543"><a href="#cb29-543" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cov</span>()</span>
+<span id="cb29-544"><a href="#cb29-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-545"><a href="#cb29-545" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">4</span>)</span>
+<span id="cb29-546"><a href="#cb29-546" aria-hidden="true" tabindex="-1"></a>cov_matrix</span>
+<span id="cb29-547"><a href="#cb29-547" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-548"><a href="#cb29-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-549"><a href="#cb29-549" aria-hidden="true" tabindex="-1"></a>이제, 공분산행렬을 통해 eigenvalue와 eigenvector를 계산하겠습니다.</span>
+<span id="cb29-550"><a href="#cb29-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-553"><a href="#cb29-553" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-554"><a href="#cb29-554" aria-hidden="true" tabindex="-1"></a>eigenstuff <span class="ot">&lt;-</span> <span class="fu">eigen</span>(cov_matrix)</span>
+<span id="cb29-555"><a href="#cb29-555" aria-hidden="true" tabindex="-1"></a>eigenstuff </span>
+<span id="cb29-556"><a href="#cb29-556" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-557"><a href="#cb29-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-558"><a href="#cb29-558" aria-hidden="true" tabindex="-1"></a>해당 **eigenvalue는 각 주성분의 설명력**을 나타냅니다. 각 eigenvalue의 전체 합에 대한 **비율은 전체 금리변화에서 해당 주성분이 설명하는 비율**을 나타냅니다.</span>
+<span id="cb29-559"><a href="#cb29-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-562"><a href="#cb29-562" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-563"><a href="#cb29-563" aria-hidden="true" tabindex="-1"></a>eigenstuff<span class="sc">$</span>ratio<span class="ot">=</span>eigenstuff<span class="sc">$</span>values<span class="sc">/</span><span class="fu">sum</span>(eigenstuff<span class="sc">$</span>values)</span>
+<span id="cb29-564"><a href="#cb29-564" aria-hidden="true" tabindex="-1"></a>eigenstuff<span class="sc">$</span>ratio</span>
+<span id="cb29-565"><a href="#cb29-565" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-566"><a href="#cb29-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-567"><a href="#cb29-567" aria-hidden="true" tabindex="-1"></a>이에 따르면, **첫번째 주성분이 약 88.3%, 두번째 주성분이 8.9%, 세번째 주성분이 1.5%를 설명**하고 있습니다. 이는 **3가지의 주성분만으로 전체 swap rate curve 변화의 약 98.8%를 설명**할 수 있다는 의미입니다.</span>
+<span id="cb29-568"><a href="#cb29-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-569"><a href="#cb29-569" aria-hidden="true" tabindex="-1"></a>여기에서, **첫번째 주성분**은 **전체적인 금리수준의 변화(level change effect)**라고 할 수 있고 **두번째 주성분**은 **금리곡선의 기울기 변화(slope change effect)**, **세번째 주성분**은 **금리곡선의 볼록성 변화(convecture change effect)**라고 할 수 있습니다.</span>
+<span id="cb29-570"><a href="#cb29-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-571"><a href="#cb29-571" aria-hidden="true" tabindex="-1"></a>세가지 주성분의 eigenvector를 도식화하면 아래와 같습니다.</span>
+<span id="cb29-572"><a href="#cb29-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-575"><a href="#cb29-575" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-576"><a href="#cb29-576" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb29-577"><a href="#cb29-577" aria-hidden="true" tabindex="-1"></a>plot_pca <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">maturity=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
+<span id="cb29-578"><a href="#cb29-578" aria-hidden="true" tabindex="-1"></a>                   <span class="at">PC1=</span>eigenstuff<span class="sc">$</span>vectors[,<span class="dv">1</span>],</span>
+<span id="cb29-579"><a href="#cb29-579" aria-hidden="true" tabindex="-1"></a>                   <span class="at">PC2=</span>eigenstuff<span class="sc">$</span>vectors[,<span class="dv">2</span>],</span>
+<span id="cb29-580"><a href="#cb29-580" aria-hidden="true" tabindex="-1"></a>                   <span class="at">PC3=</span>eigenstuff<span class="sc">$</span>vectors[,<span class="dv">3</span>]) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-581"><a href="#cb29-581" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">contains</span>(<span class="st">"PC"</span>),<span class="at">names_to =</span> <span class="st">"components"</span>, <span class="at">values_to =</span> <span class="st">"values"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-582"><a href="#cb29-582" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(<span class="at">x=</span>maturity,<span class="at">y=</span>values,<span class="at">colour=</span>components))<span class="sc">+</span></span>
+<span id="cb29-583"><a href="#cb29-583" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb29-584"><a href="#cb29-584" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb29-585"><a href="#cb29-585" aria-hidden="true" tabindex="-1"></a>plot_pca</span>
+<span id="cb29-586"><a href="#cb29-586" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

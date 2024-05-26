@@ -24,27 +24,55 @@ SOFR선물은 (100-r)로 호가하며, 1bp에 대해 25$만큼 변동합니다.
 
 ## Problem 2
 
-다음의 표는 2020년 6월 5일 ICE에서 가져온 usd스왑데이터이다. 편의상 각 스왑금리는 연 1회 지급한다고 하자. 우리는 bootstrapping 기법을 이용하여 이 스왑금리들을 할인율곡선 또 는 현물이자율 곡선으로 변환할 수 있다.
+다음의 표는 2020년 6월 5일 ICE에서 가져온 usd스왑데이터이다. 편의상 각 스왑금리는 연 1회 지급한다고 하자. 우리는 bootstrapping 기법을 이용하여 이 스왑금리들을 할인율곡선 또는 현물이자율 곡선으로 변환할 수 있다.
 
-이 문제에서는 그와 달리 매해 말 지급부담을 지니고 있는 은행 A를 고려한다. 이 은행은 현 시점에서 floating rate notes 변동금리부채권과 스왑을 매수하여 이 지급부담을 맞추려고 한다. 이때 변동금리부채권과 스왑의 액면값들을 구하는 것을 reverse bootstrapping 이라 한다. 보다 정확히 다음의 구조를 고려하자.
+|구 분|1|2|3|4|5|6|
+|:---:|---:|---:|---:|---:|---:|---:|
+|Swap rate|0.307%|0.299%|0.346%|0.424%|0.517%|0.614%|
+
+이 문제에서는 그와 달리 매해 말 지급부담을 지니고 있는 은행 A를 고려한다. 이 은행은 현 시점에서 floating rate notes 변동금리부채권과 스왑을 매수하여 이 지급부담을 맞추려고 한다. 이때 변동금리부채권과 스왑의 액면값들을 구하는 것을 reverse bootstrapping이라 한다. 보다 정확히 다음의 구조를 고려하자.
 
 - 각 FRN은 $N_1, ... , N_6$의 액면을 가지고 있으며 이들은 i번째 해의 말까지 매년 $N_i$ 에 해당하는 변동금리를 지급하고 i번째 해의 말에는 액면 $N_i$ 도 지급한다.
 - 각 스왑의 액면 역시 $N_i$이며 A는 floating rate payer이다. 즉 i번째 해의 말까지 매년 $N_i$에 해당하는 변동금리를 거래상대방에게 지급한다. 역으로 거래상대방은 매해 말 $N_is_i$ 을 지불한다. 여기에서 $s_i$는 i 만기 스왑금리이다.
 
 $N_1,...,N_6$를 구하고 소수점 네째자리까지 리포트하시오.
 
+### Answer
+
+은행이 매년 1m\$의 채무를 커버하기위해 1~6년 만기의 FRN을 $N_1\sim N_6$만큼 매수하고, 여기에서 발생하는 변동금리이자분을 고정금리로 전환하기위해 Fixed-payer로 IRS를 동일한 명목금액 $N_1\sim N_6$ 만큼 체결한다면, 매년 은행의 pay-off는 아래와 같습니다.
+
+|Year|FRN|IRS|Net|
+|:---:|---:|---:|---:|
+|1|$\sum_{i=1}^6N_ir_i+N_1$|$\sum_{i=1}^6(N_is_i-N_ir_i)$|$N_1+\sum_{i=1}^6N_is_i$|
+|2|$\sum_{i=2}^6N_ir_i+N_2$|$\sum_{i=2}^6(N_is_i-N_ir_i)$|$N_2+\sum_{i=2}^6N_is_i$|
+|3|$\sum_{i=3}^6N_ir_i+N_3$|$\sum_{i=3}^6(N_is_i-N_ir_i)$|$N_3+\sum_{i=3}^6N_is_i$|
+|4|$\sum_{i=4}^6N_ir_i+N_4$|$\sum_{i=4}^6(N_is_i-N_ir_i)$|$N_4+\sum_{i=4}^6N_is_i$|
+|5|$\sum_{i=5}^6N_ir_i+N_5$|$\sum_{i=5}^6(N_is_i-N_ir_i)$|$N_5+\sum_{i=5}^6N_is_i$|
+|6|$N_6r_6+N_6$|$N_6s_6-N_6r_6$|$N_6+N_6s_6$|
+
+해당 pay-off에 따라 6년의 액면금액 $N_6$부터 reverse-bootstrapping방식으로 $N_i$를 모두 산출한 결과는 아래와 같습니다.
+
+|$N_1$|$N_2$|$N_3$|$N_4$|$N_5$|$N_6$|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|0.9753m|0.9783m|0.9812m|0.9846m|0.9888m|0.9939m|
+
 ```{r}
+#| echo: false
 #| output: false
 library(tidyverse)
+swap <- tibble(tenor=c(1:6),
+               rate=c(0.307,0.299,0.346,0.424,0.517,0.614)/100)
 ```
 
 ```{r}
-swap <- tibble(tenor=c(1:6),
-               rate=c(0.307,0.299,0.346,0.424,0.517,0.614))
+swap <- swap %>% mutate(par=c(NA,NA,NA,NA,NA,c(1000000/(swap$rate[6]+1))))
+for(i in 5:1){
+  swap$par[i]=(1000000-sum(swap$rate[(i+1):6]*swap$par[(i+1):6]))/(1+swap$rate[i])
+}
 swap
 ```
 
-### Answer
+
 
 ## Problem 3
 
@@ -57,6 +85,7 @@ swap
 먼저, **미 재무부의 daily par yield** 데이터를 이용하여 산출한 매월 첫번째 일자의 커브는 아래와 같습니다.
 
 ```{r}
+#| code-fold: true
 #| output: false
 uspar <- tibble()
 uspar <- read_csv("investment_hw/usparyield.csv") %>% 
@@ -68,7 +97,10 @@ uspar <- read_csv("investment_hw/usparyield.csv") %>%
   pivot_longer(cols = contains(" "),values_to = "par", names_to = "time") %>% 
   mutate(maturity=c(1,2,3,4,6,12,24,36,60,84,120,240,360)/12) %>% 
   ungroup()
+```
 
+```{r}
+#| code-fold: true
 ggplot(uspar,aes(x=maturity,y=par,colour=month))+
   geom_line()+
   theme_bw()
@@ -387,6 +419,8 @@ optimal_params_ns <- function(term_structure = NULL, maturity = NULL,
 
 ```{r}
 #| output: false
+#| code-fold: true
+
 uspar_jan <- uspar %>% filter(month=="01")
 uspar_feb <- uspar %>% filter(month=="02")
 uspar_mar <- uspar %>% filter(month=="03")
@@ -417,6 +451,7 @@ May$plot_ns
 먼저, 문제3에서 최종적으로 산출한 NSS fitted curve에 대하여 각각의 파라미터는 아래와 같습니다.
 
 ```{r}
+#| code-fold: true
 optim_parameters <- Jan$optim_params %>% 
   union_all(Feb$optim_params) %>% 
   union_all(Mar$optim_params) %>% 
@@ -428,11 +463,12 @@ optim_parameters
 
 이를 이용하여 6월달의 US par-yield curve를 예측하고자 할 때, 모수값들을 활용하여 NSS모델의 6월 예상파라미터를 추정할 수 있습니다.
 
-여기에는 AR, ARMA, GARCH 등의 여러 모델을 생각할 수 있겠으나, 저는 직전 달의 모수값이 다음 달의 모수값에 대한 최적 추정치라고 생각합니다. 즉, **5월달의 NSS모델의 모수값을 6월의 예상파라미터**로 고려하겠습니다.
+여기에는 AR, ARMA, GARCH 등의 여러 모델을 생각할 수 있겠으나, 저는 직전 달의 모수값이 다음 달의 모수값에 대한 최적 추정치라고 생각합니다. 모수값의 시계열자료가 5개에 불과하고, **특별한 선형관계나 추세가 관찰되지 않기 때문**입니다. 이에 따라 **5월달의 NSS모델의 모수값을 6월의 예상파라미터**로 고려하겠습니다.
 
-이를 이용하여 산출한** 6월 예상 US par-yield 및 curve는 아래와 같습니다.**
+이를 이용하여 산출한 **6월 예상 US par-yield 및 curve는 아래와 같습니다.**
 
 ```{r}
+#| code-fold: true
 est_jun <- tibble(maturity=uspar_may$maturity,
                   par=May$df_optim$fit[[1]])
 est_jun
@@ -451,3 +487,64 @@ ggplot(est_jun,aes(x=maturity,y=par))+
 hw2.xlsx 에는 2011-10-28 부터 2016-10-28 까지의 스왑 데이터가 결측치가 있는 날들은 제외하고 들어 있다. 이를 이용하여 일별 금리변화를 주도하는 세 가지 주성분을 구하여 리포트하시오.
 
 ### Answer
+
+먼저, 예제파일을 읽어와 일별/만기별 스왑금리의 차이를 bp단위로 계산하겠습니다.
+
+```{r}
+#| output: false
+#| code-fold: true
+pca <- read_csv("investment_hw/term_hw2.csv") %>% 
+  pivot_longer(cols=contains("DSWP"),names_to = "maturity", values_to = "rate") %>% 
+  arrange(maturity,observation_date) %>% 
+  mutate(changes=(rate-lag(rate))*100) %>% 
+  filter(maturity==lag(maturity)) %>% 
+  mutate(date=observation_date,
+         maturity=substr(maturity,5,nchar(maturity)) %>% as.integer()) %>% 
+  select(date,maturity,changes)
+```
+
+다음으로, 각 만기별 covariance matrix를 산출하면 아래와 같습니다.
+
+```{r}
+cov_matrix <- pca %>% 
+  pivot_wider(names_from = "maturity", values_from = "changes")
+cov_matrix <- cov_matrix[,2:ncol(cov_matrix)] %>% 
+  select(`1`,`2`,`3`,`4`,`5`,`7`,`10`,`30`) %>% 
+  cov()
+
+options(digits=4)
+cov_matrix
+```
+
+이제, 공분산행렬을 통해 eigenvalue와 eigenvector를 계산하겠습니다.
+
+```{r}
+eigenstuff <- eigen(cov_matrix)
+eigenstuff 
+```
+
+해당 **eigenvalue는 각 주성분의 설명력**을 나타냅니다. 각 eigenvalue의 전체 합에 대한 **비율은 전체 금리변화에서 해당 주성분이 설명하는 비율**을 나타냅니다.
+
+```{r}
+eigenstuff$ratio=eigenstuff$values/sum(eigenstuff$values)
+eigenstuff$ratio
+```
+
+이에 따르면, **첫번째 주성분이 약 88.3%, 두번째 주성분이 8.9%, 세번째 주성분이 1.5%를 설명**하고 있습니다. 이는 **3가지의 주성분만으로 전체 swap rate curve 변화의 약 98.8%를 설명**할 수 있다는 의미입니다.
+
+여기에서, **첫번째 주성분**은 **전체적인 금리수준의 변화(level change effect)**라고 할 수 있고 **두번째 주성분**은 **금리곡선의 기울기 변화(slope change effect)**, **세번째 주성분**은 **금리곡선의 볼록성 변화(convecture change effect)**라고 할 수 있습니다.
+
+세가지 주성분의 eigenvector를 도식화하면 아래와 같습니다.
+
+```{r}
+#| code-fold: true
+plot_pca <- tibble(maturity=c(1:8),
+                   PC1=eigenstuff$vectors[,1],
+                   PC2=eigenstuff$vectors[,2],
+                   PC3=eigenstuff$vectors[,3]) %>% 
+  pivot_longer(cols=contains("PC"),names_to = "components", values_to = "values") %>% 
+  ggplot(.,aes(x=maturity,y=values,colour=components))+
+  geom_line(size=1)+
+  theme_bw()
+plot_pca
+```

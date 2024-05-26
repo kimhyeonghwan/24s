@@ -454,7 +454,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./채권분석_hw1.html">채권분석&amp;기간구조('24봄)</a></li><li class="breadcrumb-item"><a href="./채권분석_hw2.html">채권분석 과제2</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">채권분석 과제2</h1>
+<div class="quarto-title-block"><div><h1 class="title">채권분석 과제2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -735,6 +735,8 @@ Spot rate 소수점 자리 문제
 </div>
 
 
+<!-- -->
+
 </section>
 
 </main> <!-- /main -->
@@ -817,6 +819,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1158,7 +1211,223 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text">채권분석 과제3</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb20" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 채권분석 과제2 {.unnumbered}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Callable bond</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>***(Question)***</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>만기 2년, 액면이자율 10% (연 1회 지급), 액면가 100 인 수의상환채권 callable bond 를 생각하자. 이 채권의 상환액 call price 는 100, 상환기간은 1년부터 (이자지급 이후) 만기까지 이다. 즉, 채권발행자 (기채자, 채무자) 는 상환기간 동안 원하는 때 100으로 채권을 상환할 수 있다. 1년이 지난 시점에서 만기수익률을 10.05% 라 가정하자.</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>채권의 가격 $P_0$ 를 구하시오.</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>시중금리변화에 따라 이 만기수익률이 즉각적으로 10bp 상승할 때의 가격 $P_+$ 를 구하시오.</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>그리고 만기수익률이 즉각적으로 10bp 하락할 때의 가격 $P_−$ 를 구하시오. </span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>채권발행자는 채권의 가치가 100을 넘어서면 상환할 인센티브가 있음을 고려하라. 이들 세 값을 바탕으로 우리는 수의상환채권에 대하여 유효한 듀레이션을 $-\frac{1}{P_0}\times\frac{P_+-P_-}{20bp}$로 구할 수 있다. 소수점 네째자리까지 리포트하시오.</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>***(Answer)***</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>1년이 지난 시점에서 수의상환채권의 잔여현금흐름은 만기 일시납 110이며, YTM은 10.05%이므로 가격 $P_0$는 약 99.9546입니다.</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>P0<span class="ot">=</span><span class="dv">110</span><span class="sc">/</span>(<span class="dv">1</span><span class="fl">+0.1005</span>)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>P0</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>만기수익률이 10bp씩 즉각적으로 움직일 때, 수의상환부를 고려하지 않은 채권가격은 아래와 같습니다.</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>P0_up<span class="ot">=</span><span class="dv">110</span><span class="sc">/</span>(<span class="dv">1</span><span class="fl">+0.1005+0.001</span>)</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>P0_down<span class="ot">=</span><span class="dv">110</span><span class="sc">/</span>(<span class="dv">1</span><span class="fl">+0.1005-0.001</span>)</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(P0_up,P0_down)</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>그러나, 수의상환채권의 가격은 call price를 초과할 수 없으므로 **$P_+=99.8638,\;P_-=100$**입니다.</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>위 가격으로부터 산출한 잔존만기 1년의 수의상환채권의 **듀레이션은 약 0.6812**입니다.</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>$$D_{callable}-\frac{1}{P_0}\times\frac{P_+-P_-}{20bp}=0.6812$$</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>duration<span class="ot">=</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span>P0)<span class="sc">*</span>(P0_up<span class="dv">-100</span>)<span class="sc">/</span><span class="fl">0.002</span></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(duration,<span class="dv">4</span>)</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. Spot rate</span></span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>***(Question)***</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>hw2.xlsx 에는 Treasury par yield (% 값) 가 일부 주어져 있다. 이것은 2024년 3월 21일 기준 US Treasury Par Yield Curve 이다.</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>선형보간법을 이용하여 빈 곳을 채우고, 1년에 2회 이자를 지급하는 기준으로 하여 spot rate 을 구하시오. 단, 0.5년 과 1년 채권은 무이표 채권이다. 제출할 때에는 % 로 소수점 둘째 자리까지 보이시오.</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>***(Answer)***</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>먼저, 선형보간법을 통해 기간별 Par-yield를 구하도록 하겠습니다.</span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: FALSE</span></span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a>par_yield <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">"year"</span><span class="ot">=</span><span class="fu">seq</span>(<span class="fl">0.5</span>,<span class="dv">10</span>,<span class="fl">0.5</span>),</span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"period"</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>),</span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"paryield"</span><span class="ot">=</span><span class="fu">c</span>(<span class="fl">5.36</span>,<span class="fl">5.01</span>,<span class="cn">NA</span>,<span class="fl">4.62</span>,<span class="cn">NA</span>,</span>
+<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a>                                 <span class="fl">4.42</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="fl">4.26</span>,</span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a>                                <span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="fl">4.28</span>,<span class="cn">NA</span>,</span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a>                                <span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="fl">4.27</span>))</span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a>par_yield <span class="ot">&lt;-</span> par_yield <span class="sc">%&gt;%</span> </span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">interpolation=</span><span class="fu">if_else</span>(paryield <span class="sc">%&gt;%</span> <span class="fu">is.na</span>(),</span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a>                               (<span class="fu">lag</span>(paryield)<span class="sc">+</span><span class="fu">lead</span>(paryield))<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a>                               paryield)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">interpolation=</span><span class="fu">if_else</span>(interpolation <span class="sc">%&gt;%</span> <span class="fu">is.na</span>(),</span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a>                               (<span class="fu">lag</span>(<span class="fu">lag</span>(interpolation))<span class="sc">+</span><span class="fu">lead</span>(<span class="fu">lead</span>(interpolation)))<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a>                               interpolation)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">interpolation=</span><span class="fu">if_else</span>(interpolation <span class="sc">%&gt;%</span> <span class="fu">is.na</span>(),</span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a>                               (<span class="fu">lag</span>(interpolation)<span class="sc">+</span><span class="fu">lead</span>(interpolation))<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a>                               interpolation))</span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a>par_yield <span class="ot">&lt;-</span> par_yield <span class="sc">%&gt;%</span> </span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">interpolation=</span><span class="fu">if_else</span>(interpolation <span class="sc">%&gt;%</span> <span class="fu">is.na</span>(),</span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a>                               ((<span class="dv">20</span><span class="sc">-</span>period)<span class="sc">*</span>par_yield<span class="sc">$</span>interpolation[<span class="dv">14</span>]</span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a>                               <span class="sc">+</span>(period<span class="dv">-14</span>)<span class="sc">*</span>par_yield<span class="sc">$</span>interpolation[<span class="dv">20</span>])<span class="sc">/</span><span class="dv">6</span>,</span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a>                               interpolation))</span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a>par_yield <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a>다음으로, Par-yield와 6개월/1년 spot rate를 통해 기간별 spot rate를 boot-strapping 방식으로 산출하도록 하겠습니다.</span>
+<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a>Par-yield는 채권의 현재가격을 액면가격으로 만들어주는 coupon-rate입니다. 즉, 액면가 100의 채권이 연간 par-yield만큼 쿠폰을 semi-annually 지급한다면 다음과 같이 쓸 수 있습니다.</span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a>$$100=\sum_{k=1}^{n-1}\frac{Par/2}{(1+Spot_k/2)^k}+\frac{100+Par/2}{(1+Spot_n/2)^n}$$</span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a>$$\Rightarrow \frac{1}{(1+Spot_n/2)^n}=\frac{1}{100+Par/2}(100-\sum_{k=1}^{n-1}\frac{Par/2}{(1+Spot_k/2)^k})$$</span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a>$$\Rightarrow Spot_n=((\frac{100+Par/2}{100-Sum\;of\;Coupon\;PV})^{\frac{1}{n}}-1)\times 2$$</span>
+<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a>위 수식을 R을 이용해서 산출하고, 소수점 둘째자리까지 반올림한 결과는 아래와 같습니다.</span>
+<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a>spot <span class="ot">&lt;-</span> par_yield <span class="sc">%&gt;%</span> </span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year,period,interpolation) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coupon=</span>interpolation<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a>         <span class="at">spot=</span><span class="fu">if_else</span>(period<span class="sc">&lt;=</span><span class="dv">2</span>,interpolation,<span class="cn">NA</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dc=</span><span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>spot<span class="sc">/</span><span class="dv">100</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span>period) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cum_dc=</span><span class="fu">cumsum</span>(dc)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sum_pvc=</span>coupon<span class="sc">*</span>(cum_dc<span class="sc">-</span>dc))</span>
+<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">20</span>){</span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a>spot<span class="sc">$</span>sum_pvc[i] <span class="ot">&lt;-</span> spot<span class="sc">$</span>coupon[i]<span class="sc">*</span>spot<span class="sc">$</span>cum_dc[i<span class="dv">-1</span>]</span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a>spot<span class="sc">$</span>dc[i] <span class="ot">&lt;-</span> (<span class="dv">100</span><span class="sc">-</span>spot<span class="sc">$</span>sum_pvc[i])<span class="sc">/</span>(<span class="dv">100</span><span class="sc">+</span>spot<span class="sc">$</span>coupon[i])</span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a>spot<span class="sc">$</span>spot[i] <span class="ot">&lt;-</span> {{(<span class="dv">1</span><span class="sc">/</span>spot<span class="sc">$</span>dc[i])<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>spot<span class="sc">$</span>period[i])<span class="sc">-</span><span class="dv">1</span>}<span class="sc">*</span><span class="dv">200</span>}</span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a>spot<span class="sc">$</span>cum_dc[i] <span class="ot">&lt;-</span> spot<span class="sc">$</span>cum_dc[i<span class="dv">-1</span>]<span class="sc">+</span>spot<span class="sc">$</span>dc[i]</span>
+<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a>spot <span class="ot">&lt;-</span> spot <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">spot2=</span>spot <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb20-128"><a href="#cb20-128" aria-hidden="true" tabindex="-1"></a>spot <span class="sc">%&gt;%</span> <span class="fu">select</span>(year,period,interpolation,spot2)</span>
+<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. Forward rate</span></span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a>***(Question)***</span>
+<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a>위의 문제에서 구한 현물이자율을 이용하여 선도이자율을 구하여라. 이 때 선도이자율은 6개월 구간마다 주어진다. 물론 0 부터 6개월까지의 선도이자율은 6개월 현물이자율과 같다. 선도이자율도 % 로 소수점 둘째 자리까지 구하시오.</span>
+<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a>***(Answer)***</span>
+<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a>semi-annually 현물이자율에서 6개월 선도이자율에 대한 수식은 다음과 같습니다.</span>
+<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a>$$(1+Spot_{n-1})^{n-1}(1+Forward_{n-1,n})=(1+Spot_n)^n$$</span>
+<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a>$$\Rightarrow Forward_{n-1,n}=\frac{(1+Spot_n)^n}{(1+Spot_{n-1})^{n-1}}-1$$</span>
+<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a>위 수식과 (2)의 **소수점 둘째자리까지 반올림한 Spot rate를 이용**하여 산출한 선도이자율은 아래와 같습니다.</span>
+<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-149"><a href="#cb20-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-150"><a href="#cb20-150" aria-hidden="true" tabindex="-1"></a>forward <span class="ot">&lt;-</span> spot <span class="sc">%&gt;%</span> </span>
+<span id="cb20-151"><a href="#cb20-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year,period,spot,spot2) <span class="sc">%&gt;%</span>  </span>
+<span id="cb20-152"><a href="#cb20-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">spot_yield=</span>(<span class="dv">1</span><span class="sc">+</span>spot<span class="sc">/</span><span class="dv">100</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span>period,</span>
+<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a>         <span class="at">spot_yield2=</span>(<span class="dv">1</span><span class="sc">+</span>spot2<span class="sc">/</span><span class="dv">100</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span>period) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">forward=</span>{{spot_yield<span class="sc">/</span><span class="fu">lag</span>(spot_yield)<span class="sc">-</span><span class="dv">1</span>}<span class="sc">*</span><span class="dv">200</span>} <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>),</span>
+<span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a>         <span class="at">forward2=</span>{{spot_yield2<span class="sc">/</span><span class="fu">lag</span>(spot_yield2)<span class="sc">-</span><span class="dv">1</span>}<span class="sc">*</span><span class="dv">200</span>} <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a>forward <span class="sc">%&gt;%</span> <span class="fu">select</span>(year,period,spot,forward2)</span>
+<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-158"><a href="#cb20-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a>::: {.callout-caution title="Spot rate 소수점 자리 문제"}</span>
+<span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a>Forward rate를 산출할 때, Spot rate를 소수점 두번째 자리까지 반올림하지 않는다면, Spot rate의 오차는 미미하더라도 Forward rate 산출에 영향을 주게 되며, 오차는 기간이 길어질수록 커집니다.</span>
+<span id="cb20-161"><a href="#cb20-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>forward <span class="sc">%&gt;%</span> <span class="fu">select</span>(year,period,forward2, forward) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year<span class="sc">&gt;=</span><span class="dv">8</span>)</span>
+<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. Continuous compounding - Forward rate</span></span>
+<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-171"><a href="#cb20-171" aria-hidden="true" tabindex="-1"></a>***(Question)***</span>
+<span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a>챕터2 에서 우리는 선도이자율이 구간별로 주어질 수 있음을 배웠다.</span>
+<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a>Semi-annual 베이스로 현물이자율을 정의했을 때, $r_1$ 은 1년 현물이자율, $r_{1.5}$ 는 1년 6개월 현물이자율을 나타낸다. 그리고 6개월부터 1년까지 기간에 대한 선도이자율은 $(1+r_1/2)^2 = (1+r_{0.5}/2)(1+f_{<span class="co">[</span><span class="ot">0.5,1</span><span class="co">]</span>}/2)$ 를 만족한다.</span>
+<span id="cb20-176"><a href="#cb20-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-177"><a href="#cb20-177" aria-hidden="true" tabindex="-1"></a>현물이자율을 연속복리법으로 정의했을 떄, 1년 현물이자율을 $r_1$ 이라 놓으면 시작점에서 1 의 투자는 $e^r_1$ 으로 성장한다. 마찬가지로 시간 $t$ 에 대한 현물이자율을 $r_t$ 라 놓으면 시작점에서의 1의 투자는 $e^{tr_t}$ 로 성장한다. 두 시점 a &lt; b 에 대하여 연속복리법에 의한 현물이자율 $r_a, r_b$ 가 주어져 있다. 투자자는 $(a, b)$ 구간에 적용되는 선도거래를 체결하려고 한다.</span>
+<span id="cb20-178"><a href="#cb20-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-179"><a href="#cb20-179" aria-hidden="true" tabindex="-1"></a>이 때 중요한 것은 선도이자율인데, 무차익원리에 의한 선도이자율 $f(a, b)$ 를 $a, b, r_a, r_b$ 를 이용하여 나타내시오. 물론 연속복리법을 적용한다.</span>
+<span id="cb20-180"><a href="#cb20-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-181"><a href="#cb20-181" aria-hidden="true" tabindex="-1"></a>***(Answer)***</span>
+<span id="cb20-182"><a href="#cb20-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-183"><a href="#cb20-183" aria-hidden="true" tabindex="-1"></a>연속복리법 하에서, $f(a, b), a, b, r_a, r_b$ 간에는 아래와 같은 식이 성립해야 합니다.</span>
+<span id="cb20-184"><a href="#cb20-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-185"><a href="#cb20-185" aria-hidden="true" tabindex="-1"></a>$$e^{a\times r_a}\times e^{(b-a)\times f(a,b)}=e^{b\times r_b}$$</span>
+<span id="cb20-186"><a href="#cb20-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a>이를 통해 $f(a,b)$를 표현하면,</span>
+<span id="cb20-188"><a href="#cb20-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-189"><a href="#cb20-189" aria-hidden="true" tabindex="-1"></a>$$\Rightarrow e^{ar_a+(b-a)f(a,b)}=e^{br_b}$$</span>
+<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-191"><a href="#cb20-191" aria-hidden="true" tabindex="-1"></a>$$ar_a+(b-a)f(a,b)=br_b\;\Rightarrow\;f(a,b)=\frac{br_b-ar_a}{b-a}$$</span>
+<span id="cb20-192"><a href="#cb20-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-193"><a href="#cb20-193" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. Pricing convention - full price</span></span>
+<span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-195"><a href="#cb20-195" aria-hidden="true" tabindex="-1"></a>***(Question)***</span>
+<span id="cb20-196"><a href="#cb20-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-197"><a href="#cb20-197" aria-hidden="true" tabindex="-1"></a>2024년 3월 15일 호가가 액면 100 당 103-22+ 로 주어진 미 국채가 있다. 이 채권의 만기는 2029년 10월 15일이고 표면금리는 6.125% 이다. 이자는 매 4월 15일, 10월 15일 지급될 때, full price를 구하시오. 소수점 여섯째자리까지 반올림하여 나타내시오.</span>
+<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a>***(Answer)***</span>
+<span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a>미국 국채의 가격표시방법에 따라, 103-22+의 가격표시는 아래와 같습니다.</span>
+<span id="cb20-202"><a href="#cb20-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-203"><a href="#cb20-203" aria-hidden="true" tabindex="-1"></a>$$103-22+=103+\frac{22}{32}+\frac{1}{64}=103.703125$$</span>
+<span id="cb20-204"><a href="#cb20-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">10</span>)</span>
+<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a>clean_price <span class="ot">&lt;-</span> <span class="dv">103</span><span class="sc">+</span><span class="dv">22</span><span class="sc">/</span><span class="dv">32</span><span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">64</span></span>
+<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a>clean_price</span>
+<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a>해당 가격은 호가가격이므로, clean price=103.703125입니다.</span>
+<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a>경과이자(accrued interest)를 가산해야 Full price를 산출할 수 있습니다.</span>
+<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a>경과이자는 $\frac{표면이율 \times 액면가}{2}\times \frac{경과일}{이자지급기간}$을 통해 구할 수 있습니다.</span>
+<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-219"><a href="#cb20-219" aria-hidden="true" tabindex="-1"></a>경과일은 152일, 이자지급기간은 183일이고, 산출된 경과이자는 약 2.543716입니다.</span>
+<span id="cb20-220"><a href="#cb20-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-221"><a href="#cb20-221" aria-hidden="true" tabindex="-1"></a>따라서, full price = clean(quoted) price + accrued interest = **106.246841**입니다.</span>
+<span id="cb20-222"><a href="#cb20-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-225"><a href="#cb20-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-226"><a href="#cb20-226" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a>accrued_date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="dv">20240315</span>)<span class="sc">-</span><span class="fu">ymd</span>(<span class="dv">20231015</span>)</span>
+<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a>interest_period <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="dv">20240415</span>)<span class="sc">-</span><span class="fu">ymd</span>(<span class="dv">20231015</span>)</span>
+<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a>accrued_interest<span class="ot">=</span>{(<span class="dv">100</span><span class="sc">*</span><span class="fl">0.06125</span>)<span class="sc">/</span><span class="dv">2</span>}<span class="sc">*</span>(<span class="fu">as.integer</span>(accrued_date)<span class="sc">/</span><span class="fu">as.integer</span>(interest_period))</span>
+<span id="cb20-231"><a href="#cb20-231" aria-hidden="true" tabindex="-1"></a>full_price<span class="ot">=</span><span class="fu">round</span>(clean_price<span class="sc">+</span>accrued_interest,<span class="dv">6</span>)</span>
+<span id="cb20-232"><a href="#cb20-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(accrued_date,interest_period,accrued_interest,full_price,<span class="at">sep=</span><span class="st">" / "</span>)</span>
+<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

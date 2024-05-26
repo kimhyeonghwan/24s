@@ -466,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1. Python Basics.html">Python(’24봄)</a></li><li class="breadcrumb-item"><a href="./Python Quiz1.html">금융공학프로그래밍3, Quiz1</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">금융공학프로그래밍3, Quiz1</h1>
+<div class="quarto-title-block"><div><h1 class="title">금융공학프로그래밍3, Quiz1</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -776,6 +776,8 @@ Sat</code></pre>
 </div>
 
 
+<!-- -->
+
 </section>
 </section>
 
@@ -859,6 +861,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1200,7 +1253,265 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text">금융공학프로그래밍3, Quiz2</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb48" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 금융공학프로그래밍3, Quiz1 {.unnumbered}</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Calculate the following</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">### (1) 근의 공식 코드 작성</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="fl">2.0</span><span class="op">;</span>b<span class="op">=-</span><span class="fl">1.0</span><span class="op">;</span>c<span class="op">=-</span><span class="fl">15.0</span><span class="op">;</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span>b<span class="op">+</span>math.sqrt(b<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>a),</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span>b<span class="op">-</span>math.sqrt(b<span class="op">**</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>a)</span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### (2) 정규분포 확률밀도함수 코드 작성</span></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a>mean<span class="op">=</span><span class="dv">2</span><span class="op">;</span> std<span class="op">=</span>math.sqrt(<span class="dv">3</span>)<span class="op">;</span> x<span class="op">=</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span><span class="op">/</span>(math.sqrt(<span class="dv">2</span><span class="op">*</span>math.pi)<span class="op">*</span>std))<span class="op">*</span>(math.e<span class="op">**</span>(<span class="op">-</span>((x<span class="op">-</span>mean)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(std)<span class="op">**</span><span class="dv">2</span>)))</span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. Why the error occurs?</span></span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-36"><a href="#cb48-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### (1) Input error</span></span>
+<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-40"><a href="#cb48-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-41"><a href="#cb48-41" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb48-42"><a href="#cb48-42" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="bu">input</span>(<span class="st">"enter a number:"</span>)</span>
+<span id="cb48-43"><a href="#cb48-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-44"><a href="#cb48-44" aria-hidden="true" tabindex="-1"></a>a<span class="op">+</span><span class="dv">3</span></span>
+<span id="cb48-45"><a href="#cb48-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-46"><a href="#cb48-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-47"><a href="#cb48-47" aria-hidden="true" tabindex="-1"></a>input 값은 string타입으로 받게되므로, integer타입인 3과 더하기 연산을 하면 오류 발생, input 값을 받아 integer로 변환하여 integer간 연산을 하거나, 3을 string으로 변환하여 문자열간 연산을 하거나 해야함.</span>
+<span id="cb48-48"><a href="#cb48-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-49"><a href="#cb48-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### (2) Range error</span></span>
+<span id="cb48-50"><a href="#cb48-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-53"><a href="#cb48-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-54"><a href="#cb48-54" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb48-55"><a href="#cb48-55" aria-hidden="true" tabindex="-1"></a>tmp<span class="op">=</span><span class="st">'My String'</span></span>
+<span id="cb48-56"><a href="#cb48-56" aria-hidden="true" tabindex="-1"></a>tmp[<span class="dv">10</span>]</span>
+<span id="cb48-57"><a href="#cb48-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-58"><a href="#cb48-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-59"><a href="#cb48-59" aria-hidden="true" tabindex="-1"></a>tmp는 공백포함 9자리 문자열이므로 index는 0\~8까지만 할 수 있고 9부터는 범위 밖이므로 오류 발생.</span>
+<span id="cb48-60"><a href="#cb48-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-61"><a href="#cb48-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### (3) method error</span></span>
+<span id="cb48-62"><a href="#cb48-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-65"><a href="#cb48-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-66"><a href="#cb48-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb48-67"><a href="#cb48-67" aria-hidden="true" tabindex="-1"></a>ex1<span class="op">=</span><span class="st">'sample string'</span></span>
+<span id="cb48-68"><a href="#cb48-68" aria-hidden="true" tabindex="-1"></a>ex2<span class="op">=</span>ex1.upper</span>
+<span id="cb48-69"><a href="#cb48-69" aria-hidden="true" tabindex="-1"></a>ex2[:<span class="dv">4</span>]</span>
+<span id="cb48-70"><a href="#cb48-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-71"><a href="#cb48-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-72"><a href="#cb48-72" aria-hidden="true" tabindex="-1"></a>method를 사용할 때, 뒤에 ()를 붙여야 작동함. 붙이지 않을경우 단순히 함수를 호출하는 것.</span>
+<span id="cb48-73"><a href="#cb48-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-74"><a href="#cb48-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. String</span></span>
+<span id="cb48-75"><a href="#cb48-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-78"><a href="#cb48-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-79"><a href="#cb48-79" aria-hidden="true" tabindex="-1"></a>grade<span class="op">=</span><span class="st">'ABCDF'</span></span>
+<span id="cb48-80"><a href="#cb48-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-81"><a href="#cb48-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-82"><a href="#cb48-82" aria-hidden="true" tabindex="-1"></a><span class="fu">### (1) '+'를 이용해서 'ABCDFFFDCBA' 만들기</span></span>
+<span id="cb48-83"><a href="#cb48-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-86"><a href="#cb48-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-87"><a href="#cb48-87" aria-hidden="true" tabindex="-1"></a>grade_str<span class="op">=</span>grade<span class="op">+</span>grade[<span class="op">-</span><span class="dv">1</span>]<span class="op">+</span>grade[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb48-88"><a href="#cb48-88" aria-hidden="true" tabindex="-1"></a>grade_str</span>
+<span id="cb48-89"><a href="#cb48-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-90"><a href="#cb48-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-91"><a href="#cb48-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### (2) A의 개수</span></span>
+<span id="cb48-92"><a href="#cb48-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-95"><a href="#cb48-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-96"><a href="#cb48-96" aria-hidden="true" tabindex="-1"></a>grade_str.count(<span class="st">'A'</span>)</span>
+<span id="cb48-97"><a href="#cb48-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-98"><a href="#cb48-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-99"><a href="#cb48-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### (3) 'FFF'를 반환하는 4가지 다른 표현식</span></span>
+<span id="cb48-100"><a href="#cb48-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-103"><a href="#cb48-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-104"><a href="#cb48-104" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb48-105"><a href="#cb48-105" aria-hidden="true" tabindex="-1"></a>    grade_str[<span class="dv">4</span>:<span class="dv">7</span>],</span>
+<span id="cb48-106"><a href="#cb48-106" aria-hidden="true" tabindex="-1"></a>    grade_str[<span class="dv">6</span>:<span class="dv">3</span>:<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb48-107"><a href="#cb48-107" aria-hidden="true" tabindex="-1"></a>    grade_str[<span class="op">-</span><span class="dv">7</span>:<span class="op">-</span><span class="dv">4</span>],</span>
+<span id="cb48-108"><a href="#cb48-108" aria-hidden="true" tabindex="-1"></a>    grade_str[<span class="op">-</span><span class="dv">5</span>:<span class="op">-</span><span class="dv">8</span>:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb48-109"><a href="#cb48-109" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-110"><a href="#cb48-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-111"><a href="#cb48-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-112"><a href="#cb48-112" aria-hidden="true" tabindex="-1"></a><span class="fu">### (4) 'ABCDAAADCBA'로 수정하기</span></span>
+<span id="cb48-113"><a href="#cb48-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-116"><a href="#cb48-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-117"><a href="#cb48-117" aria-hidden="true" tabindex="-1"></a>grade_str<span class="op">=</span>grade_str.replace(<span class="st">'F'</span>,<span class="st">'A'</span>)</span>
+<span id="cb48-118"><a href="#cb48-118" aria-hidden="true" tabindex="-1"></a>grade_str</span>
+<span id="cb48-119"><a href="#cb48-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-120"><a href="#cb48-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-121"><a href="#cb48-121" aria-hidden="true" tabindex="-1"></a><span class="fu">### (5) 소문자로 모두 바꾸기</span></span>
+<span id="cb48-122"><a href="#cb48-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-125"><a href="#cb48-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-126"><a href="#cb48-126" aria-hidden="true" tabindex="-1"></a>grade_str<span class="op">=</span>grade_str.lower()</span>
+<span id="cb48-127"><a href="#cb48-127" aria-hidden="true" tabindex="-1"></a>grade_str</span>
+<span id="cb48-128"><a href="#cb48-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-129"><a href="#cb48-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-130"><a href="#cb48-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. Why the error occurs?</span></span>
+<span id="cb48-131"><a href="#cb48-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-132"><a href="#cb48-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### (1) slicing 반환 형식</span></span>
+<span id="cb48-133"><a href="#cb48-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-136"><a href="#cb48-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-137"><a href="#cb48-137" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb48-138"><a href="#cb48-138" aria-hidden="true" tabindex="-1"></a>L<span class="op">=</span>[[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>],[<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>]]</span>
+<span id="cb48-139"><a href="#cb48-139" aria-hidden="true" tabindex="-1"></a>L[<span class="dv">0</span>][<span class="dv">1</span>:<span class="dv">2</span>]<span class="op">=</span><span class="dv">30</span></span>
+<span id="cb48-140"><a href="#cb48-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-141"><a href="#cb48-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-142"><a href="#cb48-142" aria-hidden="true" tabindex="-1"></a>list를 원소로 가지는 list에서 slicing하는 경우, output은 list로 나타나게 되는데, list에 integer 30을 할당하려고 하므로 오류가 발생함.</span>
+<span id="cb48-143"><a href="#cb48-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-144"><a href="#cb48-144" aria-hidden="true" tabindex="-1"></a>30을 list로 만들어 할당하거나, slicing 대신 indexing을 통해 output을 integer로 만드는 방법을 사용해야 함.</span>
+<span id="cb48-145"><a href="#cb48-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-146"><a href="#cb48-146" aria-hidden="true" tabindex="-1"></a><span class="fu">### (2) 단일 원소 tuple 표현</span></span>
+<span id="cb48-147"><a href="#cb48-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-150"><a href="#cb48-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-151"><a href="#cb48-151" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb48-152"><a href="#cb48-152" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>)</span>
+<span id="cb48-153"><a href="#cb48-153" aria-hidden="true" tabindex="-1"></a>T[:<span class="dv">2</span>]<span class="op">+</span>(<span class="dv">40</span>)</span>
+<span id="cb48-154"><a href="#cb48-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-155"><a href="#cb48-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-156"><a href="#cb48-156" aria-hidden="true" tabindex="-1"></a>tuple에 더하기를 사용하는 경우인데, (40)은 tuple이 아니라 integer이므로 오류가 발생함. 단일 원소를 가지는 tuple을 표현하려면 (40,)으로 써야함.</span>
+<span id="cb48-157"><a href="#cb48-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-158"><a href="#cb48-158" aria-hidden="true" tabindex="-1"></a><span class="fu">### (3) 변수 할당 labeling vs. copy</span></span>
+<span id="cb48-159"><a href="#cb48-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-162"><a href="#cb48-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-163"><a href="#cb48-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb48-164"><a href="#cb48-164" aria-hidden="true" tabindex="-1"></a>D<span class="op">=</span><span class="bu">dict</span>(A<span class="op">=</span><span class="dv">10</span>,B<span class="op">=</span><span class="dv">20</span>,C<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb48-165"><a href="#cb48-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy method를 써야 복사본이 할당됨</span></span>
+<span id="cb48-166"><a href="#cb48-166" aria-hidden="true" tabindex="-1"></a><span class="co"># D2=D.copy()</span></span>
+<span id="cb48-167"><a href="#cb48-167" aria-hidden="true" tabindex="-1"></a>D2<span class="op">=</span>D</span>
+<span id="cb48-168"><a href="#cb48-168" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> D2[<span class="st">'A'</span>]</span>
+<span id="cb48-169"><a href="#cb48-169" aria-hidden="true" tabindex="-1"></a>D[<span class="st">'A'</span>]</span>
+<span id="cb48-170"><a href="#cb48-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-171"><a href="#cb48-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-172"><a href="#cb48-172" aria-hidden="true" tabindex="-1"></a>D2=D는 D2에 D.copy가 할당되는게 아니라 단순히 D에 D2라는 label만 새로 달아준것임. 따라서, D2에 'A' key를 제거하면 D의 'A' key도 사라지게 되므로 호출시 오류 발생.</span>
+<span id="cb48-173"><a href="#cb48-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-174"><a href="#cb48-174" aria-hidden="true" tabindex="-1"></a><span class="fu">### (4) Key값은 Immutable 해야함</span></span>
+<span id="cb48-175"><a href="#cb48-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-178"><a href="#cb48-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-179"><a href="#cb48-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb48-180"><a href="#cb48-180" aria-hidden="true" tabindex="-1"></a>D3<span class="op">=</span>{[<span class="st">'Park'</span>,<span class="st">'Male'</span>]:<span class="dv">30</span>,}</span>
+<span id="cb48-181"><a href="#cb48-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-182"><a href="#cb48-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-183"><a href="#cb48-183" aria-hidden="true" tabindex="-1"></a>Dictionary 타입의 key값은 immutable한 값만 허용되므로 mutable한 list를 사용하면 오류 발생. tuple을 쓰던지 해야함.</span>
+<span id="cb48-184"><a href="#cb48-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-185"><a href="#cb48-185" aria-hidden="true" tabindex="-1"></a><span class="fu">### (5) slicing&amp;indexing for Dict</span></span>
+<span id="cb48-186"><a href="#cb48-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-189"><a href="#cb48-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-190"><a href="#cb48-190" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb48-191"><a href="#cb48-191" aria-hidden="true" tabindex="-1"></a>dict_y<span class="op">=</span>{(<span class="dv">1</span>,):<span class="dv">10</span>,(<span class="dv">2</span>,):<span class="dv">20</span>,(<span class="dv">3</span>,):<span class="dv">30</span>,(<span class="dv">4</span>,):<span class="dv">40</span>}</span>
+<span id="cb48-192"><a href="#cb48-192" aria-hidden="true" tabindex="-1"></a>dict_y[(<span class="dv">1</span>,)]</span>
+<span id="cb48-193"><a href="#cb48-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-194"><a href="#cb48-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-195"><a href="#cb48-195" aria-hidden="true" tabindex="-1"></a>Dictionary은 순서가 없음. slicing이 불가하며 indexing도 key값으로만 접근 가능.</span>
+<span id="cb48-196"><a href="#cb48-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-197"><a href="#cb48-197" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. List</span></span>
+<span id="cb48-198"><a href="#cb48-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-201"><a href="#cb48-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-202"><a href="#cb48-202" aria-hidden="true" tabindex="-1"></a>days<span class="op">=</span>[<span class="st">'Mon'</span>,<span class="st">'Tues'</span>,<span class="st">'Wed'</span>,<span class="st">'Thur'</span>,<span class="st">'Fri'</span>,[<span class="st">'Sat'</span>,<span class="st">'Sun'</span>]]</span>
+<span id="cb48-203"><a href="#cb48-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-204"><a href="#cb48-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-205"><a href="#cb48-205" aria-hidden="true" tabindex="-1"></a><span class="fu">### (1) indexing, slicing</span></span>
+<span id="cb48-206"><a href="#cb48-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-209"><a href="#cb48-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-210"><a href="#cb48-210" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb48-211"><a href="#cb48-211" aria-hidden="true" tabindex="-1"></a>    [days[<span class="dv">5</span>]],</span>
+<span id="cb48-212"><a href="#cb48-212" aria-hidden="true" tabindex="-1"></a>    days[<span class="op">-</span><span class="dv">1</span>::<span class="op">-</span><span class="dv">2</span>],</span>
+<span id="cb48-213"><a href="#cb48-213" aria-hidden="true" tabindex="-1"></a>    days[<span class="dv">5</span>][<span class="dv">0</span>],</span>
+<span id="cb48-214"><a href="#cb48-214" aria-hidden="true" tabindex="-1"></a>    sep<span class="op">=</span><span class="st">'</span><span class="ch">\n</span><span class="st">'</span></span>
+<span id="cb48-215"><a href="#cb48-215" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-216"><a href="#cb48-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-217"><a href="#cb48-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-218"><a href="#cb48-218" aria-hidden="true" tabindex="-1"></a><span class="fu">### (2) '+' 활용</span></span>
+<span id="cb48-219"><a href="#cb48-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-222"><a href="#cb48-222" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-223"><a href="#cb48-223" aria-hidden="true" tabindex="-1"></a>days2<span class="op">=</span>[days[<span class="dv">0</span>:<span class="dv">5</span>]]<span class="op">+</span>days[<span class="dv">5</span>][<span class="dv">0</span>:<span class="dv">1</span>]<span class="op">+</span>days[<span class="dv">5</span>][<span class="dv">1</span>:]</span>
+<span id="cb48-224"><a href="#cb48-224" aria-hidden="true" tabindex="-1"></a>days2</span>
+<span id="cb48-225"><a href="#cb48-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-226"><a href="#cb48-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-227"><a href="#cb48-227" aria-hidden="true" tabindex="-1"></a><span class="fu">### (3) remove method</span></span>
+<span id="cb48-228"><a href="#cb48-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-231"><a href="#cb48-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-232"><a href="#cb48-232" aria-hidden="true" tabindex="-1"></a>days2[<span class="dv">0</span>].remove(<span class="st">'Wed'</span>)</span>
+<span id="cb48-233"><a href="#cb48-233" aria-hidden="true" tabindex="-1"></a>days2[<span class="dv">0</span>].remove(<span class="st">'Fri'</span>)</span>
+<span id="cb48-234"><a href="#cb48-234" aria-hidden="true" tabindex="-1"></a>days2</span>
+<span id="cb48-235"><a href="#cb48-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-236"><a href="#cb48-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-237"><a href="#cb48-237" aria-hidden="true" tabindex="-1"></a><span class="fu">### (4) insert method</span></span>
+<span id="cb48-238"><a href="#cb48-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-241"><a href="#cb48-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-242"><a href="#cb48-242" aria-hidden="true" tabindex="-1"></a>days2[<span class="dv">0</span>].insert(<span class="dv">2</span>,<span class="st">'W'</span>)</span>
+<span id="cb48-243"><a href="#cb48-243" aria-hidden="true" tabindex="-1"></a>days2</span>
+<span id="cb48-244"><a href="#cb48-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-245"><a href="#cb48-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-246"><a href="#cb48-246" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6. list2</span></span>
+<span id="cb48-247"><a href="#cb48-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-250"><a href="#cb48-250" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-251"><a href="#cb48-251" aria-hidden="true" tabindex="-1"></a>Nums<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>]</span>
+<span id="cb48-252"><a href="#cb48-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-253"><a href="#cb48-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-254"><a href="#cb48-254" aria-hidden="true" tabindex="-1"></a><span class="fu">### (1) append method</span></span>
+<span id="cb48-255"><a href="#cb48-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-258"><a href="#cb48-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-259"><a href="#cb48-259" aria-hidden="true" tabindex="-1"></a>Nums.append(<span class="dv">7</span>)</span>
+<span id="cb48-260"><a href="#cb48-260" aria-hidden="true" tabindex="-1"></a>Nums</span>
+<span id="cb48-261"><a href="#cb48-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-262"><a href="#cb48-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-263"><a href="#cb48-263" aria-hidden="true" tabindex="-1"></a><span class="fu">### (2) sorting list</span></span>
+<span id="cb48-264"><a href="#cb48-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-267"><a href="#cb48-267" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-268"><a href="#cb48-268" aria-hidden="true" tabindex="-1"></a>Nums.sort()</span>
+<span id="cb48-269"><a href="#cb48-269" aria-hidden="true" tabindex="-1"></a>Nums.reverse()</span>
+<span id="cb48-270"><a href="#cb48-270" aria-hidden="true" tabindex="-1"></a>Nums</span>
+<span id="cb48-271"><a href="#cb48-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-272"><a href="#cb48-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-273"><a href="#cb48-273" aria-hidden="true" tabindex="-1"></a><span class="fu">### (3) slicing and replacing</span></span>
+<span id="cb48-274"><a href="#cb48-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-277"><a href="#cb48-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-278"><a href="#cb48-278" aria-hidden="true" tabindex="-1"></a>Nums[::<span class="dv">2</span>]<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'a'</span>]</span>
+<span id="cb48-279"><a href="#cb48-279" aria-hidden="true" tabindex="-1"></a>Nums</span>
+<span id="cb48-280"><a href="#cb48-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-281"><a href="#cb48-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-282"><a href="#cb48-282" aria-hidden="true" tabindex="-1"></a><span class="fu">## 7. tuple</span></span>
+<span id="cb48-283"><a href="#cb48-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-286"><a href="#cb48-286" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-287"><a href="#cb48-287" aria-hidden="true" tabindex="-1"></a>price<span class="op">=</span>(<span class="dv">180</span>,<span class="dv">130</span>,<span class="dv">110</span>,<span class="dv">160</span>,<span class="dv">140</span>,<span class="dv">170</span>)</span>
+<span id="cb48-288"><a href="#cb48-288" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-289"><a href="#cb48-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-290"><a href="#cb48-290" aria-hidden="true" tabindex="-1"></a><span class="fu">### (1) sorting tuple via translate to list</span></span>
+<span id="cb48-291"><a href="#cb48-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-294"><a href="#cb48-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-295"><a href="#cb48-295" aria-hidden="true" tabindex="-1"></a>price_list<span class="op">=</span><span class="bu">list</span>(price)</span>
+<span id="cb48-296"><a href="#cb48-296" aria-hidden="true" tabindex="-1"></a>price_list.sort()</span>
+<span id="cb48-297"><a href="#cb48-297" aria-hidden="true" tabindex="-1"></a>price<span class="op">=</span><span class="bu">tuple</span>(price_list)</span>
+<span id="cb48-298"><a href="#cb48-298" aria-hidden="true" tabindex="-1"></a>price</span>
+<span id="cb48-299"><a href="#cb48-299" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-300"><a href="#cb48-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-301"><a href="#cb48-301" aria-hidden="true" tabindex="-1"></a><span class="fu">### (2) basic operation</span></span>
+<span id="cb48-302"><a href="#cb48-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-305"><a href="#cb48-305" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-306"><a href="#cb48-306" aria-hidden="true" tabindex="-1"></a><span class="dv">170</span> <span class="kw">in</span> price</span>
+<span id="cb48-307"><a href="#cb48-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb48-308"><a href="#cb48-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-309"><a href="#cb48-309" aria-hidden="true" tabindex="-1"></a><span class="fu">### (3) concatenating tuple</span></span>
+<span id="cb48-310"><a href="#cb48-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-313"><a href="#cb48-313" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-314"><a href="#cb48-314" aria-hidden="true" tabindex="-1"></a>price<span class="op">=</span>price[<span class="dv">0</span>:<span class="dv">4</span>]<span class="op">+</span>(<span class="dv">0</span>,)<span class="op">*</span><span class="dv">3</span><span class="op">+</span>price[<span class="bu">len</span>(price)<span class="op">-</span><span class="dv">1</span>:]</span>
+<span id="cb48-315"><a href="#cb48-315" aria-hidden="true" tabindex="-1"></a>price</span>
+<span id="cb48-316"><a href="#cb48-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

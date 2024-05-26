@@ -456,7 +456,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./investment_hw1.html">투자분석(’24봄)</a></li><li class="breadcrumb-item"><a href="./investment_hw3.html">투자분석 과제3</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">투자분석 과제3</h1>
+<div class="quarto-title-block"><div><h1 class="title">투자분석 과제3</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -751,6 +751,8 @@ window.Quarto = {
 </div>
 
 
+<!-- -->
+
 </section>
 </section>
 
@@ -834,6 +836,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1175,7 +1228,205 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text">재무회계 Ch1-3 과제</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 투자분석 과제3 {.unnumbered}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Question</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Select any four stocks from the pool of market index. Make sure all four stocks belong to four different industries. You will estimate the single index model for each of the chosen stocks.</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>a) Collect the 60 recent monthly returns of the chosen stocks, and the monthly T-bill rates for the same period. Also, you need market index returns for the same period. Run regression model with this data. Report the alpha and beta estimates.</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>b) Interpret each estimate of alpha and beta. Consider the smallest and largest betas among the four stocks. To which industries do the two companies belong? Is the business consistent with the estimated beta for the two companies?</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>c) Use the first 30 months only and run the regression. Report the alpha and beta estimates.</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>d) Use the last 30 months only and run the regression. Report the alpha and beta estimates.</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>e) Are the three sets of estimates identical? Discuss the result of a), c) and d).</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Answer</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>먼저, 제가 선정한 주식은 금융산업의 뱅크오브아메리카(BAC), 거래소산업의 시카고거래소그룹(CME), IT업종의 IBM(IBM), 외식업종의 맥도날드(MCD)입니다.</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>네 종류의 주식은 모두 S&amp;P500 지수의 구성종목이며, 출처는 야후파이낸스입니다.</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>무위험이자율은 4 weeks T-bill rate이며, 출처는 미 재무부 홈페이지입니다.</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>2019~2023년 5년간 데이터를 월별로 취합하여 지수 및 주식의 월별수익률을 산출한 다음, 월환산 무위험이자율을 차감하여 초과수익률을 산출하였고, 각 주식의 초과수익률과 지수의 초과수익률에 대해서 단순선형회귀분석을 진행하였습니다.</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co"># stocks and market index S&amp;P500 from yahoo finance</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>bac <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/bac.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>cme <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/cme.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>ibm <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/ibm.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>mcd <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/mcd.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>spx <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/spx.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co"># risk-free rate is effective-FFR(federal funds rate)</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>tbill <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/tbill.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co"># set period 5years</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>strt_dd<span class="ot">=</span><span class="st">'20181201'</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>end_dd<span class="ot">=</span><span class="st">'20231231'</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy date</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>rfr <span class="ot">&lt;-</span> tbill <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">tbill=</span><span class="st">`</span><span class="at">4 WEEKS BANK DISCOUNT</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y=</span><span class="fu">paste0</span>(<span class="st">"20"</span>,<span class="fu">substr</span>(Date,<span class="fu">nchar</span>(Date)<span class="sc">-</span><span class="dv">1</span>,<span class="fu">nchar</span>(Date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m=</span><span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">2</span>,<span class="dv">2</span>)<span class="sc">==</span><span class="st">"/"</span>,</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">1</span>)),<span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">2</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d=</span><span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">2</span>,<span class="dv">2</span>)<span class="sc">==</span><span class="st">"/"</span>,</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">4</span>)<span class="sc">==</span><span class="st">"/"</span>,</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">3</span>,<span class="dv">3</span>)),<span class="fu">substr</span>(Date,<span class="dv">3</span>,<span class="dv">4</span>)),</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">5</span>,<span class="dv">5</span>)<span class="sc">==</span><span class="st">"/"</span>,</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">4</span>)),<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">5</span>)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day=</span><span class="fu">paste0</span>(y,m,d)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day,tbill)</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> bac <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">bac=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,bac) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(cme <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cme=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,cme)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ibm <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ibm=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,ibm)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(mcd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">mcd=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,mcd)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(spx <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">spx=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,spx)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day=</span><span class="fu">gsub</span>(<span class="st">"-"</span>,<span class="st">""</span>,Date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">substr</span>(day,<span class="dv">1</span>,<span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">substr</span>(day,<span class="dv">1</span>,<span class="dv">6</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(rfr,<span class="at">by=</span><span class="st">"day"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(day<span class="sc">&gt;=</span>strt_dd,day<span class="sc">&lt;=</span>end_dd) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year,month,day,bac,cme,ibm,mcd,spx,tbill,Date)</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a><span class="co"># using monthly return</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>monthly_raw <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>monthly_raw <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span> </span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year,month) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(day <span class="sc">%&gt;%</span> <span class="fu">desc</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(.,<span class="fu">c</span>(<span class="st">"bac"</span>,<span class="st">"cme"</span>,<span class="st">"ibm"</span>,<span class="st">"mcd"</span>,<span class="st">"spx"</span>),</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"name"</span>,<span class="at">values_to =</span> <span class="st">"price"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(name,year,month) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">return=</span>price<span class="sc">/</span><span class="fu">lag</span>(price)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># monthly return</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ex_return=</span>return<span class="sc">-</span>tbill<span class="sc">/</span><span class="dv">100</span><span class="sc">/</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> <span class="co"># excess return</span></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">as.integer</span>(month)<span class="sc">&gt;=</span><span class="dv">201901</span>)</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a><span class="fu">### (a)</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>**각 회귀분석의 결과로 산출된 절편(알파, 연환산)과 계수(베타)는 아래와 같습니다.**</span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>|구 분|alpla|beta|</span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>|:--:|----:|---:|</span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>|Band of America|-0.0571|1.42|</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>|CME|0.0054|0.45|</span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>|IBM|0.0439|0.76|</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>|McDonald's|0.0352|0.71|</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> monthly_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day,name,ex_return) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(.,<span class="at">values_from =</span> <span class="st">"ex_return"</span>, <span class="at">names_from =</span> <span class="st">"name"</span>)</span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a>reg_bac <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>bac<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>reg_cme <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>cme<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a>reg_ibm <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>ibm<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a>reg_mcd <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>mcd<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a>result_reg <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">"bac"</span>,<span class="st">"cme"</span>,<span class="st">"ibm"</span>,<span class="st">"mcd"</span>),</span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a>                     <span class="at">alpha=</span><span class="fu">c</span>(reg_bac<span class="sc">$</span>value[<span class="dv">1</span>],reg_cme<span class="sc">$</span>value[<span class="dv">1</span>],reg_ibm<span class="sc">$</span>value[<span class="dv">1</span>],reg_mcd<span class="sc">$</span>value[<span class="dv">1</span>])<span class="sc">*</span><span class="dv">12</span>,</span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a>                     <span class="at">beta=</span><span class="fu">c</span>(reg_bac<span class="sc">$</span>value[<span class="dv">2</span>],reg_cme<span class="sc">$</span>value[<span class="dv">2</span>],reg_ibm<span class="sc">$</span>value[<span class="dv">2</span>],reg_mcd<span class="sc">$</span>value[<span class="dv">2</span>]))</span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a>result_reg</span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a><span class="fu">### (b)</span></span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>**베타가 가장 높은 주식은 뱅크오브아메리카이며, 가장 낮은 주식은 시카고거래소그룹**입니다.</span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>일반적으로 금융업종이 기간산업인 거래소업종에 비해 변동성이 큰 편이며, 실제로 기간 중 BOA의 연환산 변동성이 33.4%로 CME의 20.9%를 크게 상회하였습니다.</span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a>물론 기간 중 변동성이 가장 낮았던 주식은 맥도날드(19.1%)로, 베타는 0.71이 산출되어 변동성과 베타의 관계가 선형적이지는 않지만, 거래소산업의 베타가 일반적으로 0.5수준임을 고려할 때 **합리적인 결과가 산출**된 것으로 보입니다.</span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>monthly_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">vol=</span><span class="fu">sd</span>(ex_return)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">12</span>))</span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a><span class="fu">### (c)~(d)</span></span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>먼저, (a), (c), (d)의 결과를 각각 정리하면 아래와 같습니다.</span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a>***연환산 Alpha 및 Beta***</span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a>|구 분|(a)$\alpha$|(c)$\alpha$|(d)$\alpha$|(a)$\beta$|(c)$\beta$|(d)$\beta$|</span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a>|:--:|----:|---:|---:|----:|---:|---:|</span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a>|Band of America|-0.0571|-0.0814|-0.0699|1.42|1.61|1.23|</span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a>|CME|0.0054|-0.0314|0.0196|0.45|0.56|0.35|</span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a>|IBM|0.0439|-0.0804|0.0940|0.76|1.14|0.41|</span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a>|McDonald's|0.0352|-0.0241|0.0895|0.71|0.73|0.71|</span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a>**알파의 경우 앞 30개월의 결과가 낮은 경향이 있고, 베타의 경우 앞 30개월의 결과가 높은 경향**이 있습니다.</span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a>앞 30개월의 기간은 2019.1~2021.6이며, 뒤 30개월은 2021.7~2023.12입니다.</span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a>기간의 특징적인 부분은 **앞 30개월의 기간에 코로나19 팬데믹으로 인해 주가변동성이 굉장히 높고, 주식이 급락했던 시기를 포함**하고 있다는 것 입니다.</span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a>따라서 앞 30개월 기간동안은 평균적으로 주식의 변동성이 높았고, 주가급락으로 인해 평균적인 수익률은 낮아 시장지수인 S&amp;P500을 Underperform하였을 가능성이 높습니다.</span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a>이로 인해 **시장지수 대비 초과수익률인 알파는 (-)를 기록**하였으며, **베타는 전체기간(a)과 후반기간(d) 대비 높은 수치가 산출**된 것으로 해석할 수 있습니다.</span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a>오히려, 최근 30개월간의 주식시장을 평균적인 흐름이라고 본다면, 뒤 30개월의 결과값이 해당 주식들의 일반적인 알파 및 베타라고 볼 수 있습니다. 따라서, **코로나19 기간동안의 왜곡된 값으로 인해 전체 기간의 알파가 과소평가, 베타가 과대평가되었을 가능성**이 있습니다.</span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a>regression2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a>regression2 <span class="ot">&lt;-</span> monthly_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day,name,ex_return) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(.,<span class="at">values_from =</span> <span class="st">"ex_return"</span>, <span class="at">names_from =</span> <span class="st">"name"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a>reg_bac2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression2<span class="sc">$</span>bac<span class="sc">~</span>regression2<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a>reg_cme2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression2<span class="sc">$</span>cme<span class="sc">~</span>regression2<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a>reg_ibm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression2<span class="sc">$</span>ibm<span class="sc">~</span>regression2<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a>reg_mcd2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression2<span class="sc">$</span>mcd<span class="sc">~</span>regression2<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a>result_reg2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">"bac"</span>,<span class="st">"cme"</span>,<span class="st">"ibm"</span>,<span class="st">"mcd"</span>),</span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>                     <span class="at">alpha2=</span><span class="fu">c</span>(reg_bac2<span class="sc">$</span>value[<span class="dv">1</span>],reg_cme2<span class="sc">$</span>value[<span class="dv">1</span>],</span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>                              reg_ibm2<span class="sc">$</span>value[<span class="dv">1</span>],reg_mcd2<span class="sc">$</span>value[<span class="dv">1</span>])<span class="sc">*</span><span class="dv">12</span>,</span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>                     <span class="at">beta2=</span><span class="fu">c</span>(reg_bac2<span class="sc">$</span>value[<span class="dv">2</span>],reg_cme2<span class="sc">$</span>value[<span class="dv">2</span>],</span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a>                             reg_ibm2<span class="sc">$</span>value[<span class="dv">2</span>],reg_mcd2<span class="sc">$</span>value[<span class="dv">2</span>]))</span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a>regression3 <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a>regression3 <span class="ot">&lt;-</span> monthly_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day,name,ex_return) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(.,<span class="at">values_from =</span> <span class="st">"ex_return"</span>, <span class="at">names_from =</span> <span class="st">"name"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">31</span><span class="sc">:</span><span class="dv">60</span>)</span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a>reg_bac3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression3<span class="sc">$</span>bac<span class="sc">~</span>regression3<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a>reg_cme3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression3<span class="sc">$</span>cme<span class="sc">~</span>regression3<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a>reg_ibm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression3<span class="sc">$</span>ibm<span class="sc">~</span>regression3<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a>reg_mcd3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression3<span class="sc">$</span>mcd<span class="sc">~</span>regression3<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">coef</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a>result_reg3 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">"bac"</span>,<span class="st">"cme"</span>,<span class="st">"ibm"</span>,<span class="st">"mcd"</span>),</span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a>                     <span class="at">alpha3=</span><span class="fu">c</span>(reg_bac3<span class="sc">$</span>value[<span class="dv">1</span>],reg_cme3<span class="sc">$</span>value[<span class="dv">1</span>],</span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a>                              reg_ibm3<span class="sc">$</span>value[<span class="dv">1</span>],reg_mcd3<span class="sc">$</span>value[<span class="dv">1</span>])<span class="sc">*</span><span class="dv">12</span>,</span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a>                     <span class="at">beta3=</span><span class="fu">c</span>(reg_bac3<span class="sc">$</span>value[<span class="dv">2</span>],reg_cme3<span class="sc">$</span>value[<span class="dv">2</span>],</span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a>                             reg_ibm3<span class="sc">$</span>value[<span class="dv">2</span>],reg_mcd3<span class="sc">$</span>value[<span class="dv">2</span>]))</span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> result_reg <span class="sc">%&gt;%</span> </span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(result_reg2,<span class="at">by=</span><span class="st">"name"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(result_reg3,<span class="at">by=</span><span class="st">"name"</span>)</span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a>result</span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

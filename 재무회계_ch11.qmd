@@ -6,11 +6,55 @@
 
 ### Answer
 
+#### (a)
 
+Initial Price of bond : Present value of bond's cashflow
+
+$=\;\sum_{i=1}^{10}\frac{5000}{(1.04)^i}+\frac{100000}{(1.04)^{10}}=108111$
+
+Therefore, it is 108,111\$
+
+#### (b)
+
+![](images/재무회계11-18b.png)
 
 ## Problem 11-19.
 
 ![](images/재무회계_11-19.png)
+
+### Answer
+
+#### (a)
+
+Initial Price of bond : Present value of bond's cashflow
+
+$=\;\sum_{i=1}^{6}\frac{4000}{(1.05)^i}+\frac{100000}{(1.05)^{6}}=94925$
+
+Therefore, it is 94,025\$
+
+#### (b)
+
+![](images/재무회계11-19b.png)
+
+#### (c)
+
+***January 2***
+
+debit : Cash 94925
+
+credit : Bonds payable 94925
+
+***June 30***
+
+debit : interest expense 4746
+
+credit : Cash 4000 / Bonds payable 746
+
+***December 31***
+
+debit : interest expense 4746
+
+credit : Cash 4000 / Bonds payable 746
 
 ## Exhibit 11.2
 

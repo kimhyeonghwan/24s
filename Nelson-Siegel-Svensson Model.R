@@ -304,6 +304,7 @@ optim_parameters
 
 est_jun <- tibble(maturity=uspar_may$maturity,
                   par=May$df_optim$fit[[1]])
+est_jun
 
 ggplot(est_jun,aes(x=maturity,y=par))+
   geom_line(colour="blue", size=1)+

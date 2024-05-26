@@ -63,12 +63,25 @@ book:
         - 경영통계분석_hw5.qmd
   downloads: pdf
 
+code-block-bg: true
+code-block-border-left: "#31BAE9"
+
 format:
   html:
     theme: cosmo
     linestretch : 2
+    code-tools: true
+    code-overflow: scroll
+    monofont: 'Source Code Pro'
   pdf:
     documentclass: scrreprt
     include-in-header: header.tex
+    papersize: A4
+    margin-bottom: 30mm
+    margin-top: 30mm
+    margin-left: 15mm
+    margin-right: 15mm
+    monofontoptions: 
+      - Scale=0.8
 
 

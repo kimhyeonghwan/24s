@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>KAIST MFE, 2024 Spring - 투자분석 과제4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./재무회계_ch1-3.html" rel="next">
+<link href="./investment_hw3.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./investment_hw1.html">투자분석(’24봄)</a></li><li class="breadcrumb-item"><a href="./investment_hw4.html">투자분석 과제4</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">KAIST MFE, 2024 Spring</a> 
+        <div class="sidebar-tools-main">
+    <a href="./KAIST-MFE,-2024-Spring.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Python(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1. Python Basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2. Containers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Containers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3. Control Flows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Control Flows</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4. Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5. Numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numpy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6. Pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python Quiz5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">금융공학프로그래밍3, Quiz5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python midterm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Midterm</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">채권분석&amp;기간구조(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./채권분석_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">채권분석 과제1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./채권분석_hw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">채권분석 과제2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./채권분석_hw3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">채권분석 과제3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./이자율기간구조_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">이자율기간구조 과제1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./이자율기간구조_hw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">이자율기간구조 과제2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">투자분석(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./investment_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">투자분석 과제1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./investment_hw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">투자분석 과제2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./investment_hw3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">투자분석 과제3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./investment_hw4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">투자분석 과제4</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">재무회계(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch1-3 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch4 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch5 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch6 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch8 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch9 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch10 과제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./재무회계_ch11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">재무회계 Ch11 과제</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">경영통계분석(’24봄)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./경영통계분석_hw5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경영통계분석 과제5</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#question" id="toc-question" class="nav-link active" data-scroll-target="#question">Question</a></li>
+  <li><a href="#answer" id="toc-answer" class="nav-link" data-scroll-target="#answer">Answer</a>
+  <ul class="collapse">
+  <li><a href="#a" id="toc-a" class="nav-link" data-scroll-target="#a">(a)</a></li>
+  <li><a href="#b" id="toc-b" class="nav-link" data-scroll-target="#b">(b)</a></li>
+  <li><a href="#c" id="toc-c" class="nav-link" data-scroll-target="#c">(c)</a></li>
+  <li><a href="#d" id="toc-d" class="nav-link" data-scroll-target="#d">(d)</a></li>
+  <li><a href="#e" id="toc-e" class="nav-link" data-scroll-target="#e">(e)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./investment_hw1.html">투자분석(’24봄)</a></li><li class="breadcrumb-item"><a href="./investment_hw4.html">투자분석 과제4</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">투자분석 과제4</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="question" class="level2">
+<h2 class="anchored" data-anchor-id="question">Question</h2>
+<p>You need to construct a portfolio consisting of a passive portfolio and three stocks you already selected, doing the Assignment 2. If you selected Korea (USA) stocks, use KOSPI 200 (S&amp;P 500) for the passive portfolio.</p>
+<p>You construct your optimal risky portfolio based on <strong>single-index model</strong> that was covered in class. Don’t hand in data or your program code.</p>
+<ol type="a">
+<li><p>What were the names of the individual stocks you have chosen in assignment 2? Indicate the source database.</p></li>
+<li><p>With the 60 recent monthly returns of the chosen stocks, and the monthly T-bill rates for the same period, <strong>run regressions</strong> and report the estimated <strong>beta</strong>, <strong>alpha</strong>, <strong>t-value</strong> or <strong>p-value</strong>, <strong>R squared</strong> and <strong>residual SD</strong> of each stock and documents them.</p></li>
+<li><p>Assume that the average of the risk premium of the index, forecasted by investment companies, is <strong>6%</strong> and its standard deviation is <strong>15%</strong>. Or you may use the past average excess return for the index.</p>
+<p>If you make the optimal risky portfolio according to SIM, you <strong>need alpha</strong> of the expected return for each stock. <strong>There are three options</strong> such as</p>
+<ol type="i">
+<li>you may randomly choose these numbers. If this is the case, be reasonable to set the value for alpha, or</li>
+<li>you may use the estimated alpha in (b). for future alpha (As you know, this won’t hold generally), or</li>
+<li>you may accept the 12-month future price suggested by analysts and calculate alphas using SCL.</li>
+</ol>
+<p>What is your choice? <strong>Construct and report your optimal risky portfolio</strong> consisting of the index and the three stocks <strong>maximizing Sharpe ratio</strong>. Assume short-sale is allowed.</p></li>
+<li><p>What is your <strong>Information ratio</strong> for the active portfolio you have chosen?</p></li>
+<li><p><strong>Compare Sharpe ratio</strong> of the optimal risky portfolio with Sharpe ratio of the index portfolio.</p></li>
+</ol>
+</section>
+<section id="answer" class="level2">
+<h2 class="anchored" data-anchor-id="answer">Answer</h2>
+<section id="a" class="level3">
+<h3 class="anchored" data-anchor-id="a">(a)</h3>
+<p>저는 HW2에서 <strong><em>CME group(CME), ICE(ICE), Nasdaq(NDAQ)</em></strong> 세가지 종목을 선정하였습니다.</p>
+<p>선정 배경으로는,</p>
+<ol type="1">
+<li>제가 거래소 산업에 관심이 많고,</li>
+<li>세 주식 모두 미국에 상장되어있는 대표적인 글로벌 거래소이며,</li>
+<li>동일한 거래소 산업이고 S&amp;P500지수의 구성종목이라 동일 선상에서 비교하기 적합할 것으로 보이기 때문입니다.</li>
+</ol>
+<p>세 주식의 일별수정주가(Adj. close), 벤치마크지수인 S&amp;P500지수의 일별수정가격을 활용하였고, 무위험이자율은 4 weeks T-bill rate를 사용하였습니다.</p>
+<pre><code>기간 : 직전 5년(2019.1 ~ 2023.12)
+출처 : Yahoo Finance 및 미 재무부
+산출방법 :
+    (월수익률) 지난달 말 대비 월말 수익률
+    (월초과수익률) 월수익률 - 월말T-bill/12
+    (월분산) 월/월초과수익률의 표본표준편차
+    (평균수익률) 월/월초과수익률을 산술평균하여 연환산 (x12)
+    (평균분산) 월분산을 산술평균하여 연환산 (x12)</code></pre>
+<section id="data-import-and-pre-processing" class="level4">
+<h4 class="anchored" data-anchor-id="data-import-and-pre-processing">Data import and pre-processing</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/Users/hwan/Desktop/Homepage/study_24spring"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># stocks and market index S&amp;P500 from yahoo finance</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cme <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/cme.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ndaq <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/ndaq.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ice <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/ice.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>spx <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/spx.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># risk-free rate is T-bill rate</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>tbill <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/tbill.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># set period 10years</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>strt_dd<span class="ot">=</span><span class="st">'20140101'</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>end_dd<span class="ot">=</span><span class="st">'20231231'</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy date</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>rfr <span class="ot">&lt;-</span> tbill <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">tbill=</span><span class="st">`</span><span class="at">4 WEEKS BANK DISCOUNT</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y=</span><span class="fu">paste0</span>(<span class="st">"20"</span>,<span class="fu">substr</span>(Date,<span class="fu">nchar</span>(Date)<span class="sc">-</span><span class="dv">1</span>,<span class="fu">nchar</span>(Date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m=</span><span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">2</span>,<span class="dv">2</span>)<span class="sc">==</span><span class="st">"/"</span>,<span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">1</span>)),<span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">2</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d=</span><span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">2</span>,<span class="dv">2</span>)<span class="sc">==</span><span class="st">"/"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">4</span>)<span class="sc">==</span><span class="st">"/"</span>,<span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">3</span>,<span class="dv">3</span>)),<span class="fu">substr</span>(Date,<span class="dv">3</span>,<span class="dv">4</span>)),</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">5</span>,<span class="dv">5</span>)<span class="sc">==</span><span class="st">"/"</span>,<span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">4</span>)),<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">5</span>)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day=</span><span class="fu">paste0</span>(y,m,d)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day,tbill)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> cme <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cme=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,cme) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ndaq <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ndaq=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,ndaq)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ice <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ice=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,ice)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(spx <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">spx=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,spx)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day=</span><span class="fu">gsub</span>(<span class="st">"-"</span>,<span class="st">""</span>,Date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">substr</span>(day,<span class="dv">1</span>,<span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">substr</span>(day,<span class="dv">1</span>,<span class="dv">6</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(rfr,<span class="at">by=</span><span class="st">"day"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(day<span class="sc">&gt;=</span>strt_dd,day<span class="sc">&lt;=</span>end_dd) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year,month,day,cme,ndaq,ice,spx,tbill,Date)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># using monthly return</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>monthly_raw <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>monthly_raw <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span> </span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year,month) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(day <span class="sc">%&gt;%</span> <span class="fu">desc</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(.,<span class="fu">c</span>(<span class="st">"cme"</span>,<span class="st">"ndaq"</span>,<span class="st">"ice"</span>,<span class="st">"spx"</span>),</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"name"</span>,<span class="at">values_to =</span> <span class="st">"price"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(name,year,month) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">return=</span>price<span class="sc">/</span><span class="fu">lag</span>(price)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># monthly return</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ex_return=</span>return<span class="sc">-</span>tbill<span class="sc">/</span><span class="dv">100</span><span class="sc">/</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> <span class="co"># excess return</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">as.integer</span>(month)<span class="sc">&gt;=</span><span class="dv">201901</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="b" class="level3">
+<h3 class="anchored" data-anchor-id="b">(b)</h3>
+<p>SIM(Single Index Model)을 기반으로 분석하므로, 회귀식은 아래와 같습니다.</p>
+<p><span class="math display">\[r_{i,t}-r_{f,t}=\alpha_i+\beta_i(r_{M,t}-r_{i,t})+\epsilon_{i,t}\]</span></p>
+<p>이에 따라 각 주식의 월초과수익률을 S&amp;P500지수의 월초과수익률로 회귀분석을 실시하겠습니다.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> monthly_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day,name,ex_return) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(.,<span class="at">values_from =</span> <span class="st">"ex_return"</span>, <span class="at">names_from =</span> <span class="st">"name"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>reg_cme <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>cme<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>reg_ndaq <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>ndaq<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>reg_ice <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>ice<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>result_reg <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">"cme"</span>,<span class="st">"ndaq"</span>,<span class="st">"ice"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">alpha=</span><span class="fu">c</span>(reg_cme<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                             reg_ndaq<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                             reg_ice<span class="sc">$</span>coefficients[<span class="dv">1</span>]),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">beta=</span><span class="fu">c</span>(reg_cme<span class="sc">$</span>coefficients[<span class="dv">2</span>],</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                            reg_ndaq<span class="sc">$</span>coefficients[<span class="dv">2</span>],</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                            reg_ice<span class="sc">$</span>coefficients[<span class="dv">2</span>]),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sd_residual=</span><span class="fu">c</span>(reg_cme<span class="sc">$</span>sigma,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                                   reg_ndaq<span class="sc">$</span>sigma,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                                   reg_ice<span class="sc">$</span>sigma))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>reg_cme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = regression$cme ~ regression$spx)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.114664 -0.035431 -0.006045  0.029527  0.124369 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)    0.0004469  0.0073717   0.061  0.95187   
+regression$spx 0.4493575  0.1364499   3.293  0.00169 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.05598 on 58 degrees of freedom
+Multiple R-squared:  0.1575,    Adjusted R-squared:  0.143 
+F-statistic: 10.85 on 1 and 58 DF,  p-value: 0.001691</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>reg_ndaq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = regression$ndaq ~ regression$spx)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.161675 -0.021231  0.003611  0.030794  0.094846 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    0.004646   0.005915   0.785    0.435    
+regression$spx 0.947498   0.109480   8.655 4.95e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04491 on 58 degrees of freedom
+Multiple R-squared:  0.5636,    Adjusted R-squared:  0.5561 
+F-statistic:  74.9 on 1 and 58 DF,  p-value: 4.949e-12</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>reg_ice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = regression$ice ~ regression$spx)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.116179 -0.027230 -0.007334  0.028422  0.137285 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    0.0002405  0.0057437   0.042    0.967    
+regression$spx 0.9886906  0.1063155   9.300 4.26e-13 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04362 on 58 degrees of freedom
+Multiple R-squared:  0.5986,    Adjusted R-squared:  0.5916 
+F-statistic: 86.48 on 1 and 58 DF,  p-value: 4.264e-13</code></pre>
+</div>
+</div>
+<p>결과를 표로 정리하면 아래와 같습니다.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">구 분</th>
+<th style="text-align: right;">CME</th>
+<th style="text-align: right;">Nasdaq</th>
+<th style="text-align: right;">ICE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\alpha\)</span></td>
+<td style="text-align: right;">0.0004</td>
+<td style="text-align: right;">0.0046</td>
+<td style="text-align: right;">0.0002</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\beta\)</span></td>
+<td style="text-align: right;">0.4494</td>
+<td style="text-align: right;">0.9475</td>
+<td style="text-align: right;">0.9887</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(t-value\)</span></td>
+<td style="text-align: right;">3.293</td>
+<td style="text-align: right;">8.655</td>
+<td style="text-align: right;">9.300</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(p-value\)</span></td>
+<td style="text-align: right;">0.0017</td>
+<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(Adj. R-squared\)</span></td>
+<td style="text-align: right;">0.143</td>
+<td style="text-align: right;">0.5561</td>
+<td style="text-align: right;">0.5916</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(residual SD\)</span></td>
+<td style="text-align: right;">0.0560</td>
+<td style="text-align: right;">0.0449</td>
+<td style="text-align: right;">0.0436</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="c" class="level3">
+<h3 class="anchored" data-anchor-id="c">(c)</h3>
+<p>위에서 각 주식의 alpha는 모두 양수로 산출되었습니다. (ii)를 채택하여 (b)의 회귀분석 결과로 도출된 alpha를 사용하겠습니다.</p>
+<p>Optimal-risky portfolio 구축을 위해 먼저 passive 및 active p/f를 정의하겠습니다.</p>
+<p>Passive p/f는 문제에서 <span class="math inline">\(E(R_M)=E(r_M-r_f)=0.06,\;\sigma_M=0.15\)</span>로 주어져있습니다.</p>
+<p>이는 연환산이므로 월수익률을 사용한 앞선 분석에 적용하기 위해 월단위로 환산하겠습니다.</p>
+<p>즉, <strong>월환산 평균 리스크프리미엄은 0.005 및 표준편차는 <span class="math inline">\(0.15/\sqrt{12}=0.0433\)</span>입니다.</strong></p>
+<p>Active p/f는 (b)에서 도출한 alpha, beta, residual SD를 통해 구축하도록 하겠습니다.</p>
+<p>각 주식의 구성비율은 리스크대비 초과수익률(<span class="math inline">\(\frac{\alpha_i}{\sigma^2(\epsilon_i)}\)</span>)을 가중평균하여 산출할 수 있습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>active_pf <span class="ot">&lt;-</span> result_reg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">w0=</span>alpha<span class="sc">/</span>sd_residual<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>active_pf <span class="ot">&lt;-</span> active_pf <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">w1=</span>w0<span class="sc">/</span><span class="fu">sum</span>(active_pf<span class="sc">$</span>w0))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>active_pf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  name     alpha  beta sd_residual    w0     w1
+  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1 cme   0.000447 0.449      0.0560 0.143 0.0554
+2 ndaq  0.00465  0.947      0.0449 2.30  0.895 
+3 ice   0.000241 0.989      0.0436 0.126 0.0492</code></pre>
+</div>
+</div>
+<p>Active p/f의 alpha, beta, residual SD는 아래와 같습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>active_pf <span class="ot">&lt;-</span> active_pf <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">alpha=</span><span class="fu">sum</span>(w1<span class="sc">*</span>alpha), <span class="at">beta=</span><span class="fu">sum</span>(w1<span class="sc">*</span>beta),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_residual=</span><span class="fu">sum</span>(w1<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>sd_residual<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>())</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>active_pf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+    alpha  beta sd_residual
+    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;
+1 0.00420 0.922      0.0404</code></pre>
+</div>
+</div>
+<p>이제, passive &amp; active p/f를 결합하여 Sharpe ratio가 최대값이 되는 최적 비중 <span class="math inline">\(w_A^*\)</span>를 산출하도록 하겠습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Sharpe_SIM <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha_A,beta_A,SD_residual_A,<span class="at">weight_A=</span><span class="fl">0.5</span>,excess_M,SD_M){</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  alpha_pf<span class="ot">=</span>weight_A<span class="sc">*</span>alpha_A</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  beta_pf<span class="ot">=</span>weight_A<span class="sc">*</span>beta_A<span class="sc">+</span><span class="dv">1</span><span class="sc">-</span>weight_A</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  excess_pf<span class="ot">=</span>alpha_pf<span class="sc">+</span>beta_pf<span class="sc">*</span>excess_M</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  Var_residual_pf<span class="ot">=</span>weight_A<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>SD_residual_A<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  SD_pf<span class="ot">=</span><span class="fu">sqrt</span>(beta_pf<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>SD_M<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>Var_residual_pf)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">alpha=</span>alpha_pf,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">beta=</span>beta_pf,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">excess_return=</span>excess_pf,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">SD=</span>SD_pf,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Sharpe=</span>excess_pf<span class="sc">/</span>SD_pf)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>maximize_SIM <span class="ot">&lt;-</span> <span class="cf">function</span>(weight_A){</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">Sharpe_SIM</span>(active_pf<span class="sc">$</span>alpha,active_pf<span class="sc">$</span>beta,active_pf<span class="sc">$</span>sd_residual,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                       weight_A,<span class="fl">0.06</span><span class="sc">/</span><span class="dv">12</span>,<span class="fl">0.15</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">12</span>))</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result<span class="sc">$</span>Sharpe)}</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>optimal_weight<span class="ot">=</span><span class="fu">optimize</span>(maximize_SIM,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">maximum =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>optimal_weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$maximum
+[1] 0.8969585
+
+$objective
+[1] 0.1553268</code></pre>
+</div>
+</div>
+<p><strong>Active p/f의 최적비중 <span class="math inline">\(w_a^*=0.8969\)</span>이며, 이때 Optimal risky p/f의 Sharpe ratio는 0.1553입니다.</strong></p>
+<p><strong>Optimal risky p/f</strong>의 alpha, beta, 초과수익률, 표준편차는 아래와 같습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>SIM_optimal <span class="ot">&lt;-</span> <span class="fu">Sharpe_SIM</span>(active_pf<span class="sc">$</span>alpha,active_pf<span class="sc">$</span>beta,active_pf<span class="sc">$</span>sd_residual,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                          optimal_weight<span class="sc">$</span>maximum,<span class="fl">0.06</span><span class="sc">/</span><span class="dv">12</span>,<span class="fl">0.15</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">12</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>SIM_optimal                          </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+    alpha  beta excess_return     SD Sharpe
+    &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 0.00376 0.930       0.00841 0.0542  0.155</code></pre>
+</div>
+</div>
+</section>
+<section id="d" class="level3">
+<h3 class="anchored" data-anchor-id="d">(d)</h3>
+<p>Information ratio = <span class="math inline">\(\frac{\alpha_A}{\sigma(\epsilon_A)}=0.1039\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>info_ratio<span class="ot">=</span>active_pf<span class="sc">$</span>alpha<span class="sc">/</span>active_pf<span class="sc">$</span>sd_residual</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>info_ratio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1038897</code></pre>
+</div>
+</div>
+</section>
+<section id="e" class="level3">
+<h3 class="anchored" data-anchor-id="e">(e)</h3>
+<p>각 포트폴리오의 Sharpe ratio는 아래와 같습니다.</p>
+<p><span class="math display">\[Sharpe\;r/o\;(Optimal\;risky)\;=\;0.1553,\;\;Sharpe\;r/o\;(Index)\;=\;\frac{0.005}{0.0433}=0.1155\]</span></p>
+<p>Optimal risky p/f가 보다 나은 성과를 보여주며, 정보비율로 그 차이를 표현할 수 있습니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">0.1155</span><span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>info_ratio<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1553491</code></pre>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./investment_hw3.html" class="pagination-link" aria-label="투자분석 과제3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">투자분석 과제3</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./재무회계_ch1-3.html" class="pagination-link" aria-label="재무회계 Ch1-3 과제">
+        <span class="nav-page-text">재무회계 Ch1-3 과제</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 투자분석 과제4 {.unnumbered}</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Question</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>You need to construct a portfolio consisting of a passive portfolio and three stocks you already selected, doing the Assignment 2. If you selected Korea (USA) stocks, use KOSPI 200 (S&amp;P 500) for the passive portfolio.</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>You construct your optimal risky portfolio based on **single-index model** that was covered in class. Don’t hand in data or your program code.</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>(a) What were the names of the individual stocks you have chosen in assignment 2? Indicate the source database.</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>(b) With the 60 recent monthly returns of the chosen stocks, and the monthly T-bill rates for the same period, **run regressions** and report the estimated **beta**, **alpha**, **t-value** or **p-value**, **R squared** and **residual SD** of each stock and documents them.</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>(c) Assume that the average of the risk premium of the index, forecasted by investment companies, is **6%** and its standard deviation is **15%**. Or you may use the past average excess return for the index.</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="in">    If you make the optimal risky portfolio according to SIM, you **need alpha** of the expected return for each stock. **There are three options** such as </span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="in">    (i) you may randomly choose these numbers. If this is the case, be reasonable to set the value for alpha, or</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="in">    (ii) you may use the estimated alpha in (b). for future alpha (As you know, this won’t hold generally), or </span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="in">    (iii) you may accept the 12-month future price suggested by analysts and calculate alphas using SCL.</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="in">    What is your choice? **Construct and report your optimal risky portfolio** consisting of the index and the three stocks **maximizing Sharpe ratio**. Assume short-sale is allowed.</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>(e) What is your **Information ratio** for the active portfolio you have chosen?</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>(f) **Compare Sharpe ratio** of the optimal risky portfolio with Sharpe ratio of the index portfolio.</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Answer</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### (a)</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>저는 HW2에서 ***CME group(CME), ICE(ICE), Nasdaq(NDAQ)*** 세가지 종목을 선정하였습니다.</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>선정 배경으로는,</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>(1) 제가 거래소 산업에 관심이 많고,</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>(2) 세 주식 모두 미국에 상장되어있는 대표적인 글로벌 거래소이며,</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>(3) 동일한 거래소 산업이고 S&amp;P500지수의 구성종목이라 동일 선상에서 비교하기 적합할 것으로 보이기 때문입니다.</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>세 주식의 일별수정주가(Adj. close), 벤치마크지수인 S&amp;P500지수의 일별수정가격을 활용하였고, 무위험이자율은 4 weeks T-bill rate를 사용하였습니다.</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="in">    기간 : 직전 5년(2019.1 ~ 2023.12)</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="in">    출처 : Yahoo Finance 및 미 재무부</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="in">    산출방법 :</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="in">        (월수익률) 지난달 말 대비 월말 수익률</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a><span class="in">        (월초과수익률) 월수익률 - 월말T-bill/12</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="in">        (월분산) 월/월초과수익률의 표본표준편차</span></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="in">        (평균수익률) 월/월초과수익률을 산술평균하여 연환산 (x12)</span></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a><span class="in">        (평균분산) 월분산을 산술평균하여 연환산 (x12)</span></span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Data import and pre-processing</span></span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/Users/hwan/Desktop/Homepage/study_24spring"</span>)</span>
+<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a><span class="co"># stocks and market index S&amp;P500 from yahoo finance</span></span>
+<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a>cme <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/cme.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a>ndaq <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/ndaq.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a>ice <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/ice.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a>spx <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/spx.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a><span class="co"># risk-free rate is T-bill rate</span></span>
+<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a>tbill <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"investment_hw/tbill.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a><span class="co"># set period 10years</span></span>
+<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a>strt_dd<span class="ot">=</span><span class="st">'20140101'</span></span>
+<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a>end_dd<span class="ot">=</span><span class="st">'20231231'</span></span>
+<span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy date</span></span>
+<span id="cb22-75"><a href="#cb22-75" aria-hidden="true" tabindex="-1"></a>rfr <span class="ot">&lt;-</span> tbill <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">tbill=</span><span class="st">`</span><span class="at">4 WEEKS BANK DISCOUNT</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y=</span><span class="fu">paste0</span>(<span class="st">"20"</span>,<span class="fu">substr</span>(Date,<span class="fu">nchar</span>(Date)<span class="sc">-</span><span class="dv">1</span>,<span class="fu">nchar</span>(Date)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m=</span><span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">2</span>,<span class="dv">2</span>)<span class="sc">==</span><span class="st">"/"</span>,<span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">1</span>)),<span class="fu">substr</span>(Date,<span class="dv">1</span>,<span class="dv">2</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d=</span><span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">2</span>,<span class="dv">2</span>)<span class="sc">==</span><span class="st">"/"</span>,</span>
+<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">4</span>)<span class="sc">==</span><span class="st">"/"</span>,<span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">3</span>,<span class="dv">3</span>)),<span class="fu">substr</span>(Date,<span class="dv">3</span>,<span class="dv">4</span>)),</span>
+<span id="cb22-80"><a href="#cb22-80" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">if_else</span>(<span class="fu">substr</span>(Date,<span class="dv">5</span>,<span class="dv">5</span>)<span class="sc">==</span><span class="st">"/"</span>,<span class="fu">paste0</span>(<span class="st">"0"</span>,<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">4</span>)),<span class="fu">substr</span>(Date,<span class="dv">4</span>,<span class="dv">5</span>)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-81"><a href="#cb22-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day=</span><span class="fu">paste0</span>(y,m,d)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day,tbill)</span>
+<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-84"><a href="#cb22-84" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> cme <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cme=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,cme) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-86"><a href="#cb22-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ndaq <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ndaq=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,ndaq)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ice <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ice=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,ice)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-88"><a href="#cb22-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(spx <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">spx=</span><span class="st">`</span><span class="at">Adj Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date,spx)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-89"><a href="#cb22-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">day=</span><span class="fu">gsub</span>(<span class="st">"-"</span>,<span class="st">""</span>,Date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-90"><a href="#cb22-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span><span class="fu">substr</span>(day,<span class="dv">1</span>,<span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-91"><a href="#cb22-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">substr</span>(day,<span class="dv">1</span>,<span class="dv">6</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-92"><a href="#cb22-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(rfr,<span class="at">by=</span><span class="st">"day"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-93"><a href="#cb22-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(day<span class="sc">&gt;=</span>strt_dd,day<span class="sc">&lt;=</span>end_dd) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-94"><a href="#cb22-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year,month,day,cme,ndaq,ice,spx,tbill,Date)</span>
+<span id="cb22-95"><a href="#cb22-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-96"><a href="#cb22-96" aria-hidden="true" tabindex="-1"></a><span class="co"># using monthly return</span></span>
+<span id="cb22-97"><a href="#cb22-97" aria-hidden="true" tabindex="-1"></a>monthly_raw <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb22-98"><a href="#cb22-98" aria-hidden="true" tabindex="-1"></a>monthly_raw <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span> </span>
+<span id="cb22-99"><a href="#cb22-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year,month) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-100"><a href="#cb22-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(day <span class="sc">%&gt;%</span> <span class="fu">desc</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-101"><a href="#cb22-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-102"><a href="#cb22-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(.,<span class="fu">c</span>(<span class="st">"cme"</span>,<span class="st">"ndaq"</span>,<span class="st">"ice"</span>,<span class="st">"spx"</span>),</span>
+<span id="cb22-103"><a href="#cb22-103" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"name"</span>,<span class="at">values_to =</span> <span class="st">"price"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-104"><a href="#cb22-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb22-105"><a href="#cb22-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(name,year,month) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-106"><a href="#cb22-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">return=</span>price<span class="sc">/</span><span class="fu">lag</span>(price)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># monthly return</span></span>
+<span id="cb22-107"><a href="#cb22-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ex_return=</span>return<span class="sc">-</span>tbill<span class="sc">/</span><span class="dv">100</span><span class="sc">/</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> <span class="co"># excess return</span></span>
+<span id="cb22-108"><a href="#cb22-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">as.integer</span>(month)<span class="sc">&gt;=</span><span class="dv">201901</span>)</span>
+<span id="cb22-109"><a href="#cb22-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-110"><a href="#cb22-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-111"><a href="#cb22-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### (b)</span></span>
+<span id="cb22-112"><a href="#cb22-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-113"><a href="#cb22-113" aria-hidden="true" tabindex="-1"></a>SIM(Single Index Model)을 기반으로 분석하므로, 회귀식은 아래와 같습니다.</span>
+<span id="cb22-114"><a href="#cb22-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-115"><a href="#cb22-115" aria-hidden="true" tabindex="-1"></a>$$r_{i,t}-r_{f,t}=\alpha_i+\beta_i(r_{M,t}-r_{i,t})+\epsilon_{i,t}$$</span>
+<span id="cb22-116"><a href="#cb22-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-117"><a href="#cb22-117" aria-hidden="true" tabindex="-1"></a>이에 따라 각 주식의 월초과수익률을 S&amp;P500지수의 월초과수익률로 회귀분석을 실시하겠습니다.</span>
+<span id="cb22-118"><a href="#cb22-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-121"><a href="#cb22-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-122"><a href="#cb22-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb22-123"><a href="#cb22-123" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb22-124"><a href="#cb22-124" aria-hidden="true" tabindex="-1"></a>regression <span class="ot">&lt;-</span> monthly_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb22-125"><a href="#cb22-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(day,name,ex_return) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-126"><a href="#cb22-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(.,<span class="at">values_from =</span> <span class="st">"ex_return"</span>, <span class="at">names_from =</span> <span class="st">"name"</span>)</span>
+<span id="cb22-127"><a href="#cb22-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-128"><a href="#cb22-128" aria-hidden="true" tabindex="-1"></a>reg_cme <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>cme<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb22-129"><a href="#cb22-129" aria-hidden="true" tabindex="-1"></a>reg_ndaq <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>ndaq<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb22-130"><a href="#cb22-130" aria-hidden="true" tabindex="-1"></a>reg_ice <span class="ot">&lt;-</span> <span class="fu">lm</span>(regression<span class="sc">$</span>ice<span class="sc">~</span>regression<span class="sc">$</span>spx) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb22-131"><a href="#cb22-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-132"><a href="#cb22-132" aria-hidden="true" tabindex="-1"></a>result_reg <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">"cme"</span>,<span class="st">"ndaq"</span>,<span class="st">"ice"</span>),</span>
+<span id="cb22-133"><a href="#cb22-133" aria-hidden="true" tabindex="-1"></a>                     <span class="at">alpha=</span><span class="fu">c</span>(reg_cme<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
+<span id="cb22-134"><a href="#cb22-134" aria-hidden="true" tabindex="-1"></a>                             reg_ndaq<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
+<span id="cb22-135"><a href="#cb22-135" aria-hidden="true" tabindex="-1"></a>                             reg_ice<span class="sc">$</span>coefficients[<span class="dv">1</span>]),</span>
+<span id="cb22-136"><a href="#cb22-136" aria-hidden="true" tabindex="-1"></a>                     <span class="at">beta=</span><span class="fu">c</span>(reg_cme<span class="sc">$</span>coefficients[<span class="dv">2</span>],</span>
+<span id="cb22-137"><a href="#cb22-137" aria-hidden="true" tabindex="-1"></a>                            reg_ndaq<span class="sc">$</span>coefficients[<span class="dv">2</span>],</span>
+<span id="cb22-138"><a href="#cb22-138" aria-hidden="true" tabindex="-1"></a>                            reg_ice<span class="sc">$</span>coefficients[<span class="dv">2</span>]),</span>
+<span id="cb22-139"><a href="#cb22-139" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sd_residual=</span><span class="fu">c</span>(reg_cme<span class="sc">$</span>sigma,</span>
+<span id="cb22-140"><a href="#cb22-140" aria-hidden="true" tabindex="-1"></a>                                   reg_ndaq<span class="sc">$</span>sigma,</span>
+<span id="cb22-141"><a href="#cb22-141" aria-hidden="true" tabindex="-1"></a>                                   reg_ice<span class="sc">$</span>sigma))</span>
+<span id="cb22-142"><a href="#cb22-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-143"><a href="#cb22-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-146"><a href="#cb22-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-147"><a href="#cb22-147" aria-hidden="true" tabindex="-1"></a>reg_cme</span>
+<span id="cb22-148"><a href="#cb22-148" aria-hidden="true" tabindex="-1"></a>reg_ndaq</span>
+<span id="cb22-149"><a href="#cb22-149" aria-hidden="true" tabindex="-1"></a>reg_ice</span>
+<span id="cb22-150"><a href="#cb22-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-151"><a href="#cb22-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-152"><a href="#cb22-152" aria-hidden="true" tabindex="-1"></a>결과를 표로 정리하면 아래와 같습니다.</span>
+<span id="cb22-153"><a href="#cb22-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-154"><a href="#cb22-154" aria-hidden="true" tabindex="-1"></a>|구 분|CME|Nasdaq|ICE|</span>
+<span id="cb22-155"><a href="#cb22-155" aria-hidden="true" tabindex="-1"></a>|:---:|---:|---:|---:|</span>
+<span id="cb22-156"><a href="#cb22-156" aria-hidden="true" tabindex="-1"></a>|$\alpha$|0.0004|0.0046|0.0002|</span>
+<span id="cb22-157"><a href="#cb22-157" aria-hidden="true" tabindex="-1"></a>|$\beta$|0.4494|0.9475|0.9887|</span>
+<span id="cb22-158"><a href="#cb22-158" aria-hidden="true" tabindex="-1"></a>|$t-value$|3.293|8.655|9.300|</span>
+<span id="cb22-159"><a href="#cb22-159" aria-hidden="true" tabindex="-1"></a>|$p-value$|0.0017|0.0000|0.0000|</span>
+<span id="cb22-160"><a href="#cb22-160" aria-hidden="true" tabindex="-1"></a>|$Adj. R-squared$|0.143|0.5561|0.5916|</span>
+<span id="cb22-161"><a href="#cb22-161" aria-hidden="true" tabindex="-1"></a>|$residual SD$|0.0560|0.0449|0.0436|</span>
+<span id="cb22-162"><a href="#cb22-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-163"><a href="#cb22-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### (c)</span></span>
+<span id="cb22-164"><a href="#cb22-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-165"><a href="#cb22-165" aria-hidden="true" tabindex="-1"></a>위에서 각 주식의 alpha는 모두 양수로 산출되었습니다. (ii)를 채택하여 (b)의 회귀분석 결과로 도출된 alpha를 사용하겠습니다.</span>
+<span id="cb22-166"><a href="#cb22-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-167"><a href="#cb22-167" aria-hidden="true" tabindex="-1"></a>Optimal-risky portfolio 구축을 위해 먼저 passive 및 active p/f를 정의하겠습니다.</span>
+<span id="cb22-168"><a href="#cb22-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-169"><a href="#cb22-169" aria-hidden="true" tabindex="-1"></a>Passive p/f는 문제에서 $E(R_M)=E(r_M-r_f)=0.06,\;\sigma_M=0.15$로 주어져있습니다.</span>
+<span id="cb22-170"><a href="#cb22-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-171"><a href="#cb22-171" aria-hidden="true" tabindex="-1"></a>이는 연환산이므로 월수익률을 사용한 앞선 분석에 적용하기 위해 월단위로 환산하겠습니다.</span>
+<span id="cb22-172"><a href="#cb22-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-173"><a href="#cb22-173" aria-hidden="true" tabindex="-1"></a>즉, **월환산 평균 리스크프리미엄은 0.005 및 표준편차는 $0.15/\sqrt{12}=0.0433$입니다.**</span>
+<span id="cb22-174"><a href="#cb22-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-175"><a href="#cb22-175" aria-hidden="true" tabindex="-1"></a>Active p/f는 (b)에서 도출한 alpha, beta, residual SD를 통해 구축하도록 하겠습니다.</span>
+<span id="cb22-176"><a href="#cb22-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-177"><a href="#cb22-177" aria-hidden="true" tabindex="-1"></a>각 주식의 구성비율은 리스크대비 초과수익률($\frac{\alpha_i}{\sigma^2(\epsilon_i)}$)을 가중평균하여 산출할 수 있습니다. </span>
+<span id="cb22-178"><a href="#cb22-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-181"><a href="#cb22-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-182"><a href="#cb22-182" aria-hidden="true" tabindex="-1"></a>active_pf <span class="ot">&lt;-</span> result_reg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">w0=</span>alpha<span class="sc">/</span>sd_residual<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb22-183"><a href="#cb22-183" aria-hidden="true" tabindex="-1"></a>active_pf <span class="ot">&lt;-</span> active_pf <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">w1=</span>w0<span class="sc">/</span><span class="fu">sum</span>(active_pf<span class="sc">$</span>w0))</span>
+<span id="cb22-184"><a href="#cb22-184" aria-hidden="true" tabindex="-1"></a>active_pf</span>
+<span id="cb22-185"><a href="#cb22-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-186"><a href="#cb22-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-187"><a href="#cb22-187" aria-hidden="true" tabindex="-1"></a>Active p/f의 alpha, beta, residual SD는 아래와 같습니다.</span>
+<span id="cb22-188"><a href="#cb22-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-191"><a href="#cb22-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-192"><a href="#cb22-192" aria-hidden="true" tabindex="-1"></a>active_pf <span class="ot">&lt;-</span> active_pf <span class="sc">%&gt;%</span> </span>
+<span id="cb22-193"><a href="#cb22-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">alpha=</span><span class="fu">sum</span>(w1<span class="sc">*</span>alpha), <span class="at">beta=</span><span class="fu">sum</span>(w1<span class="sc">*</span>beta),</span>
+<span id="cb22-194"><a href="#cb22-194" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_residual=</span><span class="fu">sum</span>(w1<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>sd_residual<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>())</span>
+<span id="cb22-195"><a href="#cb22-195" aria-hidden="true" tabindex="-1"></a>active_pf</span>
+<span id="cb22-196"><a href="#cb22-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-197"><a href="#cb22-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-198"><a href="#cb22-198" aria-hidden="true" tabindex="-1"></a>이제, passive &amp; active p/f를 결합하여 Sharpe ratio가 최대값이 되는 최적 비중 $w_A^*$를 산출하도록 하겠습니다.</span>
+<span id="cb22-199"><a href="#cb22-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-202"><a href="#cb22-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-203"><a href="#cb22-203" aria-hidden="true" tabindex="-1"></a>Sharpe_SIM <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha_A,beta_A,SD_residual_A,<span class="at">weight_A=</span><span class="fl">0.5</span>,excess_M,SD_M){</span>
+<span id="cb22-204"><a href="#cb22-204" aria-hidden="true" tabindex="-1"></a>  alpha_pf<span class="ot">=</span>weight_A<span class="sc">*</span>alpha_A</span>
+<span id="cb22-205"><a href="#cb22-205" aria-hidden="true" tabindex="-1"></a>  beta_pf<span class="ot">=</span>weight_A<span class="sc">*</span>beta_A<span class="sc">+</span><span class="dv">1</span><span class="sc">-</span>weight_A</span>
+<span id="cb22-206"><a href="#cb22-206" aria-hidden="true" tabindex="-1"></a>  excess_pf<span class="ot">=</span>alpha_pf<span class="sc">+</span>beta_pf<span class="sc">*</span>excess_M</span>
+<span id="cb22-207"><a href="#cb22-207" aria-hidden="true" tabindex="-1"></a>  Var_residual_pf<span class="ot">=</span>weight_A<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>SD_residual_A<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb22-208"><a href="#cb22-208" aria-hidden="true" tabindex="-1"></a>  SD_pf<span class="ot">=</span><span class="fu">sqrt</span>(beta_pf<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>SD_M<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>Var_residual_pf)</span>
+<span id="cb22-209"><a href="#cb22-209" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">alpha=</span>alpha_pf,</span>
+<span id="cb22-210"><a href="#cb22-210" aria-hidden="true" tabindex="-1"></a>                   <span class="at">beta=</span>beta_pf,</span>
+<span id="cb22-211"><a href="#cb22-211" aria-hidden="true" tabindex="-1"></a>                   <span class="at">excess_return=</span>excess_pf,</span>
+<span id="cb22-212"><a href="#cb22-212" aria-hidden="true" tabindex="-1"></a>                   <span class="at">SD=</span>SD_pf,</span>
+<span id="cb22-213"><a href="#cb22-213" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Sharpe=</span>excess_pf<span class="sc">/</span>SD_pf)</span>
+<span id="cb22-214"><a href="#cb22-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb22-215"><a href="#cb22-215" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-216"><a href="#cb22-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-217"><a href="#cb22-217" aria-hidden="true" tabindex="-1"></a>maximize_SIM <span class="ot">&lt;-</span> <span class="cf">function</span>(weight_A){</span>
+<span id="cb22-218"><a href="#cb22-218" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">Sharpe_SIM</span>(active_pf<span class="sc">$</span>alpha,active_pf<span class="sc">$</span>beta,active_pf<span class="sc">$</span>sd_residual,</span>
+<span id="cb22-219"><a href="#cb22-219" aria-hidden="true" tabindex="-1"></a>                       weight_A,<span class="fl">0.06</span><span class="sc">/</span><span class="dv">12</span>,<span class="fl">0.15</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">12</span>))</span>
+<span id="cb22-220"><a href="#cb22-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result<span class="sc">$</span>Sharpe)}</span>
+<span id="cb22-221"><a href="#cb22-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-222"><a href="#cb22-222" aria-hidden="true" tabindex="-1"></a>optimal_weight<span class="ot">=</span><span class="fu">optimize</span>(maximize_SIM,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">maximum =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-223"><a href="#cb22-223" aria-hidden="true" tabindex="-1"></a>optimal_weight</span>
+<span id="cb22-224"><a href="#cb22-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-225"><a href="#cb22-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-226"><a href="#cb22-226" aria-hidden="true" tabindex="-1"></a>**Active p/f의 최적비중 $w_a^*=0.8969$이며, 이때 Optimal risky p/f의 Sharpe ratio는 0.1553입니다.**</span>
+<span id="cb22-227"><a href="#cb22-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-228"><a href="#cb22-228" aria-hidden="true" tabindex="-1"></a>**Optimal risky p/f**의 alpha, beta, 초과수익률, 표준편차는 아래와 같습니다.</span>
+<span id="cb22-229"><a href="#cb22-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-232"><a href="#cb22-232" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-233"><a href="#cb22-233" aria-hidden="true" tabindex="-1"></a>SIM_optimal <span class="ot">&lt;-</span> <span class="fu">Sharpe_SIM</span>(active_pf<span class="sc">$</span>alpha,active_pf<span class="sc">$</span>beta,active_pf<span class="sc">$</span>sd_residual,</span>
+<span id="cb22-234"><a href="#cb22-234" aria-hidden="true" tabindex="-1"></a>                          optimal_weight<span class="sc">$</span>maximum,<span class="fl">0.06</span><span class="sc">/</span><span class="dv">12</span>,<span class="fl">0.15</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">12</span>))</span>
+<span id="cb22-235"><a href="#cb22-235" aria-hidden="true" tabindex="-1"></a>SIM_optimal                          </span>
+<span id="cb22-236"><a href="#cb22-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-237"><a href="#cb22-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-238"><a href="#cb22-238" aria-hidden="true" tabindex="-1"></a><span class="fu">### (d)</span></span>
+<span id="cb22-239"><a href="#cb22-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-240"><a href="#cb22-240" aria-hidden="true" tabindex="-1"></a>Information ratio = $\frac{\alpha_A}{\sigma(\epsilon_A)}=0.1039$</span>
+<span id="cb22-241"><a href="#cb22-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-244"><a href="#cb22-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-245"><a href="#cb22-245" aria-hidden="true" tabindex="-1"></a>info_ratio<span class="ot">=</span>active_pf<span class="sc">$</span>alpha<span class="sc">/</span>active_pf<span class="sc">$</span>sd_residual</span>
+<span id="cb22-246"><a href="#cb22-246" aria-hidden="true" tabindex="-1"></a>info_ratio</span>
+<span id="cb22-247"><a href="#cb22-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-248"><a href="#cb22-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-249"><a href="#cb22-249" aria-hidden="true" tabindex="-1"></a><span class="fu">### (e)</span></span>
+<span id="cb22-250"><a href="#cb22-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-251"><a href="#cb22-251" aria-hidden="true" tabindex="-1"></a>각 포트폴리오의 Sharpe ratio는 아래와 같습니다.</span>
+<span id="cb22-252"><a href="#cb22-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-253"><a href="#cb22-253" aria-hidden="true" tabindex="-1"></a>$$Sharpe\;r/o\;(Optimal\;risky)\;=\;0.1553,\;\;Sharpe\;r/o\;(Index)\;=\;\frac{0.005}{0.0433}=0.1155$$</span>
+<span id="cb22-254"><a href="#cb22-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-255"><a href="#cb22-255" aria-hidden="true" tabindex="-1"></a>Optimal risky p/f가 보다 나은 성과를 보여주며, 정보비율로 그 차이를 표현할 수 있습니다.</span>
+<span id="cb22-256"><a href="#cb22-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-259"><a href="#cb22-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-260"><a href="#cb22-260" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">0.1155</span><span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>info_ratio<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb22-261"><a href="#cb22-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

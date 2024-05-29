@@ -1,0 +1,243 @@
+# 투자분석 과제4 {.unnumbered}
+
+## Question
+
+You need to construct a portfolio consisting of a passive portfolio and three stocks you already selected, doing the Assignment 2. If you selected Korea (USA) stocks, use KOSPI 200 (S&P 500) for the passive portfolio.
+
+You construct your optimal risky portfolio based on **single-index model** that was covered in class. Don’t hand in data or your program code.
+
+(a) What were the names of the individual stocks you have chosen in assignment 2? Indicate the source database.
+
+(b) With the 60 recent monthly returns of the chosen stocks, and the monthly T-bill rates for the same period, **run regressions** and report the estimated **beta**, **alpha**, **t-value** or **p-value**, **R squared** and **residual SD** of each stock and documents them.
+
+(c) Assume that the average of the risk premium of the index, forecasted by investment companies, is **6%** and its standard deviation is **15%**. Or you may use the past average excess return for the index.
+
+    If you make the optimal risky portfolio according to SIM, you **need alpha** of the expected return for each stock. **There are three options** such as 
+    (i) you may randomly choose these numbers. If this is the case, be reasonable to set the value for alpha, or
+    (ii) you may use the estimated alpha in (b). for future alpha (As you know, this won’t hold generally), or 
+    (iii) you may accept the 12-month future price suggested by analysts and calculate alphas using SCL.
+
+    What is your choice? **Construct and report your optimal risky portfolio** consisting of the index and the three stocks **maximizing Sharpe ratio**. Assume short-sale is allowed.
+
+(e) What is your **Information ratio** for the active portfolio you have chosen?
+
+(f) **Compare Sharpe ratio** of the optimal risky portfolio with Sharpe ratio of the index portfolio.
+
+## Answer
+
+### (a)
+
+저는 HW2에서 ***CME group(CME), ICE(ICE), Nasdaq(NDAQ)*** 세가지 종목을 선정하였습니다.
+
+선정 배경으로는,
+
+(1) 제가 거래소 산업에 관심이 많고,
+(2) 세 주식 모두 미국에 상장되어있는 대표적인 글로벌 거래소이며,
+(3) 동일한 거래소 산업이고 S&P500지수의 구성종목이라 동일 선상에서 비교하기 적합할 것으로 보이기 때문입니다.
+
+세 주식의 일별수정주가(Adj. close), 벤치마크지수인 S&P500지수의 일별수정가격을 활용하였고, 무위험이자율은 4 weeks T-bill rate를 사용하였습니다.
+
+    기간 : 직전 5년(2019.1 ~ 2023.12)
+    출처 : Yahoo Finance 및 미 재무부
+    산출방법 :
+        (월수익률) 지난달 말 대비 월말 수익률
+        (월초과수익률) 월수익률 - 월말T-bill/12
+        (월분산) 월/월초과수익률의 표본표준편차
+        (평균수익률) 월/월초과수익률을 산술평균하여 연환산 (x12)
+        (평균분산) 월분산을 산술평균하여 연환산 (x12)
+
+#### Data import and pre-processing
+
+```{r}
+#| output: false
+#| code-fold: true
+rm(list=ls())
+
+setwd("/Users/hwan/Desktop/Homepage/study_24spring")
+getwd()
+library(tidyverse)
+
+# stocks and market index S&P500 from yahoo finance
+cme <- read_csv("investment_hw/cme.csv") %>% tibble()
+ndaq <- read_csv("investment_hw/ndaq.csv") %>% tibble()
+ice <- read_csv("investment_hw/ice.csv") %>% tibble()
+spx <- read_csv("investment_hw/spx.csv") %>% tibble()
+# risk-free rate is T-bill rate
+tbill <- read_csv("investment_hw/tbill.csv") %>% tibble()
+
+# set period 10years
+strt_dd='20140101'
+end_dd='20231231'
+
+# tidy date
+rfr <- tbill %>% mutate(tbill=`4 WEEKS BANK DISCOUNT`) %>% 
+  mutate(y=paste0("20",substr(Date,nchar(Date)-1,nchar(Date)))) %>% 
+  mutate(m=if_else(substr(Date,2,2)=="/",paste0("0",substr(Date,1,1)),substr(Date,1,2))) %>% 
+  mutate(d=if_else(substr(Date,2,2)=="/",
+                   if_else(substr(Date,4,4)=="/",paste0("0",substr(Date,3,3)),substr(Date,3,4)),
+                   if_else(substr(Date,5,5)=="/",paste0("0",substr(Date,4,4)),substr(Date,4,5)))) %>% 
+  mutate(day=paste0(y,m,d)) %>% 
+  select(day,tbill)
+
+raw_data <- tibble()
+raw_data <- cme %>% mutate(cme=`Adj Close`) %>% select(Date,cme) %>% 
+  left_join(ndaq %>% mutate(ndaq=`Adj Close`) %>% select(Date,ndaq)) %>% 
+  left_join(ice %>% mutate(ice=`Adj Close`) %>% select(Date,ice)) %>% 
+  left_join(spx %>% mutate(spx=`Adj Close`) %>% select(Date,spx)) %>% 
+  mutate(day=gsub("-","",Date)) %>% 
+  mutate(year=substr(day,1,4)) %>% 
+  mutate(month=substr(day,1,6)) %>% 
+  left_join(rfr,by="day") %>% 
+  filter(day>=strt_dd,day<=end_dd) %>% 
+  select(year,month,day,cme,ndaq,ice,spx,tbill,Date)
+
+# using monthly return
+monthly_raw <- tibble()
+monthly_raw <- raw_data %>% 
+  group_by(year,month) %>% 
+  arrange(day %>% desc()) %>% 
+  slice(1) %>% 
+  pivot_longer(.,c("cme","ndaq","ice","spx"),
+               names_to = "name",values_to = "price") %>% 
+  ungroup() %>% 
+  arrange(name,year,month) %>% 
+  mutate(return=price/lag(price)-1) %>%  # monthly return
+  mutate(ex_return=return-tbill/100/12) %>% # excess return
+  filter(as.integer(month)>=201901)
+```
+
+### (b)
+
+SIM(Single Index Model)을 기반으로 분석하므로, 회귀식은 아래와 같습니다.
+
+$$r_{i,t}-r_{f,t}=\alpha_i+\beta_i(r_{M,t}-r_{i,t})+\epsilon_{i,t}$$
+
+이에 따라 각 주식의 월초과수익률을 S&P500지수의 월초과수익률로 회귀분석을 실시하겠습니다.
+
+```{r}
+#| code-fold: true
+regression <- tibble()
+regression <- monthly_raw %>% 
+  select(day,name,ex_return) %>% 
+  pivot_wider(.,values_from = "ex_return", names_from = "name")
+
+reg_cme <- lm(regression$cme~regression$spx) %>% summary()
+reg_ndaq <- lm(regression$ndaq~regression$spx) %>% summary()
+reg_ice <- lm(regression$ice~regression$spx) %>% summary()
+
+result_reg <- tibble(name=c("cme","ndaq","ice"),
+                     alpha=c(reg_cme$coefficients[1],
+                             reg_ndaq$coefficients[1],
+                             reg_ice$coefficients[1]),
+                     beta=c(reg_cme$coefficients[2],
+                            reg_ndaq$coefficients[2],
+                            reg_ice$coefficients[2]),
+                     sd_residual=c(reg_cme$sigma,
+                                   reg_ndaq$sigma,
+                                   reg_ice$sigma))
+```
+
+```{r}
+reg_cme
+reg_ndaq
+reg_ice
+```
+
+결과를 표로 정리하면 아래와 같습니다.
+
+|구 분|CME|Nasdaq|ICE|
+|:---:|---:|---:|---:|
+|$\alpha$|0.0004|0.0046|0.0002|
+|$\beta$|0.4494|0.9475|0.9887|
+|$t-value$|3.293|8.655|9.300|
+|$p-value$|0.0017|0.0000|0.0000|
+|$Adj. R-squared$|0.143|0.5561|0.5916|
+|$residual SD$|0.0560|0.0449|0.0436|
+
+### (c)
+
+위에서 각 주식의 alpha는 모두 양수로 산출되었습니다. (ii)를 채택하여 (b)의 회귀분석 결과로 도출된 alpha를 사용하겠습니다.
+
+Optimal-risky portfolio 구축을 위해 먼저 passive 및 active p/f를 정의하겠습니다.
+
+Passive p/f는 문제에서 $E(R_M)=E(r_M-r_f)=0.06,\;\sigma_M=0.15$로 주어져있습니다.
+
+이는 연환산이므로 월수익률을 사용한 앞선 분석에 적용하기 위해 월단위로 환산하겠습니다.
+
+즉, **월환산 평균 리스크프리미엄은 0.005 및 표준편차는 $0.15/\sqrt{12}=0.0433$입니다.**
+
+Active p/f는 (b)에서 도출한 alpha, beta, residual SD를 통해 구축하도록 하겠습니다.
+
+각 주식의 구성비율은 리스크대비 초과수익률($\frac{\alpha_i}{\sigma^2(\epsilon_i)}$)을 가중평균하여 산출할 수 있습니다. 
+
+```{r}
+active_pf <- result_reg %>% mutate(w0=alpha/sd_residual^2)
+active_pf <- active_pf %>% mutate(w1=w0/sum(active_pf$w0))
+active_pf
+```
+
+Active p/f의 alpha, beta, residual SD는 아래와 같습니다.
+
+```{r}
+active_pf <- active_pf %>% 
+  summarise(alpha=sum(w1*alpha), beta=sum(w1*beta),
+            sd_residual=sum(w1^2*sd_residual^2) %>% sqrt())
+active_pf
+```
+
+이제, passive & active p/f를 결합하여 Sharpe ratio가 최대값이 되는 최적 비중 $w_A^*$를 산출하도록 하겠습니다.
+
+```{r}
+Sharpe_SIM <- function(alpha_A,beta_A,SD_residual_A,weight_A=0.5,excess_M,SD_M){
+  alpha_pf=weight_A*alpha_A
+  beta_pf=weight_A*beta_A+1-weight_A
+  excess_pf=alpha_pf+beta_pf*excess_M
+  Var_residual_pf=weight_A^2*SD_residual_A^2
+  SD_pf=sqrt(beta_pf^2*SD_M^2+Var_residual_pf)
+  result <- tibble(alpha=alpha_pf,
+                   beta=beta_pf,
+                   excess_return=excess_pf,
+                   SD=SD_pf,
+                   Sharpe=excess_pf/SD_pf)
+  return(result)
+}
+
+maximize_SIM <- function(weight_A){
+  result <- Sharpe_SIM(active_pf$alpha,active_pf$beta,active_pf$sd_residual,
+                       weight_A,0.06/12,0.15/sqrt(12))
+  return(result$Sharpe)}
+
+optimal_weight=optimize(maximize_SIM,c(0,1),maximum = TRUE)
+optimal_weight
+```
+
+**Active p/f의 최적비중 $w_a^*=0.8969$이며, 이때 Optimal risky p/f의 Sharpe ratio는 0.1553입니다.**
+
+**Optimal risky p/f**의 alpha, beta, 초과수익률, 표준편차는 아래와 같습니다.
+
+```{r}
+SIM_optimal <- Sharpe_SIM(active_pf$alpha,active_pf$beta,active_pf$sd_residual,
+                          optimal_weight$maximum,0.06/12,0.15/sqrt(12))
+SIM_optimal                          
+```
+
+### (d)
+
+Information ratio = $\frac{\alpha_A}{\sigma(\epsilon_A)}=0.1039$
+
+```{r}
+info_ratio=active_pf$alpha/active_pf$sd_residual
+info_ratio
+```
+
+### (e)
+
+각 포트폴리오의 Sharpe ratio는 아래와 같습니다.
+
+$$Sharpe\;r/o\;(Optimal\;risky)\;=\;0.1553,\;\;Sharpe\;r/o\;(Index)\;=\;\frac{0.005}{0.0433}=0.1155$$
+
+Optimal risky p/f가 보다 나은 성과를 보여주며, 정보비율로 그 차이를 표현할 수 있습니다.
+
+```{r}
+sqrt(0.1155^2+info_ratio^2)
+```

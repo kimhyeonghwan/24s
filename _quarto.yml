@@ -26,6 +26,7 @@ book:
         - 4. Functions.ipynb
         - 5. Numpy.ipynb
         - 6. Pandas.ipynb
+        - 7. Pandas_practice.ipynb
         - Python Quiz1.qmd
         - Python Quiz2.qmd
         - Python Quiz3.qmd
@@ -39,6 +40,7 @@ book:
         - 채권분석_hw3.qmd
         - 이자율기간구조_hw1.qmd
         - 이자율기간구조_hw2.qmd
+        - 이자율기간구조_hw3.qmd
     - part : 투자분석('24봄)
       chapters: 
         - investment_hw1.qmd
@@ -62,6 +64,7 @@ book:
         - 경영통계분석_hw3.qmd
         - 경영통계분석_hw4.qmd
         - 경영통계분석_hw5.qmd
+        - 경영통계분석_hw6.qmd
   downloads: pdf
 
 code-block-bg: true

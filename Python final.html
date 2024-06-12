@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="Python final_files/libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="Python final_files/libs/clipboard/clipboard.min.js"></script>
 <script src="Python final_files/libs/quarto-html/quarto.js"></script>
 <script src="Python final_files/libs/quarto-html/popper.min.js"></script>
 <script src="Python final_files/libs/quarto-html/tippy.umd.min.js"></script>
@@ -67,6 +67,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="Python final_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Python final_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="Python final_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -102,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="answer" class="level2">
 <h2 class="anchored" data-anchor-id="answer">Answer</h2>
-<div id="72895f57" class="cell" data-execution_count="1">
+<div id="cc20004b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -144,12 +147,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> pd.read_csv(<span class="st">'it.csv'</span>)</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>MVportfolio(asset <span class="op">=</span> it, mu_p <span class="op">=</span> <span class="op">-</span><span class="fl">0.001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>(array([ 0.16186582,  0.25684189, -0.35114871,  0.44970549,  0.48273551]),
  0.00014638968239383284)</code></pre>
 </div>
 </div>
-<div id="3742bbd1" class="cell" data-execution_count="2">
+<div id="57d694b9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plot</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Range of mu_p</span></span>
@@ -163,11 +166,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    portfolio_variances.append(Var_p)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plot.figure()</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plot.plot(portfolio_variances, mu_p_values)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plot.ylabel(<span class="st">'Portfolio Variance'</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plot.xlabel(<span class="st">'Portfolio expected return'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plot.plot(portfolio_variances, mu_p_values)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plot.ylabel(<span class="st">'Portfolio Variance'</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plot.xlabel(<span class="st">'Portfolio expected return'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>Text(0.5, 0, 'Portfolio expected return')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -185,13 +187,979 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="answer-1" class="level2">
 <h2 class="anchored" data-anchor-id="answer-1">Answer</h2>
+<div id="79422c6b" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 'price.csv'의 'date'를 DatetimeIndex로 하는 pd.DataFrame price 생성</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> pd.read_csv(<span class="st">'price.csv'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>price[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(price[<span class="st">'date'</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> price.set_index(<span class="st">'date'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>price</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">X005930</th>
+<th data-quarto-table-cell-role="th">X000660</th>
+<th data-quarto-table-cell-role="th">X051910</th>
+<th data-quarto-table-cell-role="th">X207940</th>
+<th data-quarto-table-cell-role="th">X035420</th>
+<th data-quarto-table-cell-role="th">X035720</th>
+<th data-quarto-table-cell-role="th">X005380</th>
+<th data-quarto-table-cell-role="th">X006400</th>
+<th data-quarto-table-cell-role="th">X068270</th>
+<th data-quarto-table-cell-role="th">X000270</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">X058220</th>
+<th data-quarto-table-cell-role="th">X038160</th>
+<th data-quarto-table-cell-role="th">X033600</th>
+<th data-quarto-table-cell-role="th">X195440</th>
+<th data-quarto-table-cell-role="th">X058420</th>
+<th data-quarto-table-cell-role="th">X121890</th>
+<th data-quarto-table-cell-role="th">X114570</th>
+<th data-quarto-table-cell-role="th">X347140</th>
+<th data-quarto-table-cell-role="th">X080440</th>
+<th data-quarto-table-cell-role="th">X158310</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-05-23</td>
+<td>51800</td>
+<td>95300.0</td>
+<td>343500.0</td>
+<td>399500.0</td>
+<td>136994</td>
+<td>22580</td>
+<td>144500.0</td>
+<td>204500</td>
+<td>237286</td>
+<td>33650</td>
+<td>...</td>
+<td>2500.0</td>
+<td>7790.0</td>
+<td>7460.0</td>
+<td>63720.0</td>
+<td>13298.0</td>
+<td>2905.0</td>
+<td>26630.0</td>
+<td>NaN</td>
+<td>5079.0</td>
+<td>10250.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-05-24</td>
+<td>51400</td>
+<td>94600.0</td>
+<td>345000.0</td>
+<td>418000.0</td>
+<td>136193</td>
+<td>22681</td>
+<td>140000.0</td>
+<td>204500</td>
+<td>243737</td>
+<td>32700</td>
+<td>...</td>
+<td>2383.0</td>
+<td>7880.0</td>
+<td>7310.0</td>
+<td>63536.0</td>
+<td>13226.0</td>
+<td>2890.0</td>
+<td>25339.0</td>
+<td>NaN</td>
+<td>5005.0</td>
+<td>9300.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-05-25</td>
+<td>52700</td>
+<td>95200.0</td>
+<td>352500.0</td>
+<td>430500.0</td>
+<td>137194</td>
+<td>22480</td>
+<td>139000.0</td>
+<td>207000</td>
+<td>253413</td>
+<td>32250</td>
+<td>...</td>
+<td>2400.0</td>
+<td>7770.0</td>
+<td>7200.0</td>
+<td>63997.0</td>
+<td>13265.0</td>
+<td>2830.0</td>
+<td>25574.0</td>
+<td>NaN</td>
+<td>4870.0</td>
+<td>8920.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-05-28</td>
+<td>52300</td>
+<td>94500.0</td>
+<td>352000.0</td>
+<td>429000.0</td>
+<td>136193</td>
+<td>21677</td>
+<td>138500.0</td>
+<td>209000</td>
+<td>249726</td>
+<td>32300</td>
+<td>...</td>
+<td>2403.0</td>
+<td>7980.0</td>
+<td>7370.0</td>
+<td>62800.0</td>
+<td>13226.0</td>
+<td>2790.0</td>
+<td>25339.0</td>
+<td>NaN</td>
+<td>4980.0</td>
+<td>8740.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-05-29</td>
+<td>51300</td>
+<td>94800.0</td>
+<td>343500.0</td>
+<td>433000.0</td>
+<td>133789</td>
+<td>21677</td>
+<td>140000.0</td>
+<td>211500</td>
+<td>249266</td>
+<td>31650</td>
+<td>...</td>
+<td>2350.0</td>
+<td>8930.0</td>
+<td>7240.0</td>
+<td>60866.0</td>
+<td>13121.0</td>
+<td>2740.0</td>
+<td>26281.0</td>
+<td>NaN</td>
+<td>4631.0</td>
+<td>8720.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2020-08-31</td>
+<td>54000</td>
+<td>75100.0</td>
+<td>740000.0</td>
+<td>778000.0</td>
+<td>322500</td>
+<td>81691</td>
+<td>176500.0</td>
+<td>452500</td>
+<td>291656</td>
+<td>42450</td>
+<td>...</td>
+<td>275.0</td>
+<td>862.0</td>
+<td>179.0</td>
+<td>2075.0</td>
+<td>5968.0</td>
+<td>739.0</td>
+<td>620.0</td>
+<td>2015.0</td>
+<td>498.0</td>
+<td>505.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2020-09-01</td>
+<td>54200</td>
+<td>75200.0</td>
+<td>743000.0</td>
+<td>781000.0</td>
+<td>324500</td>
+<td>80587</td>
+<td>180000.0</td>
+<td>454500</td>
+<td>292638</td>
+<td>43150</td>
+<td>...</td>
+<td>275.0</td>
+<td>862.0</td>
+<td>179.0</td>
+<td>2075.0</td>
+<td>5961.0</td>
+<td>739.0</td>
+<td>620.0</td>
+<td>2015.0</td>
+<td>498.0</td>
+<td>505.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2020-09-02</td>
+<td>54400</td>
+<td>75500.0</td>
+<td>742000.0</td>
+<td>770000.0</td>
+<td>332500</td>
+<td>82695</td>
+<td>176000.0</td>
+<td>452000</td>
+<td>295093</td>
+<td>42200</td>
+<td>...</td>
+<td>275.0</td>
+<td>862.0</td>
+<td>179.0</td>
+<td>2075.0</td>
+<td>5891.0</td>
+<td>739.0</td>
+<td>620.0</td>
+<td>2015.0</td>
+<td>498.0</td>
+<td>505.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2020-09-03</td>
+<td>56400</td>
+<td>78700.0</td>
+<td>768000.0</td>
+<td>779000.0</td>
+<td>339000</td>
+<td>82293</td>
+<td>176500.0</td>
+<td>452500</td>
+<td>294111</td>
+<td>42700</td>
+<td>...</td>
+<td>275.0</td>
+<td>862.0</td>
+<td>179.0</td>
+<td>2075.0</td>
+<td>6080.0</td>
+<td>739.0</td>
+<td>620.0</td>
+<td>2010.0</td>
+<td>498.0</td>
+<td>505.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2020-09-04</td>
+<td>55600</td>
+<td>78700.0</td>
+<td>743000.0</td>
+<td>773000.0</td>
+<td>328500</td>
+<td>80688</td>
+<td>172500.0</td>
+<td>439000</td>
+<td>288710</td>
+<td>42150</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>565 rows × 2203 columns</p>
+</div>
+</div>
+</div>
+</div>
+<div id="9a8ce953" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. price에서 2019년만 선택해서 price_sub로 저장</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>price_sub<span class="op">=</span>price.loc[<span class="st">'2019'</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>price_sub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">X005930</th>
+<th data-quarto-table-cell-role="th">X000660</th>
+<th data-quarto-table-cell-role="th">X051910</th>
+<th data-quarto-table-cell-role="th">X207940</th>
+<th data-quarto-table-cell-role="th">X035420</th>
+<th data-quarto-table-cell-role="th">X035720</th>
+<th data-quarto-table-cell-role="th">X005380</th>
+<th data-quarto-table-cell-role="th">X006400</th>
+<th data-quarto-table-cell-role="th">X068270</th>
+<th data-quarto-table-cell-role="th">X000270</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">X058220</th>
+<th data-quarto-table-cell-role="th">X038160</th>
+<th data-quarto-table-cell-role="th">X033600</th>
+<th data-quarto-table-cell-role="th">X195440</th>
+<th data-quarto-table-cell-role="th">X058420</th>
+<th data-quarto-table-cell-role="th">X121890</th>
+<th data-quarto-table-cell-role="th">X114570</th>
+<th data-quarto-table-cell-role="th">X347140</th>
+<th data-quarto-table-cell-role="th">X080440</th>
+<th data-quarto-table-cell-role="th">X158310</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2019-01-02</td>
+<td>38750</td>
+<td>60600.0</td>
+<td>337000.0</td>
+<td>374000.0</td>
+<td>118000</td>
+<td>20473</td>
+<td>114000.0</td>
+<td>210500</td>
+<td>201192</td>
+<td>32800</td>
+<td>...</td>
+<td>2525.0</td>
+<td>7320.0</td>
+<td>1810.0</td>
+<td>38781.0</td>
+<td>9939.0</td>
+<td>1845.0</td>
+<td>17675.0</td>
+<td>NaN</td>
+<td>3250.0</td>
+<td>2700.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2019-01-03</td>
+<td>37600</td>
+<td>57700.0</td>
+<td>328000.0</td>
+<td>376500.0</td>
+<td>122000</td>
+<td>20573</td>
+<td>116500.0</td>
+<td>203000</td>
+<td>197440</td>
+<td>32850</td>
+<td>...</td>
+<td>2550.0</td>
+<td>7260.0</td>
+<td>1730.0</td>
+<td>35054.0</td>
+<td>9939.0</td>
+<td>1870.0</td>
+<td>17581.0</td>
+<td>NaN</td>
+<td>3155.0</td>
+<td>2675.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2019-01-04</td>
+<td>37450</td>
+<td>58300.0</td>
+<td>330500.0</td>
+<td>381000.0</td>
+<td>125500</td>
+<td>20774</td>
+<td>119500.0</td>
+<td>201000</td>
+<td>206350</td>
+<td>34850</td>
+<td>...</td>
+<td>2475.0</td>
+<td>7450.0</td>
+<td>1780.0</td>
+<td>35330.0</td>
+<td>9972.0</td>
+<td>1885.0</td>
+<td>18806.0</td>
+<td>NaN</td>
+<td>3095.0</td>
+<td>2670.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2019-01-07</td>
+<td>38750</td>
+<td>58700.0</td>
+<td>343000.0</td>
+<td>388000.0</td>
+<td>131500</td>
+<td>20673</td>
+<td>120500.0</td>
+<td>217000</td>
+<td>202599</td>
+<td>34200</td>
+<td>...</td>
+<td>2483.0</td>
+<td>7750.0</td>
+<td>1785.0</td>
+<td>35330.0</td>
+<td>10391.0</td>
+<td>1885.0</td>
+<td>18806.0</td>
+<td>NaN</td>
+<td>3095.0</td>
+<td>2715.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2019-01-08</td>
+<td>38100</td>
+<td>59200.0</td>
+<td>349500.0</td>
+<td>386000.0</td>
+<td>130000</td>
+<td>20051</td>
+<td>119500.0</td>
+<td>218500</td>
+<td>200254</td>
+<td>33800</td>
+<td>...</td>
+<td>2445.0</td>
+<td>7790.0</td>
+<td>1740.0</td>
+<td>34502.0</td>
+<td>10391.0</td>
+<td>1975.0</td>
+<td>18099.0</td>
+<td>NaN</td>
+<td>3050.0</td>
+<td>2895.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2019-12-23</td>
+<td>55500</td>
+<td>94600.0</td>
+<td>313000.0</td>
+<td>422500.0</td>
+<td>184000</td>
+<td>29806</td>
+<td>122500.0</td>
+<td>228000</td>
+<td>174929</td>
+<td>44750</td>
+<td>...</td>
+<td>1265.0</td>
+<td>3765.0</td>
+<td>446.0</td>
+<td>6130.0</td>
+<td>11982.0</td>
+<td>2520.0</td>
+<td>3270.0</td>
+<td>NaN</td>
+<td>1420.0</td>
+<td>2705.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2019-12-24</td>
+<td>55000</td>
+<td>93800.0</td>
+<td>312500.0</td>
+<td>417000.0</td>
+<td>182000</td>
+<td>29405</td>
+<td>122000.0</td>
+<td>225000</td>
+<td>173521</td>
+<td>44700</td>
+<td>...</td>
+<td>1265.0</td>
+<td>3740.0</td>
+<td>407.0</td>
+<td>5750.0</td>
+<td>11255.0</td>
+<td>2385.0</td>
+<td>3020.0</td>
+<td>NaN</td>
+<td>1210.0</td>
+<td>2360.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2019-12-26</td>
+<td>55400</td>
+<td>94800.0</td>
+<td>308000.0</td>
+<td>413500.0</td>
+<td>180500</td>
+<td>29706</td>
+<td>122500.0</td>
+<td>222500</td>
+<td>177743</td>
+<td>45100</td>
+<td>...</td>
+<td>1375.0</td>
+<td>3815.0</td>
+<td>425.0</td>
+<td>5520.0</td>
+<td>10908.0</td>
+<td>2245.0</td>
+<td>3240.0</td>
+<td>NaN</td>
+<td>1215.0</td>
+<td>2100.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2019-12-27</td>
+<td>56500</td>
+<td>96000.0</td>
+<td>310500.0</td>
+<td>429500.0</td>
+<td>183500</td>
+<td>30810</td>
+<td>120500.0</td>
+<td>233000</td>
+<td>180689</td>
+<td>44350</td>
+<td>...</td>
+<td>1450.0</td>
+<td>3835.0</td>
+<td>418.0</td>
+<td>5270.0</td>
+<td>10875.0</td>
+<td>2340.0</td>
+<td>3350.0</td>
+<td>NaN</td>
+<td>1215.0</td>
+<td>1890.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2019-12-30</td>
+<td>55800</td>
+<td>94100.0</td>
+<td>317500.0</td>
+<td>433000.0</td>
+<td>186500</td>
+<td>30810</td>
+<td>120500.0</td>
+<td>236000</td>
+<td>177743</td>
+<td>44300</td>
+<td>...</td>
+<td>1585.0</td>
+<td>3805.0</td>
+<td>413.0</td>
+<td>5210.0</td>
+<td>10594.0</td>
+<td>2350.0</td>
+<td>3210.0</td>
+<td>NaN</td>
+<td>1155.0</td>
+<td>2455.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>246 rows × 2203 columns</p>
+</div>
+</div>
+</div>
+</div>
+<div id="ecc2e3b2" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 열 별로 직전 대비 변동률을 구하고, 누적 곱하여 cum_ret 생성</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>returns <span class="op">=</span> price_sub.pct_change()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cum_ret <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> returns).prod(axis<span class="op">=</span><span class="dv">0</span>) <span class="op">-</span> <span class="dv">1</span> <span class="co"># 마지막에 1 빼주는게 맞음</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>cum_ret</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\Lenovo\AppData\Local\Temp\ipykernel_18372\4181596083.py:2: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  returns = price_sub.pct_change()</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>X005930    0.440000
+X000660    0.552805
+X051910   -0.057864
+X207940    0.157754
+X035420    0.580508
+             ...   
+X121890    0.273713
+X114570   -0.818388
+X347140    0.000000
+X080440   -0.644615
+X158310   -0.090741
+Length: 2203, dtype: float64</code></pre>
+</div>
+</div>
+<div id="071f0afa" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. cum_ret에서 높은 순서로 10개 출력 및 가장 높은 종목의 시계열 그림 출력</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>top10_cum_ret <span class="op">=</span> cum_ret.nlargest(<span class="dv">10</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>top10_cum_ret</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>X088290    13.576271
+X101360     7.400000
+X078130     4.155172
+X139670     4.049401
+X032500     3.443478
+X009190     2.992042
+X138080     2.719443
+X336370     2.693285
+X033250     2.536524
+X214150     2.498146
+dtype: float64</code></pre>
+</div>
+</div>
+<div id="6699a2f2" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>top_index <span class="op">=</span> top10_cum_ret.index[<span class="dv">0</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>price_sub[top_index].plot()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plot.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plot.ylabel(<span class="st">'Price'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>Text(0, 0.5, 'Price')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Python%20final_files/figure-html/cell-8-output-2.png" width="610" height="412" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="1618ef49" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 열 별로 직전 대비 변동률의 표준편차를 계산하여 std 생성</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>std <span class="op">=</span> returns.std(axis<span class="op">=</span><span class="dv">0</span>) <span class="op">*</span> np.sqrt(<span class="dv">252</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>X005930    0.230925
+X000660    0.353011
+X051910    0.248067
+X207940    0.367346
+X035420    0.328026
+             ...   
+X121890    0.941212
+X114570    0.709787
+X347140         NaN
+X080440    0.995452
+X158310    1.000060
+Length: 2203, dtype: float64</code></pre>
+</div>
+</div>
+<div id="f6bf08c5" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. std에서 0이거나 NaN인 경우 제외</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>std <span class="op">=</span> std[(std <span class="op">!=</span> <span class="dv">0</span>) <span class="op">&amp;</span> (<span class="op">~</span>std.isna())]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>X005930    0.230925
+X000660    0.353011
+X051910    0.248067
+X207940    0.367346
+X035420    0.328026
+             ...   
+X058420    0.680404
+X121890    0.941212
+X114570    0.709787
+X080440    0.995452
+X158310    1.000060
+Length: 2097, dtype: float64</code></pre>
+</div>
+</div>
+<div id="09f28f71" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. 종목 별 Sharpe ratio=cum_ret/std를 구하여 shrp 생성</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>shrp <span class="op">=</span> cum_ret <span class="op">/</span> std</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>shrp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>X000020   -0.412952
+X000040   -1.106285
+X000050   -0.795542
+X000060   -0.651532
+X000070   -0.593173
+             ...   
+X361390         NaN
+X361610         NaN
+X363280         NaN
+X375500         NaN
+X378850         NaN
+Length: 2203, dtype: float64</code></pre>
+</div>
+</div>
+<div id="6b286c6e" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. shrp에 NaN이 포함된 경우 shar의 최소값으로 대체</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>shrp.fillna(shrp.<span class="bu">min</span>(), inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>shrp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>X000020   -0.412952
+X000040   -1.106285
+X000050   -0.795542
+X000060   -0.651532
+X000070   -0.593173
+             ...   
+X361390   -2.164228
+X361610   -2.164228
+X363280   -2.164228
+X375500   -2.164228
+X378850   -2.164228
+Length: 2203, dtype: float64</code></pre>
+</div>
+</div>
+<div id="4377ac40" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 9. shrp를 값이 큰 순서로 10개 종목 출력</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>top10_shrp <span class="op">=</span> shrp.nlargest(<span class="dv">10</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>top10_shrp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>X088290    12.317314
+X032500     5.582321
+X101360     5.364799
+X139670     4.570944
+X138080     4.033614
+X078130     3.760220
+X214150     3.711147
+X036540     3.707145
+X097520     3.624222
+X000990     3.552103
+dtype: float64</code></pre>
+</div>
+</div>
+<div id="caa20c2e" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10. 위 10개 종목에 대한 cum_ret, std, shrp 값을 각 열로 하는 pd.DataFrame  final_result 생성</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>final_result <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cum_ret'</span>: cum_ret[top10_shrp.index],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'std'</span>: std[top10_shrp.index],</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'shrp'</span>: shrp[top10_shrp.index]</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>final_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cum_ret</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">shrp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">X088290</td>
+<td>13.576271</td>
+<td>1.102210</td>
+<td>12.317314</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">X032500</td>
+<td>3.443478</td>
+<td>0.616854</td>
+<td>5.582321</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">X101360</td>
+<td>7.400000</td>
+<td>1.379362</td>
+<td>5.364799</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">X139670</td>
+<td>4.049401</td>
+<td>0.885900</td>
+<td>4.570944</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">X138080</td>
+<td>2.719443</td>
+<td>0.674195</td>
+<td>4.033614</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">X078130</td>
+<td>4.155172</td>
+<td>1.105034</td>
+<td>3.760220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">X214150</td>
+<td>2.498146</td>
+<td>0.673147</td>
+<td>3.711147</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">X036540</td>
+<td>2.142336</td>
+<td>0.577894</td>
+<td>3.707145</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">X097520</td>
+<td>1.903846</td>
+<td>0.525312</td>
+<td>3.624222</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">X000990</td>
+<td>1.628571</td>
+<td>0.458481</td>
+<td>3.552103</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="problem-3." class="level2">
 <h2 class="anchored" data-anchor-id="problem-3.">Problem 3.</h2>
 <p><img src="images/Python_final3.png" class="img-fluid"></p>
+<div id="79e8e956" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ECallSimul_1(S0, K, T, r, sigma, M, I<span class="op">=</span><span class="dv">250000</span>): </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> math </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> random </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> [] </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> T<span class="op">/</span>M </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(I): </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        path <span class="op">=</span> [] </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span> (M<span class="op">+</span><span class="dv">1</span>): </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> t <span class="op">==</span> <span class="dv">0</span> : </span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                path.append(S0) </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>: </span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>                z<span class="op">=</span>random.gauss(<span class="fl">0.</span>, <span class="fl">1.</span>) </span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>                St <span class="op">=</span> path[t<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> math.exp( (r<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>dt <span class="op">+</span> sigma <span class="op">*</span> math.sqrt(dt)<span class="op">*</span>z ) </span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>                path.append(St) </span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>        S.append(path) </span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    sum_val <span class="op">=</span> <span class="fl">0.0</span> </span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> S: </span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>        sum_val <span class="op">+=</span> <span class="bu">max</span>(path[<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>K, <span class="dv">0</span>) </span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    C0 <span class="op">=</span> math.exp(<span class="op">-</span>r<span class="op">*</span>T)<span class="op">*</span>sum_val<span class="op">/</span>I </span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ( <span class="bu">round</span>(C0, <span class="dv">3</span>) ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="answer-2" class="level2">
 <h2 class="anchored" data-anchor-id="answer-2">Answer</h2>
+<div id="2c97b572" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ECallSimul_2(S0, K, T, r, sigma, M, I<span class="op">=</span><span class="dv">250000</span>):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> np.zeros((I,M<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    S[:,<span class="dv">0</span>] <span class="op">=</span> S0</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> T<span class="op">/</span>M</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.random.standard_normal(size<span class="op">=</span>(I,M))</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,M<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        S[:,t] <span class="op">=</span> S[:,t<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>np.exp((r<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>dt <span class="op">+</span> sigma<span class="op">*</span>np.sqrt(dt)<span class="op">*</span>z[:,t<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    sum_val <span class="op">=</span> np.maximum(S[:,<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>K, <span class="dv">0</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    C0 <span class="op">=</span> np.exp(<span class="op">-</span>r<span class="op">*</span>T)<span class="op">*</span>np.mean(sum_val)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ( <span class="bu">round</span>(C0, <span class="dv">3</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5d73a05d" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time ECallSimul_1(S0<span class="op">=</span><span class="fl">100.</span>,K<span class="op">=</span><span class="fl">105.</span>,T<span class="op">=</span><span class="fl">1.</span>,r<span class="op">=</span><span class="fl">0.05</span>,sigma<span class="op">=</span><span class="fl">0.2</span>,M<span class="op">=</span><span class="dv">50</span>,I<span class="op">=</span><span class="dv">250000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: total: 13.2 s
+Wall time: 19.7 s</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>8.009</code></pre>
+</div>
+</div>
+<div id="4be25aec" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time ECallSimul_2(S0<span class="op">=</span><span class="fl">100.</span>,K<span class="op">=</span><span class="fl">105.</span>,T<span class="op">=</span><span class="fl">1.</span>,r<span class="op">=</span><span class="fl">0.05</span>,sigma<span class="op">=</span><span class="fl">0.2</span>,M<span class="op">=</span><span class="dv">50</span>,I<span class="op">=</span><span class="dv">250000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: total: 500 ms
+Wall time: 693 ms</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>8.034</code></pre>
+</div>
+</div>
 </section>
 
 </main>

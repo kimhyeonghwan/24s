@@ -46,7 +46,6 @@ def MVportfolio(asset, mu_p):
 
 # Test
 it = pd.read_csv('it.csv')
-
 MVportfolio(asset = it, mu_p = -0.001)
 ```
 
@@ -64,7 +63,6 @@ for mu_p in mu_p_values:
     portfolio_variances.append(Var_p)
 
 # Plotting
-plot.figure()
 plot.plot(portfolio_variances, mu_p_values)
 plot.ylabel('Portfolio Variance')
 plot.xlabel('Portfolio expected return')
@@ -77,8 +75,7 @@ plot.xlabel('Portfolio expected return')
 ## Answer
 
 ```{python}
-# 1. 'price.csv' 파일을 불러온 뒤, 'date' 열이 DatetimeIndex 자료형이 되도록 변경하고, 이를 Index로 하는 pd.DataFrame 객체 price를 생성
-
+# 1. 'price.csv'의 'date'를 DatetimeIndex로 하는 pd.DataFrame price 생성
 price = pd.read_csv('price.csv')
 price['date'] = pd.to_datetime(price['date'])
 price = price.set_index('date')
@@ -86,19 +83,119 @@ price
 ```
 
 ```{python}
-# 2. price에서 2019년도에 해당하는 자료만 선택해서 price_sub로 저장
-price_sub=price.loc['2020']
+# 2. price에서 2019년만 선택해서 price_sub로 저장
+price_sub=price.loc['2019']
 price_sub
 ```
 
 ```{python}
-rng = pd.date_range( '2011-01-31', periods=18, freq="M")
-ts = pd.DataFrame( np.random.randn(len(rng)), index=rng )
-ts['2011']
+# 3. 열 별로 직전 대비 변동률을 구하고, 누적 곱하여 cum_ret 생성
+returns = price_sub.pct_change()
+cum_ret = (1 + returns).prod(axis=0) - 1 # 마지막에 1 빼주는게 맞음
+cum_ret
+```
+
+```{python}
+# 4. cum_ret에서 높은 순서로 10개 출력 및 가장 높은 종목의 시계열 그림 출력
+top10_cum_ret = cum_ret.nlargest(10)
+top10_cum_ret
+```
+
+```{python}
+top_index = top10_cum_ret.index[0]
+price_sub[top_index].plot()
+plot.xlabel('Date')
+plot.ylabel('Price')
+```
+
+```{python}
+# 5. 열 별로 직전 대비 변동률의 표준편차를 계산하여 std 생성
+std = returns.std(axis=0) * np.sqrt(252)
+std
+```
+
+```{python}
+# 6. std에서 0이거나 NaN인 경우 제외
+std = std[(std != 0) & (~std.isna())]
+std
+```
+
+```{python}
+# 7. 종목 별 Sharpe ratio=cum_ret/std를 구하여 shrp 생성
+shrp = cum_ret / std
+shrp
+```
+
+```{python}
+# 8. shrp에 NaN이 포함된 경우 shar의 최소값으로 대체
+shrp.fillna(shrp.min(), inplace=True)
+shrp
+```
+
+```{python}
+# 9. shrp를 값이 큰 순서로 10개 종목 출력
+top10_shrp = shrp.nlargest(10)
+top10_shrp
+```
+
+```{python}
+# 10. 위 10개 종목에 대한 cum_ret, std, shrp 값을 각 열로 하는 pd.DataFrame  final_result 생성
+final_result = pd.DataFrame({
+    'cum_ret': cum_ret[top10_shrp.index],
+    'std': std[top10_shrp.index],
+    'shrp': shrp[top10_shrp.index]
+})
+final_result
 ```
 
 ## Problem 3.
 
 ![](images/Python_final3.png)
 
+```{python}
+def ECallSimul_1(S0, K, T, r, sigma, M, I=250000): 
+    import math 
+    import random 
+    S = [] 
+    dt = T/M 
+    for i in range(I): 
+        path = [] 
+        for t in range (M+1): 
+            if t == 0 : 
+                path.append(S0) 
+            else: 
+                z=random.gauss(0., 1.) 
+                St = path[t-1] * math.exp( (r-0.5*sigma**2)*dt + sigma * math.sqrt(dt)*z ) 
+                path.append(St) 
+        S.append(path) 
+    sum_val = 0.0 
+    for path in S: 
+        sum_val += max(path[-1]-K, 0) 
+    C0 = math.exp(-r*T)*sum_val/I 
+    return ( round(C0, 3) ) 
+```
+
 ## Answer
+
+```{python}
+def ECallSimul_2(S0, K, T, r, sigma, M, I=250000):
+    import numpy as np
+    S = np.zeros((I,M+1))
+    S[:,0] = S0
+    dt = T/M
+    z = np.random.standard_normal(size=(I,M))
+    for t in range(1,M+1):
+        S[:,t] = S[:,t-1]*np.exp((r-0.5*sigma**2)*dt + sigma*np.sqrt(dt)*z[:,t-1])
+    sum_val = np.maximum(S[:,-1]-K, 0)
+    C0 = np.exp(-r*T)*np.mean(sum_val)
+    return ( round(C0, 3) )
+```
+
+```{python}
+%time ECallSimul_1(S0=100.,K=105.,T=1.,r=0.05,sigma=0.2,M=50,I=250000)
+```
+
+
+```{python}
+%time ECallSimul_2(S0=100.,K=105.,T=1.,r=0.05,sigma=0.2,M=50,I=250000)
+```

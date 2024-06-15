@@ -560,6 +560,72 @@
     ]
   },
   {
+    "objectID": "Python final.html",
+    "href": "Python final.html",
+    "title": "Python Final Exam",
+    "section": "",
+    "text": "Problem 1.",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Final Exam"
+    ]
+  },
+  {
+    "objectID": "Python final.html#answer-1.",
+    "href": "Python final.html#answer-1.",
+    "title": "Python Final Exam",
+    "section": "Answer 1.",
+    "text": "Answer 1.\n\nimport pandas as pd\nimport numpy as np\n\ndef MVportfolio(asset, mu_p):\n    # Calculate log returns (first column is date.)\n    return_asset = np.log(asset.iloc[:, 1:]).diff()\n\n    # Calculate expected log returns\n    expect_asset = return_asset.mean()\n    expect_asset_np = np.array(expect_asset)\n\n    # Calculate covariance matrix\n    cov_asset = return_asset.cov()\n    cov_asset_np = np.array(cov_asset)\n\n    # Use lagrange multipliers method for optimazation\n    num_assets = return_asset.shape[1]\n    u = np.ones(num_assets)\n\n    a = np.block([\n        [cov_asset_np, u[:, np.newaxis], expect_asset_np[:, np.newaxis]],\n        [u[np.newaxis, :], np.zeros(1), np.zeros(1)],\n        [expect_asset_np[np.newaxis, :], np.zeros(1), np.zeros(1)]\n    ])\n\n    b = np.concatenate([np.zeros(num_assets), [1], [mu_p]])\n\n    lagrange = np.linalg.solve(a, b)\n    \n    # Optimal weights\n    result = lagrange[:num_assets]\n\n    # Portfolio variance\n    Var_p = np.dot(result, np.dot(cov_asset, result))\n\n    return result, Var_p\n\n# Test\nit = pd.read_csv('it.csv')\nMVportfolio(asset = it, mu_p = -0.001)\n\n(array([ 0.16186582,  0.25684189, -0.35114871,  0.44970549,  0.48273551]),\n 0.00014638968239383282)\n\n\n\nimport matplotlib.pyplot as plot\n\n# Range of mu_p\nmu_p_values = np.arange(-0.001, 0.0011, 0.0001)\n\n# Looping\nportfolio_variances = []\nfor mu_p in mu_p_values:\n    tmp = MVportfolio(asset=it, mu_p=mu_p)\n    Var_p = tmp[1]\n    portfolio_variances.append(Var_p)\n\n# Plotting\nplot.plot(portfolio_variances, mu_p_values)\nplot.ylabel('Portfolio Variance')\nplot.xlabel('Portfolio expected return')\n\nText(0.5, 0, 'Portfolio expected return')",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Final Exam"
+    ]
+  },
+  {
+    "objectID": "Python final.html#problem-2.",
+    "href": "Python final.html#problem-2.",
+    "title": "Python Final Exam",
+    "section": "Problem 2.",
+    "text": "Problem 2.",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Final Exam"
+    ]
+  },
+  {
+    "objectID": "Python final.html#answer-2.",
+    "href": "Python final.html#answer-2.",
+    "title": "Python Final Exam",
+    "section": "Answer 2.",
+    "text": "Answer 2.\n\n# 1. 'price.csv'의 'date'를 DatetimeIndex로 하는 pd.DataFrame price 생성\nprice = pd.read_csv('price.csv')\nprice['date'] = pd.to_datetime(price['date'])\nprice = price.set_index('date')\nprice\n\n\n\n\n\n\n\n\n\nX005930\nX000660\nX051910\nX207940\nX035420\nX035720\nX005380\nX006400\nX068270\nX000270\n...\nX058220\nX038160\nX033600\nX195440\nX058420\nX121890\nX114570\nX347140\nX080440\nX158310\n\n\ndate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2018-05-23\n51800\n95300.0\n343500.0\n399500.0\n136994\n22580\n144500.0\n204500\n237286\n33650\n...\n2500.0\n7790.0\n7460.0\n63720.0\n13298.0\n2905.0\n26630.0\nNaN\n5079.0\n10250.0\n\n\n2018-05-24\n51400\n94600.0\n345000.0\n418000.0\n136193\n22681\n140000.0\n204500\n243737\n32700\n...\n2383.0\n7880.0\n7310.0\n63536.0\n13226.0\n2890.0\n25339.0\nNaN\n5005.0\n9300.0\n\n\n2018-05-25\n52700\n95200.0\n352500.0\n430500.0\n137194\n22480\n139000.0\n207000\n253413\n32250\n...\n2400.0\n7770.0\n7200.0\n63997.0\n13265.0\n2830.0\n25574.0\nNaN\n4870.0\n8920.0\n\n\n2018-05-28\n52300\n94500.0\n352000.0\n429000.0\n136193\n21677\n138500.0\n209000\n249726\n32300\n...\n2403.0\n7980.0\n7370.0\n62800.0\n13226.0\n2790.0\n25339.0\nNaN\n4980.0\n8740.0\n\n\n2018-05-29\n51300\n94800.0\n343500.0\n433000.0\n133789\n21677\n140000.0\n211500\n249266\n31650\n...\n2350.0\n8930.0\n7240.0\n60866.0\n13121.0\n2740.0\n26281.0\nNaN\n4631.0\n8720.0\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n2020-08-31\n54000\n75100.0\n740000.0\n778000.0\n322500\n81691\n176500.0\n452500\n291656\n42450\n...\n275.0\n862.0\n179.0\n2075.0\n5968.0\n739.0\n620.0\n2015.0\n498.0\n505.0\n\n\n2020-09-01\n54200\n75200.0\n743000.0\n781000.0\n324500\n80587\n180000.0\n454500\n292638\n43150\n...\n275.0\n862.0\n179.0\n2075.0\n5961.0\n739.0\n620.0\n2015.0\n498.0\n505.0\n\n\n2020-09-02\n54400\n75500.0\n742000.0\n770000.0\n332500\n82695\n176000.0\n452000\n295093\n42200\n...\n275.0\n862.0\n179.0\n2075.0\n5891.0\n739.0\n620.0\n2015.0\n498.0\n505.0\n\n\n2020-09-03\n56400\n78700.0\n768000.0\n779000.0\n339000\n82293\n176500.0\n452500\n294111\n42700\n...\n275.0\n862.0\n179.0\n2075.0\n6080.0\n739.0\n620.0\n2010.0\n498.0\n505.0\n\n\n2020-09-04\n55600\n78700.0\n743000.0\n773000.0\n328500\n80688\n172500.0\n439000\n288710\n42150\n...\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\n\n565 rows × 2203 columns\n\n\n\n\n\n# 2. price에서 2019년만 선택해서 price_sub로 저장\nprice_sub=price.loc['2019']\nprice_sub\n\n\n\n\n\n\n\n\n\nX005930\nX000660\nX051910\nX207940\nX035420\nX035720\nX005380\nX006400\nX068270\nX000270\n...\nX058220\nX038160\nX033600\nX195440\nX058420\nX121890\nX114570\nX347140\nX080440\nX158310\n\n\ndate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2019-01-02\n38750\n60600.0\n337000.0\n374000.0\n118000\n20473\n114000.0\n210500\n201192\n32800\n...\n2525.0\n7320.0\n1810.0\n38781.0\n9939.0\n1845.0\n17675.0\nNaN\n3250.0\n2700.0\n\n\n2019-01-03\n37600\n57700.0\n328000.0\n376500.0\n122000\n20573\n116500.0\n203000\n197440\n32850\n...\n2550.0\n7260.0\n1730.0\n35054.0\n9939.0\n1870.0\n17581.0\nNaN\n3155.0\n2675.0\n\n\n2019-01-04\n37450\n58300.0\n330500.0\n381000.0\n125500\n20774\n119500.0\n201000\n206350\n34850\n...\n2475.0\n7450.0\n1780.0\n35330.0\n9972.0\n1885.0\n18806.0\nNaN\n3095.0\n2670.0\n\n\n2019-01-07\n38750\n58700.0\n343000.0\n388000.0\n131500\n20673\n120500.0\n217000\n202599\n34200\n...\n2483.0\n7750.0\n1785.0\n35330.0\n10391.0\n1885.0\n18806.0\nNaN\n3095.0\n2715.0\n\n\n2019-01-08\n38100\n59200.0\n349500.0\n386000.0\n130000\n20051\n119500.0\n218500\n200254\n33800\n...\n2445.0\n7790.0\n1740.0\n34502.0\n10391.0\n1975.0\n18099.0\nNaN\n3050.0\n2895.0\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n2019-12-23\n55500\n94600.0\n313000.0\n422500.0\n184000\n29806\n122500.0\n228000\n174929\n44750\n...\n1265.0\n3765.0\n446.0\n6130.0\n11982.0\n2520.0\n3270.0\nNaN\n1420.0\n2705.0\n\n\n2019-12-24\n55000\n93800.0\n312500.0\n417000.0\n182000\n29405\n122000.0\n225000\n173521\n44700\n...\n1265.0\n3740.0\n407.0\n5750.0\n11255.0\n2385.0\n3020.0\nNaN\n1210.0\n2360.0\n\n\n2019-12-26\n55400\n94800.0\n308000.0\n413500.0\n180500\n29706\n122500.0\n222500\n177743\n45100\n...\n1375.0\n3815.0\n425.0\n5520.0\n10908.0\n2245.0\n3240.0\nNaN\n1215.0\n2100.0\n\n\n2019-12-27\n56500\n96000.0\n310500.0\n429500.0\n183500\n30810\n120500.0\n233000\n180689\n44350\n...\n1450.0\n3835.0\n418.0\n5270.0\n10875.0\n2340.0\n3350.0\nNaN\n1215.0\n1890.0\n\n\n2019-12-30\n55800\n94100.0\n317500.0\n433000.0\n186500\n30810\n120500.0\n236000\n177743\n44300\n...\n1585.0\n3805.0\n413.0\n5210.0\n10594.0\n2350.0\n3210.0\nNaN\n1155.0\n2455.0\n\n\n\n\n246 rows × 2203 columns\n\n\n\n\n\n# 3. 열 별로 직전 대비 변동률을 구하고, 누적 곱하여 cum_ret 생성\nreturns = price_sub.pct_change()\ncum_ret = (1 + returns).prod(axis=0) - 1 # 마지막에 1 빼주는게 맞음\ncum_ret\n\n/var/folders/n2/jbh_0_091bx8qgz7j87t2qwc0000gp/T/ipykernel_81068/4181596083.py:2: FutureWarning:\n\nThe default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.\n\n\n\nX005930    0.440000\nX000660    0.552805\nX051910   -0.057864\nX207940    0.157754\nX035420    0.580508\n             ...   \nX121890    0.273713\nX114570   -0.818388\nX347140    0.000000\nX080440   -0.644615\nX158310   -0.090741\nLength: 2203, dtype: float64\n\n\n\n# 4. cum_ret에서 높은 순서로 10개 출력 및 가장 높은 종목의 시계열 그림 출력\ntop10_cum_ret = cum_ret.nlargest(10)\ntop10_cum_ret\n\nX088290    13.576271\nX101360     7.400000\nX078130     4.155172\nX139670     4.049401\nX032500     3.443478\nX009190     2.992042\nX138080     2.719443\nX336370     2.693285\nX033250     2.536524\nX214150     2.498146\ndtype: float64\n\n\n\ntop_index = top10_cum_ret.index[0]\nprice_sub[top_index].plot()\nplot.xlabel('Date')\nplot.ylabel('Price')\n\nText(0, 0.5, 'Price')\n\n\n\n\n\n\n\n\n\n\n# 5. 열 별로 직전 대비 변동률의 표준편차를 계산하여 std 생성\nstd = returns.std(axis=0) * np.sqrt(252)\nstd\n\nX005930    0.230925\nX000660    0.353011\nX051910    0.248067\nX207940    0.367346\nX035420    0.328026\n             ...   \nX121890    0.941212\nX114570    0.709787\nX347140         NaN\nX080440    0.995452\nX158310    1.000060\nLength: 2203, dtype: float64\n\n\n\n# 6. std에서 0이거나 NaN인 경우 제외\nstd = std[(std != 0) & (~std.isna())]\nstd\n\nX005930    0.230925\nX000660    0.353011\nX051910    0.248067\nX207940    0.367346\nX035420    0.328026\n             ...   \nX058420    0.680404\nX121890    0.941212\nX114570    0.709787\nX080440    0.995452\nX158310    1.000060\nLength: 2097, dtype: float64\n\n\n\n# 7. 종목 별 Sharpe ratio=cum_ret/std를 구하여 shrp 생성\nshrp = cum_ret / std\nshrp\n\nX000020   -0.412952\nX000040   -1.106285\nX000050   -0.795542\nX000060   -0.651532\nX000070   -0.593173\n             ...   \nX361390         NaN\nX361610         NaN\nX363280         NaN\nX375500         NaN\nX378850         NaN\nLength: 2203, dtype: float64\n\n\n\n# 8. shrp에 NaN이 포함된 경우 shar의 최소값으로 대체\nshrp.fillna(shrp.min(), inplace=True)\nshrp\n\nX000020   -0.412952\nX000040   -1.106285\nX000050   -0.795542\nX000060   -0.651532\nX000070   -0.593173\n             ...   \nX361390   -2.164228\nX361610   -2.164228\nX363280   -2.164228\nX375500   -2.164228\nX378850   -2.164228\nLength: 2203, dtype: float64\n\n\n\n# 9. shrp를 값이 큰 순서로 10개 종목 출력\ntop10_shrp = shrp.nlargest(10)\ntop10_shrp\n\nX088290    12.317314\nX032500     5.582321\nX101360     5.364799\nX139670     4.570944\nX138080     4.033614\nX078130     3.760220\nX214150     3.711147\nX036540     3.707145\nX097520     3.624222\nX000990     3.552103\ndtype: float64\n\n\n\n# 10. 위 10개 종목에 대한 cum_ret, std, shrp 값을 각 열로 하는 pd.DataFrame  final_result 생성\nfinal_result = pd.DataFrame({\n    'cum_ret': cum_ret[top10_shrp.index],\n    'std': std[top10_shrp.index],\n    'shrp': shrp[top10_shrp.index]\n})\nfinal_result\n\n\n\n\n\n\n\n\n\ncum_ret\nstd\nshrp\n\n\n\n\nX088290\n13.576271\n1.102210\n12.317314\n\n\nX032500\n3.443478\n0.616854\n5.582321\n\n\nX101360\n7.400000\n1.379362\n5.364799\n\n\nX139670\n4.049401\n0.885900\n4.570944\n\n\nX138080\n2.719443\n0.674195\n4.033614\n\n\nX078130\n4.155172\n1.105034\n3.760220\n\n\nX214150\n2.498146\n0.673147\n3.711147\n\n\nX036540\n2.142336\n0.577894\n3.707145\n\n\nX097520\n1.903846\n0.525312\n3.624222\n\n\nX000990\n1.628571\n0.458481\n3.552103",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Final Exam"
+    ]
+  },
+  {
+    "objectID": "Python final.html#problem-3.",
+    "href": "Python final.html#problem-3.",
+    "title": "Python Final Exam",
+    "section": "Problem 3.",
+    "text": "Problem 3.",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Final Exam"
+    ]
+  },
+  {
+    "objectID": "Python final.html#answer",
+    "href": "Python final.html#answer",
+    "title": "Python Final Exam",
+    "section": "Answer",
+    "text": "Answer\n\ndef ECallSimul_2(S0, K, T, r, sigma, M, I=250000):\n    import numpy as np\n    S = np.zeros((I,M+1))\n    S[:,0] = S0\n    dt = T/M\n    z = np.random.standard_normal(size=(I,M))\n    for t in range(1,M+1):\n        S[:,t] = S[:,t-1]*np.exp((r-0.5*sigma**2)*dt + sigma*np.sqrt(dt)*z[:,t-1])\n    sum_val = np.maximum(S[:,-1]-K, 0)\n    C0 = np.exp(-r*T)*np.mean(sum_val)\n    return ( round(C0, 3) )\n\n\n%time ECallSimul_1(S0=100.,K=105.,T=1.,r=0.05,sigma=0.2,M=50,I=250000)\n\nCPU times: user 11 s, sys: 102 ms, total: 11.1 s\nWall time: 11 s\n\n\n8.061\n\n\n\n%time ECallSimul_2(S0=100.,K=105.,T=1.,r=0.05,sigma=0.2,M=50,I=250000)\n\nCPU times: user 630 ms, sys: 22.7 ms, total: 653 ms\nWall time: 657 ms\n\n\n8.042",
+    "crumbs": [
+      "Python('24봄)",
+      "Python Final Exam"
+    ]
+  },
+  {
     "objectID": "채권분석_hw1.html",
     "href": "채권분석_hw1.html",
     "title": "채권분석 과제1",

@@ -4,7 +4,7 @@
 
 ![](images/Python_final1.png)
 
-## Answer
+## Answer 1.
 
 ```{python}
 import pandas as pd
@@ -64,15 +64,15 @@ for mu_p in mu_p_values:
 
 # Plotting
 plot.plot(portfolio_variances, mu_p_values)
-plot.ylabel('Portfolio Variance')
-plot.xlabel('Portfolio expected return')
+plot.xlabel('Portfolio Variance')
+plot.ylabel('Portfolio expected return')
 ```
 
 ## Problem 2.
 
 ![](images/Python_final2.png)
 
-## Answer
+## Answer 2.
 
 ```{python}
 # 1. 'price.csv'의 'date'를 DatetimeIndex로 하는 pd.DataFrame price 생성
@@ -91,7 +91,8 @@ price_sub
 ```{python}
 # 3. 열 별로 직전 대비 변동률을 구하고, 누적 곱하여 cum_ret 생성
 returns = price_sub.pct_change()
-cum_ret = (1 + returns).prod(axis=0) - 1 # 마지막에 1 빼주는게 맞음
+cum_ret = (1 + returns).prod(axis=0) - 1
+# 기간누적수익률 산출을 위해 (-1) 추가. 안하는 경우 (-) 수익률인 주식의 샤프비율 고평가됌
 cum_ret
 ```
 
@@ -153,6 +154,7 @@ final_result
 ![](images/Python_final3.png)
 
 ```{python}
+#| echo: false
 def ECallSimul_1(S0, K, T, r, sigma, M, I=250000): 
     import math 
     import random 
@@ -175,7 +177,7 @@ def ECallSimul_1(S0, K, T, r, sigma, M, I=250000):
     return ( round(C0, 3) ) 
 ```
 
-## Answer
+## Answer 3.
 
 ```{python}
 def ECallSimul_2(S0, K, T, r, sigma, M, I=250000):

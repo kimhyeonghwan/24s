@@ -33,6 +33,7 @@ book:
         - Python Quiz4.qmd
         - Python Quiz5.qmd
         - Python midterm_quarto.qmd
+        - Python final.qmd
     - part : 채권분석&기간구조('24봄)
       chapters:
         - 채권분석_hw1.qmd

@@ -264,6 +264,12 @@ window.Quarto = {
  <span class="menu-text">Python Midterm</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python final.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Final Exam</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -520,7 +526,7 @@ window.Quarto = {
 <p>Find the least squares estimates of slope and intercept, determine the best fitting straight line (use R program).</p>
 <section id="answer" class="level4">
 <h4 class="anchored" data-anchor-id="answer">Answer</h4>
-<p><strong>R을 이용한 회귀분석 결과, 회귀식은 <span class="math inline">\(\hat{y}=\hat{\beta_0}+\hat{\beta_1}x=3.84615-0.61538x\)</span>입니다.</strong></p>
+<p><strong>R을 이용한 회귀분석 결과, 회귀식은</strong> <span class="math inline">\(\hat{y}=\hat{\beta_0}+\hat{\beta_1}x=3.84615-0.61538x\)</span>입니다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y<span class="sc">~</span>x) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -567,7 +573,7 @@ F-statistic:   192 on 1 and 3 DF,  p-value: 0.0008136</code></pre>
 <p><span class="math display">\[E(y_0|x_0)=\hat{\beta_0}+\hat{\beta_1}x_0\sim N(\beta_0+\beta_1x_0,(\frac{1}{n}+\frac{(x_0-\bar{x})^2}{S_{xx}})\sigma^2)\]</span></p>
 <p>이제, 오차의 표준편차 <span class="math inline">\(\sigma\)</span> 대신에 <span class="math inline">\(MSE=\hat{\sigma}\)</span>를 이용하여 t분포를 통해 신뢰구간을 추정하면,</p>
 <p><span class="math display">\[CI_{95\%}\;=\;((\hat{\beta_0}+\hat{\beta_1}x_0)\pm t_{0.025,3}\sqrt{\hat{\sigma}^2(\frac{1}{n}+\frac{(x_0-\bar{x})^2}{S_{xx}})})\]</span></p>
-<p><strong>이제 <span class="math inline">\(S_{xx}=\sum(x_i-\bar{x})^2=3^2+2^2+3^2+2^2=26\)</span> 및 <span class="math inline">\(\hat{\beta_0}=3.846,\;\hat{\beta_1}=-0.615,\;\hat{\sigma}=0.227,\;n=5,\;x_0=1\)</span>를 적용하면 신뢰구간은 <span class="math inline">\((2.802,\;\;3.659)\)</span>입니다.</strong></p>
+<p><strong>이제</strong> <span class="math inline">\(S_{xx}=\sum(x_i-\bar{x})^2=3^2+2^2+3^2+2^2=26\)</span> 및 <span class="math inline">\(\hat{\beta_0}=3.846,\;\hat{\beta_1}=-0.615,\;\hat{\sigma}=0.227,\;n=5,\;x_0=1\)</span>를 적용하면 신뢰구간은 <span class="math inline">\((2.802,\;\;3.659)\)</span>입니다.</p>
 </section>
 </section>
 <section id="d" class="level3">
@@ -581,7 +587,7 @@ F-statistic:   192 on 1 and 3 DF,  p-value: 0.0008136</code></pre>
 </section>
 <section id="problem-2" class="level2">
 <h2 class="anchored" data-anchor-id="problem-2">Problem 2</h2>
-<p><img src="images/경영통계분석hw6.png" class="img-fluid"></p>
+<p><img src="images/경영통계분석hw6.png" class="img-fluid" width="600"></p>
 <section id="a-1" class="level3">
 <h3 class="anchored" data-anchor-id="a-1">(a)</h3>
 <p>What are the estimates of β0 and β1?</p>
@@ -624,7 +630,7 @@ F-statistic:   192 on 1 and 3 DF,  p-value: 0.0008136</code></pre>
 <p>먼저, 파라미터 <span class="math inline">\(\hat{\beta_0}=23.6409,\;\hat{\beta_1}=0.6527,\;n=14,\;x_1=70\)</span>으로 주어져 있습니다.</p>
 <p>또한 1-(c)의 회귀계수의 분포에 따라 <span class="math inline">\(Var(\hat{\beta_0})=(\frac{1}{n}+\frac{\bar{x}^2}{S_{xx}})\sigma^2=,\;Var(\hat{\beta_1})=\frac{\sigma^2}{S_{xx}}\)</span> 입니다.</p>
 <p>즉, 표준오차를 통해 <span class="math inline">\(S.E(\hat{\beta_0})=16.4171=\sqrt{(\frac{1}{n}+\frac{\bar{x}^2}{S_{xx}})MSE},\;\;S.E(\hat{\beta_1})=0.2416=\sqrt{\frac{MSE}{S_{xx}}}\)</span>임을 알 수 있고, 주어진 파라미터를 통해 <span class="math inline">\(\bar{x}=67.92,\;S_{xx}=54.22\)</span>를 도출할 수 있습니다.</p>
-<p>이제, <strong>각 파라미터를 대입한 <span class="math inline">\(x_1=70\)</span> 일 때의 <span class="math inline">\(y_1\)</span> 의 95% 예측구간은 <span class="math inline">\((65.17,\;73.49)\)</span>입니다. </strong></p>
+<p>이제, <strong>각 파라미터를 대입한</strong> <span class="math inline">\(x_1=70\)</span> 일 때의 <span class="math inline">\(y_1\)</span> 의 95% 예측구간은 <span class="math inline">\((65.17,\;73.49)\)</span>입니다.</p>
 
 
 <!-- -->
@@ -1107,7 +1113,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem 1</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Given the five pairs of (x, y) values,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Given the five pairs of (x, y) values,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
@@ -1124,7 +1130,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Answer</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>**R을 이용한 회귀분석 결과, 회귀식은 $\hat{y}=\hat{\beta_0}+\hat{\beta_1}x=3.84615-0.61538x$입니다.**</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>**R을 이용한 회귀분석 결과, 회귀식은** $\hat{y}=\hat{\beta_0}+\hat{\beta_1}x=3.84615-0.61538x$입니다.</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y<span class="sc">~</span>x) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
@@ -1160,7 +1166,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>$$CI_{95\%}\;=\;((\hat{\beta_0}+\hat{\beta_1}x_0)\pm t_{0.025,3}\sqrt{\hat{\sigma}^2(\frac{1}{n}+\frac{(x_0-\bar{x})^2}{S_{xx}})})$$</span>
 <span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>**이제 $S_{xx}=\sum(x_i-\bar{x})^2=3^2+2^2+3^2+2^2=26$ 및 $\hat{\beta_0}=3.846,\;\hat{\beta_1}=-0.615,\;\hat{\sigma}=0.227,\;n=5,\;x_0=1$를 적용하면 신뢰구간은 $(2.802,\;\;3.659)$입니다.**</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>**이제** $S_{xx}=\sum(x_i-\bar{x})^2=3^2+2^2+3^2+2^2=26$ 및 $\hat{\beta_0}=3.846,\;\hat{\beta_1}=-0.615,\;\hat{\sigma}=0.227,\;n=5,\;x_0=1$를 적용하면 신뢰구간은 $(2.802,\;\;3.659)$입니다.</span>
 <span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### (d)</span></span>
 <span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
@@ -1172,7 +1178,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem 2</span></span>
 <span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/경영통계분석hw6.png)</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/경영통계분석hw6.png)</span>{width="600"}</span>
 <span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### (a)</span></span>
 <span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
@@ -1230,9 +1236,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>즉, 표준오차를 통해 $S.E(\hat{\beta_0})=16.4171=\sqrt{(\frac{1}{n}+\frac{\bar{x}^2}{S_{xx}})MSE},\;\;S.E(\hat{\beta_1})=0.2416=\sqrt{\frac{MSE}{S_{xx}}}$임을 알 수 있고, 주어진 파라미터를 통해 $\bar{x}=67.92,\;S_{xx}=54.22$를 도출할 수 있습니다.</span>
 <span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>이제, **각 파라미터를 대입한 $x_1=70$ 일 때의 $y_1$ 의 95% 예측구간은 $(65.17,\;73.49)$입니다.</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>**</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>이제, **각 파라미터를 대입한** $x_1=70$ 일 때의 $y_1$ 의 95% 예측구간은 $(65.17,\;73.49)$입니다.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
